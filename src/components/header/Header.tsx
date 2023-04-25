@@ -5,7 +5,13 @@ import { MdManageSearch } from 'react-icons/md';
 
 import logo from '../../assets/logo.svg';
 
-export const Header = React.memo(() => {
+interface IHeaderProps {
+  calendar?: boolean;
+  registration?: boolean;
+  aboutUs?: boolean;
+}
+
+export const Header = React.memo(({ calendar, registration, aboutUs }: IHeaderProps) => {
   return (
     <HStack w="full" justify="center" backgroundColor="brand.dark" px={6} py={1} spacing={0}>
       <Image
@@ -19,13 +25,13 @@ export const Header = React.memo(() => {
         htmlHeight="full"
       />
       <Spacer />
-      <Button variant="brand-header" size="sm">
+      <Button variant="brand-header" size="sm" borderBottom={calendar ? '2px' : '0px'}>
         Календарь событий
       </Button>
-      <Button variant="brand-header" size="sm">
+      <Button variant="brand-header" size="sm" borderBottom={registration ? '2px' : '0px'}>
         Регистрация на конкурс
       </Button>
-      <Button variant="brand-header" size="sm">
+      <Button variant="brand-header" size="sm" borderBottom={aboutUs ? '2px' : '0px'}>
         О нас
       </Button>
       <Button variant="brand-header" size="sm">
