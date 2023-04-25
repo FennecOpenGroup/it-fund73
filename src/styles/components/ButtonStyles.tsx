@@ -46,6 +46,7 @@ export const ButtonStyles = {
       fontWeight: 'light',
       _hover: {
         fontWeight: 'bold',
+        color: 'brand.blue',
       },
     },
     'brand-header': {

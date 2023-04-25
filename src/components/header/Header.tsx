@@ -1,12 +1,13 @@
 import { Button, HStack, Image, Spacer } from '@chakra-ui/react';
 import React from 'react';
 import { HiOutlineMoon } from 'react-icons/hi';
+import { MdManageSearch } from 'react-icons/md';
 
 import logo from '../../assets/logo.svg';
 
 export const Header = React.memo(() => {
   return (
-    <HStack w="full" justify="center" backgroundColor="brand.dark" px={6} py={1}>
+    <HStack w="full" justify="center" backgroundColor="brand.dark" px={6} py={1} spacing={0}>
       <Image
         src={logo}
         alt="itfund"
@@ -33,7 +34,8 @@ export const Header = React.memo(() => {
       <Button variant="brand-header" size="sm" fontWeight="bold" _hover={{ fontWeight: 'bold', bg: 'brand.blue' }}>
         Для слабовидящих
       </Button>
-      <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="25px" />} iconSpacing={0} />
+      <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="20px" />} iconSpacing={0} size="xs" />
+      <Button variant="brand-icon" leftIcon={<MdManageSearch size="25px" />} iconSpacing={0} />
     </HStack>
   );
 });
