@@ -20,7 +20,7 @@ export const ButtonStyles = {
     },
     sm: {
       fontSize: ['xs', 'sm'],
-      px: [3, 4, 5, 6],
+      px: [2, 3, 4, 5],
       py: 5,
     },
     md: {
@@ -40,37 +40,23 @@ export const ButtonStyles = {
     },
   },
   variants: {
-    'brand-transparent': {
-      borderRadius: '0px',
+    'brand-icon': {
       color: 'white',
       bg: 'transparent',
+      fontWeight: 'light',
       _hover: {
-        color: 'brand.orange',
+        fontWeight: 'bold',
       },
     },
-    'brand-icon': {
-      color: 'brand.ford',
+    'brand-header': {
+      borderRadius: '25px',
+      color: 'white',
       bg: 'transparent',
+      fontWeight: 'light',
       _hover: {
         color: 'white',
-      },
-    },
-    'brand-border': {
-      bg: 'brand.orange',
-      color: 'white',
-      _hover: {
-        color: 'brand.orange',
-        bg: 'white',
-      },
-    },
-    'brand-circle-border': {
-      bg: 'brand.orange',
-      color: 'black',
-      border: '2px',
-      borderColor: 'brand.orange',
-      _hover: {
-        color: 'brand.orange',
-        bg: 'black',
+        fontWeight: 'light',
+        bg: 'brand.blue',
       },
     },
     link: {
