@@ -15,7 +15,7 @@ export const ButtonStyles = {
   sizes: {
     xs: {
       fontSize: ['xs'],
-      px: [2, 3],
+      px: 2,
       py: 4,
     },
     sm: {
@@ -46,6 +46,7 @@ export const ButtonStyles = {
       fontWeight: 'light',
       _hover: {
         fontWeight: 'bold',
+        color: 'brand.blue',
       },
     },
     'brand-header': {

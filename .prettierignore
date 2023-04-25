@@ -3,6 +3,7 @@
 **/*.scss
 package*.json
 tsconfig.json
+assets/
 public/
 build/
 nginx/
