@@ -6,16 +6,16 @@ import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 
-export const Main = React.memo(() => {
+export const Calendar = React.memo(() => {
   const { height } = useWindowDimensions();
 
   return (
     <>
       <Helmet>
-        <title>it-fund</title>
+        <title>it-fund73</title>
       </Helmet>
       <VStack minH={`${height}px`} justify="center">
-        <Header />
+        <Header calendar={true} />
         <Spacer />
         <Footer />
       </VStack>
