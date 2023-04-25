@@ -15,7 +15,7 @@ export const Main = React.memo(() => {
         <title>it-fund73</title>
       </Helmet>
       <VStack minH={`${height}px`} justify="center">
-        <Header />
+        <Header calendar={true} />
         <Spacer />
         <Footer />
       </VStack>

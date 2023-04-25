@@ -4,7 +4,7 @@ export const ButtonStyles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: '5px',
+    borderRadius: '0px',
     _focus: {
       shadow: 'none',
     },
@@ -20,7 +20,6 @@ export const ButtonStyles = {
     },
     sm: {
       fontSize: ['xs', 'sm'],
-      px: [2, 3, 4, 5],
       py: 5,
     },
     md: {
@@ -50,14 +49,12 @@ export const ButtonStyles = {
       },
     },
     'brand-header': {
-      borderRadius: '25px',
       color: 'white',
+      padding: '0px',
       bg: 'transparent',
       fontWeight: 'light',
       _hover: {
-        color: 'white',
-        fontWeight: 'light',
-        bg: 'brand.blue',
+        color: 'brand.blue',
       },
     },
     link: {
