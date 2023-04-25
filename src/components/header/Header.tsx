@@ -1,12 +1,19 @@
 import { Button, HStack, Image, Spacer } from '@chakra-ui/react';
 import React from 'react';
 import { HiOutlineMoon } from 'react-icons/hi';
+import { MdManageSearch } from 'react-icons/md';
 
 import logo from '../../assets/logo.svg';
 
-export const Header = React.memo(() => {
+interface IHeaderProps {
+  calendar?: boolean;
+  registration?: boolean;
+  aboutUs?: boolean;
+}
+
+export const Header = React.memo(({ calendar, registration, aboutUs }: IHeaderProps) => {
   return (
-    <HStack w="full" justify="center" backgroundColor="brand.dark" px={6} py={1}>
+    <HStack w="full" justify="center" backgroundColor="brand.dark" px={6} py={1} spacing={0}>
       <Image
         src={logo}
         alt="itfund"
@@ -18,13 +25,13 @@ export const Header = React.memo(() => {
         htmlHeight="full"
       />
       <Spacer />
-      <Button variant="brand-header" size="sm">
+      <Button variant="brand-header" size="sm" borderBottom={calendar ? '2px' : '0px'}>
         Календарь событий
       </Button>
-      <Button variant="brand-header" size="sm">
+      <Button variant="brand-header" size="sm" borderBottom={registration ? '2px' : '0px'}>
         Регистрация на конкурс
       </Button>
-      <Button variant="brand-header" size="sm">
+      <Button variant="brand-header" size="sm" borderBottom={aboutUs ? '2px' : '0px'}>
         О нас
       </Button>
       <Button variant="brand-header" size="sm">
@@ -33,7 +40,8 @@ export const Header = React.memo(() => {
       <Button variant="brand-header" size="sm" fontWeight="bold" _hover={{ fontWeight: 'bold', bg: 'brand.blue' }}>
         Для слабовидящих
       </Button>
-      <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="25px" />} iconSpacing={0} />
+      <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="20px" />} iconSpacing={0} size="xs" />
+      <Button variant="brand-icon" leftIcon={<MdManageSearch size="25px" />} iconSpacing={0} />
     </HStack>
   );
 });
