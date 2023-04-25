@@ -2014,6 +2014,11 @@
   dependencies:
     "@floating-ui/core" "^1.2.1"
 
+"@fontsource/jost@^4.5.13":
+  version "4.5.13"
+  resolved "https://registry.yarnpkg.com/@fontsource/jost/-/jost-4.5.13.tgz#8dfed7828f336b98119671be3c0bd47071d9daeb"
+  integrity sha512-StvM74Eny5ZkioanZ3JV6RgjTfMnB7mGde1SVoJGUrudxGPCp6kRXRm4CgwgJYarDzLt+jSPESLufHhRVemjrA==
+
 "@fontsource/roboto-mono@^4.5.0":
   version "4.5.10"
   resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-4.5.10.tgz#197fc2d5fa9c25fd7ad9dcccb2705663f2409850"

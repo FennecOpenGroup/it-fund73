@@ -25,8 +25,8 @@ export const theme = extendTheme({
   initialColorMode: 'light',
   useSystemColorMode: false,
   fonts: {
-    heading: 'Roboto Slab',
-    body: 'Roboto Mono',
+    heading: 'Jost',
+    body: 'Jost',
   },
   colors: {
     brand: {

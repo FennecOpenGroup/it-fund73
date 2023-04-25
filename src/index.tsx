@@ -5,8 +5,7 @@ import { CookiesProvider } from 'react-cookie';
 import { App } from './components/App';
 import { theme } from './styles/theme';
 
-import '@fontsource/roboto-slab';
-import '@fontsource/roboto-mono';
+import '@fontsource/jost';
 import './styles/main.scss';
 
 ReactDOM.render(
