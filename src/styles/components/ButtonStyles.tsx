@@ -24,7 +24,6 @@ export const ButtonStyles = {
     },
     md: {
       fontSize: ['sm', 'md'],
-      px: [6, 7],
       py: 6,
     },
     link: {
@@ -55,6 +54,16 @@ export const ButtonStyles = {
       fontWeight: 'light',
       _hover: {
         color: 'brand.blue',
+      },
+    },
+    'brand-circle-border': {
+      color: 'brand.dark',
+      border: '2px solid #1a1a1a',
+      borderRadius: '10px',
+      bg: 'transparent',
+      _hover: {
+        color: 'brand.blue',
+        border: '2px solid #7775ed',
       },
     },
     link: {

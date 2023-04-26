@@ -1,4 +1,4 @@
-import { Heading, HStack, Spacer, VStack } from '@chakra-ui/react';
+import { Spacer, VStack, HStack, Heading } from '@chakra-ui/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
@@ -7,24 +7,24 @@ import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 
-export const Registration = React.memo(() => {
+export const Team = React.memo(() => {
   const { height } = useWindowDimensions();
 
   return (
     <>
       <Helmet>
-        <title>it-fund | Регистрация на конкурс</title>
+        <title>it-fund | Команда</title>
       </Helmet>
       <VStack minH={`${height}px`} justify="center">
-        <Header registration={true} />
+        <Header aboutUs={true} />
         <HStack w={['80%', '70%', '60%']} align="start">
           <VStack w="75%" align="start">
             <Heading color="black" fontWeight="bold" fontSize={['xl', '2xl', '3xl', '4xl', '5xl']}>
-              Конкурс проектов на 2023
+              Команда
             </Heading>
             <VStack
               w="full"
-              minH={`${height / 2.5}px`}
+              minH={`${height / 3.5}px`}
               bg="brand.beige"
               fontWeight="light"
               borderRadius="10px"
@@ -35,7 +35,18 @@ export const Registration = React.memo(() => {
             ></VStack>
             <VStack
               w="full"
-              minH={`${height / 4}px`}
+              minH={`${height / 3.5}px`}
+              bg="brand.beige"
+              fontWeight="light"
+              borderRadius="10px"
+              px={[2, 3, 4]}
+              py={[4, 6, 8, 10]}
+              align="center"
+              justify="center"
+            ></VStack>
+            <VStack
+              w="full"
+              minH={`${height / 3.5}px`}
               bg="brand.beige"
               fontWeight="light"
               borderRadius="10px"
@@ -45,7 +56,7 @@ export const Registration = React.memo(() => {
               justify="center"
             ></VStack>
           </VStack>
-          <AboutUsBlock />
+          <AboutUsBlock team={true} />
         </HStack>
         <Spacer />
         <Footer />
