@@ -13,6 +13,7 @@ import { LangEnum } from '../../enums/LangEnum';
 import { ModalsEnum } from '../../enums/ModalsEnum';
 import { IRootState } from '../../interfaces/IRootState';
 import { RootActions } from '../../types/RootActions';
+import { DrawerNews } from '../modals/DrawerNews';
 
 interface IHeaderProps {
   calendar?: boolean;
@@ -40,6 +41,8 @@ export const Header = React.memo(({ calendar, registration, aboutUs }: IHeaderPr
 
   const lang = useSelector((state: IRootState) => state.core.lang);
   const dispatch = useDispatch<Dispatch<RootActions>>();
+
+  const isOpenDrawer = useSelector((state: IRootState) => state.core[ModalsEnum.MAIN_DRAWER_NEWS]);
 
   const handleLangClick = useCallback(() => {
     dispatch(coreSetLang(lang === LangEnum.RU ? LangEnum.EN : LangEnum.RU));
@@ -120,6 +123,7 @@ export const Header = React.memo(({ calendar, registration, aboutUs }: IHeaderPr
           </HStack>
         </HStack>
       </HStack>
+      <DrawerNews isOpen={!!isOpenDrawer} />
     </HStack>
   );
 });

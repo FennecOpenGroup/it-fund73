@@ -1,19 +1,14 @@
 import { Spacer, VStack, HStack, Heading } from '@chakra-ui/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { useSelector } from 'react-redux';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
-import { DrawerNews } from '../../components/modals/DrawerNews';
-import { ModalsEnum } from '../../enums/ModalsEnum';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
-import { IRootState } from '../../interfaces/IRootState';
 
 export const Main = React.memo(() => {
   const { height } = useWindowDimensions();
 
-  const isOpenDrawer = useSelector((state: IRootState) => state.core[ModalsEnum.MAIN_DRAWER_NEWS]);
   // const texts = new LocalizedStrings({
   //   EN: {
   //     fund1: 'In ',
@@ -73,7 +68,6 @@ export const Main = React.memo(() => {
         </HStack>
         <Spacer />
         <Footer />
-        <DrawerNews isOpen={!!isOpenDrawer} />
       </VStack>
     </>
   );
