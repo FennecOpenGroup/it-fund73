@@ -1,4 +1,4 @@
-export const ROUTE_MAINPAGE = '/';
+export const ROUTE_MAINPAGE = '/it-fund73';
 
 export const ROUTE_CALENDAR = '/calendar';
 export const ROUTE_TEAM = '/team';

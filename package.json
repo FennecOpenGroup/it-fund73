@@ -2,7 +2,7 @@
   "name": "it-fund73",
   "version": "2.0.0",
   "license": "MIT",
-  "homepage": "/",
+  "homepage": "it-fund73",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
