@@ -1,10 +1,11 @@
-import { Spacer, VStack, HStack, Heading } from '@chakra-ui/react';
+import { Spacer, VStack, HStack, Image } from '@chakra-ui/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
+import logo from '../../assets/logo-dark.svg';
 
 export const Main = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -35,11 +36,18 @@ export const Main = React.memo(() => {
       </Helmet>
       <Header />
       <VStack minH={`${height}px`} justify="start">
-        <Heading color="black" fontWeight="bold" fontSize={['xl', '2xl', '3xl', '4xl', '5xl']}>
-          Главная
-        </Heading>
+        <Image
+          src={logo}
+          alt="itfund"
+          loading="lazy"
+          minW="32px"
+          minH="32px"
+          maxH="100px"
+          htmlWidth="full"
+          htmlHeight="full"
+        />
         <VStack
-          w={['80%', '70%', '60%']}
+          w={['90%', '80%', '70%']}
           minH={`${height / 2.5}px`}
           bg="brand.beige"
           fontWeight="light"
@@ -49,20 +57,20 @@ export const Main = React.memo(() => {
           align="center"
           justify="center"
         ></VStack>
-        <HStack w={['80%', '70%', '60%']}>
+        <HStack w={['90%', '80%', '70%']}>
           <VStack w="full" borderRadius="10px" minH={`${height / 5}px`} bg="brand.beige" p={5}></VStack>
           <VStack w="full" borderRadius="10px" minH={`${height / 5}px`} bg="brand.beige" p={5}></VStack>
           <VStack w="full" borderRadius="10px" minH={`${height / 5}px`} bg="brand.beige" p={5}></VStack>
         </HStack>
-        <HStack w={['80%', '70%', '60%']}>
+        <HStack w={['90%', '80%', '70%']}>
           <VStack w="full" borderRadius="10px" minH={`${height / 2}px`} bg="brand.beige" p={5}></VStack>
           <VStack w="full" borderRadius="10px" minH={`${height / 2}px`} bg="brand.beige" p={5}></VStack>
         </HStack>
-        <HStack w={['80%', '70%', '60%']}>
+        <HStack w={['90%', '80%', '70%']}>
           <VStack w="full" borderRadius="10px" minH={`${height / 2}px`} bg="brand.beige" p={5}></VStack>
           <VStack w="full" borderRadius="10px" minH={`${height / 2}px`} bg="brand.beige" p={5}></VStack>
         </HStack>
-        <HStack w={['80%', '70%', '60%']}>
+        <HStack w={['90%', '80%', '70%']}>
           <VStack w="full" borderRadius="10px" minH={`${height / 2}px`} bg="brand.beige" p={5}></VStack>
           <VStack w="full" borderRadius="10px" minH={`${height / 2}px`} bg="brand.beige" p={5}></VStack>
         </HStack>

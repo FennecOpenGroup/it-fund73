@@ -1,4 +1,4 @@
-import { Button, HStack, Image, Spacer } from '@chakra-ui/react';
+import { Button, HStack, Spacer } from '@chakra-ui/react';
 import React, { Dispatch, useCallback } from 'react';
 import { HiOutlineMoon } from 'react-icons/hi';
 import { MdManageSearch } from 'react-icons/md';
@@ -7,8 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { coreSetLang, coreSetVisibleModal } from '../../actions/coreActions';
-import logo from '../../assets/logo.svg';
-import { ROUTE_ABOUTUS, ROUTE_CALENDAR, ROUTE_MAINPAGE, ROUTE_REGISTRATION } from '../../constants/routes';
+import { ROUTE_ABOUTUS, ROUTE_CALENDAR, ROUTE_REGISTRATION } from '../../constants/routes';
 import { LangEnum } from '../../enums/LangEnum';
 import { ModalsEnum } from '../../enums/ModalsEnum';
 import { IRootState } from '../../interfaces/IRootState';
@@ -25,6 +24,9 @@ export const Header = React.memo(({ calendar, registration, aboutUs }: IHeaderPr
   const texts = new LocalizedStrings({
     EN: {
       calendar: 'Calendar of events',
+      branch: 'IT-branch',
+      education: 'IT-education',
+      projects: 'Projects',
       registration: 'Registration for the contest',
       aboutUs: 'About us',
       language: 'Language',
@@ -32,6 +34,9 @@ export const Header = React.memo(({ calendar, registration, aboutUs }: IHeaderPr
     },
     RU: {
       calendar: 'Календарь событий',
+      branch: 'ИТ-отрасль',
+      education: 'ИТ-образование',
+      projects: 'Проекты',
       registration: 'Регистрация на конкурс',
       aboutUs: 'О нас',
       language: 'Язык',
@@ -62,29 +67,22 @@ export const Header = React.memo(({ calendar, registration, aboutUs }: IHeaderPr
       mb={10}
     >
       <HStack position="static" w="full">
-        <HStack as={RouterLink} to={ROUTE_MAINPAGE} cursor="pointer">
-          <Image
-            src={logo}
-            alt="itfund"
-            loading="lazy"
-            minW="32px"
-            minH="32px"
-            maxH="50px"
-            htmlWidth="full"
-            htmlHeight="full"
+        <HStack spacing={0}>
+          <Button
+            variant="brand-icon"
+            leftIcon={<MdManageSearch size="25px" />}
+            iconSpacing={0}
+            onClick={handleDrawerNewsClick}
           />
+          <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="20px" />} iconSpacing={0} size="xs" />
         </HStack>
         <Spacer />
         <HStack spacing={[2, 4, 6]}>
-          <Button
-            variant="brand-header"
-            size="sm"
-            textDecoration={calendar ? 'underline' : 'none'}
-            fontWeight={calendar ? 'bold' : 'normal'}
-            as={RouterLink}
-            to={ROUTE_CALENDAR}
-          >
-            {texts.getString('calendar', lang)}
+          <Button variant="brand-header" size="sm">
+            {texts.getString('branch', lang)}
+          </Button>
+          <Button variant="brand-header" size="sm">
+            {texts.getString('education', lang)}
           </Button>
           <Button
             variant="brand-header"
@@ -95,6 +93,19 @@ export const Header = React.memo(({ calendar, registration, aboutUs }: IHeaderPr
             to={ROUTE_REGISTRATION}
           >
             {texts.getString('registration', lang)}
+          </Button>
+          <Button variant="brand-header" size="sm">
+            {texts.getString('projects', lang)}
+          </Button>
+          <Button
+            variant="brand-header"
+            size="sm"
+            textDecoration={calendar ? 'underline' : 'none'}
+            fontWeight={calendar ? 'bold' : 'normal'}
+            as={RouterLink}
+            to={ROUTE_CALENDAR}
+          >
+            {texts.getString('calendar', lang)}
           </Button>
           <Button
             variant="brand-header"
@@ -112,15 +123,6 @@ export const Header = React.memo(({ calendar, registration, aboutUs }: IHeaderPr
           <Button variant="brand-header" size="sm" onClick={handleLangClick}>
             {texts.getString('language', lang)}
           </Button>
-          <HStack spacing={0}>
-            <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="20px" />} iconSpacing={0} size="xs" />
-            <Button
-              variant="brand-icon"
-              leftIcon={<MdManageSearch size="25px" />}
-              iconSpacing={0}
-              onClick={handleDrawerNewsClick}
-            />
-          </HStack>
         </HStack>
       </HStack>
       <DrawerNews isOpen={!!isOpenDrawer} />
