@@ -16,9 +16,9 @@ export const InputStyles = {
     },
   },
   variants: {
-    'brand-auth': {
+    'brand-search': {
       field: {
-        borderRadius: '20px',
+        borderRadius: '5px',
         fontSize: 'sm',
         color: 'brand.gray.dark',
         bg: 'brand.gray.smoky',

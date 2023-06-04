@@ -46,7 +46,24 @@ export const ButtonStyles = {
         fontWeight: 'bold',
         color: 'brand.blue',
       },
-      'brand-footer': {
+
+    },
+    'brand-header': {
+      color: 'white',
+      bg: 'transparent',
+      px: 2,
+      fontWeight: 'light',
+      _hover: {
+        background: 'gray',
+      },
+    },
+    'brand-menu': {
+      color: 'white',
+      bg: '#5F5F5F',
+      borderRadius: '0px',
+      _hover: {
+        color: 'brand.blue',
+     'brand-footer': {
         color: 'white',
         padding: '0px',
         bg: 'transparent',
@@ -54,15 +71,6 @@ export const ButtonStyles = {
         _hover: {
           border: '2px solid white',
           borderRadius: '10px',
-        },
-      },
-      'brand-header': {
-        color: 'white',
-        padding: '0px',
-        bg: 'transparent',
-        fontWeight: 'light',
-        _hover: {
-          color: 'brand.blue',
         },
       },
       'brand-circle-border': {
