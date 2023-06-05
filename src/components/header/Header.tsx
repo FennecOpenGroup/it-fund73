@@ -1,4 +1,17 @@
-import { Button, VStack, HStack, Image, Input, Spacer, ButtonGroup, Tooltip } from '@chakra-ui/react';
+import {
+  Button,
+  VStack,
+  HStack,
+  Image,
+  Input,
+  Spacer,
+  ButtonGroup,
+  Tooltip,
+  Menu,
+  MenuButton,
+  MenuList,
+  Checkbox,
+} from '@chakra-ui/react';
 import React from 'react';
 import { HiOutlineMoon } from 'react-icons/hi';
 import { BsEye, BsYoutube } from 'react-icons/bs';
@@ -38,7 +51,7 @@ export const Header = React.memo(() => {
   // const dispatch = useDispatch<Dispatch<RootActions>>();
   return (
     <VStack
-      h="150px"
+      h="170px"
       position="sticky"
       top="0px"
       pt={0}
@@ -69,7 +82,7 @@ export const Header = React.memo(() => {
         </Tooltip>
       </HStack>
       <HStack w="full">
-        <Image src={logo} minW="200px" maxW="200px" minH="50px" maxH="50px" />
+        <Image src={logo} minW="200px" minH="50px" />
       </HStack>
       <Spacer />
       <HStack
@@ -93,15 +106,30 @@ export const Header = React.memo(() => {
             placeholder="Поиск..."
             h="30px"
           />
-          <Button
-            variant="brand-menu"
-            borderTopEndRadius="5px"
-            borderBottomEndRadius="5px"
-            iconSpacing={0}
-            p={0}
-            h="30px"
-            leftIcon={<BiCaretDown />}
-          />
+          <Menu closeOnSelect={false}>
+            <MenuButton
+              as={Button}
+              variant="brand-menu"
+              borderTopEndRadius="5px"
+              borderBottomEndRadius="5px"
+              h="30px"
+              p={0}
+              pl={2}
+              leftIcon={<BiCaretDown size="20px" />}
+            />
+            <MenuList>
+              <VStack justify="space-between">
+                <HStack>
+                  <Checkbox color="white">Вариант</Checkbox>
+                  <Checkbox color="white">Вариант</Checkbox>
+                </HStack>
+                <HStack>
+                  <Checkbox color="white">Вариант</Checkbox>
+                  <Checkbox color="white">Вариант</Checkbox>
+                </HStack>
+              </VStack>
+            </MenuList>
+          </Menu>
         </ButtonGroup>
         <Spacer />
         <HStack spacing={0}>
@@ -115,6 +143,7 @@ export const Header = React.memo(() => {
             Когда будут мероприятия?
           </Button>
         </HStack>
+        <Spacer />
         <Spacer />
       </HStack>
     </VStack>

@@ -9,9 +9,8 @@ export const MenuStyles = {
       },
     },
     list: {
-      border: '2px',
-      borderColor: 'brand.orange',
-      borderRadius: '0px',
+      border: '0px',
+      borderRadius: '5px',
       bg: 'brand.dark',
     },
     item: {

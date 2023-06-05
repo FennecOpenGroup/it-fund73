@@ -1,4 +1,4 @@
-import { Stack, VStack, Image, Link, Text, HStack, Button, Spacer } from '@chakra-ui/react';
+import { Stack, VStack, Image, Link, Text, HStack, Button, Spacer, Skeleton, Spinner } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { AiFillDislike, AiFillLike } from 'react-icons/ai';
 import { BsEmojiHeartEyesFill } from 'react-icons/bs';
@@ -6,13 +6,17 @@ import { ImShocked2 } from 'react-icons/im';
 import { FaAngry, FaSmile } from 'react-icons/fa';
 import { BiAngry, BiDislike, BiHappyHeartEyes, BiLike, BiShocked, BiShow, BiSmile } from 'react-icons/bi';
 
+import { useWindowDimensions } from '../../hooks/useWindowDimensions';
+
 interface News {
-  src: any;
+  src?: any;
   name: string;
-  views: number;
+  views?: number;
 }
 
-export const MainNews = React.memo(({ src, name, views }: News) => {
+export const NewsContent = React.memo(({ src, name, views }: News) => {
+  const { height } = useWindowDimensions();
+
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
   const [happy, setHappy] = useState(false);
@@ -22,14 +26,20 @@ export const MainNews = React.memo(({ src, name, views }: News) => {
 
   return (
     <VStack w="50%">
-      <Image src={src} w="full" borderTopStartRadius="5px" borderTopEndRadius="5px" />
-      <Stack border="1px" w="full" m={0} p={0} />
-      <Stack align="start" w="full" m={1}>
-        <Link href="" color="brand.dark" fontWeight="bold" fontSize="md">
-          {name}
-        </Link>
-      </Stack>
-      <Stack border="1px" w="full" m={0} p={0} />
+      <VStack w="full" cursor="pointer">
+        {src ? (
+          <Image src={src} w="full" borderTopStartRadius="5px" borderTopEndRadius="5px" />
+        ) : (
+          <Skeleton w="full" minH={`${height / 4}px`} border="5px" startColor="#BBBBBB" endColor="#e5e5e5" />
+        )}
+        <Stack border="1px" w="full" m={0} p={0} />
+        <Stack align="start" w="full" m={1}>
+          <Link href="" color="brand.dark" fontWeight="bold" fontSize="md">
+            {name}
+          </Link>
+        </Stack>
+        <Stack border="1px" w="full" m={0} p={0} />
+      </VStack>
       <HStack align="center" justify="center" w="full">
         <HStack spacing={0} p={0} m={0}>
           <Button
@@ -134,9 +144,13 @@ export const MainNews = React.memo(({ src, name, views }: News) => {
         <Spacer />
         <HStack spacing={0}>
           <BiShow color="#BBBBBB" size="22px" />
-          <Text color="#BBBBBB" fontSize="lg" p={0} m={0}>
-            {views}K
-          </Text>
+          {views ? (
+            <Text color="#BBBBBB" fontSize="lg" p={0} m={0}>
+              {views}K
+            </Text>
+          ) : (
+            <Spinner color="#BBBBBB" size="xs" />
+          )}
         </HStack>
       </HStack>
     </VStack>

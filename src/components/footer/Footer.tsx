@@ -27,17 +27,16 @@ export const Footer = React.memo(() => {
         <Link href="" variant="brand-Link">
           Пользовательское соглашение
         </Link>
-        <Link href="" variant="brand-Link">
-          Политика конфиденциальности
-        </Link>
-        <Text>Публикации:275</Text>
-        <Text>Компании:444</Text>
+        <Text>Подписчиков: 0</Text>
+        <Text>Публикации: 0</Text>
+        <Text>Компании: 0</Text>
       </VStack>
       <Spacer />
       <VStack align="left">
+        <Link href="" variant="brand-Link">
+          Политика конфиденциальности
+        </Link>
         <Text>Все права защищены и охраняются законом</Text>
-        <Text>Подписчиков: 23262</Text>
-        <Text>© 2018-2023</Text>
         <HStack>
           <Text>{texts.getString('create', lang)}</Text>
           <Link href="https://siiidr.github.io/FennecOpenGroup/" isExternal>
@@ -66,6 +65,7 @@ export const Footer = React.memo(() => {
             htmlHeight="full"
           />
         </HStack>
+        <Text>© 2018-2023</Text>
       </VStack>
     </HStack>
   );

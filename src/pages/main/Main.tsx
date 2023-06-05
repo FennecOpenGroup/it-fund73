@@ -1,12 +1,11 @@
-import { HStack, VStack } from '@chakra-ui/react';
+import { HStack, Spacer, VStack, Text, Link } from '@chakra-ui/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { MainNews } from '../../components/bigBlockNews/MainNews';
+import { NewsContent } from '../../components/newsContent/NewsContent';
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
-import people from '../../assets/people.png';
 
 export const Main = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -46,67 +45,34 @@ export const Main = React.memo(() => {
           py={[4, 6, 8, 10]}
           align="center"
           justify="start"
-          boxShadow="5px 0px rgb(3,0,11,35%)"
+          boxShadow="5px 0px rgb(3,0,15,15%)"
         >
-          <HStack w="full" spacing={5}>
-            <MainNews
-              src={people}
-              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
-              views={1.3}
-            />
-            <MainNews
-              src={people}
-              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
-              views={1.3}
-            />
-          </HStack>
-          <HStack w="full" spacing={5}>
-            <MainNews
-              src={people}
-              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
-              views={1.3}
-            />
-            <MainNews
-              src={people}
-              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
-              views={1.3}
-            />
-          </HStack>
-          <HStack w="full" spacing={5}>
-            <MainNews
-              src={people}
-              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
-              views={1.3}
-            />
-            <MainNews
-              src={people}
-              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
-              views={1.3}
-            />
-          </HStack>
-          <HStack w="full" spacing={5}>
-            <MainNews
-              src={people}
-              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
-              views={1.3}
-            />
-            <MainNews
-              src={people}
-              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
-              views={1.3}
-            />
-          </HStack>
-          <HStack w="full" spacing={5}>
-            <MainNews
-              src={people}
-              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
-              views={1.3}
-            />
-            <MainNews
-              src={people}
-              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
-              views={1.3}
-            />
+          <HStack w="full">
+            <VStack w="80%">
+              <HStack w="full" spacing={5}>
+                <NewsContent name="Тестовое название новости" />
+                <NewsContent name="Тестовое название новости" />
+              </HStack>
+              <HStack w="full" spacing={5}>
+                <NewsContent name="Тестовое название новости" />
+                <NewsContent name="Тестовое название новости" />
+                <NewsContent name="Тестовое название новости" />
+              </HStack>
+              <HStack w="full" spacing={5}>
+                <NewsContent name="Тестовое название новости" />
+                <NewsContent name="Тестовое название новости" />
+                <NewsContent name="Тестовое название новости" />
+              </HStack>
+            </VStack>
+            <VStack w="20%" spacing={2} borderLeft="2px" minH={`${height}px`}>
+              <Text w="90%" color="brand.dark" fontSize="2xl" borderBottom="2px" align="center">
+                Новости
+              </Text>
+              <Link w="90%" color="brand.dark" fontSize="md" borderBottom="1px">
+                Очень очень подробный текст, информационной новости
+              </Link>
+              <Spacer />
+            </VStack>
           </HStack>
         </VStack>
       </VStack>
