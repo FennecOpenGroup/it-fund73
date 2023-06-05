@@ -49,9 +49,17 @@ export const ButtonStyles = {
     },
     'brand-header': {
       color: 'white',
-      padding: '0px',
       bg: 'transparent',
+      px: 2,
       fontWeight: 'light',
+      _hover: {
+        background: 'gray',
+      },
+    },
+    'brand-menu': {
+      color: 'white',
+      bg: '#5F5F5F',
+      borderRadius: '0px',
       _hover: {
         color: 'brand.blue',
       },

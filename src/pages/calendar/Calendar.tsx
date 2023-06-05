@@ -1,6 +1,7 @@
-import { Heading, HStack, Spacer, VStack } from '@chakra-ui/react';
+import { Button, Heading, HStack, Spacer, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
 import { AboutUsBlock } from '../../components/aboutUsBlock/AboutUsBlock';
 import { Footer } from '../../components/footer/Footer';
@@ -16,7 +17,7 @@ export const Calendar = React.memo(() => {
         <title>it-fund | Календарь событий</title>
       </Helmet>
       <VStack minH={`${height}px`} justify="center">
-        <Header calendar={true} />
+        <Header  />
         <HStack w={['80%', '70%', '60%']} align="start">
           <VStack w="75%" align="start">
             <Heading color="black" fontWeight="bold" fontSize={['xl', '2xl', '3xl', '4xl', '5xl']}>
@@ -46,6 +47,23 @@ export const Calendar = React.memo(() => {
             ></VStack>
           </VStack>
           <AboutUsBlock />
+        </HStack>
+        <HStack>
+          <Button
+            variant="brand-icon"
+            backgroundColor="brand.dark"
+            leftIcon={<AiOutlineLeft size="20px" />}
+            iconSpacing={0}
+            p={0}
+          />
+          <Button variant="brand-icon" backgroundColor="brand.dark" iconSpacing={0} p={0} />
+          <Button
+            variant="brand-icon"
+            backgroundColor="brand.dark"
+            leftIcon={<AiOutlineRight size="20px" />}
+            iconSpacing={0}
+            p={0}
+          />
         </HStack>
         <Spacer />
         <Footer />
