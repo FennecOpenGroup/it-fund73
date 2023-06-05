@@ -105,13 +105,13 @@ export const Header = React.memo(() => {
         </ButtonGroup>
         <Spacer />
         <HStack spacing={0}>
-          <Button variant="brand-header" h="52px">
+          <Button variant="brand-header" h="52px" fontSize="md">
             Что происходит в отрасли?
           </Button>
-          <Button variant="brand-header" h="52px">
+          <Button variant="brand-header" h="52px" fontSize="md">
             Где получить образование?
           </Button>
-          <Button variant="brand-header" h="52px">
+          <Button variant="brand-header" h="52px" fontSize="md">
             Когда будут мероприятия?
           </Button>
         </HStack>

@@ -24,15 +24,19 @@ export const Footer = React.memo(() => {
     <HStack px="10%" w="full" h="120px" justify="center" backgroundColor="brand.dark" py={2}>
       <Image src={mini_logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
       <VStack align="left">
-        <Link href="" variant='brand-Link'>Пользовательское соглашение</Link>
-        <Link href="" variant='brand-Link'>Политика конфиденциальности</Link>
-        <Link href="" variant='brand-Link'>Публикации:275</Link>
-         <Link href="" variant='brand-Link'>Компании:444</Link>
+        <Link href="" variant="brand-Link">
+          Пользовательское соглашение
+        </Link>
+        <Link href="" variant="brand-Link">
+          Политика конфиденциальности
+        </Link>
+        <Text>Публикации:275</Text>
+        <Text>Компании:444</Text>
       </VStack>
       <Spacer />
       <VStack align="left">
-        <Link href="" variant='brand-Link'>Все права защищены и охраняются законом</Link>
-        <Link href="" variant='brand-Link'>Подписчиков: 23262</Link>
+        <Text>Все права защищены и охраняются законом</Text>
+        <Text>Подписчиков: 23262</Text>
         <Text>© 2018-2023</Text>
         <HStack>
           <Text>{texts.getString('create', lang)}</Text>

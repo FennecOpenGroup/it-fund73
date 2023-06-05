@@ -1,4 +1,4 @@
-import { Spacer, VStack, HStack } from '@chakra-ui/react';
+import { HStack, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
@@ -34,38 +34,22 @@ export const Main = React.memo(() => {
         <title>it-fund</title>
       </Helmet>
       <Header />
-      <VStack minH={`${height}px`} justify="start">
+      <VStack minH={`${height}px`} justify="start" px="10%">
         <VStack
-          w={['90%', '80%', '70%']}
-          minH={`${height / 2.5}px`}
+          w="full"
+          minH={`${height}px`}
           bg="brand.beige"
           fontWeight="light"
-          borderRadius="10px"
           px={[2, 3, 4]}
           py={[4, 6, 8, 10]}
           align="center"
           justify="center"
-        ></VStack>
-        <HStack w={['90%', '80%', '70%']}>
-          <VStack w="full" borderRadius="10px" minH={`${height / 5}px`} bg="brand.beige" p={5}></VStack>
-          <VStack w="full" borderRadius="10px" minH={`${height / 5}px`} bg="brand.beige" p={5}></VStack>
-          <VStack w="full" borderRadius="10px" minH={`${height / 5}px`} bg="brand.beige" p={5}></VStack>
-        </HStack>
-        <HStack w={['90%', '80%', '70%']}>
-          <VStack w="full" borderRadius="10px" minH={`${height / 2}px`} bg="brand.beige" p={5}></VStack>
-          <VStack w="full" borderRadius="10px" minH={`${height / 2}px`} bg="brand.beige" p={5}></VStack>
-        </HStack>
-        <HStack w={['90%', '80%', '70%']}>
-          <VStack w="full" borderRadius="10px" minH={`${height / 2}px`} bg="brand.beige" p={5}></VStack>
-          <VStack w="full" borderRadius="10px" minH={`${height / 2}px`} bg="brand.beige" p={5}></VStack>
-        </HStack>
-        <HStack w={['90%', '80%', '70%']}>
-          <VStack w="full" borderRadius="10px" minH={`${height / 2}px`} bg="brand.beige" p={5}></VStack>
-          <VStack w="full" borderRadius="10px" minH={`${height / 2}px`} bg="brand.beige" p={5}></VStack>
-        </HStack>
-        <Spacer />
-        <Footer />
+          boxShadow="5px 0px rgb(3,0,11,35%)"
+        >
+          <HStack></HStack>
+        </VStack>
       </VStack>
+      <Footer />
     </>
   );
 });
