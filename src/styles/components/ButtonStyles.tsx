@@ -49,29 +49,47 @@ export const ButtonStyles = {
     },
     'brand-header': {
       color: 'white',
-      padding: '0px',
       bg: 'transparent',
+      px: 2,
       fontWeight: 'light',
       _hover: {
-        color: 'brand.blue',
+        background: 'gray',
       },
     },
-    'brand-circle-border': {
-      color: 'brand.dark',
-      border: '2px solid #1a1a1a',
-      borderRadius: '10px',
-      bg: 'transparent',
+    'brand-menu': {
+      color: 'white',
+      bg: '#5F5F5F',
+      borderRadius: '0px',
       _hover: {
         color: 'brand.blue',
-        border: '2px solid #7775ed',
+        'brand-footer': {
+          color: 'white',
+          padding: '0px',
+          bg: 'transparent',
+          fontWeight: 'light',
+          _hover: {
+            border: '2px solid white',
+            borderRadius: '10px',
+          },
+        },
+        'brand-circle-border': {
+          color: 'brand.dark',
+          border: '2px solid #1a1a1a',
+          borderRadius: '10px',
+          bg: 'transparent',
+          _hover: {
+            color: 'brand.blue',
+            border: '2px solid #7775ed',
+          },
+        },
+        link: {
+          color: 'white',
+        },
+      },
+      defaultProps: {
+        size: 'sm',
+        variant: 'brand-transparent',
       },
     },
-    link: {
-      color: 'white',
-    },
-  },
-  defaultProps: {
-    size: 'sm',
-    variant: 'brand-transparent',
   },
 };

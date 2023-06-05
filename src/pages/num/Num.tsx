@@ -16,7 +16,7 @@ export const Num = React.memo(() => {
         <title>it-fund | Реквизиты</title>
       </Helmet>
       <VStack minH={`${height}px`} justify="center">
-        <Header aboutUs={true} />
+        <Header  />
         <HStack w={['80%', '70%', '60%']} align="start">
           <VStack w="75%" align="start">
             <Heading color="black" fontWeight="bold" fontSize={['xl', '2xl', '3xl', '4xl', '5xl']}>

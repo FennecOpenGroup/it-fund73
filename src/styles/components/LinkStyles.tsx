@@ -19,7 +19,11 @@ export const LinkStyles = {
       fontSize: 'sm',
     },
   },
-  variants: {},
+  variants: {
+    'brand-Link': {
+      color: 'white',
+    },
+  },
   defaultProps: {
     size: 'sm',
   },

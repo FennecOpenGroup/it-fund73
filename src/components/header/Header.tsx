@@ -1,131 +1,122 @@
-import { Button, HStack, Spacer } from '@chakra-ui/react';
-import React, { Dispatch, useCallback } from 'react';
+import { Button, VStack, HStack, Image, Input, Spacer, ButtonGroup, Tooltip } from '@chakra-ui/react';
+import React from 'react';
 import { HiOutlineMoon } from 'react-icons/hi';
-import { MdManageSearch } from 'react-icons/md';
-import LocalizedStrings from 'react-localization';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom';
+import { BsEye, BsYoutube } from 'react-icons/bs';
+import { SlSocialVkontakte } from 'react-icons/sl';
+import { FaTelegram } from 'react-icons/fa';
+import { SiOdnoklassniki } from 'react-icons/si';
+import { BiCaretDown } from 'react-icons/bi';
+// import LocalizedStrings from 'react-localization';
 
-import { coreSetLang, coreSetVisibleModal } from '../../actions/coreActions';
-import { ROUTE_ABOUTUS, ROUTE_CALENDAR, ROUTE_REGISTRATION } from '../../constants/routes';
-import { LangEnum } from '../../enums/LangEnum';
-import { ModalsEnum } from '../../enums/ModalsEnum';
-import { IRootState } from '../../interfaces/IRootState';
-import { RootActions } from '../../types/RootActions';
-import { DrawerNews } from '../modals/DrawerNews';
+import logo from '../../assets/logo.svg';
 
-interface IHeaderProps {
-  calendar?: boolean;
-  registration?: boolean;
-  aboutUs?: boolean;
-}
+export const Header = React.memo(() => {
+  // const texts = new LocalizedStrings({
+  //   EN: {
+  //     calendar: 'Calendar of events',
+  //     branch: 'IT-branch',
+  //     education: 'IT-education',
+  //     projects: 'Projects',
+  //     registration: 'Registration for the contest',
+  //     aboutUs: 'About us',
+  //     language: 'Language',
+  //     eye: 'For the visually impaired',
+  //   },
+  //   RU: {
+  //     calendar: 'Календарь событий',
+  //     branch: 'ИТ-отрасль',
+  //     education: 'ИТ-образование',
+  //     projects: 'Проекты',
+  //     registration: 'Регистрация на конкурс',
+  //     aboutUs: 'О нас',
+  //     language: 'Язык',
+  //     eye: 'Для слабовидящих',
+  //   },
+  // });
 
-export const Header = React.memo(({ calendar, registration, aboutUs }: IHeaderProps) => {
-  const texts = new LocalizedStrings({
-    EN: {
-      calendar: 'Calendar of events',
-      branch: 'IT-branch',
-      education: 'IT-education',
-      projects: 'Projects',
-      registration: 'Registration for the contest',
-      aboutUs: 'About us',
-      language: 'Language',
-      eye: 'For the visually impaired',
-    },
-    RU: {
-      calendar: 'Календарь событий',
-      branch: 'ИТ-отрасль',
-      education: 'ИТ-образование',
-      projects: 'Проекты',
-      registration: 'Регистрация на конкурс',
-      aboutUs: 'О нас',
-      language: 'Язык',
-      eye: 'Для слабовидящих',
-    },
-  });
-
-  const lang = useSelector((state: IRootState) => state.core.lang);
-  const dispatch = useDispatch<Dispatch<RootActions>>();
-
-  const isOpenDrawer = useSelector((state: IRootState) => state.core[ModalsEnum.MAIN_DRAWER_NEWS]);
-
-  const handleLangClick = useCallback(() => {
-    dispatch(coreSetLang(lang === LangEnum.RU ? LangEnum.EN : LangEnum.RU));
-  }, [lang]);
-  const handleDrawerNewsClick = useCallback(() => dispatch(coreSetVisibleModal(ModalsEnum.MAIN_DRAWER_NEWS)), []);
-
+  // const lang = useSelector((state: IRootState) => state.core.lang);
+  // const dispatch = useDispatch<Dispatch<RootActions>>();
   return (
-    <HStack
+    <VStack
+      h="150px"
       position="sticky"
       top="0px"
+      pt={0}
+      px="10%"
       zIndex="20"
       w="full"
-      justify="center"
+      justify="start"
       backgroundColor="brand.dark"
-      px={6}
-      py={1}
-      mb={10}
     >
-      <HStack position="static" w="full">
-        <HStack spacing={0}>
-          <Button
-            variant="brand-icon"
-            leftIcon={<MdManageSearch size="25px" />}
-            iconSpacing={0}
-            onClick={handleDrawerNewsClick}
+      <HStack w="full">
+        <Tooltip label="Сменить тему">
+          <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="15px" />} iconSpacing={0} size="xs" p={0} />
+        </Tooltip>
+        <Tooltip label="Для слабовидящих">
+          <Button variant="brand-icon" leftIcon={<BsEye size="15px" />} iconSpacing={0} size="xs" p={0} />
+        </Tooltip>
+        <Tooltip label="ВКонтакте">
+          <Button variant="brand-icon" leftIcon={<SlSocialVkontakte size="15px" />} iconSpacing={0} size="xs" p={0} />
+        </Tooltip>
+        <Tooltip label="Телеграм">
+          <Button variant="brand-icon" leftIcon={<FaTelegram size="15px" />} iconSpacing={0} size="xs" p={0} />
+        </Tooltip>
+        <Tooltip label="Ютуб">
+          <Button variant="brand-icon" leftIcon={<BsYoutube size="15px" />} iconSpacing={0} size="xs" p={0} />
+        </Tooltip>
+        <Tooltip label="Одноклассники">
+          <Button variant="brand-icon" leftIcon={<SiOdnoklassniki size="15px" />} iconSpacing={0} size="xs" p={0} />
+        </Tooltip>
+      </HStack>
+      <HStack w="full">
+        <Image src={logo} minW="200px" maxW="200px" minH="50px" maxH="50px" />
+      </HStack>
+      <Spacer />
+      <HStack
+        w="full"
+        h="52px"
+        px={2}
+        spacing={4}
+        backgroundColor="#313131"
+        borderTopStartRadius="5px"
+        borderTopEndRadius="5px"
+      >
+        <ButtonGroup minW="25%" maxW="40%" p={0} spacing={0}>
+          <Input
+            variant="brand-search"
+            borderBottom="2px solid #5F5F5F"
+            borderLeft="2px solid #5F5F5F"
+            borderTop="2px solid #5F5F5F"
+            borderTopEndRadius="0px"
+            borderBottomEndRadius="0px"
+            w="full"
+            placeholder="Поиск..."
+            h="30px"
           />
-          <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="20px" />} iconSpacing={0} size="xs" />
+          <Button
+            variant="brand-menu"
+            borderTopEndRadius="5px"
+            borderBottomEndRadius="5px"
+            iconSpacing={0}
+            p={0}
+            h="30px"
+            leftIcon={<BiCaretDown />}
+          />
+        </ButtonGroup>
+        <Spacer />
+        <HStack spacing={0}>
+          <Button variant="brand-header" h="52px" fontSize="md">
+            Что происходит в отрасли?
+          </Button>
+          <Button variant="brand-header" h="52px" fontSize="md">
+            Где получить образование?
+          </Button>
+          <Button variant="brand-header" h="52px" fontSize="md">
+            Когда будут мероприятия?
+          </Button>
         </HStack>
         <Spacer />
-        <HStack spacing={[2, 4, 6]}>
-          <Button variant="brand-header" size="sm">
-            {texts.getString('branch', lang)}
-          </Button>
-          <Button variant="brand-header" size="sm">
-            {texts.getString('education', lang)}
-          </Button>
-          <Button
-            variant="brand-header"
-            size="sm"
-            textDecoration={registration ? 'underline' : 'none'}
-            fontWeight={registration ? 'bold' : 'normal'}
-            as={RouterLink}
-            to={ROUTE_REGISTRATION}
-          >
-            {texts.getString('registration', lang)}
-          </Button>
-          <Button variant="brand-header" size="sm">
-            {texts.getString('projects', lang)}
-          </Button>
-          <Button
-            variant="brand-header"
-            size="sm"
-            textDecoration={calendar ? 'underline' : 'none'}
-            fontWeight={calendar ? 'bold' : 'normal'}
-            as={RouterLink}
-            to={ROUTE_CALENDAR}
-          >
-            {texts.getString('calendar', lang)}
-          </Button>
-          <Button
-            variant="brand-header"
-            size="sm"
-            textDecoration={aboutUs ? 'underline' : 'none'}
-            fontWeight={aboutUs ? 'bold' : 'normal'}
-            as={RouterLink}
-            to={ROUTE_ABOUTUS}
-          >
-            {texts.getString('aboutUs', lang)}
-          </Button>
-          <Button variant="brand-header" size="sm" fontWeight="bold">
-            {texts.getString('eye', lang)}
-          </Button>
-          <Button variant="brand-header" size="sm" onClick={handleLangClick}>
-            {texts.getString('language', lang)}
-          </Button>
-        </HStack>
       </HStack>
-      <DrawerNews isOpen={!!isOpenDrawer} />
-    </HStack>
+    </VStack>
   );
 });
