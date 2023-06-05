@@ -2,9 +2,11 @@ import { HStack, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
+import { MainNews } from '../../components/bigBlockNews/MainNews';
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
+import people from '../../assets/people.png';
 
 export const Main = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -43,10 +45,69 @@ export const Main = React.memo(() => {
           px={[2, 3, 4]}
           py={[4, 6, 8, 10]}
           align="center"
-          justify="center"
+          justify="start"
           boxShadow="5px 0px rgb(3,0,11,35%)"
         >
-          <HStack></HStack>
+          <HStack w="full" spacing={5}>
+            <MainNews
+              src={people}
+              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
+              views={1.3}
+            />
+            <MainNews
+              src={people}
+              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
+              views={1.3}
+            />
+          </HStack>
+          <HStack w="full" spacing={5}>
+            <MainNews
+              src={people}
+              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
+              views={1.3}
+            />
+            <MainNews
+              src={people}
+              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
+              views={1.3}
+            />
+          </HStack>
+          <HStack w="full" spacing={5}>
+            <MainNews
+              src={people}
+              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
+              views={1.3}
+            />
+            <MainNews
+              src={people}
+              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
+              views={1.3}
+            />
+          </HStack>
+          <HStack w="full" spacing={5}>
+            <MainNews
+              src={people}
+              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
+              views={1.3}
+            />
+            <MainNews
+              src={people}
+              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
+              views={1.3}
+            />
+          </HStack>
+          <HStack w="full" spacing={5}>
+            <MainNews
+              src={people}
+              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
+              views={1.3}
+            />
+            <MainNews
+              src={people}
+              name="Занижение реальных продаж ПО с 2014 года. Козлами отпущения сделали сотрудников и уволили их"
+              views={1.3}
+            />
+          </HStack>
         </VStack>
       </VStack>
       <Footer />

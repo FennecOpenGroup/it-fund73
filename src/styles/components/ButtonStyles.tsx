@@ -38,6 +38,13 @@ export const ButtonStyles = {
     },
   },
   variants: {
+    'brand-reactions': {
+      color: 'brand.dark',
+      bg: 'transparent',
+      _hover: {
+        color: 'brand.blue',
+      },
+    },
     'brand-icon': {
       color: 'white',
       bg: 'transparent',
