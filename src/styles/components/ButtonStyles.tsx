@@ -5,6 +5,7 @@ export const ButtonStyles = {
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: '0px',
+    transitionDuration: '0.3s',
     _focus: {
       shadow: 'none',
     },
@@ -60,7 +61,7 @@ export const ButtonStyles = {
       px: 2,
       fontWeight: 'light',
       _hover: {
-        background: 'gray',
+        background: 'brand.blue',
       },
     },
     'brand-menu': {

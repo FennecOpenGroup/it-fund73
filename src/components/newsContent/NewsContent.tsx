@@ -1,20 +1,18 @@
-import { Stack, VStack, Image, Link, Text, HStack, Button, Spacer, Skeleton, Spinner } from '@chakra-ui/react';
+import { Stack, VStack, Image, Link, Text, HStack, Button, Spacer, Skeleton } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { AiFillDislike, AiFillLike } from 'react-icons/ai';
-import { BsEmojiHeartEyesFill } from 'react-icons/bs';
-import { ImShocked2 } from 'react-icons/im';
-import { FaAngry, FaSmile } from 'react-icons/fa';
-import { BiAngry, BiDislike, BiHappyHeartEyes, BiLike, BiShocked, BiShow, BiSmile } from 'react-icons/bi';
+import { BiShow } from 'react-icons/bi';
 
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 
 interface News {
   src?: any;
-  name: string;
-  views?: number;
+  name?: string;
+  tag?: string;
+  views?: string;
+  date?: Date;
 }
 
-export const NewsContent = React.memo(({ src, name, views }: News) => {
+export const NewsContent = React.memo(({ src, name, views, date, tag }: News) => {
   const { height } = useWindowDimensions();
 
   const [like, setLike] = useState(false);
@@ -25,18 +23,30 @@ export const NewsContent = React.memo(({ src, name, views }: News) => {
   const [smile, setSmile] = useState(false);
 
   return (
-    <VStack w="50%">
+    <VStack w="full">
       <VStack w="full" cursor="pointer">
         {src ? (
-          <Image src={src} w="full" borderTopStartRadius="5px" borderTopEndRadius="5px" />
+          <Image
+            src={src}
+            w="full"
+            h={`${height / 4}px`}
+            borderRadius="5px"
+            objectFit="cover"
+            transitionDuration="0.3s"
+            _hover={{ height: `${height / 3.5}px` }}
+          />
         ) : (
           <Skeleton w="full" minH={`${height / 4}px`} border="5px" startColor="#BBBBBB" endColor="#e5e5e5" />
         )}
         <Stack border="1px" w="full" m={0} p={0} />
         <Stack align="start" w="full" m={1}>
-          <Link href="" color="brand.dark" fontWeight="bold" fontSize="md">
-            {name}
-          </Link>
+          {name ? (
+            <Link href="" color="brand.dark" fontWeight="bold" fontSize="md">
+              {name}
+            </Link>
+          ) : (
+            <Skeleton w="full" minH={`${height / 16}px`} border="5px" startColor="#BBBBBB" endColor="#e5e5e5" />
+          )}
         </Stack>
         <Stack border="1px" w="full" m={0} p={0} />
       </VStack>
@@ -57,7 +67,13 @@ export const NewsContent = React.memo(({ src, name, views }: News) => {
             p={0}
             m={0}
             leftIcon={
-              happy ? <BsEmojiHeartEyesFill size="25px" transform="scale(-1, 1)" /> : <BiHappyHeartEyes size="25px" />
+              happy ? (
+                <Text fontSize="xl">😍</Text>
+              ) : (
+                <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                  😍
+                </Text>
+              )
             }
           />
           <Button
@@ -74,23 +90,15 @@ export const NewsContent = React.memo(({ src, name, views }: News) => {
             }}
             p={0}
             m={0}
-            leftIcon={shocked ? <ImShocked2 size="25px" transform="scale(-1, 1)" /> : <BiShocked size="25px" />}
-          />
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => {
-              setAngry(!angry);
-              setLike(false);
-              setDislike(false);
-              setHappy(false);
-              setShocked(false);
-              setSmile(false);
-            }}
-            p={0}
-            m={0}
-            leftIcon={angry ? <FaAngry size="25px" transform="scale(-1, 1)" /> : <BiAngry size="25px" />}
+            leftIcon={
+              shocked ? (
+                <Text fontSize="xl">😯</Text>
+              ) : (
+                <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                  😯
+                </Text>
+              )
+            }
           />
           <Button
             variant="brand-reactions"
@@ -106,7 +114,39 @@ export const NewsContent = React.memo(({ src, name, views }: News) => {
             }}
             p={0}
             m={0}
-            leftIcon={smile ? <FaSmile size="25px" transform="scale(-1, 1)" /> : <BiSmile size="25px" />}
+            leftIcon={
+              smile ? (
+                <Text fontSize="xl">🙂</Text>
+              ) : (
+                <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                  🙂
+                </Text>
+              )
+            }
+          />
+          <Button
+            variant="brand-reactions"
+            size="30px"
+            iconSpacing={0}
+            onClick={() => {
+              setAngry(!angry);
+              setLike(false);
+              setDislike(false);
+              setHappy(false);
+              setShocked(false);
+              setSmile(false);
+            }}
+            p={0}
+            m={0}
+            leftIcon={
+              angry ? (
+                <Text fontSize="xl">😡</Text>
+              ) : (
+                <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                  😠
+                </Text>
+              )
+            }
           />
           <Button
             variant="brand-reactions"
@@ -122,7 +162,15 @@ export const NewsContent = React.memo(({ src, name, views }: News) => {
             }}
             p={0}
             m={0}
-            leftIcon={dislike ? <AiFillDislike size="25px" transform="scale(-1, 1)" /> : <BiDislike size="25px" />}
+            leftIcon={
+              dislike ? (
+                <Text fontSize="xl">👎</Text>
+              ) : (
+                <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                  👎
+                </Text>
+              )
+            }
           />
           <Button
             variant="brand-reactions"
@@ -138,20 +186,34 @@ export const NewsContent = React.memo(({ src, name, views }: News) => {
             }}
             p={0}
             m={0}
-            leftIcon={like ? <AiFillLike size="25px" /> : <BiLike size="25px" />}
+            leftIcon={
+              like ? (
+                <Text fontSize="xl">👍</Text>
+              ) : (
+                <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                  👍
+                </Text>
+              )
+            }
           />
         </HStack>
         <Spacer />
-        <HStack spacing={0}>
+        <HStack spacing={0} pr={2}>
           <BiShow color="#BBBBBB" size="22px" />
           {views ? (
             <Text color="#BBBBBB" fontSize="lg" p={0} m={0}>
-              {views}K
+              {views}
             </Text>
           ) : (
-            <Spinner color="#BBBBBB" size="xs" />
+            <Text color="#BBBBBB" fontSize="md" p={0} m={0}>
+              Нет просмотров
+            </Text>
           )}
         </HStack>
+      </HStack>
+      <HStack w="full" m={0} px={2} spacing={2} justify="start">
+        <Text color="#BBBBBB">{date?.toDateString()}</Text>
+        <Text color="#BBBBBB">{tag}</Text>
       </HStack>
     </VStack>
   );

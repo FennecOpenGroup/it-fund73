@@ -12,16 +12,29 @@ import {
   MenuList,
   Checkbox,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { Dispatch } from 'react';
 import { HiOutlineMoon } from 'react-icons/hi';
 import { BsEye, BsYoutube } from 'react-icons/bs';
 import { SlSocialVkontakte } from 'react-icons/sl';
 import { FaTelegram } from 'react-icons/fa';
 import { SiOdnoklassniki } from 'react-icons/si';
 import { BiCaretDown } from 'react-icons/bi';
+import { Link as RouterLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 // import LocalizedStrings from 'react-localization';
 
 import logo from '../../assets/logo.svg';
+import { ROUTE_ABOUTUS, ROUTE_MAINPAGE } from '../../constants/routes';
+import { RootActions } from '../../types/RootActions';
+import { IRootState } from '../../interfaces/IRootState';
+import {
+  coreSetBusinessNews,
+  coreSetEducationNews,
+  coreSetGovernmentNews,
+  coreSetITNews,
+  coreSetSearchDraft,
+} from '../../actions/coreActions';
 
 export const Header = React.memo(() => {
   // const texts = new LocalizedStrings({
@@ -48,13 +61,19 @@ export const Header = React.memo(() => {
   // });
 
   // const lang = useSelector((state: IRootState) => state.core.lang);
-  // const dispatch = useDispatch<Dispatch<RootActions>>();
+  const dispatch = useDispatch<Dispatch<RootActions>>();
+  const it = useSelector((state: IRootState) => state.core.it);
+  const education = useSelector((state: IRootState) => state.core.education);
+  const business = useSelector((state: IRootState) => state.core.business);
+  const government = useSelector((state: IRootState) => state.core.government);
+  const search = useSelector((state: IRootState) => state.core.search);
+
   return (
     <VStack
-      h="170px"
+      h="180px"
       position="sticky"
       top="0px"
-      pt={0}
+      pt={2}
       px="10%"
       zIndex="20"
       w="full"
@@ -81,7 +100,7 @@ export const Header = React.memo(() => {
           <Button variant="brand-icon" leftIcon={<SiOdnoklassniki size="15px" />} iconSpacing={0} size="xs" p={0} />
         </Tooltip>
       </HStack>
-      <HStack w="full">
+      <HStack w="full" cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE}>
         <Image src={logo} minW="200px" minH="50px" />
       </HStack>
       <Spacer />
@@ -104,6 +123,8 @@ export const Header = React.memo(() => {
             borderBottomEndRadius="0px"
             w="full"
             placeholder="Поиск..."
+            value={search}
+            onChange={(text: any) => dispatch(coreSetSearchDraft(text.target.value.toString()))}
             h="30px"
           />
           <Menu closeOnSelect={false}>
@@ -118,14 +139,34 @@ export const Header = React.memo(() => {
               leftIcon={<BiCaretDown size="20px" />}
             />
             <MenuList>
-              <VStack justify="space-between">
-                <HStack>
-                  <Checkbox color="white">Вариант</Checkbox>
-                  <Checkbox color="white">Вариант</Checkbox>
+              <VStack justify="start" px={2}>
+                <HStack justify="start" w="full">
+                  <Checkbox
+                    color="white"
+                    isChecked={education}
+                    onChange={() => dispatch(coreSetEducationNews(!education))}
+                  >
+                    Образование
+                  </Checkbox>
+                  <Checkbox color="white" isChecked={it} onChange={() => dispatch(coreSetITNews(!it))}>
+                    IT
+                  </Checkbox>
                 </HStack>
-                <HStack>
-                  <Checkbox color="white">Вариант</Checkbox>
-                  <Checkbox color="white">Вариант</Checkbox>
+                <HStack justify="start" w="full">
+                  <Checkbox
+                    color="white"
+                    isChecked={business}
+                    onChange={() => dispatch(coreSetBusinessNews(!business))}
+                  >
+                    Бизнес
+                  </Checkbox>
+                  <Checkbox
+                    color="white"
+                    isChecked={government}
+                    onChange={() => dispatch(coreSetGovernmentNews(!government))}
+                  >
+                    Государство
+                  </Checkbox>
                 </HStack>
               </VStack>
             </MenuList>
@@ -141,6 +182,9 @@ export const Header = React.memo(() => {
           </Button>
           <Button variant="brand-header" h="52px" fontSize="sm">
             Когда будут мероприятия?
+          </Button>
+          <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_ABOUTUS}>
+            О фонде
           </Button>
         </HStack>
         <Spacer />
