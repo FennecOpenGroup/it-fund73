@@ -15,7 +15,7 @@ export const Footer = React.memo(() => {
       support: 'with the support of',
     },
     RU: {
-      create: 'Создано ',
+      create: 'Создали ',
       support: 'при поддержке',
     },
   });
