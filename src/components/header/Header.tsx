@@ -25,7 +25,13 @@ import { useDispatch, useSelector } from 'react-redux';
 // import LocalizedStrings from 'react-localization';
 
 import logo from '../../assets/logo.svg';
-import { ROUTE_ABOUTUS, ROUTE_MAINPAGE } from '../../constants/routes';
+import {
+  ROUTE_ABOUTUS,
+  ROUTE_CALENDAR,
+  ROUTE_COMPANIES,
+  ROUTE_MAINPAGE,
+  ROUTE_EDUCATION,
+} from '../../constants/routes';
 import { RootActions } from '../../types/RootActions';
 import { IRootState } from '../../interfaces/IRootState';
 import {
@@ -174,13 +180,13 @@ export const Header = React.memo(() => {
         </ButtonGroup>
         <Spacer />
         <HStack spacing={0}>
-          <Button variant="brand-header" h="52px" fontSize="sm">
+          <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_COMPANIES}>
             Что происходит в отрасли?
           </Button>
-          <Button variant="brand-header" h="52px" fontSize="sm">
+          <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_EDUCATION}>
             Где получить образование?
           </Button>
-          <Button variant="brand-header" h="52px" fontSize="sm">
+          <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_CALENDAR}>
             Когда будут мероприятия?
           </Button>
           <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_ABOUTUS}>

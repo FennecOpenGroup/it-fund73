@@ -98,7 +98,7 @@ export const Main = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund</title>
+        <title>it-fund | Новости</title>
       </Helmet>
       <Header />
       <VStack minH={`${height}px`} align="start" justify="start" px="10%">
@@ -141,6 +141,9 @@ export const Main = React.memo(() => {
             <VStack w="full" maxW="20%" spacing={2} borderLeft="2px" minH={`${height}px`}>
               <Text w="full" color="brand.dark" fontSize="2xl" borderBottom="2px" align="center">
                 Новости
+              </Text>
+              <Text color="#BBBBBB" fontSize="md">
+                Нет подходящих новостей
               </Text>
             </VStack>
           </HStack>

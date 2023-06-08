@@ -15,6 +15,7 @@ interface News {
 export const NewsContent = React.memo(({ src, name, views, date, tag }: News) => {
   const { height } = useWindowDimensions();
 
+  const [load, setLoad] = useState(false);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
   const [happy, setHappy] = useState(false);
@@ -25,17 +26,17 @@ export const NewsContent = React.memo(({ src, name, views, date, tag }: News) =>
   return (
     <VStack w="full">
       <VStack w="full" cursor="pointer">
-        {src ? (
-          <Image
-            src={src}
-            w="full"
-            h={`${height / 4}px`}
-            borderRadius="5px"
-            objectFit="cover"
-            transitionDuration="0.3s"
-            _hover={{ height: `${height / 3.5}px` }}
-          />
-        ) : (
+        <Image
+          src={src}
+          w={load ? 'full' : '0px'}
+          h={load ? `${height / 3.8}px` : '0px'}
+          borderRadius="5px"
+          objectFit="cover"
+          transitionDuration="0.3s"
+          onLoad={() => setLoad(true)}
+          _hover={{ height: `${height / 3.5}px` }}
+        />
+        {load === false && (
           <Skeleton w="full" minH={`${height / 4}px`} border="5px" startColor="#BBBBBB" endColor="#e5e5e5" />
         )}
         <Stack border="1px" w="full" m={0} p={0} />
@@ -68,7 +69,7 @@ export const NewsContent = React.memo(({ src, name, views, date, tag }: News) =>
             m={0}
             leftIcon={
               happy ? (
-                <Text fontSize="xl">😍</Text>
+                <Text fontSize="22px">😍</Text>
               ) : (
                 <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
                   😍
@@ -92,7 +93,7 @@ export const NewsContent = React.memo(({ src, name, views, date, tag }: News) =>
             m={0}
             leftIcon={
               shocked ? (
-                <Text fontSize="xl">😯</Text>
+                <Text fontSize="22px">😯</Text>
               ) : (
                 <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
                   😯
@@ -116,7 +117,7 @@ export const NewsContent = React.memo(({ src, name, views, date, tag }: News) =>
             m={0}
             leftIcon={
               smile ? (
-                <Text fontSize="xl">🙂</Text>
+                <Text fontSize="22px">🙂</Text>
               ) : (
                 <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
                   🙂
@@ -140,7 +141,7 @@ export const NewsContent = React.memo(({ src, name, views, date, tag }: News) =>
             m={0}
             leftIcon={
               angry ? (
-                <Text fontSize="xl">😡</Text>
+                <Text fontSize="22px">😡</Text>
               ) : (
                 <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
                   😠
@@ -164,7 +165,7 @@ export const NewsContent = React.memo(({ src, name, views, date, tag }: News) =>
             m={0}
             leftIcon={
               dislike ? (
-                <Text fontSize="xl">👎</Text>
+                <Text fontSize="22px">👎</Text>
               ) : (
                 <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
                   👎
@@ -188,7 +189,7 @@ export const NewsContent = React.memo(({ src, name, views, date, tag }: News) =>
             m={0}
             leftIcon={
               like ? (
-                <Text fontSize="xl">👍</Text>
+                <Text fontSize="22px">👍</Text>
               ) : (
                 <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
                   👍
