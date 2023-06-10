@@ -17,7 +17,6 @@ import { TagsEnum } from '../../enums/TagsEnum';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
 import { calculateReadingTime } from '../../textfunctions/reattime/readtime';
 
-
 export const News = React.memo(() => {
   const { height } = useWindowDimensions();
   const { short_name } = useParams<{ short_name: string }>();
@@ -81,7 +80,7 @@ export const News = React.memo(() => {
     },
   ];
 
-  const news_content = newsData.find((news) => news.short_name === short_name);
+  const news_content = newsData.find(news => news.short_name === short_name);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -113,7 +112,11 @@ export const News = React.memo(() => {
                     </Text>
                   </HStack>
                   <Text color="#BBBBBB">||</Text>
-                  {news_content && <Text color="#BBBBBB">Время прочтения: ~{calculateReadingTime(news_content.content.split(' ').length, 250)} мин</Text>}
+                  {news_content && (
+                    <Text color="#BBBBBB">
+                      Время прочтения: ~{calculateReadingTime(news_content.content.split(' ').length, 250)} мин
+                    </Text>
+                  )}
                   <Text color="#BBBBBB">||</Text>
                   <Text color="#BBBBBB">{news_content?.date.toDateString()}</Text>
                   <Text color="#BBBBBB">||</Text>

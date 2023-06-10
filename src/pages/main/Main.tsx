@@ -16,7 +16,6 @@ import government2_img from '../../assets/government2.jpg';
 import { IRootState } from '../../interfaces/IRootState';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
 
-
 export const newsData = {
   '0': {
     src: education_img,
@@ -66,7 +65,7 @@ export const newsData = {
   '4': {
     src: government_img,
     name: 'Выставка «Армия-2023»',
-    short_name:  transliterating('Выставка «Армия-2023»'),
+    short_name: transliterating('Выставка «Армия-2023»'),
     content:
       'С 14 по 20 августа 2023 планируется организация коллективной экспозиции предприятий малого и среднего предпринимательства Ульяновской области в рамках Международного военно-технического форума «Армия-2023». Выставка пройдет в КВЦ «Патриот» Московкой области.',
     tag: TagsEnum.GOVERNMENT,
@@ -75,7 +74,6 @@ export const newsData = {
     reaction: undefined,
   },
 };
-
 
 export const Main = React.memo(() => {
   const { height } = useWindowDimensions();
