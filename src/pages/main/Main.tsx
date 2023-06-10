@@ -14,7 +14,7 @@ import it_img from '../../assets/it.jpg';
 import government_img from '../../assets/government.jpg';
 import government2_img from '../../assets/government2.jpg';
 import { IRootState } from '../../interfaces/IRootState';
-import { transliterating } from '../../transliterating/transliterating';
+import { transliterating } from '../../textfunctions/transliterating/transliterating';
 
 
 export const newsData = {

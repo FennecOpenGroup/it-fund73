@@ -14,7 +14,8 @@ import it_img from '../../assets/it.jpg';
 import government_img from '../../assets/government.jpg';
 import government2_img from '../../assets/government2.jpg';
 import { TagsEnum } from '../../enums/TagsEnum';
-import { transliterating } from '../../transliterating/transliterating';
+import { transliterating } from '../../textfunctions/transliterating/transliterating';
+import { calculateReadingTime } from '../../textfunctions/reattime/readtime';
 
 
 export const News = React.memo(() => {
@@ -111,6 +112,8 @@ export const News = React.memo(() => {
                       Нет просмотров
                     </Text>
                   </HStack>
+                  <Text color="#BBBBBB">||</Text>
+                  {news_content && <Text color="#BBBBBB">Время прочтения: {calculateReadingTime(news_content.content.split(' ').length, 250)} мин</Text>} 
                   <Text color="#BBBBBB">||</Text>
                   <Text color="#BBBBBB">{news_content?.date.toDateString()}</Text>
                   <Text color="#BBBBBB">||</Text>
