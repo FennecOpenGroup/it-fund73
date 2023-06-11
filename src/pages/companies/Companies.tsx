@@ -6,13 +6,13 @@ import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 
-export const Calendar = React.memo(() => {
+export const Companies = React.memo(() => {
   const { height } = useWindowDimensions();
 
   return (
     <>
       <Helmet>
-        <title>it-fund | Когда будут мероприятия?</title>
+        <title>it-fund | Что происходит в отрасли?</title>
       </Helmet>
       <Header />
       <VStack minH={`${height}px`} justify="center" px="10%">
