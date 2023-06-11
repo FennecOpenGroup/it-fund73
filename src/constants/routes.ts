@@ -5,3 +5,5 @@ export const ROUTE_ABOUTUS = '/aboutus';
 export const ROUTE_EDUCATION = '/education';
 export const ROUTE_COMPANIES = '/companies';
 export const ROUTE_NEWS = '/news';
+
+export const ADRESS = 'http://localhost:3000';

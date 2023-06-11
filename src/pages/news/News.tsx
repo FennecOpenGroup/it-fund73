@@ -1,4 +1,6 @@
-import { HStack, VStack, Text, Image, Stack, Spacer } from '@chakra-ui/react';
+import { HStack, VStack, Text, Image, Stack, Spacer, useToast } from '@chakra-ui/react';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import { LinkIcon } from '@chakra-ui/icons';
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { BiShow } from 'react-icons/bi';
@@ -16,10 +18,12 @@ import government2_img from '../../assets/government2.jpg';
 import { TagsEnum } from '../../enums/TagsEnum';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
 import { calculateReadingTime } from '../../textfunctions/reattime/readtime';
+import { ADRESS, ROUTE_MAINPAGE, ROUTE_NEWS } from '../../constants/routes';
 
 export const News = React.memo(() => {
   const { height } = useWindowDimensions();
   const { short_name } = useParams<{ short_name: string }>();
+  const toast = useToast();
 
   const newsData = [
     {
@@ -121,6 +125,20 @@ export const News = React.memo(() => {
                   <Text color="#BBBBBB">{news_content?.date.toDateString()}</Text>
                   <Text color="#BBBBBB">||</Text>
                   <Text color="#BBBBBB">{news_content?.tag}</Text>
+                  <Text color="#BBBBBB">||</Text>
+                  <CopyToClipboard
+                    text={`${ADRESS + ROUTE_MAINPAGE + ROUTE_NEWS}/${short_name}`}
+                    onCopy={() =>
+                      toast({
+                        description: 'Ссылка скопирована!',
+                        status: 'info',
+                        duration: 9000,
+                        isClosable: true,
+                      })
+                    }
+                  >
+                    <LinkIcon cursor='pointer' color="#BBBBBB" transitionDuration='0.3s' _hover={{ color: 'brand.dark' }} />
+                  </CopyToClipboard>
                 </HStack>
               </HStack>
               <Stack border="1px" w="full" m={0} p={0} />
