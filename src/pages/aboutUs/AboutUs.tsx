@@ -10,14 +10,16 @@ import {
   AccordionPanel,
   AccordionIcon,
   Box,
-  OrderedList,
+  List,
   ListItem,
+  ListIcon,
   useToast,
 } from '@chakra-ui/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Chart } from 'react-google-charts';
+import { GiGearStickPattern, GiBrain, GiTechnoHeart, GiVintageRobot, GiSatelliteCommunication } from 'react-icons/gi';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
@@ -51,52 +53,66 @@ export const AboutUs = React.memo(() => {
           boxShadow="5px 0px rgb(3,0,15,15%)"
           align="flex-start"
         >
-          <VStack w="full" align="start" p={0} m={0}>
-            <Text color="brand.dark" fontSize="3xl">
-              <br />
-              <b>
-                <big>Миссия Фонда</big>
-              </b>
+          <VStack w="full" justify="center" spacing={5} my={2}>
+            <HStack>
+              <Text color="brand.dark" fontWeight="900px" fontSize="3xl">
+                О ФОНДЕ
+              </Text>
+            </HStack>
+            <VStack align="center" justify="center">
+              <Text color="brand.dark" fontSize="xl" align="center">
+                Фонд развития информационный технологий в Ульяновской области является оператором государственный
+                поддержки IT-проектов и компаний в регионе с 2016 года.
+              </Text>
+            </VStack>
+            <VStack align="center" justify="center">
+              <Text color="brand.dark" fontWeight="bold" fontSize="xl" align="center">
+                Миссия Фонда – всемерно стимулировать развитие ИТ-экосистемы Ульяновской области, обеспечивать системную
+                поддержку образовательных и профориентационных проектов в сфере информационных технологий и создавать
+                условия для устойчивого роста ИТ-отрасли региона.
+              </Text>
+            </VStack>
+          </VStack>
+          <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
+          <VStack w="full" align="center" p={5} mx="20%">
+            <Text color="brand.dark" fontWeight="900px" fontSize="3xl">
+              НАШИ ЦЕЛИ
             </Text>
-            <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
-            <Text color="brand.dark" fontSize="lg">
-              Миссия Фонда – всемерно стимулировать развитие ИТ-экосистемы Ульяновской области, обеспечивать системную
-              поддержку образовательных и профориентационных проектов в сфере информационных технологий и создавать
-              условия для устойчивого роста ИТ-отрасли региона.
-            </Text>
-            <Text color="brand.dark" fontSize="3xl">
-              <br />
-              <b>
-                <big>Наши цели</big>
-              </b>
-            </Text>
-            <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
-            <Text color="brand.dark" fontSize="lg">
-              Основной целью деятельности Фонда является формирование имущества (в том числе финансовых средств) на
-              основе добровольных имущественных взносов (в том числе денежных) и иных законных поступлений, и
-              направление их на:
-              <OrderedList>
-                <ListItem>Содействие развитию информационных технологий на территории Ульяновской области.</ListItem>
-                <ListItem>Развитие человеческого потенциала отрасли информационных технологий.</ListItem>
-                <ListItem>
-                  Создание условий для появления передовых технологий, организаций, методов обучения федерального и
-                  мирового уровня в сфере информационных технологий.
-                </ListItem>
-                <ListItem>
-                  Развитие проектов, осуществляемых в форме или посредством информационных технологий,
-                  телекоммуникационных технологий, в том числе информационно-телекоммуникационной сети Интернет,
-                  робототехники, облачных вычислений, больших данных, человеко-машинных интерфейсов, систем управления и
-                  так далее.
-                </ListItem>
-                <ListItem>Развитие Интернет-предпринимательства и экосистемы Интернет-предпринимательства.</ListItem>
-              </OrderedList>
-            </Text>
-            <VStack w="full" align="start" justify="start" p={2} m={0}></VStack>
-            <Text color="brand.dark" fontSize="3xl">
-              <br />
-              <b>
-                <big>Цифры и факты</big>
-              </b>
+            <VStack align="center" justify="center">
+              <Text color="brand.dark" fontSize="lg" align="start">
+                Основной целью деятельности Фонда является формирование имущества (в том числе финансовых средств) на
+                основе добровольных имущественных взносов (в том числе денежных) и иных законных поступлений, и
+                направление их на:
+                <List spacing={6} my={2} py={4} px="15%">
+                  <ListItem>
+                    <ListIcon as={GiGearStickPattern} w="5em" h="5em" color="brand.blue" />
+                    Содействие развитию информационных технологий на территории Ульяновской области.
+                  </ListItem>
+                  <ListItem>
+                    <ListIcon as={GiBrain} w="5em" h="5em" color="brand.blue" />
+                    Развитие человеческого потенциала отрасли информационных технологий.
+                  </ListItem>
+                  <ListItem>
+                    <ListIcon as={GiTechnoHeart} w="5em" h="5em" color="brand.blue" />
+                    Создание условий для появления передовых технологий, организаций, методов обучения федерального и
+                    мирового уровня в сфере информационных технологий.
+                  </ListItem>
+                  <ListItem>
+                    <ListIcon as={GiVintageRobot} w="5em" h="5em" color="brand.blue" />
+                    Развитие проектов, осуществляемых в форме или посредством информационных технологий,
+                    телекоммуникационных технологий, в том числе информационно-телекоммуникационной сети Интернет,
+                    робототехники, облачных вычислений, больших данных, человеко-машинных интерфейсов, систем управления
+                    и так далее.
+                  </ListItem>
+                  <ListItem>
+                    <ListIcon as={GiSatelliteCommunication} w="5em" h="5em" color="brand.blue" size="200px" />
+                    Развитие Интернет-предпринимательства и экосистемы Интернет-предпринимательства.
+                  </ListItem>
+                </List>
+              </Text>
+            </VStack>
+            <Text color="brand.dark" fontWeight="900px" fontSize="3xl">
+              Цифры и факты
             </Text>
             <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
             <Text color="brand.dark" fontWeight="bold" fontSize="2xl">
