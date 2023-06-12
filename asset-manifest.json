@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/it-fund73/static/css/main.f95cd0e5.css",
-    "main.js": "/it-fund73/static/js/main.876a0b0f.js",
+    "main.js": "/it-fund73/static/js/main.2b393b6f.js",
     "static/media/it.jpg": "/it-fund73/static/media/it.1e9754b71d345349de59.jpg",
     "static/media/government.jpg": "/it-fund73/static/media/government.bf44ab96ae00a051a939.jpg",
     "static/media/education.jpg": "/it-fund73/static/media/education.78bc8cff465b858390cf.jpg",
@@ -27,10 +27,10 @@
     "index.html": "/it-fund73/index.html",
     "static/media/logo-fog.svg": "/it-fund73/static/media/logo-fog.17a6a3d610b0c68941cf611c82ced211.svg",
     "main.f95cd0e5.css.map": "/it-fund73/static/css/main.f95cd0e5.css.map",
-    "main.876a0b0f.js.map": "/it-fund73/static/js/main.876a0b0f.js.map"
+    "main.2b393b6f.js.map": "/it-fund73/static/js/main.2b393b6f.js.map"
   },
   "entrypoints": [
     "static/css/main.f95cd0e5.css",
-    "static/js/main.876a0b0f.js"
+    "static/js/main.2b393b6f.js"
   ]
 }
