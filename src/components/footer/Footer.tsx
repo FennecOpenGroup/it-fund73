@@ -39,7 +39,7 @@ export const Footer = React.memo(() => {
           Политика конфиденциальности
         </Link>
         <Text>Все права защищены и охраняются законом</Text>
-        <Text>© 2018-2023</Text>
+        <Text>{`© 2017-${new Date().getFullYear()}`}</Text>
         <HStack>
           <Text>{texts.getString('create', lang)}</Text>
           <Link href="https://siiidr.github.io/FennecOpenGroup/" isExternal>

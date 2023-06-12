@@ -11,6 +11,7 @@ import {
   AccordionIcon,
   Box,
   useToast,
+  Link,
 } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
@@ -19,6 +20,7 @@ import { Chart } from 'react-google-charts';
 import { AiOutlineApartment } from 'react-icons/ai';
 import { GiVintageRobot } from 'react-icons/gi';
 import { MdEmojiPeople, MdBiotech, MdCellTower } from 'react-icons/md';
+import { BsFiletypeDocx, BsMailbox, BsTelephone } from 'react-icons/bs';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
@@ -549,6 +551,19 @@ export const AboutUs = React.memo(() => {
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
+                <AccordionPanel pb={4}>
+                  <VStack w="full" align="start">
+                    <HStack w='full' align='start'>
+                      <Link color='brand.dark' fontSize='lg' href='' isExternal w='full'>
+                        <Text color='brand.dark' fontSize='lg'>Порядок конкурсного отбора проектов Фонда ИТ</Text>
+                        <HStack spacing={0} pl={4}>
+                          <BsFiletypeDocx size="1.5em" />
+                          <Text color='brand.dark' fontSize='lg'>106.61 КБ</Text>
+                        </HStack>
+                      </Link>
+                    </HStack>
+                  </VStack>
+                </AccordionPanel>
               </AccordionItem>
             </Accordion>
             <Accordion allowMultiple w="full">
@@ -900,6 +915,36 @@ export const AboutUs = React.memo(() => {
                         </CopyToClipboard>
                       </HStack>
                     </VStack>
+                  </VStack>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+            <Accordion allowMultiple w="full">
+              <AccordionItem>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left">
+                    <Text color="brand.dark" fontSize="3xl">
+                      <b>КОНТАКТЫ</b>
+                    </Text>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel pb={4}>
+                  <VStack w="full" align="start">
+                      <HStack>
+                        <BsMailbox size="1em" color="#7775ed" />
+                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                          Email:
+                        </Text>
+                       <Link href='mailto:it_ulsk@mail.ru' fontSize="lg">it_ulsk@mail.ru</Link>
+                      </HStack>
+                      <HStack>
+                        <BsTelephone size="1em" color="#7775ed"/>
+                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                          Телефон:
+                        </Text>
+                        <Link href='tel:8 (8422) 58-17-47' fontSize="lg">8 (8422) 58-17-47</Link>
+                      </HStack>
                   </VStack>
                 </AccordionPanel>
               </AccordionItem>
