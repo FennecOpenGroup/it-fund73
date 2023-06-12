@@ -36,7 +36,7 @@ export const Calendar = React.memo(() => {
       </Helmet>
       <Header />
       <VStack minH={`${height}px`} justify="center" px="10%">
-        <VStack w="full" minH={`${height / 3}px`} pl={[2, 3, 4]} pb={[4, 6]}>
+        <VStack w="full" minH={`${height}px`} pl={[2, 3, 4]} pb={[4, 6]}>
           <HStack w="full" justify="start" align="center" pr={2}>
             <Text color="brand.dark" fontSize="xl">
               Календарь мероприятий
@@ -55,7 +55,7 @@ export const Calendar = React.memo(() => {
               </MenuList>
             </Menu>
           </HStack>
-          <VStack w="full" minH={`${height}px`} border="2px" borderRadius="5px" justify="center" bg="brand.beige">
+          <VStack w="full" minH={`${height / 1.6}px`} border="2px" borderRadius="5px" justify="center" bg="brand.beige">
             <Text color="#BBBBBB" fontSize="2xl" fontWeight="bold">
               На данный момент нет запланированных мероприятий
             </Text>
