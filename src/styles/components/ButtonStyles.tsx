@@ -103,6 +103,20 @@ export const ButtonStyles = {
         borderRadius: '10px',
       },
     },
+    'brand-calendar': {
+      color: 'brand.dark',
+      bg: 'white',
+      borderRadius: '0px',
+      border: '2px',
+      borderColor: 'brand.dark',
+      _hover: {
+        color: 'white',
+        bg: 'brand.blue',
+        borderColor: 'brand.blue',
+        border: '2px',
+        borderRadius: '5px',
+      },
+    },
     'brand-circle-border': {
       color: 'brand.dark',
       border: '2px solid #1a1a1a',
