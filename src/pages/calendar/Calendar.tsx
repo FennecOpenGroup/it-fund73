@@ -36,7 +36,7 @@ export const Calendar = React.memo(() => {
       </Helmet>
       <Header />
       <VStack minH={`${height}px`} justify="center" px="10%">
-        <VStack w="full" minH={`${height}px`} pl={[2, 3, 4]} pb={[4, 6]}>
+        <VStack w="full" minH={`${height / 2}px`} pl={[2, 3, 4]} pb={[4, 6]}>
           <HStack w="full" justify="start" align="center" pr={2}>
             <Text color="brand.dark" fontSize="xl">
               Календарь мероприятий
