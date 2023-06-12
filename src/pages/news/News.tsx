@@ -137,7 +137,12 @@ export const News = React.memo(() => {
                       })
                     }
                   >
-                    <LinkIcon cursor='pointer' color="#BBBBBB" transitionDuration='0.3s' _hover={{ color: 'brand.dark' }} />
+                    <LinkIcon
+                      cursor="pointer"
+                      color="#BBBBBB"
+                      transitionDuration="0.3s"
+                      _hover={{ color: 'brand.dark' }}
+                    />
                   </CopyToClipboard>
                 </HStack>
               </HStack>

@@ -17,20 +17,24 @@ export const NewsContent = React.memo(
 
     const search = useSelector((state: IRootState) => state.core.search);
 
-    const Highlight = ({ text = "", highlight = "" }) => {
+    const Highlight = ({ text = '', highlight = '' }) => {
       if (!highlight.trim()) {
-        return <span style={{ color: '#1a1a1a', fontWeight: '700', fontSize: '18px'}}>{text}</span>;
+        return <span style={{ color: '#1a1a1a', fontWeight: '700', fontSize: '18px' }}>{text}</span>;
       }
-      const regex = new RegExp(`(${highlight})`, "gi");
+      const regex = new RegExp(`(${highlight})`, 'gi');
       const parts = text.split(regex);
-    
+
       return (
         <span>
           {parts.filter(String).map((part, i) => {
             return regex.test(part) ? (
-              <mark key={i} style={{ color: '#1a1a1a', fontWeight: '700', fontSize: '18px'}}>{part}</mark>
+              <mark key={i} style={{ color: '#1a1a1a', fontWeight: '700', fontSize: '18px' }}>
+                {part}
+              </mark>
             ) : (
-              <span key={i} style={{ color: '#1a1a1a', fontWeight: '700', fontSize: '18px'}}>{part}</span>
+              <span key={i} style={{ color: '#1a1a1a', fontWeight: '700', fontSize: '18px' }}>
+                {part}
+              </span>
             );
           })}
         </span>
@@ -56,7 +60,7 @@ export const NewsContent = React.memo(
           <Stack border="1px" w="full" m={0} p={0} />
           <Stack align="start" w="full" m={1}>
             {name_content ? (
-              <Highlight text={name_content} highlight={search}  />
+              <Highlight text={name_content} highlight={search} />
             ) : (
               <Skeleton w="full" minH={`${height / 16}px`} border="5px" startColor="#BBBBBB" endColor="#e5e5e5" />
             )}

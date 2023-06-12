@@ -47,15 +47,16 @@ export const AboutUs = React.memo(() => {
       </Helmet>
       <Header />
       <VStack minH={`${height}px`} justify="start" px="10%">
-        <VStack
-          w="full"
-          minH={`${height}px`}
-          pb={[4, 6]}
-          align="flex-start"
-        >
-          <VStack w="full" justify="center"  spacing={5} m={0} py={10} my={2} >
+        <VStack w="full" minH={`${height}px`} pb={[4, 6]} align="flex-start">
+          <VStack w="full" justify="center" spacing={5} m={0} py={10} my={2}>
             <HStack>
-              <Text color="brand.blue" fontWeight="800" align='center' fontSize={["lg", "xl","2xl","4xl"]} textTransform='uppercase'>
+              <Text
+                color="brand.blue"
+                fontWeight="800"
+                align="center"
+                fontSize={['lg', 'xl', '2xl', '4xl']}
+                textTransform="uppercase"
+              >
                 Фонд развития информациионных технологий Ульяновской области
               </Text>
             </HStack>
@@ -74,55 +75,65 @@ export const AboutUs = React.memo(() => {
             </VStack>
           </VStack>
           <VStack w="full" align="start" spacing={0} mx="20%">
-            <VStack w="full" align="center" bgGradient='linear(to-t, blue.100 5%, transparent 95%)' pb={5}>
+            <VStack w="full" align="center" bgGradient="linear(to-t, blue.100 5%, transparent 95%)" pb={5}>
               <Text color="brand.dark" fontWeight="800" fontSize="3xl">
                 НАШИ ЦЕЛИ
               </Text>
               <VStack align="center" justify="center" px={4}>
-                <Text color="brand.dark" fontSize="lg" align="start" >
+                <Text color="brand.dark" fontSize="lg" align="start">
                   Основной целью деятельности Фонда является формирование имущества (в том числе финансовых средств) на
                   основе добровольных имущественных взносов (в том числе денежных) и иных законных поступлений, и
                   направление их на:
-                  <VStack w='full' px='25%' align='center' >
-                    <HStack w='full'>
-                      <VStack minW='5em'>
-                        <AiOutlineApartment size='5em' color="#7775ed" />
+                  <VStack w="full" px="25%" align="center">
+                    <HStack w="full">
+                      <VStack minW="5em">
+                        <AiOutlineApartment size="5em" color="#7775ed" />
                       </VStack>
-                      <Text color='brand.dark' fontSize="lg" w='full' align='start'>Содействие развитию информационных технологий на территории Ульяновской области.</Text>
+                      <Text color="brand.dark" fontSize="lg" w="full" align="start">
+                        Содействие развитию информационных технологий на территории Ульяновской области.
+                      </Text>
                     </HStack>
-                    <HStack w='full'>
-                      <VStack minW='5em'>
-                        <MdEmojiPeople size='5em' color="#7775ed" />
+                    <HStack w="full">
+                      <VStack minW="5em">
+                        <MdEmojiPeople size="5em" color="#7775ed" />
                       </VStack>
-                      <Text color='brand.dark' fontSize="lg" w='full' align='start'>Развитие человеческого потенциала отрасли информационных технологий.</Text>
+                      <Text color="brand.dark" fontSize="lg" w="full" align="start">
+                        Развитие человеческого потенциала отрасли информационных технологий.
+                      </Text>
                     </HStack>
-                    <HStack w='full'>
-                      <VStack minW='5em'>
-                        <MdBiotech size='5em' color="#7775ed" />
+                    <HStack w="full">
+                      <VStack minW="5em">
+                        <MdBiotech size="5em" color="#7775ed" />
                       </VStack>
-                      <Text color='brand.dark' fontSize="lg" w='full' align='start'>Создание условий для появления передовых технологий, организаций, методов обучения федерального и
-                        мирового уровня в сфере информационных технологий.</Text>
+                      <Text color="brand.dark" fontSize="lg" w="full" align="start">
+                        Создание условий для появления передовых технологий, организаций, методов обучения федерального
+                        и мирового уровня в сфере информационных технологий.
+                      </Text>
                     </HStack>
-                    <HStack w='full'>
-                      <VStack minW='5em'>
-                        <GiVintageRobot size='5em' color="#7775ed" />
+                    <HStack w="full">
+                      <VStack minW="5em">
+                        <GiVintageRobot size="5em" color="#7775ed" />
                       </VStack>
-                      <Text color='brand.dark' fontSize="lg" w='full' align='start'>Развитие проектов, осуществляемых в форме или посредством информационных технологий,
+                      <Text color="brand.dark" fontSize="lg" w="full" align="start">
+                        Развитие проектов, осуществляемых в форме или посредством информационных технологий,
                         телекоммуникационных технологий, в том числе информационно-телекоммуникационной сети Интернет,
-                        робототехники, облачных вычислений, больших данных, человеко-машинных интерфейсов, систем управления
-                        и так далее.</Text>
+                        робототехники, облачных вычислений, больших данных, человеко-машинных интерфейсов, систем
+                        управления и так далее.
+                      </Text>
                     </HStack>
-                    <HStack w='full'>
-                      <VStack minW='5em'>
-                        <MdCellTower size='5em' color="#7775ed" />
+                    <HStack w="full">
+                      <VStack minW="5em">
+                        <MdCellTower size="5em" color="#7775ed" />
                       </VStack>
-                      <Text color='brand.dark' fontSize="lg" w='full' align='start'>Развитие Интернет-предпринимательства и экосистемы Интернет-предпринимательства.</Text>
+                      <Text color="brand.dark" fontSize="lg" w="full" align="start">
+                        Развитие Интернет-предпринимательства и экосистемы Интернет-предпринимательства.
+                      </Text>
                     </HStack>
                   </VStack>
                 </Text>
               </VStack>
             </VStack>
-            <VStack w='full' align='center' bgGradient='linear(to-b, blue.100 2%, transparent 95%)'>
+            <VStack w="full" align="center" bgGradient="linear(to-b, blue.100 2%, transparent 95%)">
               <Text color="brand.dark" fontWeight="800" fontSize="3xl">
                 ЦИФРЫ И ФАКТЫ
               </Text>
@@ -144,7 +155,7 @@ export const AboutUs = React.memo(() => {
                 colors: ['#7775ed'],
                 animation: {
                   startup: true,
-                  easing: "linear",
+                  easing: 'linear',
                   duration: 1500,
                 },
               }}
@@ -168,7 +179,7 @@ export const AboutUs = React.memo(() => {
                 colors: ['#7775ed'],
                 animation: {
                   startup: true,
-                  easing: "linear",
+                  easing: 'linear',
                   duration: 3500,
                 },
               }}
@@ -193,7 +204,7 @@ export const AboutUs = React.memo(() => {
                 colors: ['#7775ed'],
                 animation: {
                   startup: true,
-                  easing: "linear",
+                  easing: 'linear',
                   duration: 3500,
                 },
               }}
@@ -218,7 +229,7 @@ export const AboutUs = React.memo(() => {
                 colors: ['#7775ed'],
                 animation: {
                   startup: true,
-                  easing: "linear",
+                  easing: 'linear',
                   duration: 3500,
                 },
               }}
@@ -243,7 +254,7 @@ export const AboutUs = React.memo(() => {
                 colors: ['#7775ed'],
                 animation: {
                   startup: true,
-                  easing: "linear",
+                  easing: 'linear',
                   duration: 3500,
                 },
               }}
@@ -268,7 +279,7 @@ export const AboutUs = React.memo(() => {
                 colors: ['#7775ed'],
                 animation: {
                   startup: true,
-                  easing: "linear",
+                  easing: 'linear',
                   duration: 3500,
                 },
               }}
@@ -293,7 +304,7 @@ export const AboutUs = React.memo(() => {
                 colors: ['#7775ed'],
                 animation: {
                   startup: true,
-                  easing: "linear",
+                  easing: 'linear',
                   duration: 3500,
                 },
               }}
@@ -318,7 +329,7 @@ export const AboutUs = React.memo(() => {
                 colors: ['#7775ed'],
                 animation: {
                   startup: true,
-                  easing: "linear",
+                  easing: 'linear',
                   duration: 3500,
                 },
               }}
