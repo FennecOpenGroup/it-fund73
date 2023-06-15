@@ -4,6 +4,7 @@ import {
   HStack,
   Image,
   Input,
+  Link,
   Spacer,
   ButtonGroup,
   Tooltip,
@@ -94,16 +95,40 @@ export const Header = React.memo(() => {
           <Button variant="brand-icon" leftIcon={<BsEye size="15px" />} iconSpacing={0} size="xs" p={0} />
         </Tooltip>
         <Tooltip label="ВКонтакте">
-          <Button variant="brand-icon" leftIcon={<SlSocialVkontakte size="15px" />} iconSpacing={0} size="xs" p={0} />
+          <Button
+            as={Link}
+            href="https://vk.com/itfund73"
+            variant="brand-icon"
+            leftIcon={<SlSocialVkontakte size="15px" />}
+            iconSpacing={0}
+            size="xs"
+            p={0}
+          />
         </Tooltip>
         <Tooltip label="Телеграм">
           <Button variant="brand-icon" leftIcon={<FaTelegram size="15px" />} iconSpacing={0} size="xs" p={0} />
         </Tooltip>
         <Tooltip label="Ютуб">
-          <Button variant="brand-icon" leftIcon={<BsYoutube size="15px" />} iconSpacing={0} size="xs" p={0} />
+          <Button
+            as={Link}
+            href="https://youtube.com/@user-or8ou2iv4e"
+            variant="brand-icon"
+            leftIcon={<BsYoutube size="15px" />}
+            iconSpacing={0}
+            size="xs"
+            p={0}
+          />
         </Tooltip>
         <Tooltip label="Одноклассники">
-          <Button variant="brand-icon" leftIcon={<SiOdnoklassniki size="15px" />} iconSpacing={0} size="xs" p={0} />
+          <Button
+            as={Link}
+            href="https://ok.ru/group/70000001880401"
+            variant="brand-icon"
+            leftIcon={<SiOdnoklassniki size="15px" />}
+            iconSpacing={0}
+            size="xs"
+            p={0}
+          />
         </Tooltip>
       </HStack>
       <HStack w="full" cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE}>

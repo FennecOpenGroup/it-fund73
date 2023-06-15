@@ -24,7 +24,6 @@ import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import logo from '../../assets/mini-logo.svg';
-import scheme_support from '../../assets/schemes/scheme_support.svg';
 import scheme_accreditation from '../../assets/schemes/scheme_accreditation.svg';
 
 export const Companies = React.memo(() => {
@@ -62,7 +61,7 @@ export const Companies = React.memo(() => {
             onMouseEnter={() => setSupport(true)}
             onMouseLeave={() => setSupport(false)}
           >
-            Меры поддержки IT-отрасли
+            Меры поддержки ИТ-отрасли
           </Button>
           <Button
             variant="brand-link"
@@ -70,7 +69,7 @@ export const Companies = React.memo(() => {
             onMouseEnter={() => setAccreditation(true)}
             onMouseLeave={() => setAccreditation(false)}
           >
-            Аккредитация IT-компаний
+            Аккредитация ИТ-компаний
           </Button>
           <Button
             variant="brand-link"
@@ -78,7 +77,7 @@ export const Companies = React.memo(() => {
             onMouseEnter={() => setCompany(true)}
             onMouseLeave={() => setCompany(false)}
           >
-            IT-компании Ульяновской области
+            ИТ-компании Ульяновской области
           </Button>
         </HStack>
         <VStack w="full" minH={`${height}px`} p={[2, 3, 4]} justify="start" align="center">
@@ -86,7 +85,7 @@ export const Companies = React.memo(() => {
             <HStack p={2} borderRadius="5px" backgroundColor="brand.dark" w="full">
               <Image src={logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
               <Stack p={0} m={0} spacing={0} w="full">
-                <Text fontSize="xl">IT-организаций –</Text>
+                <Text fontSize="xl">ИТ-организаций –</Text>
                 <CountUp style={{ color: 'white', fontSize: '42px', fontWeight: 'bold' }} end={1451} duration={2} />
               </Stack>
             </HStack>
@@ -126,7 +125,7 @@ export const Companies = React.memo(() => {
                   fontSize="3xl"
                   textTransform="uppercase"
                 >
-                  Меры поддержки IT-отрасли
+                  Меры поддержки ИТ-отрасли
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
@@ -137,7 +136,39 @@ export const Companies = React.memo(() => {
                   </Text>
                   <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
                   <VStack w="full" align="center" py={3}>
-                    <Image src={scheme_support} />
+                    <UnorderedList px={8}>
+                      <ListItem>
+                        Пониженные региональные налоговые ставки по УСН в размере 1 %, если объектом налогообложения
+                        являются доходы, 5 % и 10 %, если объектом налогообложения являются доходы, уменьшенные на
+                        величину расходов (Закон Ульяновской области от 03.03.2009 № 13-ЗО).
+                      </ListItem>
+                      <ListItem>
+                        Льготное кредитование до 5 млн рублей с процентной ставкой от 3 % до 5 % годовых при
+                        предоставлении залогового имущества и 10 % при отсутствии залогового имущества сроком до 2-х
+                        лет. ИТ-компании могут направить льготный займ на пополнение оборотных средств, а также на
+                        приобретение информационного, компьютерного и телекоммуникационного оборудования (МКК фонд
+                        «ФФПП»).
+                      </ListItem>
+                      <ListItem>
+                        Единовременная социальная выплата на приобретение жилья для ИТ-специалистов в размере 250 тыс.
+                        рублей.
+                        <Link
+                          fontWeight="900"
+                          fontSize="xm"
+                          color="brand.dark"
+                          href="http://energy.ulregion.ru/wp-content/uploads/2023/04/12-04-2023_09-08-58.zip"
+                        >
+                          Документация
+                        </Link>
+                      </ListItem>
+                      <ListItem>
+                        Стипендии Губернатора Ульяновской области «имени Е.Е.Горина» и «имени И.Я.Яковлева» от 3 до 5
+                        тыс. рублей.
+                      </ListItem>
+                      <ListItem>
+                        Гранты на разработку отечественного ПО и реализацию образовательных проектов в сфере ИТ
+                      </ListItem>
+                    </UnorderedList>
                   </VStack>
                   <Text color="brand.dark" fontSize="2xl" fontWeight="900" textTransform="uppercase">
                     Федеральные меры поддержки
@@ -151,11 +182,39 @@ export const Companies = React.memo(() => {
                       </Text>
                     </HStack>
                     <UnorderedList px={8}>
-                      <ListItem>Установлена ставка налога на прибыль 0% до конца 2024 года;</ListItem>
+                      <ListItem>Установлена ставка налога на прибыль 0% до конца 2024 года;</ListItem>
                       <ListItem>Освобождение от НДС, если ПО включён в реестр российского ПО;</ListItem>
-                      <ListItem>Снижены тарифы страховых взносов с 14% до 7,6%</ListItem>
+                      <ListItem>Снижены тарифы страховых взносов с 14% до 7,6%;</ListItem>
                       <ListItem>Освобождение от налоговых проверок до конца 2024 года; </ListItem>
-                      <ListItem>Льготная ипотека для сотрудников до 5% годовых;</ListItem>
+                      <ListItem>
+                        Льготная ипотека для ИТ-специалистов до 5% годовых на покупку недвижимости:
+                        <Link
+                          fontWeight="900"
+                          fontSize="xm"
+                          color="brand.dark"
+                          href="https://xn--h1alcedd.xn--d1aqf.xn--p1ai/instructions/spisok-bankov-uchastnikov-programmy-lgotnaya-ipoteka-dlya-it-spetsialistov/#uznayte-kakie-banki-uchastvuyut-v-programme-ipoteka-dlya-it-spetsialistov"
+                        >
+                          Условие программы
+                        </Link>
+                      </ListItem>
+                      <ListItem>
+                        Упрощение процесса трудоустройства иностранных ИТ-специалистов и получения ими вида на
+                        жительство;
+                      </ListItem>
+                      <ListItem>Отсрочка от призыва службы в армии от 18 до 27 лет;</ListItem>
+                      <ListItem>
+                        Льготные кредиты через уполномоченные банки до 5% годовых на разработку и внедрение российских
+                        ИТ-решений;
+                        <Link
+                          fontWeight="900"
+                          fontSize="xm"
+                          color="brand.dark"
+                          href="https://digital.gov.ru/ru/activity/directions/942/ "
+                        >
+                          Условие программы
+                        </Link>
+                      </ListItem>
+                      <ListItem>ИТ-гранты на развитие цифровых решений;</ListItem>
                     </UnorderedList>
                   </VStack>
                   <VStack w="full" px={4} align="start">
@@ -168,7 +227,7 @@ export const Companies = React.memo(() => {
                     <UnorderedList px={8}>
                       <ListItem>Гражданин РФ;</ListItem>
                       <ListItem>Возраст до 50 лет включительно;</ListItem>
-                      <ListItem>Основное место работы — аккредитованная ИТ‑компания;</ListItem>
+                      <ListItem>Основное место работы — аккредитованная IT-компания;</ListItem>
                       <ListItem>Средняя зарплата до вычета НДФЛ за последние 3 месяца:</ListItem>
                       <UnorderedList>
                         <ListItem>от 70 000 ₽ — для сотрудников компаний в остальных городах;</ListItem>
@@ -178,7 +237,7 @@ export const Companies = React.memo(() => {
                         <ListItem>от 150 000 ₽— для сотрудников компаний, расположенных в Москве;</ListItem>
                       </UnorderedList>
                       <ListItem>
-                        Упрощение процесса трудоустройства иностранных ИТ‑специалистов и получения ими вида на
+                        Упрощение процесса трудоустройства иностранных ИТ-специалистов и получения ими вида на
                         жительство;
                       </ListItem>
                       <ListItem>Отсрочка от призыва службы в армии от 18 до 27 лет;</ListItem>
@@ -199,7 +258,7 @@ export const Companies = React.memo(() => {
                   fontSize="3xl"
                   textTransform="uppercase"
                 >
-                  Аккредитация IT-компаний
+                  Аккредитация ИТ-компаний
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
@@ -238,7 +297,7 @@ export const Companies = React.memo(() => {
                   fontSize="3xl"
                   textTransform="uppercase"
                 >
-                  IT-компании Ульяновской области
+                  ИТ-компании Ульяновской области
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
