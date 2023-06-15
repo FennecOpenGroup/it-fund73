@@ -57,7 +57,7 @@ export const Calendar = React.memo(() => {
               </MenuList>
             </Menu>
           </HStack>
-          <VStack w="full" minH={`${height / 1.6}px`} border="2px" borderRadius="5px" justify="center" bg="brand.beige">
+          <VStack w="full" minH={`${height / 1.8}px`} border="2px" borderRadius="5px" justify="center" bg="brand.beige">
             <Text color="#BBBBBB" fontSize="2xl" fontWeight="bold">
               На данный момент нет запланированных мероприятий
             </Text>
@@ -89,7 +89,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={january}
             >
-              <VStack>
+              <VStack align='center'>
                 <p style={{ fontSize: '12px' }}>Январь</p>
                 <p style={{ fontSize: '25px' }}>1</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -121,7 +121,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={february}
             >
-              <VStack>
+              <VStack align='center'>
                 <p style={{ fontSize: '12px' }}>Февраль</p>
                 <p style={{ fontSize: '25px' }}>2</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -153,7 +153,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={march}
             >
-              <VStack>
+              <VStack align='center'>
                 <p style={{ fontSize: '12px' }}>Март</p>
                 <p style={{ fontSize: '25px' }}>3</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -185,7 +185,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={april}
             >
-              <VStack>
+              <VStack align='center'>
                 <p style={{ fontSize: '12px' }}>Апрель</p>
                 <p style={{ fontSize: '25px' }}>4</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -217,7 +217,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={may}
             >
-              <VStack>
+              <VStack align='center'>
                 <p style={{ fontSize: '12px' }}>Май</p>
                 <p style={{ fontSize: '25px' }}>5</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -249,7 +249,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={june}
             >
-              <VStack>
+              <VStack align='center'>
                 <p style={{ fontSize: '12px' }}>Июнь</p>
                 <p style={{ fontSize: '25px' }}>6</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -281,7 +281,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={july}
             >
-              <VStack>
+              <VStack align='center'>
                 <p style={{ fontSize: '12px' }}>Июль</p>
                 <p style={{ fontSize: '25px' }}>7</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -313,7 +313,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={august}
             >
-              <VStack>
+              <VStack align='center'>
                 <p style={{ fontSize: '12px' }}>Август</p>
                 <p style={{ fontSize: '25px' }}>8</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -345,7 +345,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={september}
             >
-              <VStack>
+              <VStack align='center'>
                 <p style={{ fontSize: '12px' }}>Сентябрь</p>
                 <p style={{ fontSize: '25px' }}>9</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -377,7 +377,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={october}
             >
-              <VStack>
+              <VStack align='center'>
                 <p style={{ fontSize: '12px' }}>Октябрь</p>
                 <p style={{ fontSize: '25px' }}>10</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -409,7 +409,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={november}
             >
-              <VStack>
+              <VStack align='center'>
                 <p style={{ fontSize: '12px' }}>Ноябрь</p>
                 <p style={{ fontSize: '25px' }}>11</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -441,7 +441,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={december}
             >
-              <VStack>
+              <VStack align='center'>
                 <p style={{ fontSize: '12px' }}>Декабрь</p>
                 <p style={{ fontSize: '25px' }}>12</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>

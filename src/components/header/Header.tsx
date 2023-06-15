@@ -67,8 +67,8 @@ export const Header = React.memo(() => {
       spacing={0}
     >
       <HStack w='full'>
-        <VStack w='full'>
-            <HStack w="full">
+        <VStack align='start'>
+            <HStack>
               <Tooltip label="Сменить тему">
                 <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="15px" />} iconSpacing={0} size="xs" p={0} />
               </Tooltip>
@@ -116,11 +116,12 @@ export const Header = React.memo(() => {
               </Tooltip>
           </HStack>
           <Spacer />
-          <HStack w="full" cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE}>
+          <HStack  cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE}>
             <Image src={logo} minW="200px" minH="50px" />
           </HStack>
         </VStack>
         <HStack w='full' align='end'>
+          <Spacer />
           <HStack align='start' spacing={4}>
             <VStack align='center' spacing={0}>
               <Text fontSize='2xl'>239</Text>
