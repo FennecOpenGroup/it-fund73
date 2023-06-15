@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/it-fund73/static/css/main.f95cd0e5.css",
-    "main.js": "/it-fund73/static/js/main.bee7321c.js",
+    "main.js": "/it-fund73/static/js/main.4c64ed82.js",
     "static/media/it.jpg": "/it-fund73/static/media/it.1e9754b71d345349de59.jpg",
     "static/media/government.jpg": "/it-fund73/static/media/government.bf44ab96ae00a051a939.jpg",
     "static/media/education.jpg": "/it-fund73/static/media/education.78bc8cff465b858390cf.jpg",
-    "static/media/scheme_accreditation.svg": "/it-fund73/static/media/scheme_accreditation.9cb55b866c08c3bbc9f53780194f036c.svg",
+    "static/media/erofeev_png.png": "/it-fund73/static/media/erofeev_png.48e48860504d2b2447c3.png",
+    "static/media/scheme_accreditation.svg": "/it-fund73/static/media/scheme_accreditation.a12e5ee50820454cfa40b200ba57c2db.svg",
     "static/media/Gorbunova.jpg": "/it-fund73/static/media/Gorbunova.8ebbd296fbcf01d7d4b7.jpg",
     "static/media/busisness.jpg": "/it-fund73/static/media/busisness.0df5302dc5f59c7914d2.jpg",
-    "static/media/scheme_support.svg": "/it-fund73/static/media/scheme_support.7fa97752400c8df63cf5eeae4f37d2cf.svg",
     "static/media/ul-logo.svg": "/it-fund73/static/media/ul-logo.c8cbfb04712c8833a5e4584f45b608a4.svg",
     "static/media/andronova.jpg": "/it-fund73/static/media/andronova.258d2078d435aba45114.jpg",
     "static/media/government2.jpg": "/it-fund73/static/media/government2.a3a133845136aea333b0.jpg",
@@ -27,10 +27,10 @@
     "index.html": "/it-fund73/index.html",
     "static/media/logo-fog.svg": "/it-fund73/static/media/logo-fog.17a6a3d610b0c68941cf611c82ced211.svg",
     "main.f95cd0e5.css.map": "/it-fund73/static/css/main.f95cd0e5.css.map",
-    "main.bee7321c.js.map": "/it-fund73/static/js/main.bee7321c.js.map"
+    "main.4c64ed82.js.map": "/it-fund73/static/js/main.4c64ed82.js.map"
   },
   "entrypoints": [
     "static/css/main.f95cd0e5.css",
-    "static/js/main.bee7321c.js"
+    "static/js/main.4c64ed82.js"
   ]
 }
