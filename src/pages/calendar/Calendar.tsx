@@ -1,3 +1,4 @@
+import { AddIcon } from '@chakra-ui/icons';
 import { HStack, VStack, Text, MenuButton, Button, Menu, MenuList, MenuItem, Spacer } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -36,14 +37,15 @@ export const Calendar = React.memo(() => {
       </Helmet>
       <Header />
       <VStack minH={`${height}px`} justify="center" px="10%">
-        <VStack w="full" minH={`${height}px`} pl={[2, 3, 4]} pb={[4, 6]}>
+        <VStack w="full" minH={`${height}px`} p={[1, 2, 3]}>
           <HStack w="full" justify="start" align="center" pr={2}>
             <Text color="brand.dark" fontSize="xl">
               Календарь мероприятий
             </Text>
             <Spacer />
+            <Button rightIcon={<AddIcon />}>Предложить мероприятие</Button>
             <Menu>
-              <MenuButton px={4} py={2} as={Button} rightIcon={<BsChevronDown />}>
+              <MenuButton h='48px' px={4} py={2} as={Button} rightIcon={<BsChevronDown />}>
                 {year}
               </MenuButton>
               <MenuList>

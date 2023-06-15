@@ -78,7 +78,6 @@ export const newsData = {
 export const Main = React.memo(() => {
   const { height } = useWindowDimensions();
 
-  // const lang = useSelector((state: IRootState) => state.core.lang);
   const it = useSelector((state: IRootState) => state.core.it);
   const education = useSelector((state: IRootState) => state.core.education);
   const business = useSelector((state: IRootState) => state.core.business);

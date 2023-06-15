@@ -15,7 +15,7 @@ import {
   UnorderedList,
   ListItem,
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import CountUp from 'react-countup';
 import { BsQuestionCircle } from 'react-icons/bs';
@@ -32,6 +32,16 @@ export const Companies = React.memo(() => {
   const [support, setSupport] = useState(false);
   const [accreditation, setAccreditation] = useState(false);
   const [company, setCompany] = useState(false);
+
+  const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current !== null) {
+      window.scrollTo({ behavior: "smooth", top: ref.current.offsetTop });
+    }
+  };
+
+  const refSupport = useRef<HTMLDivElement>(null); 
+  const refAccreditaion = useRef<HTMLDivElement>(null); 
+  const refCompany = useRef<HTMLDivElement>(null); 
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -60,6 +70,7 @@ export const Companies = React.memo(() => {
             fontSize="lg"
             onMouseEnter={() => setSupport(true)}
             onMouseLeave={() => setSupport(false)}
+            onClick={() => scrollToRef(refSupport)}
           >
             Меры поддержки ИТ-отрасли
           </Button>
@@ -68,6 +79,7 @@ export const Companies = React.memo(() => {
             fontSize="lg"
             onMouseEnter={() => setAccreditation(true)}
             onMouseLeave={() => setAccreditation(false)}
+            onClick={() => scrollToRef(refAccreditaion)}
           >
             Аккредитация ИТ-компаний
           </Button>
@@ -76,6 +88,7 @@ export const Companies = React.memo(() => {
             fontSize="lg"
             onMouseEnter={() => setCompany(true)}
             onMouseLeave={() => setCompany(false)}
+            onClick={() => scrollToRef(refCompany)}
           >
             ИТ-компании Ульяновской области
           </Button>
@@ -86,7 +99,7 @@ export const Companies = React.memo(() => {
               <Image src={logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
               <Stack p={0} m={0} spacing={0} w="full">
                 <Text fontSize="xl">ИТ-организаций –</Text>
-                <CountUp style={{ color: 'white', fontSize: '42px', fontWeight: 'bold' }} end={1451} duration={2} />
+                <CountUp style={{ color: 'white', fontSize: '42px', fontWeight: 'bold' }} separator="" end={1451} duration={2} />
               </Stack>
             </HStack>
             <HStack p={2} borderRadius="5px" backgroundColor="brand.dark" w="full">
@@ -109,7 +122,7 @@ export const Companies = React.memo(() => {
               <Image src={logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
               <Stack p={0} m={0} spacing={0} w="full">
                 <Text fontSize="xl">Среднесписочная численность работников – </Text>
-                <CountUp style={{ color: 'white', fontSize: '42px', fontWeight: 'bold' }} end={6205} duration={2} />
+                <CountUp style={{ color: 'white', fontSize: '42px', fontWeight: 'bold' }} end={6205} separator="" duration={2} />
                 <Text fontSize="xl">человек</Text>
               </Stack>
             </HStack>
@@ -124,6 +137,7 @@ export const Companies = React.memo(() => {
                   fontWeight="800"
                   fontSize="3xl"
                   textTransform="uppercase"
+                  ref={refSupport}
                 >
                   Меры поддержки ИТ-отрасли
                 </Text>
@@ -192,7 +206,8 @@ export const Companies = React.memo(() => {
                           fontWeight="900"
                           fontSize="xm"
                           color="brand.dark"
-                          href="https://xn--h1alcedd.xn--d1aqf.xn--p1ai/instructions/spisok-bankov-uchastnikov-programmy-lgotnaya-ipoteka-dlya-it-spetsialistov/#uznayte-kakie-banki-uchastvuyut-v-programme-ipoteka-dlya-it-spetsialistov"
+                          isExternal
+                          href="https://спроси.дом.рф/instructions/spisok-bankov-uchastnikov-programmy-lgotnaya-ipoteka-dlya-it-spetsialistov/#uznayte-kakie-banki-uchastvuyut-v-programme-ipoteka-dlya-it-spetsialistov"
                         >
                           Условие программы
                         </Link>
@@ -209,12 +224,30 @@ export const Companies = React.memo(() => {
                           fontWeight="900"
                           fontSize="xm"
                           color="brand.dark"
-                          href="https://digital.gov.ru/ru/activity/directions/942/ "
+                          isExternal
+                          href="https://digital.gov.ru/ru/activity/directions/942/"
                         >
                           Условие программы
                         </Link>
                       </ListItem>
-                      <ListItem>ИТ-гранты на развитие цифровых решений;</ListItem>
+                      <ListItem>ИТ-гранты на развитие цифровых решений:</ListItem>
+                      <UnorderedList>
+                        <ListItem>
+                          <Link href='https://рфрит.рф/' isExternal>
+                            Российский фонд развития информационных технологий (РФРИТ);
+                          </Link>
+                        </ListItem>
+                        <ListItem>
+                          <Link href='https://fasie.ru/' isExternal>
+                            Фонд содействия инновациям;
+                          </Link>
+                        </ListItem>
+                        <ListItem>
+                          <Link href='https://dtech.sk.ru/' isExternal>
+                            Фонд «Сколково»;
+                          </Link>
+                        </ListItem>
+                      </UnorderedList>
                     </UnorderedList>
                   </VStack>
                   <VStack w="full" px={4} align="start">
@@ -257,6 +290,7 @@ export const Companies = React.memo(() => {
                   fontWeight="800"
                   fontSize="3xl"
                   textTransform="uppercase"
+                  ref={refAccreditaion}
                 >
                   Аккредитация ИТ-компаний
                 </Text>
@@ -296,29 +330,114 @@ export const Companies = React.memo(() => {
                   fontWeight="800"
                   fontSize="3xl"
                   textTransform="uppercase"
+                  ref={refCompany}
                 >
                   ИТ-компании Ульяновской области
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel pb={4}>
-                <VStack
-                  p={4}
-                  w="full"
-                  h="300px"
-                  borderRadius="10px"
-                  bgGradient="linear(to-r, brand.blue, blue.900)"
-                  align="start"
-                >
-                  <Link fontSize="5xl" fontWeight="900" color="white" href="https://www.simbirsoft.com/" isExternal>
-                    SimbirSoft
-                  </Link>
-                  <Text fontSize="lg">
-                    SimbirSoft — глобальная ИТ-компания с опытом в разработке и тестировании ПО с 2001 года, которая
-                    объединяет более 1400 сотрудников из 50 городов России. Мы разрабатываем системы для автоматизации
-                    работы бизнеса, высоконагруженные системы, мобильные приложения, встроенное ПО и блокчейн-проекты,
-                    Machine Learning и Data Science для заказчиков из России, Европы и США.
-                  </Text>
+                <VStack w='full'>
+                  <VStack
+                    p={4}
+                    w="full"
+                    h="300px"
+                    borderRadius="10px"
+                    bgGradient="linear(to-r, brand.blue, blue.900)"
+                    align="start"
+                  >
+                    <Link fontSize="5xl" fontWeight="900" color="white" href="https://www.simbirsoft.com/" isExternal>
+                      SimbirSoft
+                    </Link>
+                    <Text fontSize="lg">
+                      SimbirSoft — глобальная ИТ-компания с опытом в разработке и тестировании ПО с 2001 года, которая
+                      объединяет более 1400 сотрудников из 50 городов России. Мы разрабатываем системы для автоматизации
+                      работы бизнеса, высоконагруженные системы, мобильные приложения, встроенное ПО и блокчейн-проекты,
+                      Machine Learning и Data Science для заказчиков из России, Европы и США.
+                    </Text>
+                  </VStack>
+                  <VStack
+                    p={4}
+                    w="full"
+                    h="300px"
+                    borderRadius="10px"
+                    bgGradient="linear(to-r, #dd6c1b, orange.900)"
+                    align="start"
+                  >
+                    <Link fontSize="5xl" fontWeight="900" color="white" href="https://www.mobirate.com/" isExternal>
+                      Mobirate
+                    </Link>
+                    <Text fontSize="lg">
+                    Mobirate — занимаемся разработкой мобильных игр с 2003 года. За это время было создано более 30 игр, самые известные: 
+                      серия Parking Mania, Dead Ahead, Rovercraft и Big Rig Racing, и привлечено 250+ миллионов игроков. Вся экспертиза: от идеи 
+                      до релиза, находится в мощных руках наших профессионалов.
+                    </Text>
+                  </VStack>
+                  <VStack
+                    p={4}
+                    w="full"
+                    h="300px"
+                    borderRadius="10px"
+                    bgGradient="linear(to-r, #0bcf6b, green.900)"
+                    align="start"
+                  >
+                    <Link fontSize="5xl" fontWeight="900" color="white" href="https://mediasoft.team/" isExternal>
+                      MEDIASOFT
+                    </Link>
+                    <Text fontSize="lg">
+                      MEDIASOFT — азрабатываем сложные веб-системы, бэкенды, мобильные приложения и highload-проекты для бизнеса с 2014 года. 
+                      У нас в команде 250+ разработчиков по направлениям backend, frontend, mobile, qa и аналитика.
+                    </Text>
+                  </VStack>
+                  <VStack
+                    p={4}
+                    w="full"
+                    h="300px"
+                    borderRadius="10px"
+                    bgGradient="linear(to-r, #07a0c3, blue.300)"
+                    align="start"
+                  >
+                    <Link fontSize="5xl" fontWeight="900" color="white" href="https://nordclan.com/" isExternal>
+                      NORDCLAN
+                    </Link>
+                    <Text fontSize="lg">
+                      NORDCLAN — разрабатывает программное обеспечение под ключ: от аналитики и описания идеи до тестирования готового продукта. 
+                      Работает со сложными интеграциями и высоконагруженными сервисами. Является партнером крупных интеграторов, реализует выделенные модули 
+                      собственной командой разработки.
+                    </Text>
+                  </VStack>
+                  <VStack
+                    p={4}
+                    w="full"
+                    h="300px"
+                    borderRadius="10px"
+                    bgGradient="linear(to-r, #436cb0, #262351)"
+                    align="start"
+                  >
+                    <Link fontSize="5xl" fontWeight="900" color="white" href="https://ibs.ru/" isExternal>
+                      IBS
+                    </Link>
+                    <Text fontSize="lg">
+                      IBS — бизнес - и технологический партнер лидеров российского бизнеса. Компания решает сложные задачи в сфере стратегического 
+                      развития и повышения операционной эффективности, оказывая услуги в области оптимизации бизнес-процессов, создания систем управления, 
+                      управления данными, анализа и моделирования, разработки, тестирования и сопровождения программного обеспечения.
+                    </Text>
+                  </VStack>
+                  <VStack
+                    p={4}
+                    w="full"
+                    h="300px"
+                    borderRadius="10px"
+                    bgGradient="linear(to-r, #0b88f2, blue.900)"
+                    align="start"
+                  >
+                    <Link fontSize="5xl" fontWeight="900" color="white" href="https://www.advantshop.net/" isExternal>
+                      ADVANTSHOP
+                    </Link>
+                    <Text fontSize="lg">
+                    ADVANTSHOP – это единая система для создания интернет-магазина, благодаря которой вы оптимизируете работу для удобства клиентов и поднимете управление бизнес-процессами на новый уровень.
+                    </Text>
+                  </VStack>
                 </VStack>
               </AccordionPanel>
             </AccordionItem>

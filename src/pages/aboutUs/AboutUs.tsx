@@ -12,8 +12,9 @@ import {
   Box,
   useToast,
   Link,
+  Button
 } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Chart } from 'react-google-charts';
@@ -38,6 +39,17 @@ export const AboutUs = React.memo(() => {
   const { height } = useWindowDimensions();
   const toast = useToast();
 
+  const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current !== null) {
+      window.scrollTo({ behavior: "smooth", top: ref.current.offsetTop });
+    }
+  };
+
+  const refTeam = useRef<HTMLDivElement>(null); 
+  const refDocs = useRef<HTMLDivElement>(null); 
+  const refRecs = useRef<HTMLDivElement>(null); 
+  const refContacts = useRef<HTMLDivElement>(null); 
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -61,6 +73,36 @@ export const AboutUs = React.memo(() => {
               >
                 Фонд развития информациионных технологий Ульяновской области
               </Text>
+            </HStack>
+            <HStack w="full" align="center" justify="center">
+                <Button
+                  variant="brand-link"
+                  fontSize="lg"
+                  onClick={() => scrollToRef(refTeam)}
+                >
+                  Команда
+                </Button>
+                <Button
+                  variant="brand-link"
+                  fontSize="lg"
+                  onClick={() => scrollToRef(refDocs)}
+                >
+                  Документы
+                </Button>
+                <Button
+                  variant="brand-link"
+                  fontSize="lg"
+                  onClick={() => scrollToRef(refRecs)}
+                >
+                  Реквизиты
+                </Button>
+                <Button
+                  variant="brand-link"
+                  fontSize="lg"
+                  onClick={() => scrollToRef(refContacts)}
+                >
+                  Контакты
+                </Button>
             </HStack>
             <VStack align="center" justify="center">
               <Text color="brand.dark" fontSize="lg" align="center">
@@ -342,7 +384,7 @@ export const AboutUs = React.memo(() => {
             <Accordion allowMultiple w="full">
               <AccordionItem>
                 <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
+                  <Box as="span" flex="1" textAlign="left" ref={refTeam}>
                     <Text color="brand.dark" fontSize="3xl">
                       <b>КОМАНДА</b>
                     </Text>
@@ -544,7 +586,7 @@ export const AboutUs = React.memo(() => {
             <Accordion allowMultiple w="full">
               <AccordionItem>
                 <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
+                  <Box as="span" flex="1" textAlign="left" ref={refDocs}>
                     <Text color="brand.dark" fontSize="3xl">
                       <b>ДОКУМЕНТЫ</b>
                     </Text>
@@ -569,7 +611,7 @@ export const AboutUs = React.memo(() => {
             <Accordion allowMultiple w="full">
               <AccordionItem>
                 <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
+                  <Box as="span" flex="1" textAlign="left" ref={refRecs}>
                     <Text color="brand.dark" fontSize="3xl">
                       <b>РЕКВИЗИТЫ</b>
                     </Text>
@@ -922,7 +964,7 @@ export const AboutUs = React.memo(() => {
             <Accordion allowMultiple w="full">
               <AccordionItem>
                 <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
+                  <Box as="span" flex="1" textAlign="left" ref={refContacts}>
                     <Text color="brand.dark" fontSize="3xl">
                       <b>КОНТАКТЫ</b>
                     </Text>

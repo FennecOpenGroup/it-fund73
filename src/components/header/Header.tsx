@@ -12,6 +12,7 @@ import {
   MenuButton,
   MenuList,
   Checkbox,
+  Text,
 } from '@chakra-ui/react';
 import React, { Dispatch } from 'react';
 import { HiOutlineMoon } from 'react-icons/hi';
@@ -26,6 +27,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import LocalizedStrings from 'react-localization';
 
 import logo from '../../assets/logo.svg';
+import erofeev from '../../assets/erofeev_png.png';
 import {
   ROUTE_ABOUTUS,
   ROUTE_CALENDAR,
@@ -44,30 +46,7 @@ import {
 } from '../../actions/coreActions';
 
 export const Header = React.memo(() => {
-  // const texts = new LocalizedStrings({
-  //   EN: {
-  //     calendar: 'Calendar of events',
-  //     branch: 'IT-branch',
-  //     education: 'IT-education',
-  //     projects: 'Projects',
-  //     registration: 'Registration for the contest',
-  //     aboutUs: 'About us',
-  //     language: 'Language',
-  //     eye: 'For the visually impaired',
-  //   },
-  //   RU: {
-  //     calendar: 'Календарь событий',
-  //     branch: 'ИТ-отрасль',
-  //     education: 'ИТ-образование',
-  //     projects: 'Проекты',
-  //     registration: 'Регистрация на конкурс',
-  //     aboutUs: 'О нас',
-  //     language: 'Язык',
-  //     eye: 'Для слабовидящих',
-  //   },
-  // });
 
-  // const lang = useSelector((state: IRootState) => state.core.lang);
   const dispatch = useDispatch<Dispatch<RootActions>>();
   const it = useSelector((state: IRootState) => state.core.it);
   const education = useSelector((state: IRootState) => state.core.education);
@@ -77,7 +56,6 @@ export const Header = React.memo(() => {
 
   return (
     <VStack
-      h="180px"
       position="sticky"
       top="0px"
       pt={2}
@@ -86,58 +64,84 @@ export const Header = React.memo(() => {
       w="full"
       justify="start"
       backgroundColor="brand.dark"
+      spacing={0}
     >
-      <HStack w="full">
-        <Tooltip label="Сменить тему">
-          <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="15px" />} iconSpacing={0} size="xs" p={0} />
-        </Tooltip>
-        <Tooltip label="Для слабовидящих">
-          <Button variant="brand-icon" leftIcon={<BsEye size="15px" />} iconSpacing={0} size="xs" p={0} />
-        </Tooltip>
-        <Tooltip label="ВКонтакте">
-          <Button
-            as={Link}
-            href="https://vk.com/itfund73"
-            variant="brand-icon"
-            leftIcon={<SlSocialVkontakte size="15px" />}
-            iconSpacing={0}
-            size="xs"
-            p={0}
-          />
-        </Tooltip>
-        <Tooltip label="Телеграм">
-          <Button variant="brand-icon" leftIcon={<FaTelegram size="15px" />} iconSpacing={0} size="xs" p={0} />
-        </Tooltip>
-        <Tooltip label="Ютуб">
-          <Button
-            as={Link}
-            href="https://youtube.com/@user-or8ou2iv4e"
-            variant="brand-icon"
-            leftIcon={<BsYoutube size="15px" />}
-            iconSpacing={0}
-            size="xs"
-            p={0}
-          />
-        </Tooltip>
-        <Tooltip label="Одноклассники">
-          <Button
-            as={Link}
-            href="https://ok.ru/group/70000001880401"
-            variant="brand-icon"
-            leftIcon={<SiOdnoklassniki size="15px" />}
-            iconSpacing={0}
-            size="xs"
-            p={0}
-          />
-        </Tooltip>
+      <HStack w='full'>
+        <VStack w='full'>
+            <HStack w="full">
+              <Tooltip label="Сменить тему">
+                <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="15px" />} iconSpacing={0} size="xs" p={0} />
+              </Tooltip>
+              <Tooltip label="Для слабовидящих">
+                <Button variant="brand-icon" leftIcon={<BsEye size="15px" />} iconSpacing={0} size="xs" p={0} />
+              </Tooltip>
+              <Tooltip label="ВКонтакте">
+                <Button
+                  as={Link}
+                  href="https://vk.com/itfund73"
+                  isExternal
+                  variant="brand-icon"
+                  leftIcon={<SlSocialVkontakte size="15px" />}
+                  iconSpacing={0}
+                  size="xs"
+                  p={0}
+                />
+              </Tooltip>
+              <Tooltip label="Телеграм">
+                <Button variant="brand-icon" leftIcon={<FaTelegram size="15px" />} iconSpacing={0} size="xs" p={0} />
+              </Tooltip>
+              <Tooltip label="Ютуб">
+                <Button
+                  as={Link}
+                  href="https://youtube.com/@user-or8ou2iv4e"
+                  isExternal
+                  variant="brand-icon"
+                  leftIcon={<BsYoutube size="15px" />}
+                  iconSpacing={0}
+                  size="xs"
+                  p={0}
+                />
+              </Tooltip>
+              <Tooltip label="Одноклассники">
+                <Button
+                  as={Link}
+                  href="https://ok.ru/group/70000001880401"
+                  isExternal
+                  variant="brand-icon"
+                  leftIcon={<SiOdnoklassniki size="15px" />}
+                  iconSpacing={0}
+                  size="xs"
+                  p={0}
+                />
+              </Tooltip>
+          </HStack>
+          <Spacer />
+          <HStack w="full" cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE}>
+            <Image src={logo} minW="200px" minH="50px" />
+          </HStack>
+        </VStack>
+        <HStack w='full' align='end'>
+          <HStack align='start' spacing={4}>
+            <VStack align='center' spacing={0}>
+              <Text fontSize='2xl'>239</Text>
+              <Text fontSize='md' color="#BBBBBB">реализованных проектов</Text>
+            </VStack>
+            <VStack align='center' spacing={0}>
+              <Text fontSize='2xl' p={0} m={0}>83337</Text>
+              <Text fontSize='md' color="#BBBBBB">участников</Text>
+            </VStack>
+            <VStack align='center' spacing={0}> 
+              <Text fontSize='2xl'>94,2 млн руб.</Text>
+              <Text fontSize='md' color="#BBBBBB">общая сумма поддержки</Text>
+            </VStack>
+          </HStack>
+          <Image src={erofeev} maxH='150px' />
+        </HStack>
       </HStack>
-      <HStack w="full" cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE}>
-        <Image src={logo} minW="200px" minH="50px" />
-      </HStack>
-      <Spacer />
       <HStack
         w="full"
         h="52px"
+        margin={0}
         px={2}
         spacing={4}
         backgroundColor="#313131"
