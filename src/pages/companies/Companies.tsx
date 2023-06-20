@@ -13,18 +13,21 @@ import {
   AccordionIcon,
   AccordionPanel,
   UnorderedList,
+  OrderedList,
   ListItem,
+  GridItem,
 } from '@chakra-ui/react';
 import React, { useEffect, useState, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import CountUp from 'react-countup';
-import { BsQuestionCircle } from 'react-icons/bs';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import logo from '../../assets/mini-logo.svg';
+import mobirate_logo from '../../assets/mobirate_logo.svg';
 import scheme_accreditation from '../../assets/schemes/scheme_accreditation.svg';
+import white_ulianovsk from '../../assets/white_ul_logo.png';
 
 export const Companies = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -35,13 +38,13 @@ export const Companies = React.memo(() => {
 
   const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current !== null) {
-      window.scrollTo({ behavior: "smooth", top: ref.current.offsetTop });
+      window.scrollTo({ behavior: 'smooth', top: ref.current.offsetTop });
     }
   };
 
-  const refSupport = useRef<HTMLDivElement>(null); 
-  const refAccreditaion = useRef<HTMLDivElement>(null); 
-  const refCompany = useRef<HTMLDivElement>(null); 
+  const refSupport = useRef<HTMLDivElement>(null);
+  const refAccreditaion = useRef<HTMLDivElement>(null);
+  const refCompany = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -99,7 +102,12 @@ export const Companies = React.memo(() => {
               <Image src={logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
               <Stack p={0} m={0} spacing={0} w="full">
                 <Text fontSize="xl">ИТ-организаций –</Text>
-                <CountUp style={{ color: 'white', fontSize: '42px', fontWeight: 'bold' }} separator="" end={1451} duration={2} />
+                <CountUp
+                  style={{ color: 'white', fontSize: '42px', fontWeight: 'bold' }}
+                  separator=""
+                  end={1451}
+                  duration={2}
+                />
               </Stack>
             </HStack>
             <HStack p={2} borderRadius="5px" backgroundColor="brand.dark" w="full">
@@ -122,7 +130,12 @@ export const Companies = React.memo(() => {
               <Image src={logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
               <Stack p={0} m={0} spacing={0} w="full">
                 <Text fontSize="xl">Среднесписочная численность работников – </Text>
-                <CountUp style={{ color: 'white', fontSize: '42px', fontWeight: 'bold' }} end={6205} separator="" duration={2} />
+                <CountUp
+                  style={{ color: 'white', fontSize: '42px', fontWeight: 'bold' }}
+                  end={6210}
+                  separator=""
+                  duration={2}
+                />
                 <Text fontSize="xl">человек</Text>
               </Stack>
             </HStack>
@@ -190,24 +203,28 @@ export const Companies = React.memo(() => {
                   <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
                   <VStack w="full" px={4} align="start">
                     <HStack spacing={2}>
-                      <BsQuestionCircle size="1.5em" color="#7775ed" />
                       <Text color="brand.dark" fontSize="xl" fontWeight="900">
                         Налоговые льготы:
                       </Text>
                     </HStack>
-                    <UnorderedList px={8}>
+                    <OrderedList px={2}>
                       <ListItem>Установлена ставка налога на прибыль 0% до конца 2024 года;</ListItem>
                       <ListItem>Освобождение от НДС, если ПО включён в реестр российского ПО;</ListItem>
                       <ListItem>Снижены тарифы страховых взносов с 14% до 7,6%;</ListItem>
+                    </OrderedList>
+                    <Text color="brand.dark" fontSize="lg" fontWeight="900">
+                      Другие меры поддержки:
+                    </Text>
+                    <UnorderedList>
                       <ListItem>Освобождение от налоговых проверок до конца 2024 года; </ListItem>
                       <ListItem>
-                        Льготная ипотека для ИТ-специалистов до 5% годовых на покупку недвижимости:
+                        Льготная ипотека для ИТ-специалистов до 5% годовых на покупку недвижимости;
                         <Link
                           fontWeight="900"
                           fontSize="xm"
                           color="brand.dark"
                           isExternal
-                          href="https://спроси.дом.рф/instructions/spisok-bankov-uchastnikov-programmy-lgotnaya-ipoteka-dlya-it-spetsialistov/#uznayte-kakie-banki-uchastvuyut-v-programme-ipoteka-dlya-it-spetsialistov"
+                          href="https://спроси.дом.рф/tag/mortgage/"
                         >
                           Условие программы
                         </Link>
@@ -233,47 +250,26 @@ export const Companies = React.memo(() => {
                       <ListItem>ИТ-гранты на развитие цифровых решений:</ListItem>
                       <UnorderedList>
                         <ListItem>
-                          <Link href='https://рфрит.рф/' isExternal>
+                          <Link href="https://рфрит.рф/" isExternal>
                             Российский фонд развития информационных технологий (РФРИТ);
                           </Link>
                         </ListItem>
                         <ListItem>
-                          <Link href='https://fasie.ru/' isExternal>
+                          <Link href="https://www.iidf.ru/startups/" isExternal>
+                            Фонд развития интернет-инициатив (ФРИИ);
+                          </Link>
+                        </ListItem>
+                        <ListItem>
+                          <Link href="https://fasie.ru/" isExternal>
                             Фонд содействия инновациям;
                           </Link>
                         </ListItem>
                         <ListItem>
-                          <Link href='https://dtech.sk.ru/' isExternal>
+                          <Link href="https://dtech.sk.ru/" isExternal>
                             Фонд «Сколково»;
                           </Link>
                         </ListItem>
                       </UnorderedList>
-                    </UnorderedList>
-                  </VStack>
-                  <VStack w="full" px={4} align="start">
-                    <HStack spacing={2}>
-                      <BsQuestionCircle size="1.5em" color="#7775ed" />
-                      <Text color="brand.dark" fontSize="xl" fontWeight="900">
-                        Требования к ИТ-специалистам, которые могут претендовать на льготную ипотеку:
-                      </Text>
-                    </HStack>
-                    <UnorderedList px={8}>
-                      <ListItem>Гражданин РФ;</ListItem>
-                      <ListItem>Возраст до 50 лет включительно;</ListItem>
-                      <ListItem>Основное место работы — аккредитованная IT-компания;</ListItem>
-                      <ListItem>Средняя зарплата до вычета НДФЛ за последние 3 месяца:</ListItem>
-                      <UnorderedList>
-                        <ListItem>от 70 000 ₽ — для сотрудников компаний в остальных городах;</ListItem>
-                        <ListItem>
-                          от 120 000 ₽ — для сотрудников компаний, расположенных в городах‑миллионниках (кроме Москвы);
-                        </ListItem>
-                        <ListItem>от 150 000 ₽— для сотрудников компаний, расположенных в Москве;</ListItem>
-                      </UnorderedList>
-                      <ListItem>
-                        Упрощение процесса трудоустройства иностранных ИТ-специалистов и получения ими вида на
-                        жительство;
-                      </ListItem>
-                      <ListItem>Отсрочка от призыва службы в армии от 18 до 27 лет;</ListItem>
                     </UnorderedList>
                   </VStack>
                 </VStack>
@@ -336,108 +332,116 @@ export const Companies = React.memo(() => {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel pb={4}>
-                <VStack w='full'>
-                  <VStack
-                    p={4}
-                    w="full"
-                    h="300px"
-                    borderRadius="10px"
-                    bgGradient="linear(to-r, brand.blue, blue.900)"
-                    align="start"
-                  >
-                    <Link fontSize="5xl" fontWeight="900" color="white" href="https://www.simbirsoft.com/" isExternal>
-                      SimbirSoft
-                    </Link>
-                    <Text fontSize="lg">
-                      SimbirSoft — глобальная ИТ-компания с опытом в разработке и тестировании ПО с 2001 года, которая
-                      объединяет более 1400 сотрудников из 50 городов России. Мы разрабатываем системы для автоматизации
-                      работы бизнеса, высоконагруженные системы, мобильные приложения, встроенное ПО и блокчейн-проекты,
-                      Machine Learning и Data Science для заказчиков из России, Европы и США.
-                    </Text>
-                  </VStack>
-                  <VStack
-                    p={4}
-                    w="full"
-                    h="300px"
-                    borderRadius="10px"
-                    bgGradient="linear(to-r, #dd6c1b, orange.900)"
-                    align="start"
-                  >
-                    <Link fontSize="5xl" fontWeight="900" color="white" href="https://www.mobirate.com/" isExternal>
-                      Mobirate
-                    </Link>
-                    <Text fontSize="lg">
-                    Mobirate — занимаемся разработкой мобильных игр с 2003 года. За это время было создано более 30 игр, самые известные: 
-                      серия Parking Mania, Dead Ahead, Rovercraft и Big Rig Racing, и привлечено 250+ миллионов игроков. Вся экспертиза: от идеи 
-                      до релиза, находится в мощных руках наших профессионалов.
-                    </Text>
-                  </VStack>
-                  <VStack
-                    p={4}
-                    w="full"
-                    h="300px"
-                    borderRadius="10px"
-                    bgGradient="linear(to-r, #0bcf6b, green.900)"
-                    align="start"
-                  >
-                    <Link fontSize="5xl" fontWeight="900" color="white" href="https://mediasoft.team/" isExternal>
-                      MEDIASOFT
-                    </Link>
-                    <Text fontSize="lg">
-                      MEDIASOFT — азрабатываем сложные веб-системы, бэкенды, мобильные приложения и highload-проекты для бизнеса с 2014 года. 
-                      У нас в команде 250+ разработчиков по направлениям backend, frontend, mobile, qa и аналитика.
-                    </Text>
-                  </VStack>
-                  <VStack
-                    p={4}
-                    w="full"
-                    h="300px"
-                    borderRadius="10px"
-                    bgGradient="linear(to-r, #07a0c3, blue.300)"
-                    align="start"
-                  >
-                    <Link fontSize="5xl" fontWeight="900" color="white" href="https://nordclan.com/" isExternal>
-                      NORDCLAN
-                    </Link>
-                    <Text fontSize="lg">
-                      NORDCLAN — разрабатывает программное обеспечение под ключ: от аналитики и описания идеи до тестирования готового продукта. 
-                      Работает со сложными интеграциями и высоконагруженными сервисами. Является партнером крупных интеграторов, реализует выделенные модули 
-                      собственной командой разработки.
-                    </Text>
-                  </VStack>
-                  <VStack
-                    p={4}
-                    w="full"
-                    h="300px"
-                    borderRadius="10px"
-                    bgGradient="linear(to-r, #436cb0, #262351)"
-                    align="start"
-                  >
-                    <Link fontSize="5xl" fontWeight="900" color="white" href="https://ibs.ru/" isExternal>
-                      IBS
-                    </Link>
-                    <Text fontSize="lg">
-                      IBS — бизнес - и технологический партнер лидеров российского бизнеса. Компания решает сложные задачи в сфере стратегического 
-                      развития и повышения операционной эффективности, оказывая услуги в области оптимизации бизнес-процессов, создания систем управления, 
-                      управления данными, анализа и моделирования, разработки, тестирования и сопровождения программного обеспечения.
-                    </Text>
-                  </VStack>
-                  <VStack
-                    p={4}
-                    w="full"
-                    h="300px"
-                    borderRadius="10px"
-                    bgGradient="linear(to-r, #0b88f2, blue.900)"
-                    align="start"
-                  >
-                    <Link fontSize="5xl" fontWeight="900" color="white" href="https://www.advantshop.net/" isExternal>
-                      ADVANTSHOP
-                    </Link>
-                    <Text fontSize="lg">
-                    ADVANTSHOP – это единая система для создания интернет-магазина, благодаря которой вы оптимизируете работу для удобства клиентов и поднимете управление бизнес-процессами на новый уровень.
-                    </Text>
-                  </VStack>
+              <AccordionPanel px={0}>
+                <VStack w="full" px={0}>
+                  <Grid w="full" templateRows="auto" templateColumns="repeat(2, 1fr)" gap={2} px={0} py={2}>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, brand.blue, blue.900)" p={2}>
+                      <HStack align="flex-end">
+                        <Image src={white_ulianovsk} w="50px" />
+                        <Link
+                          fontSize="3xl"
+                          fontWeight="900"
+                          color="white"
+                          href="https://www.simbirsoft.com/"
+                          isExternal
+                        >
+                          SimbirSoft
+                        </Link>
+                      </HStack>
+                      <Text fontSize="md">
+                        SimbirSoft — глобальная ИТ-компания с опытом в разработке и тестировании ПО с 2001 года, которая
+                        объединяет более 1400 сотрудников из 50 городов России. Мы разрабатываем системы для
+                        автоматизации работы бизнеса, высоконагруженные системы, мобильные приложения, встроенное ПО и
+                        блокчейн-проекты, Machine Learning и Data Science для заказчиков из России, Европы и США.
+                      </Text>
+                    </GridItem>
+                    <GridItem
+                      borderRadius="10px"
+                      w="full"
+                      h="410px"
+                      bgGradient="linear(to-r, #dd6c1b, orange.900)"
+                      p={2}
+                    >
+                      <HStack align="flex-end">
+                        <Image src={mobirate_logo} w="50px" />
+                        <Link fontSize="3xl" fontWeight="900" color="white" href="https://www.mobirate.com/" isExternal>
+                          Mobirate
+                        </Link>
+                      </HStack>
+                      <Text fontSize="md">
+                        Mobirate — занимаемся разработкой мобильных игр с 2003 года. За это время было создано более 30
+                        игр, самые известные: серия Parking Mania, Dead Ahead, Rovercraft и Big Rig Racing, и привлечено
+                        250+ миллионов игроков. Вся экспертиза: от идеи до релиза, находится в мощных руках наших
+                        профессионалов.
+                      </Text>
+                    </GridItem>
+                    <GridItem
+                      borderRadius="10px"
+                      w="full"
+                      h="410px"
+                      bgGradient="linear(to-r, #0bcf6b, green.900)"
+                      p={2}
+                    >
+                      <HStack align="flex-end">
+                        <Image src={white_ulianovsk} w="50px" />
+                        <Link fontSize="3xl" fontWeight="900" color="white" href="https://mediasoft.team/" isExternal>
+                          MEDIASOFT
+                        </Link>
+                      </HStack>
+                      <Text fontSize="md">
+                        MEDIASOFT — азрабатываем сложные веб-системы, бэкенды, мобильные приложения и highload-проекты
+                        для бизнеса с 2014 года. У нас в команде 250+ разработчиков по направлениям backend, frontend,
+                        mobile, qa и аналитика.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" h="410px" bgGradient="linear(to-r, #07a0c3, blue.300)" p={2}>
+                      <HStack align="flex-end">
+                        <Image src={white_ulianovsk} w="50px" />
+                        <Link fontSize="3xl" fontWeight="900" color="white" href="https://nordclan.com/" isExternal>
+                          NORDCLAN
+                        </Link>
+                      </HStack>
+                      <Text fontSize="md">
+                        NORDCLAN — разрабатывает программное обеспечение под ключ: от аналитики и описания идеи до
+                        тестирования готового продукта. Работает со сложными интеграциями и высоконагруженными
+                        сервисами. Является партнером крупных интеграторов, реализует выделенные модули собственной
+                        командой разработки.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" h="410px" bgGradient="linear(to-r, #436cb0, #262351)" p={2}>
+                      <HStack align="flex-end">
+                        <Image src={white_ulianovsk} w="50px" />
+                        <Link fontSize="3xl" fontWeight="900" color="white" href="https://ibs.ru/" isExternal>
+                          IBS
+                        </Link>
+                      </HStack>
+                      <Text fontSize="md">
+                        IBS — бизнес - и технологический партнер лидеров российского бизнеса. Компания решает сложные
+                        задачи в сфере стратегического развития и повышения операционной эффективности, оказывая услуги
+                        в области оптимизации бизнес-процессов, создания систем управления, управления данными, анализа
+                        и моделирования, разработки, тестирования и сопровождения программного обеспечения.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" h="410px" bgGradient="linear(to-r, #0b88f2, blue.900)" p={2}>
+                      <HStack align="flex-end">
+                        <Image src={white_ulianovsk} w="50px" />
+                        <Link
+                          fontSize="3xl"
+                          fontWeight="900"
+                          color="white"
+                          href="https://www.advantshop.net/"
+                          isExternal
+                        >
+                          ADVANTSHOP
+                        </Link>
+                      </HStack>
+                      <Text fontSize="md">
+                        ADVANTSHOP – это единая система для создания интернет-магазина, благодаря которой вы
+                        оптимизируете работу для удобства клиентов и поднимете управление бизнес-процессами на новый
+                        уровень.
+                      </Text>
+                    </GridItem>
+                  </Grid>
                 </VStack>
               </AccordionPanel>
             </AccordionItem>

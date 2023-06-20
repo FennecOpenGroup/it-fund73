@@ -12,7 +12,7 @@ import {
   Box,
   useToast,
   Link,
-  Button
+  Button,
 } from '@chakra-ui/react';
 import React, { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
@@ -26,14 +26,10 @@ import { BsFiletypeDocx, BsMailbox, BsTelephone } from 'react-icons/bs';
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
-import petrishchev from '../../assets/petrishchev.jpg';
-import yarushkina from '../../assets/yarushkina.jpg';
-import kostishko from '../../assets/kostishko.jpg';
 import kuznezov from '../../assets/kuznezov.jpg';
-import pavlov from '../../assets/pavlov.jpg';
 import Erofeev from '../../assets/Erofeev.jpg';
 import andronova from '../../assets/andronova.jpg';
-import Gorbunova from '../../assets/Gorbunova.jpg';
+import Zaglushka from '../../assets/Zaglushka.jpg';
 
 export const AboutUs = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -41,14 +37,14 @@ export const AboutUs = React.memo(() => {
 
   const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current !== null) {
-      window.scrollTo({ behavior: "smooth", top: ref.current.offsetTop });
+      window.scrollTo({ behavior: 'smooth', top: ref.current.offsetTop });
     }
   };
 
-  const refTeam = useRef<HTMLDivElement>(null); 
-  const refDocs = useRef<HTMLDivElement>(null); 
-  const refRecs = useRef<HTMLDivElement>(null); 
-  const refContacts = useRef<HTMLDivElement>(null); 
+  const refTeam = useRef<HTMLDivElement>(null);
+  const refDocs = useRef<HTMLDivElement>(null);
+  const refRecs = useRef<HTMLDivElement>(null);
+  const refContacts = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -75,34 +71,18 @@ export const AboutUs = React.memo(() => {
               </Text>
             </HStack>
             <HStack w="full" align="center" justify="center">
-                <Button
-                  variant="brand-link"
-                  fontSize="lg"
-                  onClick={() => scrollToRef(refTeam)}
-                >
-                  Команда
-                </Button>
-                <Button
-                  variant="brand-link"
-                  fontSize="lg"
-                  onClick={() => scrollToRef(refDocs)}
-                >
-                  Документы
-                </Button>
-                <Button
-                  variant="brand-link"
-                  fontSize="lg"
-                  onClick={() => scrollToRef(refRecs)}
-                >
-                  Реквизиты
-                </Button>
-                <Button
-                  variant="brand-link"
-                  fontSize="lg"
-                  onClick={() => scrollToRef(refContacts)}
-                >
-                  Контакты
-                </Button>
+              <Button variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refTeam)}>
+                Команда
+              </Button>
+              <Button variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refDocs)}>
+                Документы
+              </Button>
+              <Button variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refRecs)}>
+                Реквизиты
+              </Button>
+              <Button variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refContacts)}>
+                Контакты
+              </Button>
             </HStack>
             <VStack align="center" justify="center">
               <Text color="brand.dark" fontSize="lg" align="center">
@@ -131,7 +111,7 @@ export const AboutUs = React.memo(() => {
                   <VStack w="full" px="25%" align="center">
                     <HStack w="full">
                       <VStack minW="5em">
-                        <AiOutlineApartment size="5em" color="#7775ed" />
+                        <AiOutlineApartment size="4em" color="#7775ed" />
                       </VStack>
                       <Text color="brand.dark" fontSize="lg" w="full" align="start">
                         Содействие развитию информационных технологий на территории Ульяновской области.
@@ -139,7 +119,7 @@ export const AboutUs = React.memo(() => {
                     </HStack>
                     <HStack w="full">
                       <VStack minW="5em">
-                        <MdEmojiPeople size="5em" color="#7775ed" />
+                        <MdEmojiPeople size="4em" color="#7775ed" />
                       </VStack>
                       <Text color="brand.dark" fontSize="lg" w="full" align="start">
                         Развитие человеческого потенциала отрасли информационных технологий.
@@ -147,7 +127,7 @@ export const AboutUs = React.memo(() => {
                     </HStack>
                     <HStack w="full">
                       <VStack minW="5em">
-                        <MdBiotech size="5em" color="#7775ed" />
+                        <MdBiotech size="4em" color="#7775ed" />
                       </VStack>
                       <Text color="brand.dark" fontSize="lg" w="full" align="start">
                         Создание условий для появления передовых технологий, организаций, методов обучения федерального
@@ -156,7 +136,7 @@ export const AboutUs = React.memo(() => {
                     </HStack>
                     <HStack w="full">
                       <VStack minW="5em">
-                        <GiVintageRobot size="5em" color="#7775ed" />
+                        <GiVintageRobot size="4em" color="#7775ed" />
                       </VStack>
                       <Text color="brand.dark" fontSize="lg" w="full" align="start">
                         Развитие проектов, осуществляемых в форме или посредством информационных технологий,
@@ -167,7 +147,7 @@ export const AboutUs = React.memo(() => {
                     </HStack>
                     <HStack w="full">
                       <VStack minW="5em">
-                        <MdCellTower size="5em" color="#7775ed" />
+                        <MdCellTower size="4em" color="#7775ed" />
                       </VStack>
                       <Text color="brand.dark" fontSize="lg" w="full" align="start">
                         Развитие Интернет-предпринимательства и экосистемы Интернет-предпринимательства.
@@ -394,76 +374,6 @@ export const AboutUs = React.memo(() => {
                 <AccordionPanel pb={4}>
                   <VStack w="full" align="start" p={0} m={0}>
                     <Text color="brand.dark" fontSize="2xl" fontWeight="900">
-                      Попечительский Совет Фонда
-                    </Text>
-                    <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
-                  </VStack>
-                  <VStack w="full" align="start" justify="start">
-                    <HStack
-                      align="start"
-                      justify="start"
-                      marginTop="25px"
-                      p={2}
-                      borderRadius="5px"
-                      backgroundColor="brand.beige"
-                      w="full"
-                    >
-                      <Image src={petrishchev} w="200px" h="200px" borderRadius={5} objectFit="cover" />
-                      <VStack align="start" px="20px">
-                        <Text color="brand.dark" fontSize="2xl">
-                          <b>Петрищев Игорь Олегович</b>
-                        </Text>
-                        <Text color="brand.dark" fontSize="lg">
-                          Ректор ФГБОУ ВО «Ульяновский государственный педагогический университет»
-                        </Text>
-                      </VStack>
-                    </HStack>
-                  </VStack>
-                  <VStack w="full">
-                    <HStack
-                      align="start"
-                      justify="start"
-                      marginTop="25px"
-                      p={2}
-                      borderRadius="5px"
-                      backgroundColor="brand.beige"
-                      w="full"
-                    >
-                      <Image src={yarushkina} w="200px" h="200px" borderRadius={5} />
-                      <VStack align="start" px="20px">
-                        <Text color="brand.dark" fontSize="2xl">
-                          <b>Ярушкина Надежда Глебовна</b>
-                        </Text>
-                        <Text color="brand.dark" fontSize="lg">
-                          Ректор ФГБОУ ВО «Ульяновский государственный технический университет», доктор технических
-                          наук, профессор
-                        </Text>
-                      </VStack>
-                    </HStack>
-                  </VStack>
-                  <VStack w="full">
-                    <HStack
-                      align="start"
-                      justify="start"
-                      marginTop="25px"
-                      p={2}
-                      borderRadius="5px"
-                      backgroundColor="brand.beige"
-                      w="full"
-                    >
-                      <Image src={kostishko} w="200px" h="200px" borderRadius={5} />
-                      <VStack align="start" px="20px">
-                        <Text color="brand.dark" fontSize="2xl">
-                          <b>Костишко Алла Евгеньевна</b>
-                        </Text>
-                        <Text color="brand.dark" fontSize="lg">
-                          Директор Центра Интернет-образования ФГБОУ ВО «Ульяновский государственный университет»
-                        </Text>
-                      </VStack>
-                    </HStack>
-                  </VStack>
-                  <VStack w="full" align="start" p={0} m={0}>
-                    <Text color="brand.dark" fontSize="2xl" fontWeight="900">
                       Правление Фонда
                     </Text>
                     <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
@@ -498,14 +408,34 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image src={pavlov} w="200px" h="200px" borderRadius={5} />
+                        <Image src={Zaglushka} w="200px" h="200px" borderRadius={5} />
                         <VStack align="start" px="20px">
                           <Text color="brand.dark" fontSize="2xl">
-                            <b>Павлов Вадим Вячеславович</b>
+                            <b>Ягфаров Олег Модорисович</b>
                           </Text>
                           <Text color="brand.dark" fontSize="lg">
-                            Генеральный директор АНО ДО «Агентство технологического развития Ульяновской области»,
-                            Советник Губернатора по инновационному и технологическому развитию Ульяновской области
+                            Директор ОГКУ «Правительство для граждан»
+                          </Text>
+                        </VStack>
+                      </HStack>
+                    </VStack>
+                    <VStack w="full">
+                      <HStack
+                        align="start"
+                        justify="start"
+                        marginTop="25px"
+                        p={2}
+                        borderRadius="5px"
+                        backgroundColor="brand.beige"
+                        w="full"
+                      >
+                        <Image src={Zaglushka} w="200px" h="200px" borderRadius={5} />
+                        <VStack align="start" px="20px">
+                          <Text color="brand.dark" fontSize="2xl">
+                            <b>Механюк Александр Владимирович</b>
+                          </Text>
+                          <Text color="brand.dark" fontSize="lg">
+                            Директор ГУЗ «МИАЦ»
                           </Text>
                         </VStack>
                       </HStack>
@@ -568,13 +498,55 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image src={Gorbunova} w="200px" h="200px" borderRadius={5} />
+                        <Image src={Zaglushka} w="200px" h="200px" borderRadius={5} />
                         <VStack align="start" px="20px">
                           <Text color="brand.dark" fontSize="2xl">
-                            <b>Горбунова Светлана Александровна</b>
+                            <b>Горлов Сергей Петрович </b>
                           </Text>
                           <Text color="brand.dark" fontSize="lg">
-                            Главный специалист
+                            Директор департамента развития отрасли информационных технологий
+                          </Text>
+                        </VStack>
+                      </HStack>
+                    </VStack>
+                    <VStack w="full" align="start" justify="start">
+                      <HStack
+                        align="start"
+                        justify="start"
+                        marginTop="25px"
+                        p={2}
+                        borderRadius="5px"
+                        backgroundColor="brand.beige"
+                        w="full"
+                      >
+                        <Image src={Zaglushka} w="200px" h="200px" borderRadius={5} />
+                        <VStack align="start" px="20px">
+                          <Text color="brand.dark" fontSize="2xl">
+                            <b>Филиппова Ольга Вячеславовна</b>
+                          </Text>
+                          <Text color="brand.dark" fontSize="lg">
+                            Главный специалист департамента развития отрасли информационных технологий
+                          </Text>
+                        </VStack>
+                      </HStack>
+                    </VStack>
+                    <VStack w="full" align="start" justify="start">
+                      <HStack
+                        align="start"
+                        justify="start"
+                        marginTop="25px"
+                        p={2}
+                        borderRadius="5px"
+                        backgroundColor="brand.beige"
+                        w="full"
+                      >
+                        <Image src={Zaglushka} w="200px" h="200px" borderRadius={5} />
+                        <VStack align="start" px="20px">
+                          <Text color="brand.dark" fontSize="2xl">
+                            <b>Халимова Руфина Расиховна</b>
+                          </Text>
+                          <Text color="brand.dark" fontSize="lg">
+                            Пресс-служба
                           </Text>
                         </VStack>
                       </HStack>
@@ -595,12 +567,16 @@ export const AboutUs = React.memo(() => {
                 </AccordionButton>
                 <AccordionPanel pb={4}>
                   <VStack w="full" align="start">
-                    <HStack w='full' align='start'>
-                      <Link color='brand.dark' fontSize='lg' href='' isExternal w='full'>
-                        <Text color='brand.dark' fontSize='lg'>Порядок конкурсного отбора проектов Фонда ИТ</Text>
+                    <HStack w="full" align="start">
+                      <Link color="brand.dark" fontSize="lg" href="" isExternal w="full">
+                        <Text color="brand.dark" fontSize="lg">
+                          Порядок конкурсного отбора проектов Фонда ИТ
+                        </Text>
                         <HStack spacing={0} pl={4}>
                           <BsFiletypeDocx size="1.5em" />
-                          <Text color='brand.dark' fontSize='lg'>106.61 КБ</Text>
+                          <Text color="brand.dark" fontSize="lg">
+                            106.61 КБ
+                          </Text>
                         </HStack>
                       </Link>
                     </HStack>
@@ -973,20 +949,24 @@ export const AboutUs = React.memo(() => {
                 </AccordionButton>
                 <AccordionPanel pb={4}>
                   <VStack w="full" align="start">
-                      <HStack>
-                        <BsMailbox size="1em" color="#7775ed" />
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
-                          Email:
-                        </Text>
-                       <Link href='mailto:it_ulsk@mail.ru' fontSize="lg">it_ulsk@mail.ru</Link>
-                      </HStack>
-                      <HStack>
-                        <BsTelephone size="1em" color="#7775ed"/>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
-                          Телефон:
-                        </Text>
-                        <Link href='tel:8 (8422) 58-17-47' fontSize="lg">8 (8422) 58-17-47</Link>
-                      </HStack>
+                    <HStack>
+                      <BsMailbox size="1em" color="#7775ed" />
+                      <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        Email:
+                      </Text>
+                      <Link href="mailto:it_ulsk@mail.ru" fontSize="lg">
+                        it_ulsk@mail.ru
+                      </Link>
+                    </HStack>
+                    <HStack>
+                      <BsTelephone size="1em" color="#7775ed" />
+                      <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        Телефон:
+                      </Text>
+                      <Link href="tel:8 (8422) 58-17-47" fontSize="lg">
+                        8 (8422) 58-17-47
+                      </Link>
+                    </HStack>
                   </VStack>
                 </AccordionPanel>
               </AccordionItem>

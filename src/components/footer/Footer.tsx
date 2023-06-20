@@ -4,8 +4,8 @@ import LocalizedStrings from 'react-localization';
 import { useSelector } from 'react-redux';
 
 import fog_logo from '../../assets/logo-fog.svg';
-import ul_logo from '../../assets/ul-logo.svg';
 import mini_logo from '../../assets/mini-logo.svg';
+import ul_logo from '../../assets/ul-logo.svg';
 import { IRootState } from '../../interfaces/IRootState';
 
 export const Footer = React.memo(() => {
@@ -23,20 +23,31 @@ export const Footer = React.memo(() => {
   const lang = useSelector((state: IRootState) => state.core.lang);
 
   return (
-    <HStack px="10%" w="full" h="130px" justify="center" backgroundColor="brand.dark" py={2}>
+    <HStack px="10%" w="full" h="150px" justify="center" backgroundColor="brand.dark" py={2}>
       <Image src={mini_logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
       <VStack align="left">
         <Link href="" variant="brand-Link">
           Пользовательское соглашение
         </Link>
-        <Text>Подписчиков: 0</Text>
-        <Text>Публикации: 0</Text>
-        <Text>Компании: 0</Text>
+        <Text>
+          Контакты:
+          <Link href="tel:8 (8422) 58-17-47">8 (8422) 58-17-47</Link>
+          <Link href="mailto:it_ulsk@mail.ru">it_ulsk@mail.ru</Link>
+        </Text>
+        <Text>
+          Адрес:
+          <Link
+            href="https://yandex.ru/maps/195/ulyanovsk/house/ulitsa_minayeva_11/YEEYdQ9nSkMAQFtufX9xeX9mYg==/?ll=48.387366%2C54.308356&z=16.48"
+            isExternal
+          >
+            432017, г.Ульяновск, улица Минаева, дом 11, офис 305
+          </Link>
+        </Text>
       </VStack>
       <Spacer />
       <VStack align="left">
         <Link href="" variant="brand-Link">
-          Политика конфиденциальности
+          Политика в отношении обработки персональных данных
         </Link>
         <Text>Все права защищены и охраняются законом</Text>
         <Text>{`© 2017-${new Date().getFullYear()}`}</Text>
