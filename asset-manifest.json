@@ -1,36 +1,37 @@
 {
   "files": {
     "main.css": "/it-fund73/static/css/main.f95cd0e5.css",
-    "main.js": "/it-fund73/static/js/main.84d7a4c8.js",
+    "main.js": "/it-fund73/static/js/main.3d27cded.js",
     "static/media/it.jpg": "/it-fund73/static/media/it.1e9754b71d345349de59.jpg",
     "static/media/government.jpg": "/it-fund73/static/media/government.bf44ab96ae00a051a939.jpg",
     "static/media/education.jpg": "/it-fund73/static/media/education.78bc8cff465b858390cf.jpg",
     "static/media/erofeev_png.png": "/it-fund73/static/media/erofeev_png.48e48860504d2b2447c3.png",
-    "static/media/scheme_accreditation.svg": "/it-fund73/static/media/scheme_accreditation.83a2e841295f1ed5607f97394c0017fc.svg",
-    "static/media/Gorbunova.jpg": "/it-fund73/static/media/Gorbunova.8ebbd296fbcf01d7d4b7.jpg",
+    "static/media/scheme_accreditation.svg": "/it-fund73/static/media/scheme_accreditation.7a06173f58427dc42b4cc9da3f00901e.svg",
     "static/media/busisness.jpg": "/it-fund73/static/media/busisness.0df5302dc5f59c7914d2.jpg",
     "static/media/ul-logo.svg": "/it-fund73/static/media/ul-logo.c8cbfb04712c8833a5e4584f45b608a4.svg",
+    "static/media/mobirate.svg": "/it-fund73/static/media/mobirate.b9ceb7798cb735b043bb78d8ede3b4af.svg",
     "static/media/andronova.jpg": "/it-fund73/static/media/andronova.258d2078d435aba45114.jpg",
     "static/media/government2.jpg": "/it-fund73/static/media/government2.a3a133845136aea333b0.jpg",
     "static/media/kuznezov.jpg": "/it-fund73/static/media/kuznezov.7e470b05162fee1d5917.jpg",
+    "static/media/mediasoft_logo.svg": "/it-fund73/static/media/mediasoft_logo.fb883046eaeaabdcc12a543f198adc67.svg",
     "static/media/Erofeev.jpg": "/it-fund73/static/media/Erofeev.c7afca19f25291470f5e.jpg",
     "static/media/logo.svg": "/it-fund73/static/media/logo.f051b63dcae3fdfcbfd4e4bbd504b2e5.svg",
-    "static/media/pavlov.jpg": "/it-fund73/static/media/pavlov.fce82d6f4bbe3885a4e4.jpg",
-    "static/media/petrishchev.jpg": "/it-fund73/static/media/petrishchev.66f16be2c37f5eba637a.jpg",
+    "static/media/simbirsoft.svg": "/it-fund73/static/media/simbirsoft.e3c0a78ceff45cac74be1c792fd74673.svg",
+    "static/media/advanshop.svg": "/it-fund73/static/media/advanshop.2a79dafa34411012bd8ad5d40b710bfd.svg",
+    "static/media/IBS.svg": "/it-fund73/static/media/IBS.a1fb68440f619d90a6e5449210f049a6.svg",
     "static/media/mini-logo.svg": "/it-fund73/static/media/mini-logo.327c1bfb47e27c364b01f5f55b4f439e.svg",
     "static/media/jost-all-400-normal.woff": "/it-fund73/static/media/jost-all-400-normal.d59c6565d4d0717bd281.woff",
-    "static/media/yarushkina.jpg": "/it-fund73/static/media/yarushkina.78068e5cc2d1fa2e9c8a.jpg",
-    "static/media/kostishko.jpg": "/it-fund73/static/media/kostishko.2794281f265ace32090f.jpg",
     "static/media/jost-latin-400-normal.woff2": "/it-fund73/static/media/jost-latin-400-normal.3ee0e9b131b30b82441b.woff2",
     "static/media/jost-latin-ext-400-normal.woff2": "/it-fund73/static/media/jost-latin-ext-400-normal.4d7ae0b2f2addfdb042a.woff2",
     "static/media/jost-cyrillic-400-normal.woff2": "/it-fund73/static/media/jost-cyrillic-400-normal.6132b2e344b5a75d6bf9.woff2",
     "index.html": "/it-fund73/index.html",
     "static/media/logo-fog.svg": "/it-fund73/static/media/logo-fog.17a6a3d610b0c68941cf611c82ced211.svg",
+    "static/media/nord.svg": "/it-fund73/static/media/nord.990a7326bdd3c7f0b70de24a554272d8.svg",
     "main.f95cd0e5.css.map": "/it-fund73/static/css/main.f95cd0e5.css.map",
-    "main.84d7a4c8.js.map": "/it-fund73/static/js/main.84d7a4c8.js.map"
+    "main.3d27cded.js.map": "/it-fund73/static/js/main.3d27cded.js.map"
   },
   "entrypoints": [
     "static/css/main.f95cd0e5.css",
-    "static/js/main.84d7a4c8.js"
+    "static/js/main.3d27cded.js"
   ]
 }
