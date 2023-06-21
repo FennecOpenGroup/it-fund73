@@ -24,6 +24,12 @@ import CountUp from 'react-countup';
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import logo from '../../assets/mini-logo.svg';
+import simbirsoft from '../../assets/simbirsoft.svg';
+import mobirate from '../../assets/mobirate.svg';
+import mediasoft_logo from '../../assets/mediasoft_logo.svg';
+import nord from '../../assets/nord.svg';
+import IBS from '../../assets/IBS.svg';
+import advanshop from '../../assets/advanshop.svg';
 import scheme_accreditation from '../../assets/schemes/scheme_accreditation.svg';
 
 export const Companies = React.memo(() => {
@@ -332,6 +338,7 @@ export const Companies = React.memo(() => {
                   <Grid w="full" templateRows="auto" templateColumns="repeat(3, 1fr)" gap={2} px={0} py={2}>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, brand.blue, blue.900)" p={4}>
                       <HStack align="flex-end">
+                        <Image src={simbirsoft} h="40px" w="40px"></Image>
                         <Link
                           fontSize="3xl"
                           fontWeight="900"
@@ -351,6 +358,7 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #dd6c1b, orange.900)" p={4}>
                       <HStack align="flex-end">
+                        <Image src={mobirate} h="40px" w="40px"></Image>
                         <Link fontSize="3xl" fontWeight="900" color="white" href="https://www.mobirate.com/" isExternal>
                           MOBIRATE
                         </Link>
@@ -364,6 +372,7 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #0bcf6b, green.900)" p={4}>
                       <HStack align="flex-end">
+                        <Image src={mediasoft_logo} h="50px" w="40px"></Image>
                         <Link fontSize="3xl" fontWeight="900" color="white" href="https://mediasoft.team/" isExternal>
                           MEDIASOFT
                         </Link>
@@ -376,6 +385,7 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #07a0c3, blue.300)" p={4}>
                       <HStack align="flex-end">
+                        <Image src={nord} h="40px" w="40px"></Image>
                         <Link fontSize="3xl" fontWeight="900" color="white" href="https://nordclan.com/" isExternal>
                           NORDCLAN
                         </Link>
@@ -389,6 +399,7 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #436cb0, #262351)" p={4}>
                       <HStack align="flex-end">
+                        <Image src={IBS} h="40px" w="40px"></Image>
                         <Link fontSize="3xl" fontWeight="900" color="white" href="https://ibs.ru/" isExternal>
                           IBS
                         </Link>
@@ -402,6 +413,7 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #0b88f2, blue.900)" p={4}>
                       <HStack align="flex-end">
+                        <Image src={advanshop} h="40px" w="40px"></Image>
                         <Link
                           fontSize="3xl"
                           fontWeight="900"
