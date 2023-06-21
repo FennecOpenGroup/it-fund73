@@ -11,6 +11,7 @@ import {
   Input,
   Button,
 } from '@chakra-ui/react';
+import { AddIcon } from '@chakra-ui/icons';
 import React, { Dispatch, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -54,7 +55,11 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
               </Text>
               <Input h="40px" color="brand.dark" />
             </VStack>
-            <Input id="file" h="40px" border="0px" color="brand.dark" type="file" multiple />
+             <label htmlFor="file" style={{color: 'black', cursor: 'pointer', display: 'flex', alignContent: 'center', alignItems: 'center', fontWeight: 'bold'}}>
+              <Input name="" variant='brand-file' id="file" h="40px" border="0px" color="brand.dark" type="file" multiple hidden/>
+              Приложите файл
+              <AddIcon w='30px' />
+             </label>
             <Button variant="brand-high" w="full">
               Отправить
             </Button>

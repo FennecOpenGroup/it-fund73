@@ -51,6 +51,16 @@ export const InputStyles = {
         },
       },
     },
+    'brand-file': {
+      field: {
+        borderRadius: '0px',
+        border: '0px',
+        borderColor: 'white',
+        fontSize: 'sm',
+        color: 'black',
+        bg: 'transparent',
+      },
+    },
   },
   defaultProps: { size: 'sm' },
 };
