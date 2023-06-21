@@ -21,7 +21,7 @@ import { Chart } from 'react-google-charts';
 import { AiOutlineApartment } from 'react-icons/ai';
 import { GiVintageRobot } from 'react-icons/gi';
 import { MdEmojiPeople, MdBiotech, MdCellTower } from 'react-icons/md';
-import { BsFiletypeDocx, BsMailbox, BsTelephone } from 'react-icons/bs';
+import { BsFiletypeDocx, BsFillPersonFill, BsMailbox, BsTelephone } from 'react-icons/bs';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
@@ -29,7 +29,6 @@ import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import kuznezov from '../../assets/kuznezov.jpg';
 import Erofeev from '../../assets/Erofeev.jpg';
 import andronova from '../../assets/andronova.jpg';
-import Zaglushka from '../../assets/Zaglushka.jpg';
 
 export const AboutUs = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -408,7 +407,7 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image src={Zaglushka} w="200px" h="200px" borderRadius={5} />
+                        <BsFillPersonFill size="200px" />
                         <VStack align="start" px="20px">
                           <Text color="brand.dark" fontSize="2xl">
                             <b>Ягфаров Олег Модорисович</b>
@@ -429,7 +428,7 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image src={Zaglushka} w="200px" h="200px" borderRadius={5} />
+                        <BsFillPersonFill size="200px" color="#1a1a1a" />
                         <VStack align="start" px="20px">
                           <Text color="brand.dark" fontSize="2xl">
                             <b>Механюк Александр Владимирович</b>
@@ -498,7 +497,7 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image src={Zaglushka} w="200px" h="200px" borderRadius={5} />
+                        <BsFillPersonFill size="200px" color="#1a1a1a" />
                         <VStack align="start" px="20px">
                           <Text color="brand.dark" fontSize="2xl">
                             <b>Горлов Сергей Петрович </b>
@@ -519,7 +518,7 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image src={Zaglushka} w="200px" h="200px" borderRadius={5} />
+                        <BsFillPersonFill size="200px" color="#1a1a1a" />
                         <VStack align="start" px="20px">
                           <Text color="brand.dark" fontSize="2xl">
                             <b>Филиппова Ольга Вячеславовна</b>
@@ -540,7 +539,7 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image src={Zaglushka} w="200px" h="200px" borderRadius={5} />
+                        <BsFillPersonFill size="200px" color="#1a1a1a" />
                         <VStack align="start" px="20px">
                           <Text color="brand.dark" fontSize="2xl">
                             <b>Халимова Руфина Расиховна</b>

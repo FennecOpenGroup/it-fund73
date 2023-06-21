@@ -17,12 +17,7 @@ export const Education = React.memo(() => {
       </Helmet>
       <Header />
       <VStack minH={`${height}px`} justify="center" px="10%">
-        <VStack
-          w="full"
-          minH={`${height}px`}
-          pl={[2, 3, 4]}
-          pb={[4, 6]}
-        >
+        <VStack w="full" minH={`${height}px`} pl={[2, 3, 4]} pb={[4, 5, 6]}>
           <Text
             color="brand.blue"
             fontSize={['lg', 'xl', '2xl', '4xl']}
@@ -37,15 +32,17 @@ export const Education = React.memo(() => {
             <Grid w="full" gap={3} templateRows="auto" templateColumns="repeat(2, 1fr)" mb={4}>
               <HStack p={2} borderRadius="5px" backgroundColor="brand.dark" w="full">
                 <Image src={logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
-                <Text fontSize="xl">Навигатор: профориентация по конкретным специальностям, курсы, информация о ВУЗах, ССУЗах</Text>
+                <Text fontSize="xl">
+                  Навигатор: профориентация по конкретным специальностям, курсы, информация о ВУЗах, ССУЗах
+                </Text>
               </HStack>
               <HStack p={2} borderRadius="5px" backgroundColor="brand.dark" w="full">
                 <Image src={logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
                 <Text fontSize="xl">Цифровые навыки: обучение работы с гаджетами и т.д.</Text>
               </HStack>
             </Grid>
-            <VStack w='full' align='center' justify='center'>
-              <HStack p={2} borderRadius="5px" backgroundColor="brand.dark" w="full" maxW='30%'>
+            <VStack w="full" align="center" justify="center">
+              <HStack p={2} borderRadius="5px" backgroundColor="brand.dark" w="full" maxW="30%">
                 <Image src={logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
                 <Text fontSize="xl">Образовательный туризм</Text>
               </HStack>

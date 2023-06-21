@@ -25,10 +25,7 @@ export const Footer = React.memo(() => {
   return (
     <HStack px="10%" w="full" h="150px" justify="center" backgroundColor="brand.dark" py={2}>
       <Image src={mini_logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
-      <VStack align="left">
-        <Link href="" variant="brand-Link">
-          Пользовательское соглашение
-        </Link>
+      <VStack align="left" spacing={1}>
         <Text>
           Контакты:
           <Link href="tel:8 (8422) 58-17-47">8 (8422) 58-17-47</Link>
@@ -45,12 +42,17 @@ export const Footer = React.memo(() => {
         </Text>
       </VStack>
       <Spacer />
-      <VStack align="left">
-        <Link href="" variant="brand-Link">
-          Политика в отношении обработки персональных данных
-        </Link>
+      <VStack align="left" spacing={1}>
+        <VStack align="left" spacing={0}>
+          <Link href="" variant="brand-Link">
+            Политика в отношении обработки персональных данных
+          </Link>
+          <Link href="" variant="brand-Link">
+            Пользовательское соглашение
+          </Link>
+        </VStack>
+        <HStack borderBottom="1px solid white" w="full" m={0} p={0} />
         <Text>Все права защищены и охраняются законом</Text>
-        <Text>{`© 2017-${new Date().getFullYear()}`}</Text>
         <HStack>
           <Text>{texts.getString('create', lang)}</Text>
           <Link href="https://siiidr.github.io/FennecOpenGroup/" isExternal>
@@ -61,6 +63,7 @@ export const Footer = React.memo(() => {
             <Image src={ul_logo} alt="itfund" loading="lazy" w="30px" htmlWidth="full" htmlHeight="full" />
           </Link>
         </HStack>
+        <Text>{`© 2016 - ${new Date().getFullYear()}`}</Text>
       </VStack>
     </HStack>
   );

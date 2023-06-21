@@ -23,15 +23,10 @@ import CountUp from 'react-countup';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
-import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import logo from '../../assets/mini-logo.svg';
-import mobirate_logo from '../../assets/mobirate_logo.svg';
 import scheme_accreditation from '../../assets/schemes/scheme_accreditation.svg';
-import white_ulianovsk from '../../assets/white_ul_logo.png';
 
 export const Companies = React.memo(() => {
-  const { height } = useWindowDimensions();
-
   const [support, setSupport] = useState(false);
   const [accreditation, setAccreditation] = useState(false);
   const [company, setCompany] = useState(false);
@@ -56,7 +51,7 @@ export const Companies = React.memo(() => {
         <title>it-fund | Что происходит в отрасли?</title>
       </Helmet>
       <Header />
-      <VStack minH={`${height}px`} justify="center" px="10%">
+      <VStack justify="center" px="10%">
         <Text
           color="brand.blue"
           fontSize={['lg', 'xl', '2xl', '4xl']}
@@ -96,7 +91,7 @@ export const Companies = React.memo(() => {
             ИТ-компании Ульяновской области
           </Button>
         </HStack>
-        <VStack w="full" minH={`${height}px`} p={[2, 3, 4]} justify="start" align="center">
+        <VStack w="full" p={[2, 3, 4]} justify="start" align="center">
           <Grid w="full" gap={3} templateRows="auto" templateColumns="repeat(2, 1fr)" mb={4}>
             <HStack p={2} borderRadius="5px" backgroundColor="brand.dark" w="full">
               <Image src={logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
@@ -163,7 +158,7 @@ export const Companies = React.memo(() => {
                   </Text>
                   <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
                   <VStack w="full" align="center" py={3}>
-                    <UnorderedList px={8}>
+                    <UnorderedList>
                       <ListItem>
                         Пониженные региональные налоговые ставки по УСН в размере 1 %, если объектом налогообложения
                         являются доходы, 5 % и 10 %, если объектом налогообложения являются доходы, уменьшенные на
@@ -334,10 +329,9 @@ export const Companies = React.memo(() => {
               </AccordionButton>
               <AccordionPanel px={0}>
                 <VStack w="full" px={0}>
-                  <Grid w="full" templateRows="auto" templateColumns="repeat(2, 1fr)" gap={2} px={0} py={2}>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, brand.blue, blue.900)" p={2}>
+                  <Grid w="full" templateRows="auto" templateColumns="repeat(3, 1fr)" gap={2} px={0} py={2}>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, brand.blue, blue.900)" p={4}>
                       <HStack align="flex-end">
-                        <Image src={white_ulianovsk} w="50px" />
                         <Link
                           fontSize="3xl"
                           fontWeight="900"
@@ -345,7 +339,7 @@ export const Companies = React.memo(() => {
                           href="https://www.simbirsoft.com/"
                           isExternal
                         >
-                          SimbirSoft
+                          SIMBIRSOFT
                         </Link>
                       </HStack>
                       <Text fontSize="md">
@@ -355,17 +349,10 @@ export const Companies = React.memo(() => {
                         блокчейн-проекты, Machine Learning и Data Science для заказчиков из России, Европы и США.
                       </Text>
                     </GridItem>
-                    <GridItem
-                      borderRadius="10px"
-                      w="full"
-                      h="410px"
-                      bgGradient="linear(to-r, #dd6c1b, orange.900)"
-                      p={2}
-                    >
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #dd6c1b, orange.900)" p={4}>
                       <HStack align="flex-end">
-                        <Image src={mobirate_logo} w="50px" />
                         <Link fontSize="3xl" fontWeight="900" color="white" href="https://www.mobirate.com/" isExternal>
-                          Mobirate
+                          MOBIRATE
                         </Link>
                       </HStack>
                       <Text fontSize="md">
@@ -375,28 +362,20 @@ export const Companies = React.memo(() => {
                         профессионалов.
                       </Text>
                     </GridItem>
-                    <GridItem
-                      borderRadius="10px"
-                      w="full"
-                      h="410px"
-                      bgGradient="linear(to-r, #0bcf6b, green.900)"
-                      p={2}
-                    >
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #0bcf6b, green.900)" p={4}>
                       <HStack align="flex-end">
-                        <Image src={white_ulianovsk} w="50px" />
                         <Link fontSize="3xl" fontWeight="900" color="white" href="https://mediasoft.team/" isExternal>
                           MEDIASOFT
                         </Link>
                       </HStack>
                       <Text fontSize="md">
-                        MEDIASOFT — азрабатываем сложные веб-системы, бэкенды, мобильные приложения и highload-проекты
+                        MEDIASOFT — разрабатывает сложные веб-системы, бэкенды, мобильные приложения и highload-проекты
                         для бизнеса с 2014 года. У нас в команде 250+ разработчиков по направлениям backend, frontend,
                         mobile, qa и аналитика.
                       </Text>
                     </GridItem>
-                    <GridItem borderRadius="10px" w="full" h="410px" bgGradient="linear(to-r, #07a0c3, blue.300)" p={2}>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #07a0c3, blue.300)" p={4}>
                       <HStack align="flex-end">
-                        <Image src={white_ulianovsk} w="50px" />
                         <Link fontSize="3xl" fontWeight="900" color="white" href="https://nordclan.com/" isExternal>
                           NORDCLAN
                         </Link>
@@ -408,9 +387,8 @@ export const Companies = React.memo(() => {
                         командой разработки.
                       </Text>
                     </GridItem>
-                    <GridItem borderRadius="10px" w="full" h="410px" bgGradient="linear(to-r, #436cb0, #262351)" p={2}>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #436cb0, #262351)" p={4}>
                       <HStack align="flex-end">
-                        <Image src={white_ulianovsk} w="50px" />
                         <Link fontSize="3xl" fontWeight="900" color="white" href="https://ibs.ru/" isExternal>
                           IBS
                         </Link>
@@ -422,9 +400,8 @@ export const Companies = React.memo(() => {
                         и моделирования, разработки, тестирования и сопровождения программного обеспечения.
                       </Text>
                     </GridItem>
-                    <GridItem borderRadius="10px" w="full" h="410px" bgGradient="linear(to-r, #0b88f2, blue.900)" p={2}>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #0b88f2, blue.900)" p={4}>
                       <HStack align="flex-end">
-                        <Image src={white_ulianovsk} w="50px" />
                         <Link
                           fontSize="3xl"
                           fontWeight="900"

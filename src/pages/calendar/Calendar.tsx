@@ -1,12 +1,18 @@
-import { AddIcon } from '@chakra-ui/icons';
+import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { HStack, VStack, Text, MenuButton, Button, Menu, MenuList, MenuItem, Spacer } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, useCallback, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { BsChevronDown } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { coreSetVisibleModal } from '../../actions/coreActions';
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
+import { ModalCalendarNewDate } from '../../components/modals/ModalCalendarNewDate';
+import { ModalsEnum } from '../../enums/ModalsEnum';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
+import { IRootState } from '../../interfaces/IRootState';
+import { RootActions } from '../../types/RootActions';
 
 export const Calendar = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -26,6 +32,29 @@ export const Calendar = React.memo(() => {
 
   const [year, setYear] = useState(2023);
 
+  const changeMounth = (mounth: string) => {
+    setJanuary(mounth === 'january');
+    setFebruary(mounth === 'february');
+    setMarch(mounth === 'march');
+    setApril(mounth === 'april');
+    setMay(mounth === 'may');
+    setJune(mounth === 'june');
+    setJuly(mounth === 'july');
+    setAugust(mounth === 'august');
+    setSeptember(mounth === 'september');
+    setOctober(mounth === 'october');
+    setNovember(mounth === 'november');
+    setDecember(mounth === 'december');
+  };
+
+  const dispatch = useDispatch<Dispatch<RootActions>>();
+
+  const isCalenderNewDateSelect = useSelector((state: IRootState) => state.core[ModalsEnum.CALENDAR_NEW_DATE]);
+  const handleCalenderNewDateClick = useCallback(
+    () => dispatch(coreSetVisibleModal(ModalsEnum.CALENDAR_NEW_DATE)),
+    [dispatch],
+  );
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -36,16 +65,21 @@ export const Calendar = React.memo(() => {
         <title>it-fund | Когда будут мероприятия?</title>
       </Helmet>
       <Header />
-      <VStack minH={`${height}px`} justify="center" px="10%">
-        <VStack w="full" minH={`${height}px`} p={[1, 2, 3]}>
+      <VStack justify="start" px="10%">
+        <VStack w="full" p={[1, 2, 3]}>
           <HStack w="full" justify="start" align="center" pr={2}>
             <Text color="brand.dark" fontSize="xl">
               Календарь мероприятий
             </Text>
             <Spacer />
-            <Button rightIcon={<AddIcon />}>Предложить мероприятие</Button>
+            <Button
+              rightIcon={isCalenderNewDateSelect ? <MinusIcon /> : <AddIcon />}
+              onClick={handleCalenderNewDateClick}
+            >
+              Предложить мероприятие
+            </Button>
             <Menu>
-              <MenuButton h='48px' px={4} py={2} as={Button} rightIcon={<BsChevronDown />}>
+              <MenuButton h="48px" px={4} py={2} as={Button} rightIcon={<BsChevronDown />}>
                 {year}
               </MenuButton>
               <MenuList>
@@ -57,7 +91,7 @@ export const Calendar = React.memo(() => {
               </MenuList>
             </Menu>
           </HStack>
-          <VStack w="full" minH={`${height / 1.8}px`} border="2px" borderRadius="5px" justify="center" bg="brand.beige">
+          <VStack w="full" minH={`${height / 2}px`} border="2px" borderRadius="5px" justify="center" bg="brand.beige">
             <Text color="#BBBBBB" fontSize="2xl" fontWeight="bold">
               На данный момент нет запланированных мероприятий
             </Text>
@@ -67,20 +101,7 @@ export const Calendar = React.memo(() => {
               variant="brand-calendar"
               w="full"
               h="100px"
-              onClick={() => {
-                setJanuary(!january);
-                setApril(false);
-                setAugust(false);
-                setDecember(false);
-                setFebruary(false);
-                setJuly(false);
-                setJune(false);
-                setMarch(false);
-                setMay(false);
-                setNovember(false);
-                setOctober(false);
-                setSeptember(false);
-              }}
+              onClick={() => changeMounth('january')}
               _active={{
                 color: 'white',
                 bg: 'brand.blue',
@@ -89,7 +110,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={january}
             >
-              <VStack align='center'>
+              <VStack align="center">
                 <p style={{ fontSize: '12px' }}>Январь</p>
                 <p style={{ fontSize: '25px' }}>1</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -99,20 +120,7 @@ export const Calendar = React.memo(() => {
               variant="brand-calendar"
               w="full"
               h="100px"
-              onClick={() => {
-                setFebruary(!february);
-                setApril(false);
-                setAugust(false);
-                setDecember(false);
-                setJanuary(false);
-                setJuly(false);
-                setJune(false);
-                setMarch(false);
-                setMay(false);
-                setNovember(false);
-                setOctober(false);
-                setSeptember(false);
-              }}
+              onClick={() => changeMounth('february')}
               _active={{
                 color: 'white',
                 bg: 'brand.blue',
@@ -121,7 +129,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={february}
             >
-              <VStack align='center'>
+              <VStack align="center">
                 <p style={{ fontSize: '12px' }}>Февраль</p>
                 <p style={{ fontSize: '25px' }}>2</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -131,20 +139,7 @@ export const Calendar = React.memo(() => {
               variant="brand-calendar"
               w="full"
               h="100px"
-              onClick={() => {
-                setMarch(!march);
-                setApril(false);
-                setAugust(false);
-                setDecember(false);
-                setJanuary(false);
-                setJuly(false);
-                setJune(false);
-                setFebruary(false);
-                setMay(false);
-                setNovember(false);
-                setOctober(false);
-                setSeptember(false);
-              }}
+              onClick={() => changeMounth('march')}
               _active={{
                 color: 'white',
                 bg: 'brand.blue',
@@ -153,7 +148,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={march}
             >
-              <VStack align='center'>
+              <VStack align="center">
                 <p style={{ fontSize: '12px' }}>Март</p>
                 <p style={{ fontSize: '25px' }}>3</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -163,20 +158,7 @@ export const Calendar = React.memo(() => {
               variant="brand-calendar"
               w="full"
               h="100px"
-              onClick={() => {
-                setApril(!april);
-                setMarch(false);
-                setAugust(false);
-                setDecember(false);
-                setJanuary(false);
-                setJuly(false);
-                setJune(false);
-                setFebruary(false);
-                setMay(false);
-                setNovember(false);
-                setOctober(false);
-                setSeptember(false);
-              }}
+              onClick={() => changeMounth('april')}
               _active={{
                 color: 'white',
                 bg: 'brand.blue',
@@ -185,7 +167,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={april}
             >
-              <VStack align='center'>
+              <VStack align="center">
                 <p style={{ fontSize: '12px' }}>Апрель</p>
                 <p style={{ fontSize: '25px' }}>4</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -195,20 +177,7 @@ export const Calendar = React.memo(() => {
               variant="brand-calendar"
               w="full"
               h="100px"
-              onClick={() => {
-                setMay(!may);
-                setMarch(false);
-                setAugust(false);
-                setDecember(false);
-                setJanuary(false);
-                setJuly(false);
-                setJune(false);
-                setFebruary(false);
-                setApril(false);
-                setNovember(false);
-                setOctober(false);
-                setSeptember(false);
-              }}
+              onClick={() => changeMounth('may')}
               _active={{
                 color: 'white',
                 bg: 'brand.blue',
@@ -217,7 +186,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={may}
             >
-              <VStack align='center'>
+              <VStack align="center">
                 <p style={{ fontSize: '12px' }}>Май</p>
                 <p style={{ fontSize: '25px' }}>5</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -227,20 +196,7 @@ export const Calendar = React.memo(() => {
               variant="brand-calendar"
               w="full"
               h="100px"
-              onClick={() => {
-                setJune(!june);
-                setMarch(false);
-                setAugust(false);
-                setDecember(false);
-                setJanuary(false);
-                setJuly(false);
-                setMay(false);
-                setFebruary(false);
-                setApril(false);
-                setNovember(false);
-                setOctober(false);
-                setSeptember(false);
-              }}
+              onClick={() => changeMounth('june')}
               _active={{
                 color: 'white',
                 bg: 'brand.blue',
@@ -249,7 +205,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={june}
             >
-              <VStack align='center'>
+              <VStack align="center">
                 <p style={{ fontSize: '12px' }}>Июнь</p>
                 <p style={{ fontSize: '25px' }}>6</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -259,20 +215,7 @@ export const Calendar = React.memo(() => {
               variant="brand-calendar"
               w="full"
               h="100px"
-              onClick={() => {
-                setJuly(!july);
-                setMarch(false);
-                setAugust(false);
-                setDecember(false);
-                setJanuary(false);
-                setJune(false);
-                setMay(false);
-                setFebruary(false);
-                setApril(false);
-                setNovember(false);
-                setOctober(false);
-                setSeptember(false);
-              }}
+              onClick={() => changeMounth('july')}
               _active={{
                 color: 'white',
                 bg: 'brand.blue',
@@ -281,7 +224,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={july}
             >
-              <VStack align='center'>
+              <VStack align="center">
                 <p style={{ fontSize: '12px' }}>Июль</p>
                 <p style={{ fontSize: '25px' }}>7</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -291,20 +234,7 @@ export const Calendar = React.memo(() => {
               variant="brand-calendar"
               w="full"
               h="100px"
-              onClick={() => {
-                setAugust(!august);
-                setMarch(false);
-                setJuly(false);
-                setDecember(false);
-                setJanuary(false);
-                setJune(false);
-                setMay(false);
-                setFebruary(false);
-                setApril(false);
-                setNovember(false);
-                setOctober(false);
-                setSeptember(false);
-              }}
+              onClick={() => changeMounth('august')}
               _active={{
                 color: 'white',
                 bg: 'brand.blue',
@@ -313,7 +243,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={august}
             >
-              <VStack align='center'>
+              <VStack align="center">
                 <p style={{ fontSize: '12px' }}>Август</p>
                 <p style={{ fontSize: '25px' }}>8</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -323,20 +253,7 @@ export const Calendar = React.memo(() => {
               variant="brand-calendar"
               w="full"
               h="100px"
-              onClick={() => {
-                setSeptember(!september);
-                setMarch(false);
-                setJuly(false);
-                setDecember(false);
-                setJanuary(false);
-                setJune(false);
-                setMay(false);
-                setFebruary(false);
-                setApril(false);
-                setNovember(false);
-                setOctober(false);
-                setAugust(false);
-              }}
+              onClick={() => changeMounth('september')}
               _active={{
                 color: 'white',
                 bg: 'brand.blue',
@@ -345,7 +262,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={september}
             >
-              <VStack align='center'>
+              <VStack align="center">
                 <p style={{ fontSize: '12px' }}>Сентябрь</p>
                 <p style={{ fontSize: '25px' }}>9</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -355,20 +272,7 @@ export const Calendar = React.memo(() => {
               variant="brand-calendar"
               w="full"
               h="100px"
-              onClick={() => {
-                setOctober(!october);
-                setMarch(false);
-                setJuly(false);
-                setDecember(false);
-                setJanuary(false);
-                setJune(false);
-                setMay(false);
-                setFebruary(false);
-                setApril(false);
-                setNovember(false);
-                setSeptember(false);
-                setAugust(false);
-              }}
+              onClick={() => changeMounth('october')}
               _active={{
                 color: 'white',
                 bg: 'brand.blue',
@@ -377,7 +281,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={october}
             >
-              <VStack align='center'>
+              <VStack align="center">
                 <p style={{ fontSize: '12px' }}>Октябрь</p>
                 <p style={{ fontSize: '25px' }}>10</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -387,20 +291,7 @@ export const Calendar = React.memo(() => {
               variant="brand-calendar"
               w="full"
               h="100px"
-              onClick={() => {
-                setNovember(!november);
-                setMarch(false);
-                setJuly(false);
-                setDecember(false);
-                setJanuary(false);
-                setJune(false);
-                setMay(false);
-                setFebruary(false);
-                setApril(false);
-                setOctober(false);
-                setSeptember(false);
-                setAugust(false);
-              }}
+              onClick={() => changeMounth('november')}
               _active={{
                 color: 'white',
                 bg: 'brand.blue',
@@ -409,7 +300,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={november}
             >
-              <VStack align='center'>
+              <VStack align="center">
                 <p style={{ fontSize: '12px' }}>Ноябрь</p>
                 <p style={{ fontSize: '25px' }}>11</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -419,20 +310,7 @@ export const Calendar = React.memo(() => {
               variant="brand-calendar"
               w="full"
               h="100px"
-              onClick={() => {
-                setDecember(!december);
-                setMarch(false);
-                setJuly(false);
-                setNovember(false);
-                setJanuary(false);
-                setJune(false);
-                setMay(false);
-                setFebruary(false);
-                setApril(false);
-                setOctober(false);
-                setSeptember(false);
-                setAugust(false);
-              }}
+              onClick={() => changeMounth('december')}
               _active={{
                 color: 'white',
                 bg: 'brand.blue',
@@ -441,7 +319,7 @@ export const Calendar = React.memo(() => {
               }}
               isActive={december}
             >
-              <VStack align='center'>
+              <VStack align="center">
                 <p style={{ fontSize: '12px' }}>Декабрь</p>
                 <p style={{ fontSize: '25px' }}>12</p>
                 <p style={{ fontSize: '12px' }}>{year}</p>
@@ -451,6 +329,7 @@ export const Calendar = React.memo(() => {
         </VStack>
       </VStack>
       <Footer />
+      <ModalCalendarNewDate isOpen={!!isCalenderNewDateSelect} />
     </>
   );
 });
