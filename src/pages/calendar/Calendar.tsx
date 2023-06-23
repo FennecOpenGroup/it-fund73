@@ -1,5 +1,16 @@
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
-import { HStack, VStack, Text, MenuButton, Button, Menu, MenuList, MenuItem, Spacer } from '@chakra-ui/react';
+import {
+  HStack,
+  VStack,
+  Text,
+  MenuButton,
+  Button,
+  Menu,
+  MenuList,
+  MenuItem,
+  Spacer,
+  useMediaQuery,
+} from '@chakra-ui/react';
 import React, { Dispatch, useCallback, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { BsChevronDown } from 'react-icons/bs';
@@ -29,6 +40,8 @@ export const Calendar = React.memo(() => {
   const [october, setOctober] = useState(false);
   const [november, setNovember] = useState(false);
   const [december, setDecember] = useState(false);
+
+  const [isLargerThan950] = useMediaQuery('(min-width: 950px)');
 
   const [year, setYear] = useState(2023);
 
@@ -67,8 +80,8 @@ export const Calendar = React.memo(() => {
       <Header />
       <VStack justify="start" px="10%">
         <VStack w="full" p={[1, 2, 3]}>
-          <HStack w="full" justify="start" align="center" pr={2}>
-            <Text color="brand.dark" fontSize="xl">
+          <HStack w="full" justify="start" align="center" pr={[1, 2]}>
+            <Text color="brand.dark" fontSize={['lg', 'xl']}>
               Календарь мероприятий
             </Text>
             <Spacer />
@@ -79,7 +92,7 @@ export const Calendar = React.memo(() => {
               Предложить мероприятие
             </Button>
             <Menu>
-              <MenuButton h="48px" px={4} py={2} as={Button} rightIcon={<BsChevronDown />}>
+              <MenuButton h="48px" px={[1, 2, 4]} py={2} as={Button} rightIcon={<BsChevronDown />}>
                 {year}
               </MenuButton>
               <MenuList>
@@ -91,16 +104,23 @@ export const Calendar = React.memo(() => {
               </MenuList>
             </Menu>
           </HStack>
-          <VStack w="full" minH={`${height / 2}px`} border="2px" borderRadius="5px" justify="center" bg="brand.beige">
-            <Text color="#BBBBBB" fontSize="2xl" fontWeight="bold">
+          <VStack
+            w={['80%', '100%']}
+            minH={`${height / 2}px`}
+            border="2px"
+            borderRadius="5px"
+            justify="center"
+            bg="brand.beige"
+          >
+            <Text color="#BBBBBB" fontSize={['xs', 'lg', '2xl']} fontWeight="bold">
               На данный момент нет запланированных мероприятий
             </Text>
           </VStack>
           <HStack w="full" justify="center">
             <Button
               variant="brand-calendar"
-              w="full"
-              h="100px"
+              w="100%"
+              h={['40px', '80px', '100px']}
               onClick={() => changeMounth('january')}
               _active={{
                 color: 'white',
@@ -110,16 +130,24 @@ export const Calendar = React.memo(() => {
               }}
               isActive={january}
             >
-              <VStack align="center">
-                <p style={{ fontSize: '12px' }}>Январь</p>
-                <p style={{ fontSize: '25px' }}>1</p>
-                <p style={{ fontSize: '12px' }}>{year}</p>
-              </VStack>
+              {isLargerThan950 ? (
+                <VStack align="center">
+                  <p style={{ fontSize: '12px' }}>Январь</p>
+                  <p style={{ fontSize: '25px' }}>1</p>
+                  <p style={{ fontSize: '12px' }}>{year}</p>
+                </VStack>
+              ) : (
+                <VStack align="center">
+                  <p style={{ fontSize: '10px' }}>Январь</p>
+                  <p style={{ fontSize: '20px' }}>1</p>
+                  <p style={{ fontSize: '10px' }}>{year}</p>
+                </VStack>
+              )}
             </Button>
             <Button
               variant="brand-calendar"
-              w="full"
-              h="100px"
+              w="100%"
+              h={['40px', '80px', '100px']}
               onClick={() => changeMounth('february')}
               _active={{
                 color: 'white',
@@ -129,16 +157,24 @@ export const Calendar = React.memo(() => {
               }}
               isActive={february}
             >
-              <VStack align="center">
-                <p style={{ fontSize: '12px' }}>Февраль</p>
-                <p style={{ fontSize: '25px' }}>2</p>
-                <p style={{ fontSize: '12px' }}>{year}</p>
-              </VStack>
+              {isLargerThan950 ? (
+                <VStack align="center">
+                  <p style={{ fontSize: '12px' }}>Февраль</p>
+                  <p style={{ fontSize: '25px' }}>2</p>
+                  <p style={{ fontSize: '12px' }}>{year}</p>
+                </VStack>
+              ) : (
+                <VStack align="center">
+                  <p style={{ fontSize: '10px' }}>Февраль</p>
+                  <p style={{ fontSize: '20px' }}>2</p>
+                  <p style={{ fontSize: '10px' }}>{year}</p>
+                </VStack>
+              )}
             </Button>
             <Button
               variant="brand-calendar"
-              w="full"
-              h="100px"
+              w="100%"
+              h={['40px', '80px', '100px']}
               onClick={() => changeMounth('march')}
               _active={{
                 color: 'white',
@@ -148,16 +184,24 @@ export const Calendar = React.memo(() => {
               }}
               isActive={march}
             >
-              <VStack align="center">
-                <p style={{ fontSize: '12px' }}>Март</p>
-                <p style={{ fontSize: '25px' }}>3</p>
-                <p style={{ fontSize: '12px' }}>{year}</p>
-              </VStack>
+              {isLargerThan950 ? (
+                <VStack align="center">
+                  <p style={{ fontSize: '12px' }}>Март</p>
+                  <p style={{ fontSize: '25px' }}>3</p>
+                  <p style={{ fontSize: '12px' }}>{year}</p>
+                </VStack>
+              ) : (
+                <VStack align="center">
+                  <p style={{ fontSize: '10px' }}>Март</p>
+                  <p style={{ fontSize: '20px' }}>3</p>
+                  <p style={{ fontSize: '10px' }}>{year}</p>
+                </VStack>
+              )}
             </Button>
             <Button
               variant="brand-calendar"
-              w="full"
-              h="100px"
+              w="100%"
+              h={['40px', '80px', '100px']}
               onClick={() => changeMounth('april')}
               _active={{
                 color: 'white',
@@ -167,16 +211,24 @@ export const Calendar = React.memo(() => {
               }}
               isActive={april}
             >
-              <VStack align="center">
-                <p style={{ fontSize: '12px' }}>Апрель</p>
-                <p style={{ fontSize: '25px' }}>4</p>
-                <p style={{ fontSize: '12px' }}>{year}</p>
-              </VStack>
+              {isLargerThan950 ? (
+                <VStack align="center">
+                  <p style={{ fontSize: '12px' }}>Апрель</p>
+                  <p style={{ fontSize: '25px' }}>4</p>
+                  <p style={{ fontSize: '12px' }}>{year}</p>
+                </VStack>
+              ) : (
+                <VStack align="center">
+                  <p style={{ fontSize: '10px' }}>Апрель</p>
+                  <p style={{ fontSize: '20px' }}>4</p>
+                  <p style={{ fontSize: '10px' }}>{year}</p>
+                </VStack>
+              )}
             </Button>
             <Button
               variant="brand-calendar"
-              w="full"
-              h="100px"
+              w="100%"
+              h={['40px', '80px', '100px']}
               onClick={() => changeMounth('may')}
               _active={{
                 color: 'white',
@@ -186,16 +238,24 @@ export const Calendar = React.memo(() => {
               }}
               isActive={may}
             >
-              <VStack align="center">
-                <p style={{ fontSize: '12px' }}>Май</p>
-                <p style={{ fontSize: '25px' }}>5</p>
-                <p style={{ fontSize: '12px' }}>{year}</p>
-              </VStack>
+              {isLargerThan950 ? (
+                <VStack align="center">
+                  <p style={{ fontSize: '12px' }}>Май</p>
+                  <p style={{ fontSize: '25px' }}>5</p>
+                  <p style={{ fontSize: '12px' }}>{year}</p>
+                </VStack>
+              ) : (
+                <VStack align="center">
+                  <p style={{ fontSize: '10px' }}>Май</p>
+                  <p style={{ fontSize: '20px' }}>5</p>
+                  <p style={{ fontSize: '10px' }}>{year}</p>
+                </VStack>
+              )}
             </Button>
             <Button
               variant="brand-calendar"
-              w="full"
-              h="100px"
+              w="100%"
+              h={['40px', '80px', '100px']}
               onClick={() => changeMounth('june')}
               _active={{
                 color: 'white',
@@ -205,16 +265,24 @@ export const Calendar = React.memo(() => {
               }}
               isActive={june}
             >
-              <VStack align="center">
-                <p style={{ fontSize: '12px' }}>Июнь</p>
-                <p style={{ fontSize: '25px' }}>6</p>
-                <p style={{ fontSize: '12px' }}>{year}</p>
-              </VStack>
+              {isLargerThan950 ? (
+                <VStack align="center">
+                  <p style={{ fontSize: '12px' }}>Июнь</p>
+                  <p style={{ fontSize: '25px' }}>6</p>
+                  <p style={{ fontSize: '12px' }}>{year}</p>
+                </VStack>
+              ) : (
+                <VStack align="center">
+                  <p style={{ fontSize: '10px' }}>Июнь</p>
+                  <p style={{ fontSize: '20px' }}>6</p>
+                  <p style={{ fontSize: '10px' }}>{year}</p>
+                </VStack>
+              )}
             </Button>
             <Button
               variant="brand-calendar"
-              w="full"
-              h="100px"
+              w="100%"
+              h={['40px', '80px', '100px']}
               onClick={() => changeMounth('july')}
               _active={{
                 color: 'white',
@@ -224,16 +292,24 @@ export const Calendar = React.memo(() => {
               }}
               isActive={july}
             >
-              <VStack align="center">
-                <p style={{ fontSize: '12px' }}>Июль</p>
-                <p style={{ fontSize: '25px' }}>7</p>
-                <p style={{ fontSize: '12px' }}>{year}</p>
-              </VStack>
+              {isLargerThan950 ? (
+                <VStack align="center">
+                  <p style={{ fontSize: '12px' }}>Июль</p>
+                  <p style={{ fontSize: '25px' }}>7</p>
+                  <p style={{ fontSize: '12px' }}>{year}</p>
+                </VStack>
+              ) : (
+                <VStack align="center">
+                  <p style={{ fontSize: '10px' }}>Июль</p>
+                  <p style={{ fontSize: '20px' }}>7</p>
+                  <p style={{ fontSize: '10px' }}>{year}</p>
+                </VStack>
+              )}
             </Button>
             <Button
               variant="brand-calendar"
-              w="full"
-              h="100px"
+              w="100%"
+              h={['40px', '80px', '100px']}
               onClick={() => changeMounth('august')}
               _active={{
                 color: 'white',
@@ -243,16 +319,24 @@ export const Calendar = React.memo(() => {
               }}
               isActive={august}
             >
-              <VStack align="center">
-                <p style={{ fontSize: '12px' }}>Август</p>
-                <p style={{ fontSize: '25px' }}>8</p>
-                <p style={{ fontSize: '12px' }}>{year}</p>
-              </VStack>
+              {isLargerThan950 ? (
+                <VStack align="center">
+                  <p style={{ fontSize: '12px' }}>Август</p>
+                  <p style={{ fontSize: '25px' }}>8</p>
+                  <p style={{ fontSize: '12px' }}>{year}</p>
+                </VStack>
+              ) : (
+                <VStack align="center">
+                  <p style={{ fontSize: '10px' }}>Август</p>
+                  <p style={{ fontSize: '20px' }}>8</p>
+                  <p style={{ fontSize: '10px' }}>{year}</p>
+                </VStack>
+              )}
             </Button>
             <Button
               variant="brand-calendar"
-              w="full"
-              h="100px"
+              w="100%"
+              h={['40px', '80px', '100px']}
               onClick={() => changeMounth('september')}
               _active={{
                 color: 'white',
@@ -262,16 +346,24 @@ export const Calendar = React.memo(() => {
               }}
               isActive={september}
             >
-              <VStack align="center">
-                <p style={{ fontSize: '12px' }}>Сентябрь</p>
-                <p style={{ fontSize: '25px' }}>9</p>
-                <p style={{ fontSize: '12px' }}>{year}</p>
-              </VStack>
+              {isLargerThan950 ? (
+                <VStack align="center">
+                  <p style={{ fontSize: '12px' }}>Сентябрь</p>
+                  <p style={{ fontSize: '25px' }}>9</p>
+                  <p style={{ fontSize: '12px' }}>{year}</p>
+                </VStack>
+              ) : (
+                <VStack align="center">
+                  <p style={{ fontSize: '10px' }}>Сентябрь</p>
+                  <p style={{ fontSize: '20px' }}>9</p>
+                  <p style={{ fontSize: '10px' }}>{year}</p>
+                </VStack>
+              )}
             </Button>
             <Button
               variant="brand-calendar"
-              w="full"
-              h="100px"
+              w="100%"
+              h={['40px', '80px', '100px']}
               onClick={() => changeMounth('october')}
               _active={{
                 color: 'white',
@@ -281,16 +373,24 @@ export const Calendar = React.memo(() => {
               }}
               isActive={october}
             >
-              <VStack align="center">
-                <p style={{ fontSize: '12px' }}>Октябрь</p>
-                <p style={{ fontSize: '25px' }}>10</p>
-                <p style={{ fontSize: '12px' }}>{year}</p>
-              </VStack>
+              {isLargerThan950 ? (
+                <VStack align="center">
+                  <p style={{ fontSize: '12px' }}>Октябрь</p>
+                  <p style={{ fontSize: '25px' }}>10</p>
+                  <p style={{ fontSize: '12px' }}>{year}</p>
+                </VStack>
+              ) : (
+                <VStack align="center">
+                  <p style={{ fontSize: '10px' }}>Октябрь</p>
+                  <p style={{ fontSize: '20px' }}>10</p>
+                  <p style={{ fontSize: '10px' }}>{year}</p>
+                </VStack>
+              )}
             </Button>
             <Button
               variant="brand-calendar"
-              w="full"
-              h="100px"
+              w="100%"
+              h={['40px', '80px', '100px']}
               onClick={() => changeMounth('november')}
               _active={{
                 color: 'white',
@@ -300,16 +400,24 @@ export const Calendar = React.memo(() => {
               }}
               isActive={november}
             >
-              <VStack align="center">
-                <p style={{ fontSize: '12px' }}>Ноябрь</p>
-                <p style={{ fontSize: '25px' }}>11</p>
-                <p style={{ fontSize: '12px' }}>{year}</p>
-              </VStack>
+              {isLargerThan950 ? (
+                <VStack align="center">
+                  <p style={{ fontSize: '12px' }}>Ноябрь</p>
+                  <p style={{ fontSize: '25px' }}>11</p>
+                  <p style={{ fontSize: '12px' }}>{year}</p>
+                </VStack>
+              ) : (
+                <VStack align="center">
+                  <p style={{ fontSize: '10px' }}>Ноябрь</p>
+                  <p style={{ fontSize: '20px' }}>11</p>
+                  <p style={{ fontSize: '10px' }}>{year}</p>
+                </VStack>
+              )}
             </Button>
             <Button
               variant="brand-calendar"
-              w="full"
-              h="100px"
+              w="100%"
+              h={['40px', '80px', '100px']}
               onClick={() => changeMounth('december')}
               _active={{
                 color: 'white',
@@ -319,11 +427,19 @@ export const Calendar = React.memo(() => {
               }}
               isActive={december}
             >
-              <VStack align="center">
-                <p style={{ fontSize: '12px' }}>Декабрь</p>
-                <p style={{ fontSize: '25px' }}>12</p>
-                <p style={{ fontSize: '12px' }}>{year}</p>
-              </VStack>
+              {isLargerThan950 ? (
+                <VStack align="center">
+                  <p style={{ fontSize: '12px' }}>Декабрь</p>
+                  <p style={{ fontSize: '25px' }}>12</p>
+                  <p style={{ fontSize: '12px' }}>{year}</p>
+                </VStack>
+              ) : (
+                <VStack align="center">
+                  <p style={{ fontSize: '10px' }}>Декабрь</p>
+                  <p style={{ fontSize: '20px' }}>12</p>
+                  <p style={{ fontSize: '10px' }}>{year}</p>
+                </VStack>
+              )}
             </Button>
           </HStack>
         </VStack>

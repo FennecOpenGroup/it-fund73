@@ -73,11 +73,11 @@ export const NewsContent = React.memo(
           <HStack spacing={0} pr={2}>
             <BiShow color="#BBBBBB" size="22px" />
             {views_content ? (
-              <Text color="#BBBBBB" fontSize="lg" p={0} m={0}>
+              <Text color="#BBBBBB" fontSize={['md', 'lg']} p={0} m={0}>
                 {views_content}
               </Text>
             ) : (
-              <Text color="#BBBBBB" fontSize="md" p={0} m={0}>
+              <Text color="#BBBBBB" fontSize={['xs', 'md']} p={0} m={0}>
                 Нет просмотров
               </Text>
             )}

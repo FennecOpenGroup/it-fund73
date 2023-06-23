@@ -1,4 +1,4 @@
-import { HStack, Link, Spacer, Text, Image, VStack } from '@chakra-ui/react';
+import { HStack, Link, Spacer, Text, Image, VStack, Stack, useMediaQuery} from '@chakra-ui/react';
 import React from 'react';
 import LocalizedStrings from 'react-localization';
 import { useSelector } from 'react-redux';
@@ -21,10 +21,11 @@ export const Footer = React.memo(() => {
   });
 
   const lang = useSelector((state: IRootState) => state.core.lang);
+  const [isLargerThan820] = useMediaQuery('(min-width: 820px)')
 
   return (
-    <HStack px="10%" w="full" h="150px" justify="center" backgroundColor="brand.dark" py={2}>
-      <Image src={mini_logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
+    <Stack px="10%" w="full" minH="160px" justify="center" backgroundColor="brand.dark" py={2} direction={isLargerThan820 ? 'row' : 'column'}>
+      <Image src={mini_logo} alt="itfund" loading="lazy" w={['8%', '5%', '5%']}/>
       <VStack align="left" spacing={1}>
         <Text>
           Контакты:
@@ -41,7 +42,7 @@ export const Footer = React.memo(() => {
           </Link>
         </Text>
       </VStack>
-      <Spacer />
+      {isLargerThan820 && <Spacer />}
       <VStack align="left" spacing={1}>
         <VStack align="left" spacing={0}>
           <Link href="" variant="brand-Link">
@@ -56,15 +57,15 @@ export const Footer = React.memo(() => {
         <HStack>
           <Text>{texts.getString('create', lang)}</Text>
           <Link href="https://siiidr.github.io/FennecOpenGroup/" isExternal>
-            <Image src={fog_logo} alt="itfund" loading="lazy" w="25px" htmlWidth="full" htmlHeight="full" />
+            <Image src={fog_logo} alt="itfund" loading="lazy" w={['12px', '25px']} htmlWidth="full" htmlHeight="full" />
           </Link>
           <Text>{texts.getString('support', lang)}</Text>
           <Link href="https://ulgov.ru/" isExternal>
-            <Image src={ul_logo} alt="itfund" loading="lazy" w="30px" htmlWidth="full" htmlHeight="full" />
+            <Image src={ul_logo} alt="itfund" loading="lazy" w={['15px', '30px']} htmlWidth="full" htmlHeight="full" />
           </Link>
         </HStack>
         <Text>{`© 2016 - ${new Date().getFullYear()}`}</Text>
       </VStack>
-    </HStack>
+    </Stack>
   );
 });

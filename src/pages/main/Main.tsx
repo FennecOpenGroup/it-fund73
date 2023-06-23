@@ -1,4 +1,4 @@
-import { HStack, VStack, Text, Grid, GridItem } from '@chakra-ui/react';
+import { HStack, VStack, Text, Grid, GridItem, useMediaQuery } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
@@ -83,6 +83,7 @@ export const Main = React.memo(() => {
   const business = useSelector((state: IRootState) => state.core.business);
   const government = useSelector((state: IRootState) => state.core.government);
   const search = useSelector((state: IRootState) => state.core.search);
+  const [isLargerThan985] = useMediaQuery('(min-width: 985px)')
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -104,8 +105,8 @@ export const Main = React.memo(() => {
           boxShadow="5px 0px rgb(3,0,15,15%)"
         >
           <HStack w="full" align="flex-start">
-            <VStack w="full" pt={6}>
-              <Grid w="full" gap="2.5" templateRows="auto" templateColumns="repeat(2, 1fr)">
+            <VStack w="full" pt={[1, 2, 6]}>
+              <Grid w="full" gap={['1.5', '2.5']} templateRows="auto" templateColumns="repeat(2, 1fr)">
                 {Object.keys(newsData).map(index => {
                   const data = newsData[index as unknown as keyof typeof newsData];
                   const arr = [];
@@ -134,11 +135,11 @@ export const Main = React.memo(() => {
                 })}
               </Grid>
             </VStack>
-            <VStack w="full" maxW="20%" spacing={2} borderLeft="2px" minH={`${height}px`}>
-              <Text w="full" color="brand.dark" fontSize="2xl" borderBottom="2px" align="center">
+            <VStack w="full" maxW={['50%', '20%']} spacing={2} borderLeft="2px" minH={`${height}px`}>
+              <Text w="full" color="brand.dark" fontSize={['lg', 'xl', '2xl']} borderBottom="2px" align="center">
                 Новости
               </Text>
-              <Text color="#BBBBBB" fontSize="md">
+              <Text color="#BBBBBB" fontSize={['xs', 'xs','md']}>
                 Нет подходящих новостей
               </Text>
             </VStack>
