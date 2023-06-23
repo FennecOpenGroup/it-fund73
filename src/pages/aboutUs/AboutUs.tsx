@@ -26,12 +26,13 @@ import { BsFiletypeDocx, BsFillPersonFill, BsMailbox, BsTelephone } from 'react-
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
-import kuznezov from '../../assets/kuznezov.jpg';
-import Erofeev from '../../assets/Erofeev.jpg';
-import andronova from '../../assets/andronova.jpg';
+import kuznezov from '../../assets/team/kuznezov.jpg';
+import Erofeev from '../../assets/team/Erofeev.jpg';
+import andronova from '../../assets/team/andronova.jpg';
+import ulyanovsk from '../../assets/Ulyanovsk.jpg';
 
 export const AboutUs = React.memo(() => {
-  const { height } = useWindowDimensions();
+  const { height, width } = useWindowDimensions();
   const toast = useToast();
 
   const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
@@ -57,48 +58,53 @@ export const AboutUs = React.memo(() => {
       <Header />
       <VStack minH={`${height}px`} justify="start" px="10%">
         <VStack w="full" minH={`${height}px`} pb={[4, 6]} align="flex-start">
-          <VStack w="full" justify="center" spacing={5} m={0} py={10} my={2}>
+          <Image
+            src={ulyanovsk}
+            objectFit="cover"
+            top={0}
+            left={0}
+            w={width}
+            h={`${height / 1.35}px`}
+            filter="brightness(35%)"
+            zIndex={-2}
+            position="absolute"
+          />
+          <VStack w="full" h={`${height / 2}px`} justify="center" spacing={5} py={10} mt={2}>
             <HStack>
-              <Text
-                color="brand.blue"
-                fontWeight="800"
-                align="center"
-                fontSize={['lg', 'xl', '2xl', '4xl']}
-                textTransform="uppercase"
-              >
+              <Text fontWeight="800" align="center" fontSize={['lg', 'xl', '2xl', '4xl']} textTransform="uppercase">
                 Фонд развития информациионных технологий Ульяновской области
               </Text>
             </HStack>
             <HStack w="full" align="center" justify="center">
-              <Button variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refTeam)}>
+              <Button color="white" variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refTeam)}>
                 Команда
               </Button>
-              <Button variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refDocs)}>
+              <Button color="white" variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refDocs)}>
                 Документы
               </Button>
-              <Button variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refRecs)}>
+              <Button color="white" variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refRecs)}>
                 Реквизиты
               </Button>
-              <Button variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refContacts)}>
+              <Button color="white" variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refContacts)}>
                 Контакты
               </Button>
             </HStack>
             <VStack align="center" justify="center">
-              <Text color="brand.dark" fontSize="lg" align="center">
+              <Text fontSize="lg" align="center">
                 Фонд развития информационный технологий в Ульяновской области является оператором государственный
                 поддержки IT-проектов и компаний в регионе с 2016 года.
               </Text>
             </VStack>
             <VStack align="center" justify="center">
-              <Text color="brand.dark" fontWeight="bold" fontSize="lg" align="center">
+              <Text fontSize="lg" align="center">
                 Миссия Фонда – всемерно стимулировать развитие ИТ-экосистемы Ульяновской области, обеспечивать системную
                 поддержку образовательных и профориентационных проектов в сфере информационных технологий и создавать
                 условия для устойчивого роста IT-отрасли региона.
               </Text>
             </VStack>
           </VStack>
-          <VStack w="full" align="start" spacing={0} mx="20%">
-            <VStack w="full" align="center" bgGradient="linear(to-t, blue.100 5%, transparent 95%)" pb={5}>
+          <VStack w="full" align="start" spacing={0} mx="20%" pt={10}>
+            <VStack w="full" align="center" bgGradient="linear(to-t, #e3f2fb 5%, transparent 95%)" pb={5}>
               <Text color="brand.dark" fontWeight="800" fontSize="3xl">
                 НАШИ ЦЕЛИ
               </Text>
@@ -156,7 +162,7 @@ export const AboutUs = React.memo(() => {
                 </Text>
               </VStack>
             </VStack>
-            <VStack w="full" align="center" bgGradient="linear(to-b, blue.100 2%, transparent 95%)">
+            <VStack w="full" align="center" bgGradient="linear(to-b, #e3f2fb 2%, transparent 95%)">
               <Text color="brand.dark" fontWeight="800" fontSize="3xl">
                 ЦИФРЫ И ФАКТЫ
               </Text>

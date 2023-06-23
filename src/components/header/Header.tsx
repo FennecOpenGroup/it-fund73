@@ -27,7 +27,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import LocalizedStrings from 'react-localization';
 
 import logo from '../../assets/logo.svg';
-import erofeev from '../../assets/erofeev_png.png';
+import erofeev from '../../assets/team/erofeev_png.png';
 import {
   ROUTE_ABOUTUS,
   ROUTE_CALENDAR,
