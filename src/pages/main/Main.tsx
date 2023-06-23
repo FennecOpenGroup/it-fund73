@@ -1,4 +1,4 @@
-import { HStack, VStack, Text, Grid, GridItem, useMediaQuery } from '@chakra-ui/react';
+import { HStack, VStack, Text, Grid, GridItem } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
@@ -83,7 +83,6 @@ export const Main = React.memo(() => {
   const business = useSelector((state: IRootState) => state.core.business);
   const government = useSelector((state: IRootState) => state.core.government);
   const search = useSelector((state: IRootState) => state.core.search);
-  const [isLargerThan985] = useMediaQuery('(min-width: 985px)')
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -139,7 +138,7 @@ export const Main = React.memo(() => {
               <Text w="full" color="brand.dark" fontSize={['lg', 'xl', '2xl']} borderBottom="2px" align="center">
                 Новости
               </Text>
-              <Text color="#BBBBBB" fontSize={['xs', 'xs','md']}>
+              <Text color="#BBBBBB" fontSize={['xs', 'xs', 'md']}>
                 Нет подходящих новостей
               </Text>
             </VStack>

@@ -76,16 +76,21 @@ export const AboutUs = React.memo(() => {
               </Text>
             </HStack>
             <HStack w="full" align="center" justify="center">
-              <Button color="white" variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refTeam)}>
+              <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refTeam)}>
                 Команда
               </Button>
-              <Button color="white" variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refDocs)}>
+              <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refDocs)}>
                 Документы
               </Button>
-              <Button color="white" variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refRecs)}>
+              <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refRecs)}>
                 Реквизиты
               </Button>
-              <Button color="white" variant="brand-link" fontSize="lg" onClick={() => scrollToRef(refContacts)}>
+              <Button
+                color="white"
+                variant="brand-link"
+                fontSize={['lg', 'xl']}
+                onClick={() => scrollToRef(refContacts)}
+              >
                 Контакты
               </Button>
             </HStack>

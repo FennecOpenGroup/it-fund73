@@ -1,4 +1,4 @@
-import { HStack, Link, Spacer, Text, Image, VStack, Stack, useMediaQuery} from '@chakra-ui/react';
+import { HStack, Link, Spacer, Text, Image, VStack, Stack, useMediaQuery } from '@chakra-ui/react';
 import React from 'react';
 import LocalizedStrings from 'react-localization';
 import { useSelector } from 'react-redux';
@@ -21,11 +21,19 @@ export const Footer = React.memo(() => {
   });
 
   const lang = useSelector((state: IRootState) => state.core.lang);
-  const [isLargerThan820] = useMediaQuery('(min-width: 820px)')
+  const [isLargerThan820] = useMediaQuery('(min-width: 820px)');
 
   return (
-    <Stack px="10%" w="full" minH="160px" justify="center" backgroundColor="brand.dark" py={2} direction={isLargerThan820 ? 'row' : 'column'}>
-      <Image src={mini_logo} alt="itfund" loading="lazy" w={['8%', '5%', '5%']}/>
+    <Stack
+      px="10%"
+      w="full"
+      minH="160px"
+      justify="center"
+      backgroundColor="brand.dark"
+      py={2}
+      direction={isLargerThan820 ? 'row' : 'column'}
+    >
+      <Image src={mini_logo} alt="itfund" loading="lazy" w={['8%', '5%', '5%']} />
       <VStack align="left" spacing={1}>
         <Text>
           Контакты:

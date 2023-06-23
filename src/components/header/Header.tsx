@@ -163,7 +163,7 @@ export const Header = React.memo(() => {
         borderTopStartRadius="5px"
         borderTopEndRadius="5px"
       >
-        <HStack w="full" minW="30%" maxW="40%" spacing={1}>
+        <HStack w="full" minW="30%" maxW="35%" spacing={1}>
           <ButtonGroup w="full" p={0} spacing={0}>
             <Input
               variant="brand-search"
