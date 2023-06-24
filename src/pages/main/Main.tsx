@@ -1,4 +1,4 @@
-import { HStack, VStack, Text, Grid, GridItem } from '@chakra-ui/react';
+import { HStack, VStack, Text, Grid, GridItem, useMediaQuery } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
@@ -84,6 +84,10 @@ export const Main = React.memo(() => {
   const government = useSelector((state: IRootState) => state.core.government);
   const search = useSelector((state: IRootState) => state.core.search);
 
+  const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
+  const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
+  const [isLargerThan420] = useMediaQuery('(min-width: 420px)');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -94,7 +98,7 @@ export const Main = React.memo(() => {
         <title>it-fund | Главная</title>
       </Helmet>
       <Header />
-      <VStack minH={`${height}px`} align="start" justify="start" px="10%">
+      <VStack minH={`${height}px`} align="start" justify="start" px={isLargerThan770 ? '10%' : '5%'}>
         <VStack
           w="full"
           minH={`${height}px`}
@@ -105,7 +109,12 @@ export const Main = React.memo(() => {
         >
           <HStack w="full" align="flex-start">
             <VStack w="full" pt={[1, 2, 6]}>
-              <Grid w="full" gap={['1.5', '2.5']} templateRows="auto" templateColumns="repeat(2, 1fr)">
+              <Grid
+                w="full"
+                gap={['1.5', '2.5']}
+                templateRows="auto"
+                templateColumns={isLargerThan1025 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)'}
+              >
                 {Object.keys(newsData).map(index => {
                   const data = newsData[index as unknown as keyof typeof newsData];
                   const arr = [];
@@ -134,14 +143,22 @@ export const Main = React.memo(() => {
                 })}
               </Grid>
             </VStack>
-            <VStack w="full" maxW={['50%', '20%']} spacing={2} borderLeft="2px" minH={`${height}px`}>
-              <Text w="full" color="brand.dark" fontSize={['lg', 'xl', '2xl']} borderBottom="2px" align="center">
-                Новости
-              </Text>
-              <Text color="#BBBBBB" fontSize={['xs', 'xs', 'md']}>
-                Нет подходящих новостей
-              </Text>
-            </VStack>
+            {isLargerThan420 && (
+              <VStack
+                w="full"
+                maxW={isLargerThan1025 ? '20%' : '35%'}
+                spacing={2}
+                borderLeft="2px"
+                minH={`${height}px`}
+              >
+                <Text w="full" color="brand.dark" fontSize={['lg', 'xl', '2xl']} borderBottom="2px" align="center">
+                  Новости
+                </Text>
+                <Text color="#BBBBBB" fontSize={['xs', 'sm', 'md']} align="center">
+                  Нет подходящих новостей
+                </Text>
+              </VStack>
+            )}
           </HStack>
         </VStack>
       </VStack>

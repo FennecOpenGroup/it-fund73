@@ -33,7 +33,7 @@ export const Footer = React.memo(() => {
       py={2}
       direction={isLargerThan820 ? 'row' : 'column'}
     >
-      <Image src={mini_logo} alt="itfund" loading="lazy" w={['8%', '5%', '5%']} />
+      <Image src={mini_logo} alt="itfund" loading="lazy" maxW={['50px', '60px', '120px']} />
       <VStack align="left" spacing={1}>
         <Text>
           Контакты:

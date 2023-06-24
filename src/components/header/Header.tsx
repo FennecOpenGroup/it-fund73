@@ -59,6 +59,7 @@ export const Header = React.memo(() => {
   const search = useSelector((state: IRootState) => state.core.search);
   const [isLargerThan1090] = useMediaQuery('(min-width: 1090px)');
   const [isLargerThan905] = useMediaQuery('(min-width: 905px)');
+  const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan425] = useMediaQuery('(min-width: 425px)');
 
   return (
@@ -66,7 +67,7 @@ export const Header = React.memo(() => {
       position="sticky"
       top="0px"
       pt={[1, 2, 4, 6]}
-      px={['4%', '8%', '10%']}
+      px={isLargerThan770 ? '10%' : '5%'}
       zIndex="20"
       w="full"
       justify="start"
@@ -75,7 +76,7 @@ export const Header = React.memo(() => {
     >
       <HStack w="full">
         <VStack align="start">
-          <HStack>
+          <HStack w="full">
             <Tooltip label="Сменить тему">
               <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="15px" />} iconSpacing={0} size="xs" p={0} />
             </Tooltip>
@@ -124,7 +125,7 @@ export const Header = React.memo(() => {
           </HStack>
           <Spacer />
           <HStack cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE}>
-            <Image src={logo} minW={['80px', '120px', '260px']} />
+            <Image src={logo} minW={['80px', '120px', '260px']} loading="lazy" py={2} />
           </HStack>
         </VStack>
         {isLargerThan425 && (
@@ -152,7 +153,7 @@ export const Header = React.memo(() => {
                 </Text>
               </VStack>
             </Stack>
-            {isLargerThan1090 && <Image src={erofeev} maxH="150px" />}
+            {isLargerThan1090 && <Image src={erofeev} maxH="150px" loading="lazy" />}
           </HStack>
         )}
       </HStack>
@@ -166,7 +167,7 @@ export const Header = React.memo(() => {
         borderTopStartRadius="5px"
         borderTopEndRadius="5px"
       >
-        <HStack w="full" minW={!isLargerThan1090 ? '50%' : '30%'} maxW={!isLargerThan1090 ? '60%' : '35%'} spacing={1}>
+        <HStack w="full" minW={!isLargerThan1090 ? '50%' : '30%'} maxW={!isLargerThan1090 ? 'full' : '30%'} spacing={1}>
           <ButtonGroup w="full" p={0} spacing={0}>
             <Input
               variant="brand-search"
@@ -236,7 +237,7 @@ export const Header = React.memo(() => {
             />
           </Tooltip>
         </HStack>
-        <Spacer />
+        {isLargerThan425 && <Spacer />}
         {isLargerThan1090 && (
           <HStack spacing={0}>
             <>
@@ -252,10 +253,17 @@ export const Header = React.memo(() => {
             </>
           </HStack>
         )}
-        <Spacer />
+        {isLargerThan425 && <Spacer />}
         {!isLargerThan1090 && (
           <Menu>
-            <MenuButton as={Button} variant="brand-icon" color="white" rightIcon={<GiHamburgerMenu size="20px" />} />
+            <MenuButton
+              as={Button}
+              m={1}
+              p={1}
+              variant="brand-icon"
+              color="white"
+              rightIcon={<GiHamburgerMenu size="20px" />}
+            />
             <MenuList>
               <MenuItem as={RouterLink} to={ROUTE_COMPANIES}>
                 Что происходит в отрасли?

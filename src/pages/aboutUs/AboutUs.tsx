@@ -68,6 +68,7 @@ export const AboutUs = React.memo(() => {
             filter="brightness(35%)"
             zIndex={-2}
             position="absolute"
+            loading='lazy'
           />
           <VStack w="full" h={`${height / 2}px`} justify="center" spacing={5} py={10} mt={2}>
             <HStack>

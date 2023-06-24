@@ -1,4 +1,4 @@
-import { Stack, VStack, Image, Text, HStack, Spacer, Skeleton } from '@chakra-ui/react';
+import { Stack, VStack, Image, Text, HStack, Spacer, Skeleton, useMediaQuery } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { BiShow } from 'react-icons/bi';
 import { Link as RouterLink } from 'react-router-dom';
@@ -17,9 +17,13 @@ export const NewsContent = React.memo(
 
     const search = useSelector((state: IRootState) => state.core.search);
 
+    const [isLargerThan590] = useMediaQuery('(min-width: 590px)');
+
+    const highlightFontSize = isLargerThan590 ? '18px' : '14px';
+
     const Highlight = ({ text = '', highlight = '' }) => {
       if (!highlight.trim()) {
-        return <span style={{ color: '#1a1a1a', fontWeight: '700', fontSize: '18px' }}>{text}</span>;
+        return <span style={{ color: '#1a1a1a', fontWeight: '700', fontSize: highlightFontSize }}>{text}</span>;
       }
       const regex = new RegExp(`(${highlight})`, 'gi');
       const parts = text.split(regex);
@@ -28,11 +32,11 @@ export const NewsContent = React.memo(
         <span>
           {parts.filter(String).map((part, i) => {
             return regex.test(part) ? (
-              <mark key={i} style={{ color: '#1a1a1a', fontWeight: '700', fontSize: '18px' }}>
+              <mark key={i} style={{ color: '#1a1a1a', fontWeight: '700', fontSize: highlightFontSize }}>
                 {part}
               </mark>
             ) : (
-              <span key={i} style={{ color: '#1a1a1a', fontWeight: '700', fontSize: '18px' }}>
+              <span key={i} style={{ color: '#1a1a1a', fontWeight: '700', fontSize: highlightFontSize }}>
                 {part}
               </span>
             );
@@ -68,25 +72,35 @@ export const NewsContent = React.memo(
           <Stack border="1px" w="full" m={0} p={0} />
         </VStack>
         <HStack align="center" justify="center" w="full">
-          <Emotions />
+          {isLargerThan590 ? (
+            <Emotions />
+          ) : (
+            <VStack m={0} px={2} spacing={2} justify="start" align="start">
+              <Text color="#BBBBBB" fontSize={['xs', 'sm']}>
+                {date_content?.toDateString()}
+              </Text>
+            </VStack>
+          )}
           <Spacer />
           <HStack spacing={0} pr={2}>
             <BiShow color="#BBBBBB" size="22px" />
             {views_content ? (
-              <Text color="#BBBBBB" fontSize={['md', 'lg']} p={0} m={0}>
+              <Text color="#BBBBBB" fontSize={['sm', 'md', 'lg']} p={0} m={0}>
                 {views_content}
               </Text>
             ) : (
-              <Text color="#BBBBBB" fontSize={['xs', 'md']} p={0} m={0}>
+              <Text color="#BBBBBB" fontSize={['xs', 'sm', 'md']} p={0} m={0} align="center">
                 Нет просмотров
               </Text>
             )}
           </HStack>
         </HStack>
-        <HStack w="full" m={0} px={2} spacing={2} justify="start">
-          <Text color="#BBBBBB">{date_content?.toDateString()}</Text>
-          <Text color="#BBBBBB">{tag_content}</Text>
-        </HStack>
+        {isLargerThan590 && (
+          <HStack w="full" m={0} px={2} spacing={2} justify="start">
+            <Text color="#BBBBBB">{date_content?.toDateString()}</Text>
+            <Text color="#BBBBBB">{tag_content}</Text>
+          </HStack>
+        )}
       </VStack>
     );
   },

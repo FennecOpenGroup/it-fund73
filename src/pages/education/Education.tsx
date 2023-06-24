@@ -36,7 +36,7 @@ export const Education = React.memo(() => {
           <HStack w="full" p={[2, 3, 4]} ml={6} align="start" justify="start" spacing={4}>
             <YMaps>
               <Map width="90%" height={`${height / 3}px`} defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}>
-                <Placemark defaultGeometry={[54.352498, 48.387667]} />
+                <Placemark defaultGeometry={[54.352498, 48.387667]} options={{}} />
                 <Placemark defaultGeometry={[54.30348, 48.367426]} />
               </Map>
             </YMaps>
