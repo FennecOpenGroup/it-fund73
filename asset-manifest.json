@@ -1,7 +1,8 @@
 {
   "files": {
     "main.css": "/it-fund73/static/css/main.f95cd0e5.css",
-    "main.js": "/it-fund73/static/js/main.3d27cded.js",
+    "main.js": "/it-fund73/static/js/main.23ecf960.js",
+    "static/media/Ulyanovsk.jpg": "/it-fund73/static/media/Ulyanovsk.de91603c3e10fbaee854.jpg",
     "static/media/it.jpg": "/it-fund73/static/media/it.1e9754b71d345349de59.jpg",
     "static/media/government.jpg": "/it-fund73/static/media/government.bf44ab96ae00a051a939.jpg",
     "static/media/education.jpg": "/it-fund73/static/media/education.78bc8cff465b858390cf.jpg",
@@ -13,7 +14,6 @@
     "static/media/andronova.jpg": "/it-fund73/static/media/andronova.258d2078d435aba45114.jpg",
     "static/media/government2.jpg": "/it-fund73/static/media/government2.a3a133845136aea333b0.jpg",
     "static/media/kuznezov.jpg": "/it-fund73/static/media/kuznezov.7e470b05162fee1d5917.jpg",
-    "static/media/mediasoft_logo.svg": "/it-fund73/static/media/mediasoft_logo.fb883046eaeaabdcc12a543f198adc67.svg",
     "static/media/Erofeev.jpg": "/it-fund73/static/media/Erofeev.c7afca19f25291470f5e.jpg",
     "static/media/logo.svg": "/it-fund73/static/media/logo.f051b63dcae3fdfcbfd4e4bbd504b2e5.svg",
     "static/media/simbirsoft.svg": "/it-fund73/static/media/simbirsoft.e3c0a78ceff45cac74be1c792fd74673.svg",
@@ -28,10 +28,10 @@
     "static/media/logo-fog.svg": "/it-fund73/static/media/logo-fog.17a6a3d610b0c68941cf611c82ced211.svg",
     "static/media/nord.svg": "/it-fund73/static/media/nord.990a7326bdd3c7f0b70de24a554272d8.svg",
     "main.f95cd0e5.css.map": "/it-fund73/static/css/main.f95cd0e5.css.map",
-    "main.3d27cded.js.map": "/it-fund73/static/js/main.3d27cded.js.map"
+    "main.23ecf960.js.map": "/it-fund73/static/js/main.23ecf960.js.map"
   },
   "entrypoints": [
     "static/css/main.f95cd0e5.css",
-    "static/js/main.3d27cded.js"
+    "static/js/main.23ecf960.js"
   ]
 }
