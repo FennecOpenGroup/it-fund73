@@ -59,6 +59,7 @@ export const Header = React.memo(() => {
   const search = useSelector((state: IRootState) => state.core.search);
   const [isLargerThan1090] = useMediaQuery('(min-width: 1090px)');
   const [isLargerThan905] = useMediaQuery('(min-width: 905px)');
+  const [isLargerThan425] = useMediaQuery('(min-width: 425px)');
 
   return (
     <VStack
@@ -123,35 +124,37 @@ export const Header = React.memo(() => {
           </HStack>
           <Spacer />
           <HStack cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE}>
-            <Image src={logo} minW={['100px', '180px', '260px']} />
+            <Image src={logo} minW={['80px', '120px', '260px']} />
           </HStack>
         </VStack>
-        <HStack w="full" align="end">
-          {isLargerThan905 && <Spacer />}
-          <Stack align="start" spacing={[1, 2]} direction={isLargerThan905 ? 'row' : 'column'}>
-            <VStack spacing={0} align={isLargerThan905 ? 'center' : 'start'}>
-              <Text fontSize={['md', 'lg', '2xl']}>239</Text>
-              <Text fontSize={['xs', 'xs', 'md']} color="#BBBBBB">
-                реализованных проектов
-              </Text>
-            </VStack>
-            <VStack spacing={0} align={isLargerThan905 ? 'center' : 'start'}>
-              <Text fontSize={['md', 'lg', '2xl']} p={0} m={0}>
-                83337
-              </Text>
-              <Text fontSize={['xs', 'xs', 'md']} color="#BBBBBB">
-                участников
-              </Text>
-            </VStack>
-            <VStack spacing={0} align={isLargerThan905 ? 'center' : 'start'}>
-              <Text fontSize={['md', 'lg', '2xl']}>94,2 млн руб.</Text>
-              <Text fontSize={['xs', 'xs', 'md']} color="#BBBBBB">
-                общая сумма поддержки
-              </Text>
-            </VStack>
-          </Stack>
-          {isLargerThan1090 && <Image src={erofeev} maxH="150px" />}
-        </HStack>
+        {isLargerThan425 && (
+          <HStack w="full" align="end" justifyContent={!isLargerThan905 ? 'flex-end' : 'start'}>
+            {isLargerThan905 && <Spacer />}
+            <Stack align="center" spacing={[1, 2]} direction={isLargerThan905 ? 'row' : 'column'}>
+              <VStack spacing={0} justify="start">
+                <Text fontSize={['md', 'lg', '2xl']}>239</Text>
+                <Text fontSize={['xs', 'xs', 'md']} color="#BBBBBB">
+                  реализованных проектов
+                </Text>
+              </VStack>
+              <VStack spacing={0} justify="start">
+                <Text fontSize={['md', 'lg', '2xl']} p={0} m={0}>
+                  83337
+                </Text>
+                <Text fontSize={['xs', 'xs', 'md']} color="#BBBBBB">
+                  участников
+                </Text>
+              </VStack>
+              <VStack spacing={0} justify="start">
+                <Text fontSize={['md', 'lg', '2xl']}>94,2 млн руб.</Text>
+                <Text fontSize={['xs', 'xs', 'md']} color="#BBBBBB">
+                  общая сумма поддержки
+                </Text>
+              </VStack>
+            </Stack>
+            {isLargerThan1090 && <Image src={erofeev} maxH="150px" />}
+          </HStack>
+        )}
       </HStack>
       <HStack
         w="full"
@@ -163,7 +166,7 @@ export const Header = React.memo(() => {
         borderTopStartRadius="5px"
         borderTopEndRadius="5px"
       >
-        <HStack w="full" minW="30%" maxW="35%" spacing={1}>
+        <HStack w="full" minW={!isLargerThan1090 ? '50%' : '30%'} maxW={!isLargerThan1090 ? '60%' : '35%'} spacing={1}>
           <ButtonGroup w="full" p={0} spacing={0}>
             <Input
               variant="brand-search"
