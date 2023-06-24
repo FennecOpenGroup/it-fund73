@@ -418,7 +418,7 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <BsFillPersonFill size="200px" />
+                        <BsFillPersonFill size="200px" color="white" />
                         <VStack align="start" px="20px">
                           <Text color="brand.dark" fontSize="2xl">
                             <b>Ягфаров Олег Модорисович</b>
@@ -439,7 +439,7 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <BsFillPersonFill size="200px" color="#1a1a1a" />
+                        <BsFillPersonFill size="200px" color="white" />
                         <VStack align="start" px="20px">
                           <Text color="brand.dark" fontSize="2xl">
                             <b>Механюк Александр Владимирович</b>
@@ -508,7 +508,7 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <BsFillPersonFill size="200px" color="#1a1a1a" />
+                        <BsFillPersonFill size="200px" color="white" />
                         <VStack align="start" px="20px">
                           <Text color="brand.dark" fontSize="2xl">
                             <b>Горлов Сергей Петрович </b>
@@ -529,7 +529,7 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <BsFillPersonFill size="200px" color="#1a1a1a" />
+                        <BsFillPersonFill size="200px" color="white" />
                         <VStack align="start" px="20px">
                           <Text color="brand.dark" fontSize="2xl">
                             <b>Филиппова Ольга Вячеславовна</b>
@@ -550,7 +550,7 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <BsFillPersonFill size="200px" color="#1a1a1a" />
+                        <BsFillPersonFill size="200px" color="white" />
                         <VStack align="start" px="20px">
                           <Text color="brand.dark" fontSize="2xl">
                             <b>Халимова Руфина Расиховна</b>

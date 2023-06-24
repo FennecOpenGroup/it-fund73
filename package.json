@@ -44,6 +44,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@fontsource/jost": "^4.5.13",
+    "@pbe/react-yandex-maps": "^1.2.4",
     "@sentry/react": "^6.17.7",
     "@sentry/tracing": "^6.17.7",
     "@testing-library/dom": "^8.11.3",

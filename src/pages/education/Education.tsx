@@ -1,14 +1,19 @@
-import { VStack, Text, HStack, Image, Grid } from '@chakra-ui/react';
-import React from 'react';
+import { InfoIcon } from '@chakra-ui/icons';
+import { VStack, Text, Button, HStack, Stack, Spacer, Checkbox } from '@chakra-ui/react';
+import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
-import logo from '../../assets/mini-logo.svg';
 
 export const Education = React.memo(() => {
   const { height } = useWindowDimensions();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -16,8 +21,8 @@ export const Education = React.memo(() => {
         <title>it-fund | Где получить образование?</title>
       </Helmet>
       <Header />
-      <VStack minH={`${height}px`} justify="center" px="10%">
-        <VStack w="full" minH={`${height}px`} pl={[2, 3, 4]} pb={[4, 5, 6]}>
+      <VStack justify="start" px="10%">
+        <VStack w="full" pl={[2, 3, 4]} pb={[4, 5, 6]}>
           <Text
             color="brand.blue"
             fontSize={['lg', 'xl', '2xl', '4xl']}
@@ -28,28 +33,61 @@ export const Education = React.memo(() => {
           >
             Где получить образование?
           </Text>
-          <VStack w="full" p={[2, 3, 4]} justify="start" align="center">
-            <Grid w="full" gap={3} templateRows="auto" templateColumns="repeat(2, 1fr)" mb={4}>
-              <HStack p={2} borderRadius="5px" backgroundColor="brand.dark" w="full">
-                <Image src={logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
-                <Text fontSize="xl">
-                  Навигатор: профориентация по конкретным специальностям, курсы, информация о ВУЗах, ССУЗах
-                </Text>
-              </HStack>
-              <HStack p={2} borderRadius="5px" backgroundColor="brand.dark" w="full">
-                <Image src={logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
-                <Text fontSize="xl">Цифровые навыки: обучение работы с гаджетами и т.д.</Text>
-              </HStack>
-            </Grid>
-            <VStack w="full" align="center" justify="center">
-              <HStack p={2} borderRadius="5px" backgroundColor="brand.dark" w="full" maxW="30%">
-                <Image src={logo} alt="itfund" loading="lazy" htmlWidth="full" htmlHeight="full" />
-                <Text fontSize="xl">Образовательный туризм</Text>
-              </HStack>
+          <HStack w="full" p={[2, 3, 4]} ml={6} align="start" justify="start" spacing={4}>
+            <YMaps>
+              <Map width="90%" height={`${height / 3}px`} defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}>
+                <Placemark defaultGeometry={[54.352498, 48.387667]} />
+                <Placemark defaultGeometry={[54.30348, 48.367426]} />
+              </Map>
+            </YMaps>
+            <VStack align="start">
+              <Button variant="brand-high-white" fontSize="xl" w="full" p={8}>
+                Школьник
+              </Button>
+              <Button variant="brand-high-white" fontSize="xl" w="full" p={8}>
+                Студент
+              </Button>
+              <Button variant="brand-high-white" fontSize="xl" w="full" p={8}>
+                Начинающий специалист
+              </Button>
+              <Stack border="1px" w="full" p={0} my={2} />
+              <Checkbox fontSize="xl" size="lg" defaultChecked>
+                Платное
+              </Checkbox>
+              <Checkbox fontSize="xl" size="lg" defaultChecked>
+                Бесплатное
+              </Checkbox>
             </VStack>
-          </VStack>
+          </HStack>
+          <HStack w="full" spacing={6}>
+            <HStack spacing={2}>
+              <InfoIcon color="yellow.500" />
+              <Text color="brand.dark" fontSize="lg">
+                Дополнительное образование
+              </Text>
+            </HStack>
+            <HStack spacing={2}>
+              <InfoIcon color="blue.500" />
+              <Text color="brand.dark" fontSize="lg">
+                Высшее образование
+              </Text>
+            </HStack>
+            <HStack spacing={2}>
+              <InfoIcon color="green.500" />
+              <Text color="brand.dark" fontSize="lg">
+                Среднее образование
+              </Text>
+            </HStack>
+            <HStack spacing={2}>
+              <InfoIcon color="red.500" />
+              <Text color="brand.dark" fontSize="lg">
+                Подготовка к гос. экзаменам
+              </Text>
+            </HStack>
+          </HStack>
         </VStack>
       </VStack>
+      <Spacer minH={`${height / 11.65}px`} />
       <Footer />
     </>
   );

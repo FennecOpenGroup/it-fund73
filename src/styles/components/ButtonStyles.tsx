@@ -93,6 +93,20 @@ export const ButtonStyles = {
         borderRadius: '5px',
       },
     },
+    'brand-high-white': {
+      color: 'brand.dark',
+      bg: 'white',
+      boxShadow: '0px 5px 10px 0px rgba(0, 0, 0, 0.5); ',
+      borderRadius: '10px',
+      fontWeight: 'normal',
+      transitionDuration: '0.3s',
+      _hover: {
+        color: 'white',
+        bg: 'brand.dark',
+        borderRadius: '5px',
+        boxShadow: 'none',
+      },
+    },
     'brand-footer': {
       color: 'white',
       padding: '0px',

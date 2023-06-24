@@ -55,11 +55,31 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
               </Text>
               <Input h="40px" color="brand.dark" />
             </VStack>
-             <label htmlFor="file" style={{color: 'black', cursor: 'pointer', display: 'flex', alignContent: 'center', alignItems: 'center', fontWeight: 'bold'}}>
-              <Input name="" variant='brand-file' id="file" h="40px" border="0px" color="brand.dark" type="file" multiple hidden/>
+            <label
+              htmlFor="file"
+              style={{
+                color: 'black',
+                cursor: 'pointer',
+                display: 'flex',
+                alignContent: 'center',
+                alignItems: 'center',
+                fontWeight: 'bold',
+              }}
+            >
+              <Input
+                name=""
+                variant="brand-file"
+                id="file"
+                h="40px"
+                border="0px"
+                color="brand.dark"
+                type="file"
+                multiple
+                hidden
+              />
               Приложите файл
-              <AddIcon w='30px' />
-             </label>
+              <AddIcon w="30px" />
+            </label>
             <Button variant="brand-high" w="full">
               Отправить
             </Button>
