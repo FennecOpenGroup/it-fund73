@@ -106,6 +106,12 @@ export const ButtonStyles = {
         borderRadius: '5px',
         boxShadow: 'none',
       },
+      _active: {
+        color: 'white',
+        bg: 'brand.dark',
+        borderRadius: '5px',
+        boxShadow: 'none',
+      },
     },
     'brand-footer': {
       color: 'white',

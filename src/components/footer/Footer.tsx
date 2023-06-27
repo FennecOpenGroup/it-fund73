@@ -1,26 +1,11 @@
 import { HStack, Link, Spacer, Text, Image, VStack, Stack, useMediaQuery } from '@chakra-ui/react';
 import React from 'react';
-import LocalizedStrings from 'react-localization';
-import { useSelector } from 'react-redux';
 
 import fog_logo from '../../assets/logo-fog.svg';
 import mini_logo from '../../assets/mini-logo.svg';
 import ul_logo from '../../assets/ul-logo.svg';
-import { IRootState } from '../../interfaces/IRootState';
 
 export const Footer = React.memo(() => {
-  const texts = new LocalizedStrings({
-    EN: {
-      create: 'Created with the support of',
-      support: 'with the support of',
-    },
-    RU: {
-      create: 'Создали ',
-      support: 'при поддержке',
-    },
-  });
-
-  const lang = useSelector((state: IRootState) => state.core.lang);
   const [isLargerThan820] = useMediaQuery('(min-width: 820px)');
 
   return (
@@ -61,18 +46,18 @@ export const Footer = React.memo(() => {
           </Link>
         </VStack>
         <HStack borderBottom="1px solid white" w="full" m={0} p={0} />
-        <Text>Все права защищены и охраняются законом</Text>
+        <Text>© Все права защищены и охраняются законом</Text>
         <HStack>
-          <Text>{texts.getString('create', lang)}</Text>
+          <Text>Создан</Text>
           <Link href="https://siiidr.github.io/FennecOpenGroup/" isExternal>
             <Image src={fog_logo} alt="itfund" loading="lazy" w={['12px', '25px']} htmlWidth="full" htmlHeight="full" />
           </Link>
-          <Text>{texts.getString('support', lang)}</Text>
+          <Text>при поддержке</Text>
           <Link href="https://ulgov.ru/" isExternal>
             <Image src={ul_logo} alt="itfund" loading="lazy" w={['15px', '30px']} htmlWidth="full" htmlHeight="full" />
           </Link>
         </HStack>
-        <Text>{`© 2016 - ${new Date().getFullYear()}`}</Text>
+        <Text>{`2016 - ${new Date().getFullYear()}`}</Text>
       </VStack>
     </Stack>
   );
