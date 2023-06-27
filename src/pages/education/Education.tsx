@@ -1,7 +1,7 @@
 import { InfoIcon } from '@chakra-ui/icons';
-import { VStack, Text, Button, HStack, Stack, Spacer, Checkbox, useMediaQuery } from '@chakra-ui/react';
+import { VStack, Text, Button, HStack, Stack, Spacer, Checkbox, useMediaQuery, Grid, GridItem } from '@chakra-ui/react';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 import { Footer } from '../../components/footer/Footer';
@@ -10,7 +10,13 @@ import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 
 export const Education = React.memo(() => {
   const { height } = useWindowDimensions();
+  // const [isLargerThan1220] = useMediaQuery('(min-width:1220px)');
   const [isLargerThan960] = useMediaQuery('(min-width: 960px)');
+  const [isLargerThan610] = useMediaQuery('(min-width: 610px)');
+
+  const [schoolboy, setSchoolboy] = useState(true);
+  const [student, setStudent] = useState(false);
+  const [specialist, setSpecialist] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -34,22 +40,63 @@ export const Education = React.memo(() => {
           >
             Где получить образование?
           </Text>
-          {isLargerThan960 && (
-            <HStack w="full" p={[2, 3, 4]} ml={6} align="start" justify="start" spacing={4}>
-              <YMaps>
-                <Map width="90%" height={`${height / 3}px`} defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}>
-                  <Placemark defaultGeometry={[54.352498, 48.387667]} options={{}} />
-                  <Placemark defaultGeometry={[54.30348, 48.367426]} />
-                </Map>
-              </YMaps>
+
+          <Stack
+            direction={isLargerThan960 ? 'row' : 'column'}
+            w="full"
+            p={[2, 3, 4]}
+            ml={6}
+            align="start"
+            justify="start"
+            spacing={4}
+          >
+            <YMaps>
+              <Map width="100%" height={`${height / 3}px`} defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}>
+                <Placemark defaultGeometry={[54.352498, 48.387667]} options={{}} />
+                <Placemark defaultGeometry={[54.30348, 48.367426]} />
+              </Map>
+            </YMaps>
+            {isLargerThan960 ? (
               <VStack align="start">
-                <Button variant="brand-high-white" fontSize={['lg', 'xl']} w="full" p={isLargerThan960 ? 6 : 8}>
+                <Button
+                  variant="brand-high-white"
+                  isActive={schoolboy}
+                  onClick={() => {
+                    setSchoolboy(true);
+                    setStudent(false);
+                    setSpecialist(false);
+                  }}
+                  fontSize={['lg', 'xl']}
+                  w="full"
+                  p={isLargerThan960 ? 6 : 8}
+                >
                   Школьник
                 </Button>
-                <Button variant="brand-high-white" fontSize={['lg', 'xl']} w="full" p={isLargerThan960 ? 6 : 8}>
+                <Button
+                  variant="brand-high-white"
+                  isActive={student}
+                  onClick={() => {
+                    setSchoolboy(false);
+                    setStudent(true);
+                    setSpecialist(false);
+                  }}
+                  fontSize={['lg', 'xl']}
+                  w="full"
+                  p={isLargerThan960 ? 6 : 8}
+                >
                   Студент
                 </Button>
-                <Button variant="brand-high-white" fontSize={['lg', 'xl']} p={isLargerThan960 ? 6 : 8}>
+                <Button
+                  variant="brand-high-white"
+                  isActive={specialist}
+                  onClick={() => {
+                    setSchoolboy(false);
+                    setStudent(false);
+                    setSpecialist(true);
+                  }}
+                  fontSize={['lg', 'xl']}
+                  p={isLargerThan960 ? 6 : 8}
+                >
                   Начинающий специалист
                 </Button>
                 <Stack border="1px" w="full" p={0} my={2} />
@@ -60,67 +107,141 @@ export const Education = React.memo(() => {
                   Бесплатное
                 </Checkbox>
               </VStack>
-            </HStack>
+            ) : (
+              <VStack w="full">
+                <Stack direction={isLargerThan610 ? 'row' : 'column'} w="full" align="center" justify="center">
+                  <Button
+                    variant="brand-high-white"
+                    isActive={schoolboy}
+                    onClick={() => {
+                      setSchoolboy(true);
+                      setStudent(false);
+                      setSpecialist(false);
+                    }}
+                    fontSize={['md', 'lg', 'xl']}
+                    p={[2, 4, 6, 8]}
+                    w={isLargerThan610 ? 'auto' : 'full'}
+                  >
+                    Школьник
+                  </Button>
+                  <Button
+                    variant="brand-high-white"
+                    isActive={student}
+                    onClick={() => {
+                      setSchoolboy(false);
+                      setStudent(true);
+                      setSpecialist(false);
+                    }}
+                    fontSize={['md', 'lg', 'xl']}
+                    p={[2, 4, 6, 8]}
+                    w={isLargerThan610 ? 'auto' : 'full'}
+                  >
+                    Студент
+                  </Button>
+                  <Button
+                    variant="brand-high-white"
+                    isActive={specialist}
+                    onClick={() => {
+                      setSchoolboy(false);
+                      setStudent(false);
+                      setSpecialist(true);
+                    }}
+                    fontSize={['md', 'lg', 'xl']}
+                    p={[2, 4, 6, 8]}
+                    w={isLargerThan610 ? 'auto' : 'full'}
+                  >
+                    Начинающий специалист
+                  </Button>
+                </Stack>
+                <Stack border="1px" w="full" p={0} my={2} />
+                <HStack w="full" align="center" justify="center">
+                  <Checkbox fontSize="xl" size="lg" defaultChecked>
+                    Платное
+                  </Checkbox>
+                  <Checkbox fontSize="xl" size="lg" defaultChecked>
+                    Бесплатное
+                  </Checkbox>
+                </HStack>
+              </VStack>
+            )}
+          </Stack>
+          {schoolboy && (
+            <Grid w="full">
+              <GridItem>
+                <HStack spacing={[1, 2]}>
+                  <InfoIcon color="yellow.500" />
+                  <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                    Дополнительное образование
+                  </Text>
+                </HStack>
+              </GridItem>
+              <GridItem>
+                <HStack spacing={[1, 2]}>
+                  <InfoIcon color="blue.500" />
+                  <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                    Высшее образование
+                  </Text>
+                </HStack>
+              </GridItem>
+              <GridItem>
+                <HStack spacing={[1, 2]}>
+                  <InfoIcon color="green.500" />
+                  <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                    Среднее образование
+                  </Text>
+                </HStack>
+              </GridItem>
+              <GridItem>
+                <HStack spacing={[1, 2]}>
+                  <InfoIcon color="red.500" />
+                  <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                    Подготовка к гос. экзаменам
+                  </Text>
+                </HStack>
+              </GridItem>
+            </Grid>
           )}
-          {!isLargerThan960 && (
-            <VStack w="full" p={[2, 3, 4]} ml={6} align="start" justify="start" spacing={4}>
-              <YMaps>
-                <Map width="90%" height={`${height / 3}px`} defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}>
-                  <Placemark defaultGeometry={[54.352498, 48.387667]} options={{}} />
-                  <Placemark defaultGeometry={[54.30348, 48.367426]} />
-                </Map>
-              </YMaps>
-              <HStack align="start" w="full">
-                <Button variant="brand-high-white" fontSize={['sm', 'md', 'lg']} w="full" p={isLargerThan960 ? 6 : 8}>
-                  Школьник
-                </Button>
-                <Button variant="brand-high-white" fontSize={['sm', 'md', 'lg']} w="full" p={isLargerThan960 ? 6 : 8}>
-                  Студент
-                </Button>
-                <Button variant="brand-high-white" fontSize={['sm', 'md', 'lg']} w="full" p={isLargerThan960 ? 6 : 8}>
-                  Начинающий специалист
-                </Button>
-                <Spacer />
+          {student && (
+            <VStack w="full" align="start">
+              <HStack spacing={[1, 2]}>
+                <InfoIcon color="yellow.500" />
+                <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                  Дополнительное образование
+                </Text>
               </HStack>
-              <HStack align="start" w="full">
-                <Checkbox fontSize={['xs', 'sm']} size="lg" defaultChecked>
-                  Платное
-                </Checkbox>
-                <Checkbox fontSize={['xs', 'sm']} defaultChecked>
-                  Бесплатное
-                </Checkbox>
+              <HStack spacing={[1, 2]}>
+                <InfoIcon color="blue.500" />
+                <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                  Высшее образование
+                </Text>
               </HStack>
             </VStack>
           )}
-          <HStack w="full" spacing={[4, 6]}>
-            <HStack spacing={[1, 2]}>
-              <InfoIcon color="yellow.500" />
-              <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
-                Дополнительное образование
-              </Text>
-            </HStack>
-            <HStack spacing={[1, 2]}>
-              <InfoIcon color="blue.500" />
-              <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
-                Высшее образование
-              </Text>
-            </HStack>
-            <HStack spacing={[1, 2]}>
-              <InfoIcon color="green.500" />
-              <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
-                Среднее образование
-              </Text>
-            </HStack>
-            <HStack spacing={[1, 2]}>
-              <InfoIcon color="red.500" />
-              <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
-                Подготовка к гос. экзаменам
-              </Text>
-            </HStack>
-          </HStack>
+          {specialist && (
+            <VStack w="full" align="start">
+              <HStack spacing={[1, 2]}>
+                <InfoIcon color="yellow.500" />
+                <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                  Дополнительное образование
+                </Text>
+              </HStack>
+              <HStack spacing={[1, 2]}>
+                <InfoIcon color="blue.500" />
+                <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                  Высшее образование
+                </Text>
+              </HStack>
+              <HStack spacing={[1, 2]}>
+                <InfoIcon color="red.500" />
+                <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                  Работа
+                </Text>
+              </HStack>
+            </VStack>
+          )}
         </VStack>
       </VStack>
-      <Spacer minH={`${height / 11.65}px`} />
+      <Spacer minH={`${height / 5}px`} />
       <Footer />
     </>
   );
