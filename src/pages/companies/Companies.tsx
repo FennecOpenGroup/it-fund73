@@ -128,12 +128,22 @@ export const Companies = React.memo(() => {
               <Image src={logo} alt="itfund" loading="lazy" w={['40px', '50px']} htmlWidth="full" htmlHeight="full" />
               <Stack p={0} m={0} spacing={0} w="full">
                 <Text fontSize={['sm', 'md', 'xl']}>ИТ-организаций –</Text>
-                <CountUp
-                  style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}
-                  separator=""
-                  end={1451}
-                  duration={2}
-                />
+                {isLargerThan770 && (
+                  <CountUp
+                    style={{ color: 'white', fontSize: '40px', fontWeight: 'bold' }}
+                    separator=""
+                    end={1451}
+                    duration={2}
+                  />
+                )}
+                {!isLargerThan770 && (
+                  <CountUp
+                    style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}
+                    separator=""
+                    end={1451}
+                    duration={2}
+                  />
+                )}
               </Stack>
             </HStack>
             <HStack
@@ -146,7 +156,12 @@ export const Companies = React.memo(() => {
               <Image src={logo} alt="itfund" loading="lazy" w={['40px', '50px']} htmlWidth="full" htmlHeight="full" />
               <Stack p={1} m={0} spacing={0} w="full">
                 <Text fontSize={['sm', 'md', 'xl']}>Аккредитованных ИТ-компаний в Минцифры России – </Text>
-                <CountUp style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }} end={175} duration={2} />
+                {isLargerThan770 && (
+                  <CountUp style={{ color: 'white', fontSize: '40px', fontWeight: 'bold' }} end={175} duration={2} />
+                )}
+                {!isLargerThan770 && (
+                  <CountUp style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }} end={175} duration={2} />
+                )}
                 <Text fontSize={['sm', 'md', 'xl']}>компаний </Text>
               </Stack>
             </HStack>
@@ -160,7 +175,20 @@ export const Companies = React.memo(() => {
               <Image src={logo} alt="itfund" loading="lazy" w={['40px', '50px']} htmlWidth="full" htmlHeight="full" />
               <Stack p={0} m={0} spacing={0} w="full">
                 <Text fontSize={['sm', 'md', 'xl']}>Налоговые поступления в региональный бюджет – </Text>
-                <CountUp style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }} end={328.4} duration={2.2} />
+                {isLargerThan770 && (
+                  <CountUp
+                    style={{ color: 'white', fontSize: '40px', fontWeight: 'bold' }}
+                    end={328.4}
+                    duration={2.2}
+                  />
+                )}
+                {!isLargerThan770 && (
+                  <CountUp
+                    style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}
+                    end={328.4}
+                    duration={2.2}
+                  />
+                )}
                 <Text fontSize={['sm', 'md', 'xl']}>млн руб</Text>
               </Stack>
             </HStack>
@@ -174,12 +202,22 @@ export const Companies = React.memo(() => {
               <Image src={logo} alt="itfund" loading="lazy" w={['40px', '50px']} htmlWidth="full" htmlHeight="full" />
               <Stack p={0} m={0} spacing={0} w="full">
                 <Text fontSize={['sm', 'md', 'xl']}>Среднесписочная численность работников – </Text>
-                <CountUp
-                  style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}
-                  end={6210}
-                  separator=""
-                  duration={2}
-                />
+                {isLargerThan770 && (
+                  <CountUp
+                    style={{ color: 'white', fontSize: '40px', fontWeight: 'bold' }}
+                    end={6210}
+                    separator=""
+                    duration={2}
+                  />
+                )}
+                {!isLargerThan770 && (
+                  <CountUp
+                    style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}
+                    end={6210}
+                    separator=""
+                    duration={2}
+                  />
+                )}
                 <Text fontSize={['sm', 'md', 'xl']}>человек</Text>
               </Stack>
             </HStack>

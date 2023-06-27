@@ -22,6 +22,7 @@ export const Footer = React.memo(() => {
 
   const lang = useSelector((state: IRootState) => state.core.lang);
   const [isLargerThan820] = useMediaQuery('(min-width: 820px)');
+  const [isLargerThan710] = useMediaQuery('(min-width: 430px)');
 
   return (
     <Stack
@@ -33,7 +34,12 @@ export const Footer = React.memo(() => {
       py={2}
       direction={isLargerThan820 ? 'row' : 'column'}
     >
-      <Image src={mini_logo} alt="itfund" loading="lazy" maxW={['50px', '60px', '120px']} />
+      <Image
+        src={mini_logo}
+        alt="itfund"
+        loading="lazy"
+        maxW={isLargerThan820 ? '120px' : isLargerThan710 ? '60px' : '50px'}
+      />
       <VStack align="left" spacing={1}>
         <Text>
           Контакты:

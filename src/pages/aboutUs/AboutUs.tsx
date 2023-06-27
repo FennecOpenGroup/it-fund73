@@ -4,6 +4,7 @@ import {
   Stack,
   HStack,
   Image,
+  useMediaQuery,
   Accordion,
   AccordionItem,
   AccordionButton,
@@ -45,6 +46,7 @@ export const AboutUs = React.memo(() => {
   const refDocs = useRef<HTMLDivElement>(null);
   const refRecs = useRef<HTMLDivElement>(null);
   const refContacts = useRef<HTMLDivElement>(null);
+  const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -64,11 +66,11 @@ export const AboutUs = React.memo(() => {
             top={0}
             left={0}
             w={width}
-            h={`${height / 1.35}px`}
+            h={`${height / 1.15}px`}
             filter="brightness(35%)"
             zIndex={-2}
             position="absolute"
-            loading='lazy'
+            loading="lazy"
           />
           <VStack w="full" h={`${height / 2}px`} justify="center" spacing={5} py={10} mt={2}>
             <HStack>
@@ -76,7 +78,7 @@ export const AboutUs = React.memo(() => {
                 Фонд развития информациионных технологий Ульяновской области
               </Text>
             </HStack>
-            <HStack w="full" align="center" justify="center">
+            <Stack direction={isLargerThan770 ? 'row' : 'column'} w="full" align="center" justify="center">
               <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refTeam)}>
                 Команда
               </Button>
@@ -94,15 +96,15 @@ export const AboutUs = React.memo(() => {
               >
                 Контакты
               </Button>
-            </HStack>
+            </Stack>
             <VStack align="center" justify="center">
-              <Text fontSize="lg" align="center">
+              <Text fontSize={['sm', 'md', 'lg']} align="center">
                 Фонд развития информационный технологий в Ульяновской области является оператором государственный
                 поддержки IT-проектов и компаний в регионе с 2016 года.
               </Text>
             </VStack>
             <VStack align="center" justify="center">
-              <Text fontSize="lg" align="center">
+              <Text fontSize={['sm', 'md', 'lg']} align="center">
                 Миссия Фонда – всемерно стимулировать развитие ИТ-экосистемы Ульяновской области, обеспечивать системную
                 поддержку образовательных и профориентационных проектов в сфере информационных технологий и создавать
                 условия для устойчивого роста IT-отрасли региона.
@@ -111,11 +113,11 @@ export const AboutUs = React.memo(() => {
           </VStack>
           <VStack w="full" align="start" spacing={0} mx="20%" pt={10}>
             <VStack w="full" align="center" bgGradient="linear(to-t, #e3f2fb 5%, transparent 95%)" pb={5}>
-              <Text color="brand.dark" fontWeight="800" fontSize="3xl">
+              <Text color="brand.dark" fontWeight="800" fontSize={['xl', '2xl', '3xl']}>
                 НАШИ ЦЕЛИ
               </Text>
               <VStack align="center" justify="center" px={4}>
-                <Text color="brand.dark" fontSize="lg" align="start">
+                <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} align="start">
                   Основной целью деятельности Фонда является формирование имущества (в том числе финансовых средств) на
                   основе добровольных имущественных взносов (в том числе денежных) и иных законных поступлений, и
                   направление их на:
@@ -124,7 +126,7 @@ export const AboutUs = React.memo(() => {
                       <VStack minW="5em">
                         <AiOutlineApartment size="4em" color="#7775ed" />
                       </VStack>
-                      <Text color="brand.dark" fontSize="lg" w="full" align="start">
+                      <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Содействие развитию информационных технологий на территории Ульяновской области.
                       </Text>
                     </HStack>
@@ -132,7 +134,7 @@ export const AboutUs = React.memo(() => {
                       <VStack minW="5em">
                         <MdEmojiPeople size="4em" color="#7775ed" />
                       </VStack>
-                      <Text color="brand.dark" fontSize="lg" w="full" align="start">
+                      <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Развитие человеческого потенциала отрасли информационных технологий.
                       </Text>
                     </HStack>
@@ -140,7 +142,7 @@ export const AboutUs = React.memo(() => {
                       <VStack minW="5em">
                         <MdBiotech size="4em" color="#7775ed" />
                       </VStack>
-                      <Text color="brand.dark" fontSize="lg" w="full" align="start">
+                      <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Создание условий для появления передовых технологий, организаций, методов обучения федерального
                         и мирового уровня в сфере информационных технологий.
                       </Text>
@@ -149,7 +151,7 @@ export const AboutUs = React.memo(() => {
                       <VStack minW="5em">
                         <GiVintageRobot size="4em" color="#7775ed" />
                       </VStack>
-                      <Text color="brand.dark" fontSize="lg" w="full" align="start">
+                      <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Развитие проектов, осуществляемых в форме или посредством информационных технологий,
                         телекоммуникационных технологий, в том числе информационно-телекоммуникационной сети Интернет,
                         робототехники, облачных вычислений, больших данных, человеко-машинных интерфейсов, систем
@@ -160,7 +162,7 @@ export const AboutUs = React.memo(() => {
                       <VStack minW="5em">
                         <MdCellTower size="4em" color="#7775ed" />
                       </VStack>
-                      <Text color="brand.dark" fontSize="lg" w="full" align="start">
+                      <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Развитие Интернет-предпринимательства и экосистемы Интернет-предпринимательства.
                       </Text>
                     </HStack>
@@ -169,11 +171,11 @@ export const AboutUs = React.memo(() => {
               </VStack>
             </VStack>
             <VStack w="full" align="center" bgGradient="linear(to-b, #e3f2fb 2%, transparent 95%)">
-              <Text color="brand.dark" fontWeight="800" fontSize="3xl">
+              <Text color="brand.dark" fontWeight="800" fontSize={['xl', '2xl', '3xl']}>
                 ЦИФРЫ И ФАКТЫ
               </Text>
             </VStack>
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl" px={4}>
+            <Text color="brand.dark" fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Получено субсидий
             </Text>
             <Chart
@@ -197,7 +199,7 @@ export const AboutUs = React.memo(() => {
               width="100%"
               legendToggle
             />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl" px={4}>
+            <Text color="brand.dark" fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Объём средств софинансирования
             </Text>
             <Chart
@@ -222,7 +224,7 @@ export const AboutUs = React.memo(() => {
               height="full"
               legendToggle
             />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl" px={4}>
+            <Text color="brand.dark" fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Проведено конкурсов
             </Text>
             <Chart
@@ -247,7 +249,7 @@ export const AboutUs = React.memo(() => {
               height="full"
               legendToggle
             />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl" px={4}>
+            <Text color="brand.dark" fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Подано проектов на конкурсы
             </Text>
             <Chart
@@ -272,7 +274,7 @@ export const AboutUs = React.memo(() => {
               height="full"
               legendToggle
             />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl" px={4}>
+            <Text color="brand.dark" fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Общая сумма поданных проектов
             </Text>
             <Chart
@@ -297,7 +299,7 @@ export const AboutUs = React.memo(() => {
               height="full"
               legendToggle
             />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl" px={4}>
+            <Text color="brand.dark" fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Поддержано проектов
             </Text>
             <Chart
@@ -322,7 +324,7 @@ export const AboutUs = React.memo(() => {
               height="full"
               legendToggle
             />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl" px={4}>
+            <Text color="brand.dark" fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Общая сумма поддержанных проектов
             </Text>
             <Chart
@@ -347,7 +349,7 @@ export const AboutUs = React.memo(() => {
               height="full"
               legendToggle
             />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl" px={4}>
+            <Text color="brand.dark" fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Охват аудитории проектами
             </Text>
             <Chart
@@ -376,7 +378,7 @@ export const AboutUs = React.memo(() => {
               <AccordionItem>
                 <AccordionButton>
                   <Box as="span" flex="1" textAlign="left" ref={refTeam}>
-                    <Text color="brand.dark" fontSize="3xl">
+                    <Text color="brand.dark" fontSize={['xl', '2xl', '3xl']}>
                       <b>КОМАНДА</b>
                     </Text>
                   </Box>
@@ -384,7 +386,7 @@ export const AboutUs = React.memo(() => {
                 </AccordionButton>
                 <AccordionPanel pb={4}>
                   <VStack w="full" align="start" p={0} m={0}>
-                    <Text color="brand.dark" fontSize="2xl" fontWeight="900">
+                    <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']} fontWeight="900">
                       Правление Фонда
                     </Text>
                     <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
@@ -398,12 +400,17 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image src={kuznezov} w="200px" h="200px" borderRadius={5} />
+                        <Image
+                          src={kuznezov}
+                          w={['100px', '160px', '200px']}
+                          h={['100px', '160px', '200px']}
+                          borderRadius={5}
+                        />
                         <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Кузнецов Виталий Евгеньевич</b>
                           </Text>
-                          <Text color="brand.dark" fontSize="lg">
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
                             Министр Ульяновской области
                           </Text>
                         </VStack>
@@ -421,10 +428,10 @@ export const AboutUs = React.memo(() => {
                       >
                         <BsFillPersonFill size="200px" color="white" />
                         <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Ягфаров Олег Модорисович</b>
                           </Text>
-                          <Text color="brand.dark" fontSize="lg">
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
                             Директор ОГКУ «Правительство для граждан»
                           </Text>
                         </VStack>
@@ -442,10 +449,10 @@ export const AboutUs = React.memo(() => {
                       >
                         <BsFillPersonFill size="200px" color="white" />
                         <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Механюк Александр Владимирович</b>
                           </Text>
-                          <Text color="brand.dark" fontSize="lg">
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
                             Директор ГУЗ «МИАЦ»
                           </Text>
                         </VStack>
@@ -453,7 +460,7 @@ export const AboutUs = React.memo(() => {
                     </VStack>
                   </VStack>
                   <VStack w="full" align="start" p={0} m={0}>
-                    <Text color="brand.dark" fontSize="2xl" fontWeight="900">
+                    <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']} fontWeight="900">
                       Сотрудники Фонда
                     </Text>
                     <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
@@ -467,12 +474,17 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image src={Erofeev} w="200px" h="200px" borderRadius={5} />
+                        <Image
+                          src={Erofeev}
+                          w={['100px', '160px', '200px']}
+                          h={['100px', '160px', '200px']}
+                          borderRadius={5}
+                        />
                         <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Ерофеев Сергей Александрович</b>
                           </Text>
-                          <Text color="brand.dark" fontSize="lg">
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
                             Исполнительный директор
                           </Text>
                         </VStack>
@@ -488,12 +500,17 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image src={andronova} w="200px" h="200px" borderRadius={5} />
+                        <Image
+                          src={andronova}
+                          w={['100px', '160px', '200px']}
+                          h={['100px', '160px', '200px']}
+                          borderRadius={5}
+                        />
                         <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Андронова Ольга Александровна</b>
                           </Text>
-                          <Text color="brand.dark" fontSize="lg">
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
                             Финансовый директор - главный бухгалтер
                           </Text>
                         </VStack>
@@ -511,10 +528,10 @@ export const AboutUs = React.memo(() => {
                       >
                         <BsFillPersonFill size="200px" color="white" />
                         <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Горлов Сергей Петрович </b>
                           </Text>
-                          <Text color="brand.dark" fontSize="lg">
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
                             Директор департамента развития отрасли информационных технологий
                           </Text>
                         </VStack>
@@ -532,10 +549,10 @@ export const AboutUs = React.memo(() => {
                       >
                         <BsFillPersonFill size="200px" color="white" />
                         <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Филиппова Ольга Вячеславовна</b>
                           </Text>
-                          <Text color="brand.dark" fontSize="lg">
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
                             Главный специалист департамента развития отрасли информационных технологий
                           </Text>
                         </VStack>
@@ -553,10 +570,10 @@ export const AboutUs = React.memo(() => {
                       >
                         <BsFillPersonFill size="200px" color="white" />
                         <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Халимова Руфина Расиховна</b>
                           </Text>
-                          <Text color="brand.dark" fontSize="lg">
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
                             Пресс-служба
                           </Text>
                         </VStack>
@@ -570,7 +587,7 @@ export const AboutUs = React.memo(() => {
               <AccordionItem>
                 <AccordionButton>
                   <Box as="span" flex="1" textAlign="left" ref={refDocs}>
-                    <Text color="brand.dark" fontSize="3xl">
+                    <Text color="brand.dark" fontSize={['xl', '2xl', '3xl']}>
                       <b>ДОКУМЕНТЫ</b>
                     </Text>
                   </Box>
@@ -579,13 +596,13 @@ export const AboutUs = React.memo(() => {
                 <AccordionPanel pb={4}>
                   <VStack w="full" align="start">
                     <HStack w="full" align="start">
-                      <Link color="brand.dark" fontSize="lg" href="" isExternal w="full">
-                        <Text color="brand.dark" fontSize="lg">
+                      <Link color="brand.dark" fontSize={['sm', 'md', 'lg']} href="" isExternal w="full">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
                           Порядок конкурсного отбора проектов Фонда ИТ
                         </Text>
                         <HStack spacing={0} pl={4}>
                           <BsFiletypeDocx size="1.5em" />
-                          <Text color="brand.dark" fontSize="lg">
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
                             106.61 КБ
                           </Text>
                         </HStack>
@@ -599,7 +616,7 @@ export const AboutUs = React.memo(() => {
               <AccordionItem>
                 <AccordionButton>
                   <Box as="span" flex="1" textAlign="left" ref={refRecs}>
-                    <Text color="brand.dark" fontSize="3xl">
+                    <Text color="brand.dark" fontSize={['xl', '2xl', '3xl']}>
                       <b>РЕКВИЗИТЫ</b>
                     </Text>
                   </Box>
@@ -609,7 +626,7 @@ export const AboutUs = React.memo(() => {
                   <VStack w="full" spacing={10}>
                     <VStack w="full" justify="start" align="start">
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Полное наименование:
                         </Text>
                         <CopyToClipboard
@@ -624,7 +641,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -634,7 +651,7 @@ export const AboutUs = React.memo(() => {
                         </CopyToClipboard>
                       </HStack>
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Сокращённое наименование:
                         </Text>
                         <CopyToClipboard
@@ -649,7 +666,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -659,7 +676,7 @@ export const AboutUs = React.memo(() => {
                         </CopyToClipboard>
                       </HStack>
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Полное наименование Фонда на английском языке:
                         </Text>
                         <CopyToClipboard
@@ -674,7 +691,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -684,7 +701,7 @@ export const AboutUs = React.memo(() => {
                         </CopyToClipboard>
                       </HStack>
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Краткое наименование Фонда на английском языке:
                         </Text>
                         <CopyToClipboard
@@ -699,7 +716,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -711,7 +728,7 @@ export const AboutUs = React.memo(() => {
                     </VStack>
                     <VStack w="full" align="start">
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Адрес юридический:
                         </Text>
                         <CopyToClipboard
@@ -726,7 +743,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -738,7 +755,7 @@ export const AboutUs = React.memo(() => {
                     </VStack>
                     <VStack w="full" align="start">
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           ИНН:
                         </Text>
                         <CopyToClipboard
@@ -753,7 +770,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -763,7 +780,7 @@ export const AboutUs = React.memo(() => {
                         </CopyToClipboard>
                       </HStack>
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           КПП:
                         </Text>
                         <CopyToClipboard
@@ -778,7 +795,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -788,7 +805,7 @@ export const AboutUs = React.memo(() => {
                         </CopyToClipboard>
                       </HStack>
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           ОГРН:
                         </Text>
                         <CopyToClipboard
@@ -803,7 +820,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -815,7 +832,7 @@ export const AboutUs = React.memo(() => {
                     </VStack>
                     <VStack w="full" align="start">
                       <HStack align="start">
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Банк:
                         </Text>
                         <CopyToClipboard
@@ -830,7 +847,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -842,7 +859,7 @@ export const AboutUs = React.memo(() => {
                         </CopyToClipboard>
                       </HStack>
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Расчётный счёт:
                         </Text>
                         <CopyToClipboard
@@ -857,7 +874,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -867,7 +884,7 @@ export const AboutUs = React.memo(() => {
                         </CopyToClipboard>
                       </HStack>
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           БИК:
                         </Text>
                         <CopyToClipboard
@@ -882,7 +899,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -892,7 +909,7 @@ export const AboutUs = React.memo(() => {
                         </CopyToClipboard>
                       </HStack>
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Казначейский счет:
                         </Text>
                         <CopyToClipboard
@@ -907,7 +924,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -919,7 +936,7 @@ export const AboutUs = React.memo(() => {
                     </VStack>
                     <VStack w="full" align="start">
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Исполнительный директор:
                         </Text>
                         <CopyToClipboard
@@ -934,7 +951,7 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
+                            fontSize={['sm', 'md', 'lg']}
                             color="brand.dark"
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
@@ -952,7 +969,7 @@ export const AboutUs = React.memo(() => {
               <AccordionItem>
                 <AccordionButton>
                   <Box as="span" flex="1" textAlign="left" ref={refContacts}>
-                    <Text color="brand.dark" fontSize="3xl">
+                    <Text color="brand.dark" fontSize={['xl', '2xl', '3xl']}>
                       <b>КОНТАКТЫ</b>
                     </Text>
                   </Box>
@@ -962,19 +979,19 @@ export const AboutUs = React.memo(() => {
                   <VStack w="full" align="start">
                     <HStack>
                       <BsMailbox size="1em" color="#7775ed" />
-                      <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                      <Text color="brand.dark" fontSize={['md', 'lg']} fontWeight="bold">
                         Email:
                       </Text>
-                      <Link href="mailto:it_ulsk@mail.ru" fontSize="lg">
+                      <Link href="mailto:it_ulsk@mail.ru" fontSize={['md', 'lg']}>
                         it_ulsk@mail.ru
                       </Link>
                     </HStack>
                     <HStack>
                       <BsTelephone size="1em" color="#7775ed" />
-                      <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                      <Text color="brand.dark" fontSize={['md', 'lg']} fontWeight="bold">
                         Телефон:
                       </Text>
-                      <Link href="tel:8 (8422) 58-17-47" fontSize="lg">
+                      <Link href="tel:8 (8422) 58-17-47" fontSize={['md', 'lg']}>
                         8 (8422) 58-17-47
                       </Link>
                     </HStack>
