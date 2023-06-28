@@ -86,7 +86,7 @@ export const Main = React.memo(() => {
 
   const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
-  const [isLargerThan420] = useMediaQuery('(min-width: 420px)');
+  const [isLargerThan430] = useMediaQuery('(min-width: 430px)');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -143,7 +143,7 @@ export const Main = React.memo(() => {
                 })}
               </Grid>
             </VStack>
-            {isLargerThan420 && (
+            {isLargerThan430 && (
               <VStack
                 w="full"
                 maxW={isLargerThan1025 ? '20%' : '35%'}

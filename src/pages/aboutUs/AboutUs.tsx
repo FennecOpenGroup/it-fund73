@@ -66,7 +66,7 @@ export const AboutUs = React.memo(() => {
             top={0}
             left={0}
             w={width}
-            h={`${height / 1.15}px`}
+            h={`${height / 2}px`}
             filter="brightness(35%)"
             zIndex={-2}
             position="absolute"

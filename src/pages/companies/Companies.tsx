@@ -46,6 +46,7 @@ export const Companies = React.memo(() => {
   const refSupport = useRef<HTMLDivElement>(null);
   const refAccreditaion = useRef<HTMLDivElement>(null);
   const refCompany = useRef<HTMLDivElement>(null);
+
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan960] = useMediaQuery('(min-width: 960px)');
   const [isLargerThan1200] = useMediaQuery('(min-width: 1200px)');
