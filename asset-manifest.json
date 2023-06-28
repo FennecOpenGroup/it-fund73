@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/it-fund73/static/css/main.f95cd0e5.css",
-    "main.js": "/it-fund73/static/js/main.031682c0.js",
+    "main.js": "/it-fund73/static/js/main.9319e22c.js",
     "static/media/Ulyanovsk.jpg": "/it-fund73/static/media/Ulyanovsk.de91603c3e10fbaee854.jpg",
     "static/media/it.jpg": "/it-fund73/static/media/it.1e9754b71d345349de59.jpg",
     "static/media/government.jpg": "/it-fund73/static/media/government.bf44ab96ae00a051a939.jpg",
@@ -28,10 +28,10 @@
     "static/media/logo-fog.svg": "/it-fund73/static/media/logo-fog.17a6a3d610b0c68941cf611c82ced211.svg",
     "static/media/nord.svg": "/it-fund73/static/media/nord.990a7326bdd3c7f0b70de24a554272d8.svg",
     "main.f95cd0e5.css.map": "/it-fund73/static/css/main.f95cd0e5.css.map",
-    "main.031682c0.js.map": "/it-fund73/static/js/main.031682c0.js.map"
+    "main.9319e22c.js.map": "/it-fund73/static/js/main.9319e22c.js.map"
   },
   "entrypoints": [
     "static/css/main.f95cd0e5.css",
-    "static/js/main.031682c0.js"
+    "static/js/main.9319e22c.js"
   ]
 }
