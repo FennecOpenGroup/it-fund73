@@ -42,11 +42,17 @@ export const AboutUs = React.memo(() => {
     }
   };
 
+  const refHeader = useRef<HTMLDivElement>(null);
+  const refHeading = useRef<HTMLDivElement>(null);
   const refTeam = useRef<HTMLDivElement>(null);
   const refDocs = useRef<HTMLDivElement>(null);
   const refRecs = useRef<HTMLDivElement>(null);
   const refContacts = useRef<HTMLDivElement>(null);
+
+  const [isLargerThan1155] = useMediaQuery('(min-width: 1155px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
+  const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
+  const [isLargerThan530] = useMediaQuery('(min-width: 530px)');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -57,28 +63,30 @@ export const AboutUs = React.memo(() => {
       <Helmet>
         <title>it-fund | О фонде</title>
       </Helmet>
-      <Header />
+      <VStack w="full" p={0} m={0} ref={refHeader}>
+        <Header />
+      </VStack>
       <VStack minH={`${height}px`} justify="start" px="10%">
         <VStack w="full" minH={`${height}px`} pb={[4, 6]} align="flex-start">
           <Image
             src={ulyanovsk}
             objectFit="cover"
-            top={0}
+            top={refHeader.current?.clientHeight}
             left={0}
             w={width}
-            h={`${height / 2}px`}
+            h={refHeading.current?.clientHeight}
             filter="brightness(35%)"
             zIndex={-2}
             position="absolute"
             loading="lazy"
           />
-          <VStack w="full" h={`${height / 2}px`} justify="center" spacing={5} py={10} mt={2}>
+          <VStack w="full" justify="center" spacing={[2, 5]} py={[4, 6, 10]} mt={[0, 2, 4]} ref={refHeading}>
             <HStack>
               <Text fontWeight="800" align="center" fontSize={['lg', 'xl', '2xl', '4xl']} textTransform="uppercase">
                 Фонд развития информациионных технологий Ульяновской области
               </Text>
             </HStack>
-            <Stack direction={isLargerThan770 ? 'row' : 'column'} w="full" align="center" justify="center">
+            <Stack direction={isLargerThan480 ? 'row' : 'column'} w="full" align="center" justify="center">
               <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refTeam)}>
                 Команда
               </Button>
@@ -111,45 +119,70 @@ export const AboutUs = React.memo(() => {
               </Text>
             </VStack>
           </VStack>
-          <VStack w="full" align="start" spacing={0} mx="20%" pt={10}>
-            <VStack w="full" align="center" bgGradient="linear(to-t, #e3f2fb 5%, transparent 95%)" pb={5}>
+          <VStack w="full" align="start" spacing={0} mx={['10%', '20%']} pt={[5, 10]}>
+            <VStack w="full" align="center" bgGradient="linear(to-t, #e3f2fb 5%, transparent 95%)" pb={[0, 2, 5]}>
               <Text color="brand.dark" fontWeight="800" fontSize={['xl', '2xl', '3xl']}>
                 НАШИ ЦЕЛИ
               </Text>
-              <VStack align="center" justify="center" px={4}>
+              <VStack align="center" justify="center" px={[0, 4]}>
                 <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} align="start">
                   Основной целью деятельности Фонда является формирование имущества (в том числе финансовых средств) на
                   основе добровольных имущественных взносов (в том числе денежных) и иных законных поступлений, и
                   направление их на:
-                  <VStack w="full" px="25%" align="center">
-                    <HStack w="full">
-                      <VStack minW="5em">
-                        <AiOutlineApartment size="4em" color="#7775ed" />
+                  <VStack w="full" px={isLargerThan770 ? '25%' : '5%'} align="center">
+                    <Stack
+                      w="full"
+                      direction={isLargerThan530 ? 'row' : 'column'}
+                      align={isLargerThan530 ? 'start' : 'center'}
+                    >
+                      <VStack minW={['3em', '4em', '5em']}>
+                        <AiOutlineApartment
+                          size={isLargerThan770 ? '4em' : isLargerThan480 ? '3em' : '2em'}
+                          color="#7775ed"
+                        />
                       </VStack>
                       <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Содействие развитию информационных технологий на территории Ульяновской области.
                       </Text>
-                    </HStack>
-                    <HStack w="full">
-                      <VStack minW="5em">
-                        <MdEmojiPeople size="4em" color="#7775ed" />
+                    </Stack>
+                    <Stack
+                      w="full"
+                      direction={isLargerThan530 ? 'row' : 'column'}
+                      align={isLargerThan530 ? 'start' : 'center'}
+                    >
+                      <VStack minW={['3em', '4em', '5em']}>
+                        <MdEmojiPeople
+                          size={isLargerThan770 ? '4em' : isLargerThan480 ? '3em' : '2em'}
+                          color="#7775ed"
+                        />
                       </VStack>
                       <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Развитие человеческого потенциала отрасли информационных технологий.
                       </Text>
-                    </HStack>
-                    <HStack w="full">
-                      <VStack minW="5em">
-                        <MdBiotech size="4em" color="#7775ed" />
+                    </Stack>
+                    <Stack
+                      w="full"
+                      direction={isLargerThan530 ? 'row' : 'column'}
+                      align={isLargerThan530 ? 'start' : 'center'}
+                    >
+                      <VStack minW={['3em', '4em', '5em']}>
+                        <MdBiotech size={isLargerThan770 ? '4em' : isLargerThan480 ? '3em' : '2em'} color="#7775ed" />
                       </VStack>
                       <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Создание условий для появления передовых технологий, организаций, методов обучения федерального
                         и мирового уровня в сфере информационных технологий.
                       </Text>
-                    </HStack>
-                    <HStack w="full">
-                      <VStack minW="5em">
-                        <GiVintageRobot size="4em" color="#7775ed" />
+                    </Stack>
+                    <Stack
+                      w="full"
+                      direction={isLargerThan530 ? 'row' : 'column'}
+                      align={isLargerThan530 ? 'start' : 'center'}
+                    >
+                      <VStack minW={['3em', '4em', '5em']}>
+                        <GiVintageRobot
+                          size={isLargerThan770 ? '4em' : isLargerThan480 ? '3em' : '2em'}
+                          color="#7775ed"
+                        />
                       </VStack>
                       <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Развитие проектов, осуществляемых в форме или посредством информационных технологий,
@@ -157,15 +190,19 @@ export const AboutUs = React.memo(() => {
                         робототехники, облачных вычислений, больших данных, человеко-машинных интерфейсов, систем
                         управления и так далее.
                       </Text>
-                    </HStack>
-                    <HStack w="full">
-                      <VStack minW="5em">
-                        <MdCellTower size="4em" color="#7775ed" />
+                    </Stack>
+                    <Stack
+                      w="full"
+                      direction={isLargerThan530 ? 'row' : 'column'}
+                      align={isLargerThan530 ? 'start' : 'center'}
+                    >
+                      <VStack minW={['3em', '4em', '5em']}>
+                        <MdCellTower size={isLargerThan770 ? '4em' : isLargerThan480 ? '3em' : '2em'} color="#7775ed" />
                       </VStack>
                       <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Развитие Интернет-предпринимательства и экосистемы Интернет-предпринимательства.
                       </Text>
-                    </HStack>
+                    </Stack>
                   </VStack>
                 </Text>
               </VStack>
@@ -391,8 +428,9 @@ export const AboutUs = React.memo(() => {
                     </Text>
                     <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
                     <VStack w="full" align="start" justify="start">
-                      <HStack
-                        align="start"
+                      <Stack
+                        direction={isLargerThan530 ? 'row' : 'column'}
+                        align={isLargerThan530 ? 'start' : 'center'}
                         justify="start"
                         marginTop="25px"
                         p={2}
@@ -400,13 +438,8 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image
-                          src={kuznezov}
-                          w={['100px', '160px', '200px']}
-                          h={['100px', '160px', '200px']}
-                          borderRadius={5}
-                        />
-                        <VStack align="start" px="20px">
+                        <Image src={kuznezov} w={['160px', '200px']} h={['160px', '200px']} borderRadius={5} />
+                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
                           <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Кузнецов Виталий Евгеньевич</b>
                           </Text>
@@ -414,11 +447,12 @@ export const AboutUs = React.memo(() => {
                             Министр Ульяновской области
                           </Text>
                         </VStack>
-                      </HStack>
+                      </Stack>
                     </VStack>
                     <VStack w="full">
-                      <HStack
-                        align="start"
+                      <Stack
+                        direction={isLargerThan530 ? 'row' : 'column'}
+                        align={isLargerThan530 ? 'start' : 'center'}
                         justify="start"
                         marginTop="25px"
                         p={2}
@@ -426,8 +460,10 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <BsFillPersonFill size="200px" color="white" />
-                        <VStack align="start" px="20px">
+                        <Box minW="200px">
+                          <BsFillPersonFill size="200px" color="white" />
+                        </Box>
+                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
                           <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Ягфаров Олег Модорисович</b>
                           </Text>
@@ -435,11 +471,12 @@ export const AboutUs = React.memo(() => {
                             Директор ОГКУ «Правительство для граждан»
                           </Text>
                         </VStack>
-                      </HStack>
+                      </Stack>
                     </VStack>
                     <VStack w="full">
-                      <HStack
-                        align="start"
+                      <Stack
+                        direction={isLargerThan530 ? 'row' : 'column'}
+                        align={isLargerThan530 ? 'start' : 'center'}
                         justify="start"
                         marginTop="25px"
                         p={2}
@@ -447,8 +484,10 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <BsFillPersonFill size="200px" color="white" />
-                        <VStack align="start" px="20px">
+                        <Box minW="200px">
+                          <BsFillPersonFill size="200px" color="white" />
+                        </Box>
+                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
                           <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Механюк Александр Владимирович</b>
                           </Text>
@@ -456,7 +495,7 @@ export const AboutUs = React.memo(() => {
                             Директор ГУЗ «МИАЦ»
                           </Text>
                         </VStack>
-                      </HStack>
+                      </Stack>
                     </VStack>
                   </VStack>
                   <VStack w="full" align="start" p={0} m={0}>
@@ -465,8 +504,9 @@ export const AboutUs = React.memo(() => {
                     </Text>
                     <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
                     <VStack w="full" align="start" justify="start">
-                      <HStack
-                        align="start"
+                      <Stack
+                        direction={isLargerThan530 ? 'row' : 'column'}
+                        align={isLargerThan530 ? 'start' : 'center'}
                         justify="start"
                         marginTop="25px"
                         p={2}
@@ -474,13 +514,8 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image
-                          src={Erofeev}
-                          w={['100px', '160px', '200px']}
-                          h={['100px', '160px', '200px']}
-                          borderRadius={5}
-                        />
-                        <VStack align="start" px="20px">
+                        <Image src={Erofeev} w={['160px', '200px']} h={['160px', '200px']} borderRadius={5} />
+                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
                           <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Ерофеев Сергей Александрович</b>
                           </Text>
@@ -488,11 +523,12 @@ export const AboutUs = React.memo(() => {
                             Исполнительный директор
                           </Text>
                         </VStack>
-                      </HStack>
+                      </Stack>
                     </VStack>
                     <VStack w="full" align="start" justify="start">
-                      <HStack
-                        align="start"
+                      <Stack
+                        direction={isLargerThan530 ? 'row' : 'column'}
+                        align={isLargerThan530 ? 'start' : 'center'}
                         justify="start"
                         marginTop="25px"
                         p={2}
@@ -500,13 +536,8 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <Image
-                          src={andronova}
-                          w={['100px', '160px', '200px']}
-                          h={['100px', '160px', '200px']}
-                          borderRadius={5}
-                        />
-                        <VStack align="start" px="20px">
+                        <Image src={andronova} w={['160px', '200px']} h={['160px', '200px']} borderRadius={5} />
+                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
                           <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Андронова Ольга Александровна</b>
                           </Text>
@@ -514,11 +545,16 @@ export const AboutUs = React.memo(() => {
                             Финансовый директор - главный бухгалтер
                           </Text>
                         </VStack>
-                      </HStack>
+                      </Stack>
                     </VStack>
-                    <VStack w="full" align="start" justify="start">
-                      <HStack
-                        align="start"
+                    <VStack
+                      w="full"
+                      align={isLargerThan530 ? 'start' : 'center'}
+                      justify={isLargerThan530 ? 'start' : 'center'}
+                    >
+                      <Stack
+                        direction={isLargerThan530 ? 'row' : 'column'}
+                        align={isLargerThan530 ? 'start' : 'center'}
                         justify="start"
                         marginTop="25px"
                         p={2}
@@ -526,8 +562,10 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <BsFillPersonFill size="200px" color="white" />
-                        <VStack align="start" px="20px">
+                        <Box minW="200px">
+                          <BsFillPersonFill size="200px" color="white" />
+                        </Box>
+                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
                           <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Горлов Сергей Петрович </b>
                           </Text>
@@ -535,11 +573,16 @@ export const AboutUs = React.memo(() => {
                             Директор департамента развития отрасли информационных технологий
                           </Text>
                         </VStack>
-                      </HStack>
+                      </Stack>
                     </VStack>
-                    <VStack w="full" align="start" justify="start">
-                      <HStack
-                        align="start"
+                    <VStack
+                      w="full"
+                      align={isLargerThan530 ? 'start' : 'center'}
+                      justify={isLargerThan530 ? 'start' : 'center'}
+                    >
+                      <Stack
+                        direction={isLargerThan530 ? 'row' : 'column'}
+                        align={isLargerThan530 ? 'start' : 'center'}
                         justify="start"
                         marginTop="25px"
                         p={2}
@@ -547,8 +590,10 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <BsFillPersonFill size="200px" color="white" />
-                        <VStack align="start" px="20px">
+                        <Box minW="200px">
+                          <BsFillPersonFill size="200px" color="white" />
+                        </Box>
+                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
                           <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Филиппова Ольга Вячеславовна</b>
                           </Text>
@@ -556,11 +601,12 @@ export const AboutUs = React.memo(() => {
                             Главный специалист департамента развития отрасли информационных технологий
                           </Text>
                         </VStack>
-                      </HStack>
+                      </Stack>
                     </VStack>
-                    <VStack w="full" align="start" justify="start">
-                      <HStack
-                        align="start"
+                    <VStack w="full" align={isLargerThan530 ? 'start' : 'center'} justify="start">
+                      <Stack
+                        direction={isLargerThan530 ? 'row' : 'column'}
+                        align={isLargerThan530 ? 'start' : 'center'}
                         justify="start"
                         marginTop="25px"
                         p={2}
@@ -568,8 +614,10 @@ export const AboutUs = React.memo(() => {
                         backgroundColor="brand.beige"
                         w="full"
                       >
-                        <BsFillPersonFill size="200px" color="white" />
-                        <VStack align="start" px="20px">
+                        <Box minW="160px">
+                          <BsFillPersonFill size="200px" color="white" />
+                        </Box>
+                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
                           <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
                             <b>Халимова Руфина Расиховна</b>
                           </Text>
@@ -577,7 +625,7 @@ export const AboutUs = React.memo(() => {
                             Пресс-служба
                           </Text>
                         </VStack>
-                      </HStack>
+                      </Stack>
                     </VStack>
                   </VStack>
                 </AccordionPanel>
@@ -623,9 +671,9 @@ export const AboutUs = React.memo(() => {
                   <AccordionIcon />
                 </AccordionButton>
                 <AccordionPanel>
-                  <VStack w="full" spacing={10}>
+                  <VStack w="full" spacing={[5, 10]}>
                     <VStack w="full" justify="start" align="start">
-                      <HStack>
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
                         <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Полное наименование:
                         </Text>
@@ -649,8 +697,8 @@ export const AboutUs = React.memo(() => {
                             Фонд развития информационных технологий Ульяновской области
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
-                      <HStack>
+                      </Stack>
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
                         <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Сокращённое наименование:
                         </Text>
@@ -674,8 +722,8 @@ export const AboutUs = React.memo(() => {
                             ФРИТУО
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
-                      <HStack>
+                      </Stack>
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
                         <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Полное наименование Фонда на английском языке:
                         </Text>
@@ -699,8 +747,8 @@ export const AboutUs = React.memo(() => {
                             Ulyanovsk Region Information Technology Development Fund
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
-                      <HStack>
+                      </Stack>
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
                         <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Краткое наименование Фонда на английском языке:
                         </Text>
@@ -724,10 +772,10 @@ export const AboutUs = React.memo(() => {
                             URITDF
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
+                      </Stack>
                     </VStack>
                     <VStack w="full" align="start">
-                      <HStack>
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
                         <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Адрес юридический:
                         </Text>
@@ -751,7 +799,7 @@ export const AboutUs = React.memo(() => {
                             432017, г. Ульяновск, улица Минаева, дом 11, офис 305
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
+                      </Stack>
                     </VStack>
                     <VStack w="full" align="start">
                       <HStack>
@@ -831,7 +879,7 @@ export const AboutUs = React.memo(() => {
                       </HStack>
                     </VStack>
                     <VStack w="full" align="start">
-                      <HStack align="start">
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
                         <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Банк:
                         </Text>
@@ -857,8 +905,8 @@ export const AboutUs = React.memo(() => {
                             л/с 41203136D05)
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
-                      <HStack>
+                      </Stack>
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
                         <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Расчётный счёт:
                         </Text>
@@ -882,7 +930,7 @@ export const AboutUs = React.memo(() => {
                             №40102810645370000061
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
+                      </Stack>
                       <HStack>
                         <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           БИК:
@@ -908,7 +956,7 @@ export const AboutUs = React.memo(() => {
                           </Text>
                         </CopyToClipboard>
                       </HStack>
-                      <HStack>
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
                         <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Казначейский счет:
                         </Text>
@@ -932,10 +980,10 @@ export const AboutUs = React.memo(() => {
                             03226643730000006800
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
+                      </Stack>
                     </VStack>
                     <VStack w="full" align="start">
-                      <HStack>
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
                         <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="bold">
                           Исполнительный директор:
                         </Text>
@@ -959,7 +1007,7 @@ export const AboutUs = React.memo(() => {
                             Ерофеев Сергей Александрович действует на основании Устава
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
+                      </Stack>
                     </VStack>
                   </VStack>
                 </AccordionPanel>
