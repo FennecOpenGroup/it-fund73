@@ -7,11 +7,12 @@ import ul_logo from '../../assets/ul-logo.svg';
 
 export const Footer = React.memo(() => {
   const [isLargerThan820] = useMediaQuery('(min-width: 820px)');
+  const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan710] = useMediaQuery('(min-width: 430px)');
 
   return (
     <Stack
-      px="10%"
+      px={isLargerThan770 ? '10%' : '5%'}
       w="full"
       minH="160px"
       justify="center"
@@ -56,11 +57,11 @@ export const Footer = React.memo(() => {
         <HStack>
           <Text>Создан</Text>
           <Link href="https://siiidr.github.io/FennecOpenGroup/" isExternal>
-            <Image src={fog_logo} alt="itfund" loading="lazy" w={['12px', '25px']} htmlWidth="full" htmlHeight="full" />
+            <Image src={fog_logo} alt="itfund" loading="lazy" w="25px" htmlWidth="full" htmlHeight="full" />
           </Link>
           <Text>при поддержке</Text>
           <Link href="https://ulgov.ru/" isExternal>
-            <Image src={ul_logo} alt="itfund" loading="lazy" w={['15px', '30px']} htmlWidth="full" htmlHeight="full" />
+            <Image src={ul_logo} alt="itfund" loading="lazy" w="30px" htmlWidth="full" htmlHeight="full" />
           </Link>
         </HStack>
         <Text>{`2016 - ${new Date().getFullYear()}`}</Text>

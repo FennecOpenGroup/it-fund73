@@ -136,10 +136,7 @@ export const AboutUs = React.memo(() => {
                       align={isLargerThan530 ? 'start' : 'center'}
                     >
                       <VStack minW={['3em', '4em', '5em']}>
-                        <AiOutlineApartment
-                          size={isLargerThan770 ? '4em' : isLargerThan480 ? '3em' : '2em'}
-                          color="#7775ed"
-                        />
+                        <AiOutlineApartment size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
                       </VStack>
                       <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Содействие развитию информационных технологий на территории Ульяновской области.
@@ -151,10 +148,7 @@ export const AboutUs = React.memo(() => {
                       align={isLargerThan530 ? 'start' : 'center'}
                     >
                       <VStack minW={['3em', '4em', '5em']}>
-                        <MdEmojiPeople
-                          size={isLargerThan770 ? '4em' : isLargerThan480 ? '3em' : '2em'}
-                          color="#7775ed"
-                        />
+                        <MdEmojiPeople size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
                       </VStack>
                       <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Развитие человеческого потенциала отрасли информационных технологий.
@@ -166,7 +160,7 @@ export const AboutUs = React.memo(() => {
                       align={isLargerThan530 ? 'start' : 'center'}
                     >
                       <VStack minW={['3em', '4em', '5em']}>
-                        <MdBiotech size={isLargerThan770 ? '4em' : isLargerThan480 ? '3em' : '2em'} color="#7775ed" />
+                        <MdBiotech size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
                       </VStack>
                       <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Создание условий для появления передовых технологий, организаций, методов обучения федерального
@@ -179,10 +173,7 @@ export const AboutUs = React.memo(() => {
                       align={isLargerThan530 ? 'start' : 'center'}
                     >
                       <VStack minW={['3em', '4em', '5em']}>
-                        <GiVintageRobot
-                          size={isLargerThan770 ? '4em' : isLargerThan480 ? '3em' : '2em'}
-                          color="#7775ed"
-                        />
+                        <GiVintageRobot size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
                       </VStack>
                       <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Развитие проектов, осуществляемых в форме или посредством информационных технологий,
@@ -197,7 +188,7 @@ export const AboutUs = React.memo(() => {
                       align={isLargerThan530 ? 'start' : 'center'}
                     >
                       <VStack minW={['3em', '4em', '5em']}>
-                        <MdCellTower size={isLargerThan770 ? '4em' : isLargerThan480 ? '3em' : '2em'} color="#7775ed" />
+                        <MdCellTower size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
                       </VStack>
                       <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} w="full" align="start">
                         Развитие Интернет-предпринимательства и экосистемы Интернет-предпринимательства.
@@ -440,10 +431,10 @@ export const AboutUs = React.memo(() => {
                       >
                         <Image src={kuznezov} w={['160px', '200px']} h={['160px', '200px']} borderRadius={5} />
                         <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']} align="center">
                             <b>Кузнецов Виталий Евгеньевич</b>
                           </Text>
-                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} align="center">
                             Министр Ульяновской области
                           </Text>
                         </VStack>
@@ -464,10 +455,10 @@ export const AboutUs = React.memo(() => {
                           <BsFillPersonFill size="200px" color="white" />
                         </Box>
                         <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']} align="center">
                             <b>Ягфаров Олег Модорисович</b>
                           </Text>
-                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} align="center">
                             Директор ОГКУ «Правительство для граждан»
                           </Text>
                         </VStack>
@@ -488,10 +479,10 @@ export const AboutUs = React.memo(() => {
                           <BsFillPersonFill size="200px" color="white" />
                         </Box>
                         <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']} align="center">
                             <b>Механюк Александр Владимирович</b>
                           </Text>
-                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} align="center">
                             Директор ГУЗ «МИАЦ»
                           </Text>
                         </VStack>
@@ -516,10 +507,10 @@ export const AboutUs = React.memo(() => {
                       >
                         <Image src={Erofeev} w={['160px', '200px']} h={['160px', '200px']} borderRadius={5} />
                         <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']} align="center">
                             <b>Ерофеев Сергей Александрович</b>
                           </Text>
-                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} align="center">
                             Исполнительный директор
                           </Text>
                         </VStack>
@@ -538,10 +529,10 @@ export const AboutUs = React.memo(() => {
                       >
                         <Image src={andronova} w={['160px', '200px']} h={['160px', '200px']} borderRadius={5} />
                         <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']} align="center">
                             <b>Андронова Ольга Александровна</b>
                           </Text>
-                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} align="center">
                             Финансовый директор - главный бухгалтер
                           </Text>
                         </VStack>
@@ -566,10 +557,10 @@ export const AboutUs = React.memo(() => {
                           <BsFillPersonFill size="200px" color="white" />
                         </Box>
                         <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
-                            <b>Горлов Сергей Петрович </b>
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']} align="center">
+                            <b>Горлов Сергей Петрович</b>
                           </Text>
-                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} align="center">
                             Директор департамента развития отрасли информационных технологий
                           </Text>
                         </VStack>
@@ -594,10 +585,10 @@ export const AboutUs = React.memo(() => {
                           <BsFillPersonFill size="200px" color="white" />
                         </Box>
                         <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']} align="center">
                             <b>Филиппова Ольга Вячеславовна</b>
                           </Text>
-                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} align="center">
                             Главный специалист департамента развития отрасли информационных технологий
                           </Text>
                         </VStack>
@@ -618,10 +609,10 @@ export const AboutUs = React.memo(() => {
                           <BsFillPersonFill size="200px" color="white" />
                         </Box>
                         <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']}>
+                          <Text color="brand.dark" fontSize={['lg', 'xl', '2xl']} align="center">
                             <b>Халимова Руфина Расиховна</b>
                           </Text>
-                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} align="center">
                             Пресс-служба
                           </Text>
                         </VStack>
@@ -650,7 +641,7 @@ export const AboutUs = React.memo(() => {
                         </Text>
                         <HStack spacing={0} pl={4}>
                           <BsFiletypeDocx size="1.5em" />
-                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                          <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} align="end">
                             106.61 КБ
                           </Text>
                         </HStack>
