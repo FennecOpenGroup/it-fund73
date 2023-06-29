@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { BiShow } from 'react-icons/bi';
 import { useParams } from 'react-router';
+import { useSelector } from 'react-redux';
 
 import { Emotions } from '../../components/emotions/Emotions';
 import { Footer } from '../../components/footer/Footer';
@@ -19,6 +20,7 @@ import { TagsEnum } from '../../enums/TagsEnum';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
 import { calculateReadingTime } from '../../textfunctions/reattime/readtime';
 import { ADRESS, ROUTE_MAINPAGE, ROUTE_NEWS } from '../../constants/routes';
+import { IRootState } from '../../interfaces/IRootState';
 
 export const News = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -32,6 +34,8 @@ export const News = React.memo(() => {
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan680] = useMediaQuery('(min-width: 680px)');
   const [isLargerThan395] = useMediaQuery('(min-width: 395px)');
+
+  const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   const newsData = [
     {
@@ -109,7 +113,7 @@ export const News = React.memo(() => {
           <HStack w="full" align="flex-start">
             <VStack w="full" maxW={isLargerThan1030 ? ['60%', '80%'] : '100%'} pt={4} pl={2} pr={5} align="start">
               <Text
-                color="brand.dark"
+                color={themeIsDark ? 'white' : 'brand.dark'}
                 fontSize={['lg', 'xl', '2xl']}
                 fontWeight="bold"
                 align={isLargerThan1030 ? 'start' : 'center'}

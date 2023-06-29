@@ -18,8 +18,8 @@ import {
   MenuItem,
 } from '@chakra-ui/react';
 import React, { Dispatch } from 'react';
-import { HiOutlineMoon } from 'react-icons/hi';
-import { BsEye, BsYoutube } from 'react-icons/bs';
+import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi';
+import { BsYoutube } from 'react-icons/bs';
 import { SlSocialVkontakte } from 'react-icons/sl';
 import { FaTelegram } from 'react-icons/fa';
 import { SiOdnoklassniki } from 'react-icons/si';
@@ -48,15 +48,19 @@ import {
   coreSetGovernmentNews,
   coreSetITNews,
   coreSetSearchDraft,
+  coreSetTheme,
 } from '../../actions/coreActions';
 
 export const Header = React.memo(() => {
   const dispatch = useDispatch<Dispatch<RootActions>>();
+
   const it = useSelector((state: IRootState) => state.core.it);
   const education = useSelector((state: IRootState) => state.core.education);
   const business = useSelector((state: IRootState) => state.core.business);
   const government = useSelector((state: IRootState) => state.core.government);
   const search = useSelector((state: IRootState) => state.core.search);
+  const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
+
   const [isLargerThan1090] = useMediaQuery('(min-width: 1090px)');
   const [isLargerThan905] = useMediaQuery('(min-width: 905px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
@@ -78,10 +82,14 @@ export const Header = React.memo(() => {
         <VStack align="start">
           <HStack w="full">
             <Tooltip label="Сменить тему">
-              <Button variant="brand-icon" leftIcon={<HiOutlineMoon size="15px" />} iconSpacing={0} size="xs" p={0} />
-            </Tooltip>
-            <Tooltip label="Для слабовидящих">
-              <Button variant="brand-icon" leftIcon={<BsEye size="15px" />} iconSpacing={0} size="xs" p={0} />
+              <Button
+                variant="brand-icon"
+                leftIcon={themeIsDark ? <HiOutlineSun size="15px" /> : <HiOutlineMoon size="15px" />}
+                onClick={() => dispatch(coreSetTheme(!themeIsDark))}
+                iconSpacing={0}
+                size="xs"
+                p={0}
+              />
             </Tooltip>
             <Tooltip label="ВКонтакте">
               <Button

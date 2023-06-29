@@ -83,6 +83,7 @@ export const Main = React.memo(() => {
   const business = useSelector((state: IRootState) => state.core.business);
   const government = useSelector((state: IRootState) => state.core.government);
   const search = useSelector((state: IRootState) => state.core.search);
+  const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
@@ -98,11 +99,17 @@ export const Main = React.memo(() => {
         <title>it-fund | Главная</title>
       </Helmet>
       <Header />
-      <VStack minH={`${height}px`} align="start" justify="start" px={isLargerThan770 ? '10%' : '5%'}>
+      <VStack
+        minH={`${height}px`}
+        align="start"
+        justify="start"
+        px={isLargerThan770 ? '10%' : '5%'}
+        bg={themeIsDark ? '#5F5F5F' : 'white'}
+      >
         <VStack
           w="full"
           minH={`${height}px`}
-          bg="brand.beige"
+          bg={themeIsDark ? '#313131' : 'brand.beige'}
           pl={[2, 3, 4]}
           pb={[4, 6]}
           boxShadow="5px 0px rgb(3,0,15,15%)"
@@ -149,9 +156,16 @@ export const Main = React.memo(() => {
                 maxW={isLargerThan1025 ? '20%' : '35%'}
                 spacing={2}
                 borderLeft="2px"
+                borderColor={themeIsDark ? 'white' : 'brand.dark'}
                 minH={`${height}px`}
               >
-                <Text w="full" color="brand.dark" fontSize={['lg', 'xl', '2xl']} borderBottom="2px" align="center">
+                <Text
+                  w="full"
+                  color={themeIsDark ? 'white' : 'brand.dark'}
+                  fontSize={['lg', 'xl', '2xl']}
+                  borderBottom="2px"
+                  align="center"
+                >
                   Новости
                 </Text>
                 <Text color="#BBBBBB" fontSize={['xs', 'sm', 'md']} align="center">

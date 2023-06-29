@@ -16,14 +16,16 @@ export const NewsContent = React.memo(
     const [load, setLoad] = useState(false);
 
     const search = useSelector((state: IRootState) => state.core.search);
+    const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
     const [isLargerThan590] = useMediaQuery('(min-width: 590px)');
 
     const highlightFontSize = isLargerThan590 ? '18px' : '14px';
+    const highlightColor = themeIsDark ? 'white' : '#1a1a1a';
 
     const Highlight = ({ text = '', highlight = '' }) => {
       if (!highlight.trim()) {
-        return <span style={{ color: '#1a1a1a', fontWeight: '700', fontSize: highlightFontSize }}>{text}</span>;
+        return <span style={{ color: highlightColor, fontWeight: '700', fontSize: highlightFontSize }}>{text}</span>;
       }
       const regex = new RegExp(`(${highlight})`, 'gi');
       const parts = text.split(regex);
@@ -61,7 +63,7 @@ export const NewsContent = React.memo(
           {load === false && (
             <Skeleton w="full" minH={`${height / 4}px`} border="5px" startColor="#BBBBBB" endColor="#e5e5e5" />
           )}
-          <Stack border="1px" w="full" m={0} p={0} />
+          <Stack border="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
           <Stack align="start" w="full" m={1}>
             {name_content ? (
               <Highlight text={name_content} highlight={search} />
@@ -69,7 +71,7 @@ export const NewsContent = React.memo(
               <Skeleton w="full" minH={`${height / 16}px`} border="5px" startColor="#BBBBBB" endColor="#e5e5e5" />
             )}
           </Stack>
-          <Stack border="1px" w="full" m={0} p={0} />
+          <Stack border="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
         </VStack>
         <HStack align="center" justify="center" w="full">
           {isLargerThan590 ? (

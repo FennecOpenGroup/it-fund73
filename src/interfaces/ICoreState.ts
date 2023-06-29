@@ -11,5 +11,6 @@ export interface ICoreState extends ModalsEnumState {
   education: boolean;
   business: boolean;
   government: boolean;
+  themeIsDark: boolean;
   search?: string;
 }
