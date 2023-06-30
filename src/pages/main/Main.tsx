@@ -104,12 +104,12 @@ export const Main = React.memo(() => {
         align="start"
         justify="start"
         px={isLargerThan770 ? '10%' : '5%'}
-        bg={themeIsDark ? '#5F5F5F' : 'white'}
+        bg={themeIsDark ? '#121212' : 'white'}
       >
         <VStack
           w="full"
           minH={`${height}px`}
-          bg={themeIsDark ? '#313131' : 'brand.beige'}
+          bg={themeIsDark ? '#242323' : 'brand.beige'}
           pl={[2, 3, 4]}
           pb={[4, 6]}
           boxShadow="5px 0px rgb(3,0,15,15%)"

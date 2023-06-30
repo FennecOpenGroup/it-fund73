@@ -21,6 +21,7 @@ import {
 import React, { useEffect, useState, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import CountUp from 'react-countup';
+import { useSelector } from 'react-redux';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
@@ -31,6 +32,8 @@ import nord from '../../assets/companies/nord.svg';
 import IBS from '../../assets/companies/IBS.svg';
 import advanshop from '../../assets/companies/advanshop.svg';
 import scheme_accreditation from '../../assets/schemes/scheme_accreditation.svg';
+import scheme_accreditation_dark from '../../assets/schemes/scheme_accreditation_dark.svg';
+import { IRootState } from '../../interfaces/IRootState';
 
 export const Companies = React.memo(() => {
   const [support, setSupport] = useState(false);
@@ -46,6 +49,7 @@ export const Companies = React.memo(() => {
   const refSupport = useRef<HTMLDivElement>(null);
   const refAccreditaion = useRef<HTMLDivElement>(null);
   const refCompany = useRef<HTMLDivElement>(null);
+  const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan960] = useMediaQuery('(min-width: 960px)');
@@ -61,7 +65,7 @@ export const Companies = React.memo(() => {
         <title>it-fund | Что происходит в отрасли?</title>
       </Helmet>
       <Header />
-      <VStack justify="center" px={isLargerThan770 ? '10%' : '5%'}>
+      <VStack justify="center" px={isLargerThan770 ? '10%' : '5%'} bg={themeIsDark ? '#242323' : 'white'}>
         <Text
           color="brand.blue"
           fontSize={['lg', 'xl', '2xl', '4xl']}
@@ -81,6 +85,7 @@ export const Companies = React.memo(() => {
         >
           <Button
             variant="brand-link"
+            color={themeIsDark ? 'white' : 'brand.dark'}
             fontSize={['sm', 'md', 'lg']}
             py={2}
             onMouseEnter={() => setSupport(true)}
@@ -91,6 +96,7 @@ export const Companies = React.memo(() => {
           </Button>
           <Button
             variant="brand-link"
+            color={themeIsDark ? 'white' : 'brand.dark'}
             fontSize={['sm', 'md', 'lg']}
             py={2}
             onMouseEnter={() => setAccreditation(true)}
@@ -101,6 +107,7 @@ export const Companies = React.memo(() => {
           </Button>
           <Button
             variant="brand-link"
+            color={themeIsDark ? 'white' : 'brand.dark'}
             fontSize={['sm', 'md', 'lg']}
             py={2}
             onMouseEnter={() => setCompany(true)}
@@ -224,12 +231,12 @@ export const Companies = React.memo(() => {
             </HStack>
           </Grid>
           <Accordion allowMultiple w="full" m={0}>
-            <AccordionItem>
+            <AccordionItem color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionButton>
                 <Text
                   w="full"
                   align="start"
-                  color={support ? 'brand.blue' : 'brand.dark'}
+                  color={support ? 'brand.blue' : themeIsDark ? 'white' : 'brand.dark'}
                   fontWeight="800"
                   fontSize={['lg', 'xl', '3xl']}
                   textTransform="uppercase"
@@ -240,11 +247,21 @@ export const Companies = React.memo(() => {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel pb={4}>
-                <VStack px={isLargerThan770 ? 6 : 2} w="full" align="start">
-                  <Text color="brand.dark" fontSize={['sm', 'lg', '2xl']} fontWeight="900" textTransform="uppercase">
+                <VStack
+                  px={isLargerThan770 ? 6 : 2}
+                  w="full"
+                  align="start"
+                  color={themeIsDark ? 'white' : 'brand.dark'}
+                >
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontSize={['sm', 'lg', '2xl']}
+                    fontWeight="900"
+                    textTransform="uppercase"
+                  >
                     Региональный аспект
                   </Text>
-                  <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
+                  <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
                   <VStack w="full" align="center" py={3}>
                     <UnorderedList>
                       <ListItem>
@@ -265,7 +282,7 @@ export const Companies = React.memo(() => {
                         <Link
                           fontWeight="900"
                           fontSize="xm"
-                          color="brand.dark"
+                          color={themeIsDark ? 'white' : 'brand.dark'}
                           href="http://energy.ulregion.ru/wp-content/uploads/2023/04/12-04-2023_09-08-58.zip"
                         >
                           Документация
@@ -280,13 +297,18 @@ export const Companies = React.memo(() => {
                       </ListItem>
                     </UnorderedList>
                   </VStack>
-                  <Text color="brand.dark" fontSize={['sm', 'lg', '2xl']} fontWeight="900" textTransform="uppercase">
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontSize={['sm', 'lg', '2xl']}
+                    fontWeight="900"
+                    textTransform="uppercase"
+                  >
                     Федеральные меры поддержки
                   </Text>
-                  <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
+                  <Stack borderTop="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
                   <VStack w="full" px={4} align="start">
                     <HStack spacing={2}>
-                      <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="900">
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']} fontWeight="900">
                         Налоговые льготы:
                       </Text>
                     </HStack>
@@ -295,7 +317,7 @@ export const Companies = React.memo(() => {
                       <ListItem>Освобождение от НДС, если ПО включён в реестр российского ПО;</ListItem>
                       <ListItem>Снижены тарифы страховых взносов с 14% до 7,6%;</ListItem>
                     </OrderedList>
-                    <Text color="brand.dark" fontSize={['sm', 'md', 'lg']} fontWeight="900">
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']} fontWeight="900">
                       Другие меры поддержки:
                     </Text>
                     <UnorderedList>
@@ -305,7 +327,7 @@ export const Companies = React.memo(() => {
                         <Link
                           fontWeight="900"
                           fontSize="xm"
-                          color="brand.dark"
+                          color={themeIsDark ? 'white' : 'brand.dark'}
                           isExternal
                           href="https://спроси.дом.рф/tag/mortgage/"
                         >
@@ -323,7 +345,7 @@ export const Companies = React.memo(() => {
                         <Link
                           fontWeight="900"
                           fontSize="xm"
-                          color="brand.dark"
+                          color={themeIsDark ? 'white' : 'brand.dark'}
                           isExternal
                           href="https://digital.gov.ru/ru/activity/directions/942/"
                         >
@@ -359,13 +381,13 @@ export const Companies = React.memo(() => {
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
-          <Accordion allowMultiple w="full" m={0}>
+          <Accordion allowMultiple w="full" m={0} color={themeIsDark ? 'white' : 'brand.dark'}>
             <AccordionItem>
               <AccordionButton>
                 <Text
                   w="full"
                   align="start"
-                  color={accreditation ? 'brand.blue' : 'brand.dark'}
+                  color={accreditation ? 'brand.blue' : themeIsDark ? 'white' : 'brand.dark'}
                   fontWeight="800"
                   fontSize={['lg', 'xl', '3xl']}
                   textTransform="uppercase"
@@ -377,15 +399,15 @@ export const Companies = React.memo(() => {
               </AccordionButton>
               <AccordionPanel pb={4}>
                 <VStack px={6} w="full" align="start">
-                  <Text color="brand.dark" fontSize={['sm', 'lg', '2xl']} fontWeight="900">
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'lg', '2xl']} fontWeight="900">
                     Дерево решений
                   </Text>
-                  <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
+                  <Stack borderTop="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
                 </VStack>
                 <VStack w="full" align="center" py={3}>
-                  <Image src={scheme_accreditation} />
+                  <Image src={themeIsDark ? scheme_accreditation_dark : scheme_accreditation} />
                 </VStack>
-                <Stack borderTop="1px" borderColor="brand.dark" w="full" mb={2} p={0} />
+                <Stack borderTop="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" mb={2} p={0} />
                 <Button
                   variant="brand-high"
                   fontSize={['xs', 'md', 'lg']}
@@ -399,13 +421,13 @@ export const Companies = React.memo(() => {
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
-          <Accordion allowMultiple w="full" m={0}>
+          <Accordion allowMultiple w="full" m={0} color={themeIsDark ? 'white' : 'brand.dark'}>
             <AccordionItem>
               <AccordionButton>
                 <Text
                   w="full"
                   align="start"
-                  color={company ? 'brand.blue' : 'brand.dark'}
+                  color={company ? 'brand.blue' : themeIsDark ? 'white' : 'brand.dark'}
                   fontWeight="800"
                   fontSize={['lg', 'xl', '3xl']}
                   textTransform="uppercase"

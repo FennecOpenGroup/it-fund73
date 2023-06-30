@@ -3,10 +3,12 @@ import { VStack, Text, Button, HStack, Stack, Spacer, Checkbox, useMediaQuery, G
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { useSelector } from 'react-redux';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
+import { IRootState } from '../../interfaces/IRootState';
 
 export const Education = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -17,6 +19,7 @@ export const Education = React.memo(() => {
   const [schoolboy, setSchoolboy] = useState(true);
   const [student, setStudent] = useState(false);
   const [specialist, setSpecialist] = useState(false);
+  const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,8 +31,8 @@ export const Education = React.memo(() => {
         <title>it-fund | Где получить образование?</title>
       </Helmet>
       <Header />
-      <VStack justify="start" px="10%">
-        <VStack w="full" pl={[2, 3, 4]} pb={[4, 5, 6]}>
+      <VStack justify="start" px="10%" bg={themeIsDark ? '#242323' : 'white'}>
+        <VStack w="full" pl={[2, 3, 4]} pb={[4, 5, 6]} bg={themeIsDark ? '#242323' : 'brand.beige'}>
           <Text
             color="brand.blue"
             fontSize={['lg', 'xl', '2xl', '4xl']}
@@ -99,17 +102,23 @@ export const Education = React.memo(() => {
                 >
                   Начинающий специалист
                 </Button>
-                <Stack border="1px" w="full" p={0} my={2} />
-                <Checkbox fontSize="xl" size="lg" defaultChecked>
+                <Stack border="1px" w="full" p={0} my={2} borderColor={themeIsDark ? 'white' : 'brand.dark'} />
+                <Checkbox fontSize="xl" size="lg" defaultChecked color={themeIsDark ? 'white' : 'brand.dark'}>
                   Платное
                 </Checkbox>
-                <Checkbox fontSize="xl" size="lg" defaultChecked>
+                <Checkbox fontSize="xl" size="lg" defaultChecked color={themeIsDark ? 'white' : 'brand.dark'}>
                   Бесплатное
                 </Checkbox>
               </VStack>
             ) : (
               <VStack w="full">
-                <Stack direction={isLargerThan610 ? 'row' : 'column'} w="full" align="center" justify="center">
+                <Stack
+                  direction={isLargerThan610 ? 'row' : 'column'}
+                  w="full"
+                  align="center"
+                  justify="center"
+                  borderColor={themeIsDark ? 'white' : 'brand.dark'}
+                >
                   <Button
                     variant="brand-high-white"
                     isActive={schoolboy}
@@ -153,12 +162,12 @@ export const Education = React.memo(() => {
                     Начинающий специалист
                   </Button>
                 </Stack>
-                <Stack border="1px" w="full" p={0} my={2} />
+                <Stack border="1px" w="full" p={0} my={2} borderColor={themeIsDark ? 'white' : 'brand.dark'} />
                 <HStack w="full" align="center" justify="center">
-                  <Checkbox fontSize="xl" size="lg" defaultChecked>
+                  <Checkbox color={themeIsDark ? 'white' : 'brand.dark'} fontSize="xl" size="lg" defaultChecked>
                     Платное
                   </Checkbox>
-                  <Checkbox fontSize="xl" size="lg" defaultChecked>
+                  <Checkbox color={themeIsDark ? 'white' : 'brand.dark'} fontSize="xl" size="lg" defaultChecked>
                     Бесплатное
                   </Checkbox>
                 </HStack>
@@ -170,7 +179,7 @@ export const Education = React.memo(() => {
               <GridItem>
                 <HStack spacing={[1, 2]}>
                   <InfoIcon color="yellow.500" />
-                  <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
                     Дополнительное образование
                   </Text>
                 </HStack>
@@ -178,7 +187,7 @@ export const Education = React.memo(() => {
               <GridItem>
                 <HStack spacing={[1, 2]}>
                   <InfoIcon color="blue.500" />
-                  <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
                     Высшее образование
                   </Text>
                 </HStack>
@@ -186,7 +195,7 @@ export const Education = React.memo(() => {
               <GridItem>
                 <HStack spacing={[1, 2]}>
                   <InfoIcon color="green.500" />
-                  <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
                     Среднее образование
                   </Text>
                 </HStack>
@@ -194,7 +203,7 @@ export const Education = React.memo(() => {
               <GridItem>
                 <HStack spacing={[1, 2]}>
                   <InfoIcon color="red.500" />
-                  <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
                     Подготовка к гос. экзаменам
                   </Text>
                 </HStack>
@@ -205,13 +214,13 @@ export const Education = React.memo(() => {
             <VStack w="full" align="start">
               <HStack spacing={[1, 2]}>
                 <InfoIcon color="yellow.500" />
-                <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
                   Дополнительное образование
                 </Text>
               </HStack>
               <HStack spacing={[1, 2]}>
                 <InfoIcon color="blue.500" />
-                <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
                   Высшее образование
                 </Text>
               </HStack>
@@ -221,19 +230,19 @@ export const Education = React.memo(() => {
             <VStack w="full" align="start">
               <HStack spacing={[1, 2]}>
                 <InfoIcon color="yellow.500" />
-                <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
                   Дополнительное образование
                 </Text>
               </HStack>
               <HStack spacing={[1, 2]}>
                 <InfoIcon color="blue.500" />
-                <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
                   Высшее образование
                 </Text>
               </HStack>
               <HStack spacing={[1, 2]}>
                 <InfoIcon color="red.500" />
-                <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
                   Работа
                 </Text>
               </HStack>
@@ -241,7 +250,7 @@ export const Education = React.memo(() => {
           )}
         </VStack>
       </VStack>
-      <Spacer minH={`${height / 5}px`} />
+      <Spacer minH={`${height / 5}px`} bg={themeIsDark ? '#121212' : 'white'} />
       <Footer />
     </>
   );

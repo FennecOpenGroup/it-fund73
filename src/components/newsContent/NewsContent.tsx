@@ -21,7 +21,7 @@ export const NewsContent = React.memo(
     const [isLargerThan590] = useMediaQuery('(min-width: 590px)');
 
     const highlightFontSize = isLargerThan590 ? '18px' : '14px';
-    const highlightColor = themeIsDark ? 'white' : '#1a1a1a';
+    const highlightColor = themeIsDark ? 'white' : '#121212';
 
     const Highlight = ({ text = '', highlight = '' }) => {
       if (!highlight.trim()) {
@@ -49,7 +49,13 @@ export const NewsContent = React.memo(
 
     return (
       <VStack w="full">
-        <VStack w="full" cursor="pointer" as={RouterLink} to={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${short_name}`}>
+        <VStack
+          w="full"
+          cursor="pointer"
+          as={RouterLink}
+          to={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${short_name}`}
+          
+        >
           <Image
             src={src_content}
             w={load ? 'full' : '0px'}

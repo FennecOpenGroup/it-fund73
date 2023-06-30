@@ -32,6 +32,7 @@ export const Calendar = React.memo(() => {
   const { height } = useWindowDimensions();
 
   const refCalendar = useRef<HTMLDivElement>(null);
+  const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   const [january, setJanuary] = useState(false);
   const [february, setFebruary] = useState(false);
@@ -87,10 +88,10 @@ export const Calendar = React.memo(() => {
         <title>it-fund | Когда будут мероприятия?</title>
       </Helmet>
       <Header />
-      <VStack justify="start" px={isLargerThan770 ? '10%' : '5%'}>
+      <VStack justify="start" px={isLargerThan770 ? '10%' : '5%'} bg={themeIsDark ? '#242323' : 'white'}>
         <VStack w="full" p={[1, 2, 3]}>
           <Stack direction={isLargerThan620 ? 'row' : 'column'} w="full" justify="center" align="center" pr={[1, 2]}>
-            <Text color="brand.dark" fontSize={['sm', 'md', 'lg']}>
+            <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
               Календарь мероприятий
             </Text>
             <Spacer />
@@ -99,11 +100,27 @@ export const Calendar = React.memo(() => {
                 rightIcon={isCalenderNewDateSelect ? <MinusIcon /> : <AddIcon />}
                 onClick={handleCalenderNewDateClick}
                 fontSize={['sm', 'md', 'lg']}
+                bg={themeIsDark ? '#121212' : 'white'}
+                color={themeIsDark ? 'white' : 'brand.dark'}
+                _hover={{
+                  bg: 'brand.blue',
+                }}
               >
                 Предложить мероприятие
               </Button>
               <Menu>
-                <MenuButton h="48px" px={[1, 2, 4]} py={2} as={Button} rightIcon={<BsChevronDown />}>
+                <MenuButton
+                  h="48px"
+                  px={[1, 2, 4]}
+                  py={2}
+                  as={Button}
+                  rightIcon={<BsChevronDown />}
+                  bg={themeIsDark ? '#121212' : 'white'}
+                  color={themeIsDark ? 'white' : 'brand.dark'}
+                  _hover={{
+                    bg: 'brand.blue',
+                  }}
+                >
                   {year}
                 </MenuButton>
                 <MenuList>
@@ -121,8 +138,9 @@ export const Calendar = React.memo(() => {
             minH={`${height / 2}px`}
             border="2px"
             borderRadius="5px"
+            borderColor={themeIsDark ? 'gray' : 'brand.dark'}
             justify="center"
-            bg="brand.beige"
+            bg={themeIsDark ? '#121212' : 'brand.beige'}
             ref={refCalendar}
           >
             <Text color="#BBBBBB" fontSize={['xs', 'lg', '2xl']} fontWeight="bold" align="center">
@@ -144,6 +162,8 @@ export const Calendar = React.memo(() => {
                 <GridItem>
                   <Button
                     variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
                     onClick={() => changeMounth('january')}
@@ -151,7 +171,12 @@ export const Calendar = React.memo(() => {
                       color: 'white',
                       bg: 'brand.blue',
                       border: '2px',
+                      borderColor: 'transparent',
                       borderRadius: '5px',
+                    }}
+                    _hover={{
+                      borderColor: 'transparent',
+                      bg: 'brand.blue',
                     }}
                     isActive={january}
                   >
@@ -173,6 +198,8 @@ export const Calendar = React.memo(() => {
                 <GridItem>
                   <Button
                     variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
                     onClick={() => changeMounth('february')}
@@ -180,7 +207,12 @@ export const Calendar = React.memo(() => {
                       color: 'white',
                       bg: 'brand.blue',
                       border: '2px',
+                      borderColor: 'transparent',
                       borderRadius: '5px',
+                    }}
+                    _hover={{
+                      borderColor: 'transparent',
+                      bg: 'brand.blue',
                     }}
                     isActive={february}
                   >
@@ -202,6 +234,8 @@ export const Calendar = React.memo(() => {
                 <GridItem>
                   <Button
                     variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
                     onClick={() => changeMounth('march')}
@@ -209,7 +243,12 @@ export const Calendar = React.memo(() => {
                       color: 'white',
                       bg: 'brand.blue',
                       border: '2px',
+                      borderColor: 'transparent',
                       borderRadius: '5px',
+                    }}
+                    _hover={{
+                      borderColor: 'transparent',
+                      bg: 'brand.blue',
                     }}
                     isActive={march}
                   >
@@ -231,6 +270,8 @@ export const Calendar = React.memo(() => {
                 <GridItem>
                   <Button
                     variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
                     onClick={() => changeMounth('april')}
@@ -238,7 +279,12 @@ export const Calendar = React.memo(() => {
                       color: 'white',
                       bg: 'brand.blue',
                       border: '2px',
+                      borderColor: 'transparent',
                       borderRadius: '5px',
+                    }}
+                    _hover={{
+                      borderColor: 'transparent',
+                      bg: 'brand.blue',
                     }}
                     isActive={april}
                   >
@@ -260,6 +306,8 @@ export const Calendar = React.memo(() => {
                 <GridItem>
                   <Button
                     variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
                     onClick={() => changeMounth('may')}
@@ -267,7 +315,12 @@ export const Calendar = React.memo(() => {
                       color: 'white',
                       bg: 'brand.blue',
                       border: '2px',
+                      borderColor: 'transparent',
                       borderRadius: '5px',
+                    }}
+                    _hover={{
+                      borderColor: 'transparent',
+                      bg: 'brand.blue',
                     }}
                     isActive={may}
                   >
@@ -289,6 +342,8 @@ export const Calendar = React.memo(() => {
                 <GridItem>
                   <Button
                     variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
                     onClick={() => changeMounth('june')}
@@ -296,7 +351,12 @@ export const Calendar = React.memo(() => {
                       color: 'white',
                       bg: 'brand.blue',
                       border: '2px',
+                      borderColor: 'transparent',
                       borderRadius: '5px',
+                    }}
+                    _hover={{
+                      borderColor: 'transparent',
+                      bg: 'brand.blue',
                     }}
                     isActive={june}
                   >
@@ -318,6 +378,8 @@ export const Calendar = React.memo(() => {
                 <GridItem>
                   <Button
                     variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
                     onClick={() => changeMounth('july')}
@@ -325,7 +387,12 @@ export const Calendar = React.memo(() => {
                       color: 'white',
                       bg: 'brand.blue',
                       border: '2px',
+                      borderColor: 'transparent',
                       borderRadius: '5px',
+                    }}
+                    _hover={{
+                      borderColor: 'transparent',
+                      bg: 'brand.blue',
                     }}
                     isActive={july}
                   >
@@ -347,6 +414,8 @@ export const Calendar = React.memo(() => {
                 <GridItem>
                   <Button
                     variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
                     onClick={() => changeMounth('august')}
@@ -354,7 +423,12 @@ export const Calendar = React.memo(() => {
                       color: 'white',
                       bg: 'brand.blue',
                       border: '2px',
+                      borderColor: 'transparent',
                       borderRadius: '5px',
+                    }}
+                    _hover={{
+                      borderColor: 'transparent',
+                      bg: 'brand.blue',
                     }}
                     isActive={august}
                   >
@@ -376,6 +450,8 @@ export const Calendar = React.memo(() => {
                 <GridItem>
                   <Button
                     variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
                     onClick={() => changeMounth('september')}
@@ -383,7 +459,12 @@ export const Calendar = React.memo(() => {
                       color: 'white',
                       bg: 'brand.blue',
                       border: '2px',
+                      borderColor: 'transparent',
                       borderRadius: '5px',
+                    }}
+                    _hover={{
+                      borderColor: 'transparent',
+                      bg: 'brand.blue',
                     }}
                     isActive={september}
                   >
@@ -405,6 +486,8 @@ export const Calendar = React.memo(() => {
                 <GridItem>
                   <Button
                     variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
                     onClick={() => changeMounth('october')}
@@ -412,7 +495,12 @@ export const Calendar = React.memo(() => {
                       color: 'white',
                       bg: 'brand.blue',
                       border: '2px',
+                      borderColor: 'transparent',
                       borderRadius: '5px',
+                    }}
+                    _hover={{
+                      borderColor: 'transparent',
+                      bg: 'brand.blue',
                     }}
                     isActive={october}
                   >
@@ -434,6 +522,8 @@ export const Calendar = React.memo(() => {
                 <GridItem>
                   <Button
                     variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
                     onClick={() => changeMounth('november')}
@@ -441,7 +531,12 @@ export const Calendar = React.memo(() => {
                       color: 'white',
                       bg: 'brand.blue',
                       border: '2px',
+                      borderColor: 'transparent',
                       borderRadius: '5px',
+                    }}
+                    _hover={{
+                      borderColor: 'transparent',
+                      bg: 'brand.blue',
                     }}
                     isActive={november}
                   >
@@ -463,6 +558,8 @@ export const Calendar = React.memo(() => {
                 <GridItem>
                   <Button
                     variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
                     onClick={() => changeMounth('december')}
@@ -470,7 +567,12 @@ export const Calendar = React.memo(() => {
                       color: 'white',
                       bg: 'brand.blue',
                       border: '2px',
+                      borderColor: 'transparent',
                       borderRadius: '5px',
+                    }}
+                    _hover={{
+                      borderColor: 'transparent',
+                      bg: 'brand.blue',
                     }}
                     isActive={december}
                   >

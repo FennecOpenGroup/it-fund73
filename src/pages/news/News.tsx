@@ -108,8 +108,19 @@ export const News = React.memo(() => {
         <title>it-fund | Новости</title>
       </Helmet>
       <Header />
-      <VStack minH={`${height}px`} justify="center" px={isLargerThan770 ? '10%' : '5%'}>
-        <VStack w="full" bg="brand.beige" pl={[2, 3, 4]} pb={[4, 6]} boxShadow="5px 0px rgb(3,0,15,15%)">
+      <VStack
+        minH={`${height}px`}
+        justify="center"
+        px={isLargerThan770 ? '10%' : '5%'}
+        bg={themeIsDark ? '#121212' : 'white'}
+      >
+        <VStack
+          w="full"
+          bg={themeIsDark ? '#242323' : 'brand.beige'}
+          pl={[2, 3, 4]}
+          pb={[4, 6]}
+          boxShadow="5px 0px rgb(3,0,15,15%)"
+        >
           <HStack w="full" align="flex-start">
             <VStack w="full" maxW={isLargerThan1030 ? ['60%', '80%'] : '100%'} pt={4} pl={2} pr={5} align="start">
               <Text
@@ -120,8 +131,14 @@ export const News = React.memo(() => {
               >
                 {news_content?.name}
               </Text>
-              <Image src={news_content?.src} w="full" borderRadius="5px" objectFit="cover" />
-              <Stack border="1px" w="full" m={0} p={0} />
+              <Image
+                src={news_content?.src}
+                w="full"
+                borderRadius="5px"
+                objectFit="cover"
+                borderColor={themeIsDark ? 'white' : 'brand.dark'}
+              />
+              <Stack border="1px" w="full" m={0} p={0} borderColor={themeIsDark ? 'white' : 'brand.dark'} />
               <Stack
                 direction={isLargerThan1280 ? 'row' : 'column'}
                 align={isLargerThan1280 ? 'center' : 'start'}
@@ -188,10 +205,10 @@ export const News = React.memo(() => {
                   </HStack>
                 </Stack>
               </Stack>
-              <Stack border="1px" w="full" m={0} p={0} />
+              <Stack border="1px" w="full" m={0} p={0} borderColor={themeIsDark ? 'white' : 'brand.dark'} />
               <Stack w="full" justify="start" align="start" pt={4}>
                 {news_content?.content && (
-                  <Text color="brand.dark" fontSize="md">
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize="md">
                     {news_content.content
                       .trim()
                       .replace(/(?:\r\n|\r|\n)/g, '<br />')
@@ -215,8 +232,15 @@ export const News = React.memo(() => {
                 spacing={2}
                 borderLeft="2px"
                 minH={`${height}px`}
+                borderColor={themeIsDark ? 'white' : 'brand.dark'}
               >
-                <Text w="full" color="brand.dark" fontSize={['lg', 'xl', '2xl']} borderBottom="2px" align="center">
+                <Text
+                  w="full"
+                  color={themeIsDark ? 'white' : 'brand.dark'}
+                  fontSize={['lg', 'xl', '2xl']}
+                  borderBottom="2px"
+                  align="center"
+                >
                   Ещё новости
                 </Text>
                 <Text color="#BBBBBB" px={2} align="center">
