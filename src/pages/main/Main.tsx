@@ -126,7 +126,7 @@ export const Main = React.memo(() => {
                   government && arr.push(TagsEnum.GOVERNMENT);
                   if (arr.includes(data.tag) && (search === undefined || data.name.includes(search))) {
                     return (
-                      <GridItem key={index} gridColumn={Number(index) % 2 === 0 ? 'span 2' : 'span 2'}>
+                      <GridItem key={index} gridColumn={Number(index) % 2 === 0 ? 'span 3' : 'span 3'}>
                         <NewsContent
                           name_content={data.name}
                           src_content={data.src}
