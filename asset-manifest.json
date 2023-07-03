@@ -1,12 +1,13 @@
 {
   "files": {
     "main.css": "/it-fund73/static/css/main.f95cd0e5.css",
-    "main.js": "/it-fund73/static/js/main.9319e22c.js",
+    "main.js": "/it-fund73/static/js/main.a5493793.js",
     "static/media/Ulyanovsk.jpg": "/it-fund73/static/media/Ulyanovsk.de91603c3e10fbaee854.jpg",
     "static/media/it.jpg": "/it-fund73/static/media/it.1e9754b71d345349de59.jpg",
     "static/media/government.jpg": "/it-fund73/static/media/government.bf44ab96ae00a051a939.jpg",
     "static/media/education.jpg": "/it-fund73/static/media/education.78bc8cff465b858390cf.jpg",
     "static/media/erofeev_png.png": "/it-fund73/static/media/erofeev_png.48e48860504d2b2447c3.png",
+    "static/media/scheme_accreditation_dark.svg": "/it-fund73/static/media/scheme_accreditation_dark.4b8c06db2a11c6499825ed9df10b758b.svg",
     "static/media/scheme_accreditation.svg": "/it-fund73/static/media/scheme_accreditation.7a06173f58427dc42b4cc9da3f00901e.svg",
     "static/media/busisness.jpg": "/it-fund73/static/media/busisness.0df5302dc5f59c7914d2.jpg",
     "static/media/ul-logo.svg": "/it-fund73/static/media/ul-logo.c8cbfb04712c8833a5e4584f45b608a4.svg",
@@ -28,10 +29,10 @@
     "static/media/logo-fog.svg": "/it-fund73/static/media/logo-fog.17a6a3d610b0c68941cf611c82ced211.svg",
     "static/media/nord.svg": "/it-fund73/static/media/nord.990a7326bdd3c7f0b70de24a554272d8.svg",
     "main.f95cd0e5.css.map": "/it-fund73/static/css/main.f95cd0e5.css.map",
-    "main.9319e22c.js.map": "/it-fund73/static/js/main.9319e22c.js.map"
+    "main.a5493793.js.map": "/it-fund73/static/js/main.a5493793.js.map"
   },
   "entrypoints": [
     "static/css/main.f95cd0e5.css",
-    "static/js/main.9319e22c.js"
+    "static/js/main.a5493793.js"
   ]
 }
