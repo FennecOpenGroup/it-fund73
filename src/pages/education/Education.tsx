@@ -1,5 +1,5 @@
 import { InfoIcon } from '@chakra-ui/icons';
-import { VStack, Text, Button, HStack, Stack, Spacer, Checkbox, useMediaQuery, Grid, GridItem } from '@chakra-ui/react';
+import { VStack, Text, Button, HStack, Stack, Checkbox, useMediaQuery, Grid, GridItem } from '@chakra-ui/react';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -12,7 +12,7 @@ import { IRootState } from '../../interfaces/IRootState';
 
 export const Education = React.memo(() => {
   const { height } = useWindowDimensions();
-  // const [isLargerThan1220] = useMediaQuery('(min-width:1220px)');
+
   const [isLargerThan960] = useMediaQuery('(min-width: 960px)');
   const [isLargerThan610] = useMediaQuery('(min-width: 610px)');
 
@@ -32,7 +32,7 @@ export const Education = React.memo(() => {
       </Helmet>
       <Header />
       <VStack justify="start" px="10%" bg={themeIsDark ? '#242323' : 'white'}>
-        <VStack w="full" pl={[2, 3, 4]} pb={[4, 5, 6]} bg={themeIsDark ? '#242323' : 'brand.beige'}>
+        <VStack w="full" pl={[2, 3, 4]} pb={[4, 5, 6]} bg={themeIsDark ? '#242323' : 'transparent'}>
           <Text
             color="brand.blue"
             fontSize={['lg', 'xl', '2xl', '4xl']}
@@ -43,7 +43,6 @@ export const Education = React.memo(() => {
           >
             Где получить образование?
           </Text>
-
           <Stack
             direction={isLargerThan960 ? 'row' : 'column'}
             w="full"
@@ -53,12 +52,29 @@ export const Education = React.memo(() => {
             justify="start"
             spacing={4}
           >
-            <YMaps>
-              <Map width="100%" height={`${height / 3}px`} defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}>
-                <Placemark defaultGeometry={[54.352498, 48.387667]} options={{}} />
-                <Placemark defaultGeometry={[54.30348, 48.367426]} />
-              </Map>
-            </YMaps>
+            {themeIsDark ? (
+              <YMaps>
+                <Map
+                  width="100%"
+                  height={`${height / 2}px`}
+                  defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}
+                >
+                  <Placemark defaultGeometry={[54.352498, 48.387667]} />
+                  <Placemark defaultGeometry={[54.30348, 48.367426]} />
+                </Map>
+              </YMaps>
+            ) : (
+              <YMaps>
+                <Map
+                  width="100%"
+                  height={`${height / 2}px`}
+                  defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}
+                >
+                  <Placemark defaultGeometry={[54.352498, 48.387667]} />
+                  <Placemark defaultGeometry={[54.30348, 48.367426]} />
+                </Map>
+              </YMaps>
+            )}
             {isLargerThan960 ? (
               <VStack align="start">
                 <Button
@@ -250,7 +266,6 @@ export const Education = React.memo(() => {
           )}
         </VStack>
       </VStack>
-      <Spacer minH={`${height / 5}px`} bg={themeIsDark ? '#121212' : 'white'} />
       <Footer />
     </>
   );

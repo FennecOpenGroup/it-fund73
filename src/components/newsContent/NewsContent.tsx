@@ -49,13 +49,7 @@ export const NewsContent = React.memo(
 
     return (
       <VStack w="full">
-        <VStack
-          w="full"
-          cursor="pointer"
-          as={RouterLink}
-          to={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${short_name}`}
-          
-        >
+        <VStack w="full" cursor="pointer" as={RouterLink} to={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${short_name}`}>
           <Image
             src={src_content}
             w={load ? 'full' : '0px'}

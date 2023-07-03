@@ -36,6 +36,7 @@ import { IRootState } from '../../interfaces/IRootState';
 
 export const AboutUs = React.memo(() => {
   const { height, width } = useWindowDimensions();
+
   const toast = useToast();
 
   const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
@@ -55,6 +56,7 @@ export const AboutUs = React.memo(() => {
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
   const [isLargerThan530] = useMediaQuery('(min-width: 530px)');
+
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   useEffect(() => {
@@ -69,7 +71,7 @@ export const AboutUs = React.memo(() => {
       <VStack w="full" p={0} m={0} ref={refHeader}>
         <Header />
       </VStack>
-      <VStack minH={`${height}px`} justify="start" px="10%">
+      <VStack minH={`${height}px`} justify="start" px="10%" bg={themeIsDark ? '#242323' : 'white'}>
         <VStack w="full" minH={`${height}px`} pb={[4, 6]} align="flex-start">
           <Image
             src={ulyanovsk}
@@ -79,11 +81,20 @@ export const AboutUs = React.memo(() => {
             w={width}
             h={refHeading.current?.clientHeight}
             filter="brightness(35%)"
-            zIndex={-2}
+            zIndex={0}
             position="absolute"
             loading="lazy"
           />
-          <VStack w="full" justify="center" spacing={[2, 5]} py={[4, 6, 10]} mt={[0, 2, 4]} ref={refHeading}>
+          <VStack
+            w="full"
+            minH={`${height / 2}px`}
+            justify="center"
+            spacing={[2, 5]}
+            py={[4, 6, 10]}
+            mt={[0, 2, 4]}
+            ref={refHeading}
+            zIndex={2}
+          >
             <HStack>
               <Text fontWeight="800" align="center" fontSize={['lg', 'xl', '2xl', '4xl']} textTransform="uppercase">
                 Фонд развития информациионных технологий Ульяновской области
@@ -122,8 +133,20 @@ export const AboutUs = React.memo(() => {
               </Text>
             </VStack>
           </VStack>
-          <VStack w="full" align="start" spacing={0} mx={['10%', '20%']} pt={[5, 10]}>
-            <VStack w="full" align="center" bgGradient="linear(to-t, #e3f2fb 5%, transparent 95%)" pb={[0, 2, 5]}>
+          <VStack
+            w="full"
+            align="start"
+            spacing={0}
+            mx={['10%', '20%']}
+            pt={[5, 10]}
+            bg={themeIsDark ? '#242323' : 'white'}
+          >
+            <VStack
+              w="full"
+              align="center"
+              bgGradient={themeIsDark ? 'none' : 'linear(to-t, #e3f2fb 5%, transparent 95%)'}
+              pb={[0, 2, 5]}
+            >
               <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="800" fontSize={['xl', '2xl', '3xl']}>
                 НАШИ ЦЕЛИ
               </Text>
@@ -226,7 +249,11 @@ export const AboutUs = React.memo(() => {
                 </Text>
               </VStack>
             </VStack>
-            <VStack w="full" align="center" bgGradient="linear(to-b, #e3f2fb 2%, transparent 95%)">
+            <VStack
+              w="full"
+              align="center"
+              bgGradient={themeIsDark ? 'none' : 'linear(to-b, #e3f2fb 2%, transparent 95%)'}
+            >
               <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="800" fontSize={['xl', '2xl', '3xl']}>
                 ЦИФРЫ И ФАКТЫ
               </Text>
@@ -234,202 +261,539 @@ export const AboutUs = React.memo(() => {
             <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Получено субсидий
             </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Получено субсидий Правительства Ульяновской области в млн.руб'],
-                ['2016', 2.753],
-                ['2017', 5.709],
-                ['2018', 22.166],
-                ['2019', 25],
-                ['2020', 12.762],
-              ]}
-              options={{
-                colors: ['#7775ed'],
-                animation: {
-                  startup: true,
-                  easing: 'linear',
-                  duration: 1500,
-                },
-              }}
-              width="100%"
-              legendToggle
-            />
+            {themeIsDark ? (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Получено субсидий Правительства Ульяновской области в млн.руб'],
+                  ['2016', 2.753],
+                  ['2017', 5.709],
+                  ['2018', 22.166],
+                  ['2019', 25],
+                  ['2020', 12.762],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  backgroundColor: 'transparent',
+                  titleTextStyle: {
+                    color: 'white',
+                  },
+                  legendTextStyle: {
+                    color: 'white',
+                  },
+                  hAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  vAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 1500,
+                  },
+                }}
+                width="100%"
+                legendToggle
+              />
+            ) : (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Получено субсидий Правительства Ульяновской области в млн.руб'],
+                  ['2016', 2.753],
+                  ['2017', 5.709],
+                  ['2018', 22.166],
+                  ['2019', 25],
+                  ['2020', 12.762],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 1500,
+                  },
+                }}
+                width="100%"
+                legendToggle
+              />
+            )}
             <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Объём средств софинансирования
             </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Объём средств софинансирования в млн.руб'],
-                ['2016', 1],
-                ['2017', 0.5],
-                ['2018', 2.236],
-                ['2019', 0.299],
-                ['2020', 0.291],
-              ]}
-              options={{
-                colors: ['#7775ed'],
-                animation: {
-                  startup: true,
-                  easing: 'linear',
-                  duration: 3500,
-                },
-              }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
+            {themeIsDark ? (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Объём средств софинансирования в млн.руб'],
+                  ['2016', 1],
+                  ['2017', 0.5],
+                  ['2018', 2.236],
+                  ['2019', 0.299],
+                  ['2020', 0.291],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  backgroundColor: 'transparent',
+                  titleTextStyle: {
+                    color: 'white',
+                  },
+                  legendTextStyle: {
+                    color: 'white',
+                  },
+                  hAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  vAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            ) : (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Объём средств софинансирования в млн.руб'],
+                  ['2016', 1],
+                  ['2017', 0.5],
+                  ['2018', 2.236],
+                  ['2019', 0.299],
+                  ['2020', 0.291],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            )}
+
             <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Проведено конкурсов
             </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Проведено конкурсов проектов для реализации'],
-                ['2016', 2],
-                ['2017', 2],
-                ['2018', 2],
-                ['2019', 3],
-                ['2020', 1],
-              ]}
-              options={{
-                colors: ['#7775ed'],
-                animation: {
-                  startup: true,
-                  easing: 'linear',
-                  duration: 3500,
-                },
-              }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
+            {themeIsDark ? (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Проведено конкурсов проектов для реализации'],
+                  ['2016', 2],
+                  ['2017', 2],
+                  ['2018', 2],
+                  ['2019', 3],
+                  ['2020', 1],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  backgroundColor: 'transparent',
+                  titleTextStyle: {
+                    color: 'white',
+                  },
+                  legendTextStyle: {
+                    color: 'white',
+                  },
+                  hAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  vAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            ) : (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Проведено конкурсов проектов для реализации'],
+                  ['2016', 2],
+                  ['2017', 2],
+                  ['2018', 2],
+                  ['2019', 3],
+                  ['2020', 1],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            )}
+
             <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Подано проектов на конкурсы
             </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Подано проектов на конкурсы для реализации'],
-                ['2016', 44],
-                ['2017', 53],
-                ['2018', 83],
-                ['2019', 135],
-                ['2020', 124],
-              ]}
-              options={{
-                colors: ['#7775ed'],
-                animation: {
-                  startup: true,
-                  easing: 'linear',
-                  duration: 3500,
-                },
-              }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
+            {themeIsDark ? (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Подано проектов на конкурсы для реализации'],
+                  ['2016', 44],
+                  ['2017', 53],
+                  ['2018', 83],
+                  ['2019', 135],
+                  ['2020', 124],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  backgroundColor: 'transparent',
+                  titleTextStyle: {
+                    color: 'white',
+                  },
+                  legendTextStyle: {
+                    color: 'white',
+                  },
+                  hAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  vAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            ) : (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Подано проектов на конкурсы для реализации'],
+                  ['2016', 44],
+                  ['2017', 53],
+                  ['2018', 83],
+                  ['2019', 135],
+                  ['2020', 124],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            )}
             <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Общая сумма поданных проектов
             </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Общая сумма поданных проектов в млн. руб.'],
-                ['2016', 43.425],
-                ['2017', 19.05],
-                ['2018', 94.12],
-                ['2019', 225.313],
-                ['2020', 87.85],
-              ]}
-              options={{
-                colors: ['#7775ed'],
-                animation: {
-                  startup: true,
-                  easing: 'linear',
-                  duration: 3500,
-                },
-              }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
+            {themeIsDark ? (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Общая сумма поданных проектов в млн. руб.'],
+                  ['2016', 43.425],
+                  ['2017', 19.05],
+                  ['2018', 94.12],
+                  ['2019', 225.313],
+                  ['2020', 87.85],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  backgroundColor: 'transparent',
+                  titleTextStyle: {
+                    color: 'white',
+                  },
+                  legendTextStyle: {
+                    color: 'white',
+                  },
+                  hAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  vAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            ) : (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Общая сумма поданных проектов в млн. руб.'],
+                  ['2016', 43.425],
+                  ['2017', 19.05],
+                  ['2018', 94.12],
+                  ['2019', 225.313],
+                  ['2020', 87.85],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            )}
             <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Поддержано проектов
             </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Поддержано проектов'],
-                ['2016', 12],
-                ['2017', 25],
-                ['2018', 38],
-                ['2019', 58],
-                ['2020', 32],
-              ]}
-              options={{
-                colors: ['#7775ed'],
-                animation: {
-                  startup: true,
-                  easing: 'linear',
-                  duration: 3500,
-                },
-              }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
+            {themeIsDark ? (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Поддержано проектов'],
+                  ['2016', 12],
+                  ['2017', 25],
+                  ['2018', 38],
+                  ['2019', 58],
+                  ['2020', 32],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  backgroundColor: 'transparent',
+                  titleTextStyle: {
+                    color: 'white',
+                  },
+                  legendTextStyle: {
+                    color: 'white',
+                  },
+                  hAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  vAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            ) : (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Поддержано проектов'],
+                  ['2016', 12],
+                  ['2017', 25],
+                  ['2018', 38],
+                  ['2019', 58],
+                  ['2020', 32],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            )}
             <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Общая сумма поддержанных проектов
             </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Общая сумма поддержанных проектов в млн.руб'],
-                ['2016', 3.052],
-                ['2017', 5.709],
-                ['2018', 21.545],
-                ['2019', 23.751],
-                ['2020', 9.879],
-              ]}
-              options={{
-                colors: ['#7775ed'],
-                animation: {
-                  startup: true,
-                  easing: 'linear',
-                  duration: 3500,
-                },
-              }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
+            {themeIsDark ? (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Общая сумма поддержанных проектов в млн.руб'],
+                  ['2016', 3.052],
+                  ['2017', 5.709],
+                  ['2018', 21.545],
+                  ['2019', 23.751],
+                  ['2020', 9.879],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  backgroundColor: 'transparent',
+                  titleTextStyle: {
+                    color: 'white',
+                  },
+                  legendTextStyle: {
+                    color: 'white',
+                  },
+                  hAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  vAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            ) : (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Общая сумма поддержанных проектов в млн.руб'],
+                  ['2016', 3.052],
+                  ['2017', 5.709],
+                  ['2018', 21.545],
+                  ['2019', 23.751],
+                  ['2020', 9.879],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            )}
             <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
               Охват аудитории проектами
             </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Охват аудитории проектами, получившими поддержку'],
-                ['2016', 3000],
-                ['2017', 12000],
-                ['2018', 25000],
-                ['2019', 27000],
-                ['2020', 7187],
-              ]}
-              options={{
-                colors: ['#7775ed'],
-                animation: {
-                  startup: true,
-                  easing: 'linear',
-                  duration: 3500,
-                },
-              }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
+            {themeIsDark ? (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Охват аудитории проектами, получившими поддержку'],
+                  ['2016', 3000],
+                  ['2017', 12000],
+                  ['2018', 25000],
+                  ['2019', 27000],
+                  ['2020', 7187],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  backgroundColor: 'transparent',
+                  titleTextStyle: {
+                    color: 'white',
+                  },
+                  legendTextStyle: {
+                    color: 'white',
+                  },
+                  hAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  vAxis: {
+                    textStyle: {
+                      color: 'white',
+                    },
+                  },
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            ) : (
+              <Chart
+                chartType="AreaChart"
+                data={[
+                  ['Год', 'Охват аудитории проектами, получившими поддержку'],
+                  ['2016', 3000],
+                  ['2017', 12000],
+                  ['2018', 25000],
+                  ['2019', 27000],
+                  ['2020', 7187],
+                ]}
+                options={{
+                  colors: ['#7775ed'],
+                  animation: {
+                    startup: true,
+                    easing: 'linear',
+                    duration: 3500,
+                  },
+                }}
+                width="100%"
+                height="full"
+                legendToggle
+              />
+            )}
             <Accordion allowMultiple w="full">
               <AccordionItem>
                 <AccordionButton>
@@ -454,7 +818,7 @@ export const AboutUs = React.memo(() => {
                         marginTop="25px"
                         p={2}
                         borderRadius="5px"
-                        backgroundColor="brand.beige"
+                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
                         w="full"
                       >
                         <Image src={kuznezov} w={['160px', '200px']} h={['160px', '200px']} borderRadius={5} />
@@ -484,7 +848,7 @@ export const AboutUs = React.memo(() => {
                         marginTop="25px"
                         p={2}
                         borderRadius="5px"
-                        backgroundColor="brand.beige"
+                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
                         w="full"
                       >
                         <Box minW="200px">
@@ -516,7 +880,7 @@ export const AboutUs = React.memo(() => {
                         marginTop="25px"
                         p={2}
                         borderRadius="5px"
-                        backgroundColor="brand.beige"
+                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
                         w="full"
                       >
                         <Box minW="200px">
@@ -554,7 +918,7 @@ export const AboutUs = React.memo(() => {
                         marginTop="25px"
                         p={2}
                         borderRadius="5px"
-                        backgroundColor="brand.beige"
+                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
                         w="full"
                       >
                         <Image src={Erofeev} w={['160px', '200px']} h={['160px', '200px']} borderRadius={5} />
@@ -584,7 +948,7 @@ export const AboutUs = React.memo(() => {
                         marginTop="25px"
                         p={2}
                         borderRadius="5px"
-                        backgroundColor="brand.beige"
+                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
                         w="full"
                       >
                         <Image src={andronova} w={['160px', '200px']} h={['160px', '200px']} borderRadius={5} />
@@ -618,7 +982,7 @@ export const AboutUs = React.memo(() => {
                         marginTop="25px"
                         p={2}
                         borderRadius="5px"
-                        backgroundColor="brand.beige"
+                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
                         w="full"
                       >
                         <Box minW="200px">
@@ -654,7 +1018,7 @@ export const AboutUs = React.memo(() => {
                         marginTop="25px"
                         p={2}
                         borderRadius="5px"
-                        backgroundColor="brand.beige"
+                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
                         w="full"
                       >
                         <Box minW="200px">
@@ -686,7 +1050,7 @@ export const AboutUs = React.memo(() => {
                         marginTop="25px"
                         p={2}
                         borderRadius="5px"
-                        backgroundColor="brand.beige"
+                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
                         w="full"
                       >
                         <Box minW="160px">
@@ -1171,7 +1535,11 @@ export const AboutUs = React.memo(() => {
                       <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['md', 'lg']} fontWeight="bold">
                         Email:
                       </Text>
-                      <Link href="mailto:it_ulsk@mail.ru" fontSize={['md', 'lg']}>
+                      <Link
+                        href="mailto:it_ulsk@mail.ru"
+                        fontSize={['md', 'lg']}
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                      >
                         it_ulsk@mail.ru
                       </Link>
                     </HStack>
@@ -1180,7 +1548,11 @@ export const AboutUs = React.memo(() => {
                       <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['md', 'lg']} fontWeight="bold">
                         Телефон:
                       </Text>
-                      <Link href="tel:8 (8422) 58-17-47" fontSize={['md', 'lg']}>
+                      <Link
+                        href="tel:8 (8422) 58-17-47"
+                        fontSize={['md', 'lg']}
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                      >
                         8 (8422) 58-17-47
                       </Link>
                     </HStack>

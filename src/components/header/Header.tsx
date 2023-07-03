@@ -17,7 +17,7 @@ import {
   useMediaQuery,
   MenuItem,
 } from '@chakra-ui/react';
-import React, { Dispatch } from 'react';
+import React, { Dispatch, useEffect } from 'react';
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi';
 import { BsYoutube } from 'react-icons/bs';
 import { SlSocialVkontakte } from 'react-icons/sl';
@@ -43,6 +43,7 @@ import {
 import { RootActions } from '../../types/RootActions';
 import { IRootState } from '../../interfaces/IRootState';
 import {
+  coreGetTheme,
   coreSetBusinessNews,
   coreSetEducationNews,
   coreSetGovernmentNews,
@@ -66,6 +67,10 @@ export const Header = React.memo(() => {
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan425] = useMediaQuery('(min-width: 425px)');
 
+  useEffect(() => {
+    dispatch(coreGetTheme());
+  }, []);
+
   return (
     <VStack
       position="sticky"
@@ -85,7 +90,10 @@ export const Header = React.memo(() => {
               <Button
                 variant="brand-icon"
                 leftIcon={themeIsDark ? <HiOutlineSun size="15px" /> : <HiOutlineMoon size="15px" />}
-                onClick={() => dispatch(coreSetTheme(!themeIsDark))}
+                onClick={() => {
+                  dispatch(coreSetTheme(!themeIsDark));
+                  localStorage.setItem('theme', themeIsDark ? 'light' : 'dark');
+                }}
                 iconSpacing={0}
                 size="xs"
                 p={0}

@@ -20,3 +20,4 @@ export const coreSetEducationNews = (value: boolean) => action(TagsEnum.EDUCATIO
 export const coreSetSearchDraft = (value: string) => action(TagsEnum.SEARCH, { value });
 
 export const coreSetTheme = (value: boolean) => action(ThemeEnum.CORE_THEME_IS_DARK, { value });
+export const coreGetTheme = () => action(ThemeEnum.CORE_GET_THEME_IS_DARK);
