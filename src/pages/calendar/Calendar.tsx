@@ -144,7 +144,7 @@ export const Calendar = React.memo(() => {
             ref={refCalendar}
           >
             <Text color="#BBBBBB" fontSize={['xs', 'lg', '2xl']} fontWeight="bold" align="center">
-              На данный момент нет запланированных мероприятий
+              Не выбран месяц
             </Text>
           </VStack>
           <HStack w="full" justify="center" align="center">

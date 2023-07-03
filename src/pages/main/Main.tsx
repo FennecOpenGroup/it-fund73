@@ -116,7 +116,12 @@ export const Main = React.memo(() => {
         >
           <HStack w="full" align="flex-start">
             <VStack w="full" pt={[1, 2, 6]}>
-              <Grid w="full" templateColumns="repeat(6, 1fr)" gap={1}>
+              <Grid
+                w="full"
+                gap={['1.5', '2.5']}
+                templateRows="auto"
+                templateColumns={isLargerThan1025 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)'}
+              >
                 {Object.keys(newsData).map(index => {
                   const data = newsData[index as unknown as keyof typeof newsData];
                   const arr = [];
@@ -124,9 +129,10 @@ export const Main = React.memo(() => {
                   education && arr.push(TagsEnum.EDUCATION);
                   business && arr.push(TagsEnum.BUSINESS);
                   government && arr.push(TagsEnum.GOVERNMENT);
+
                   if (arr.includes(data.tag) && (search === undefined || data.name.includes(search))) {
                     return (
-                      <GridItem key={index} gridColumn={Number(index) % 2 === 0 ? 'span 3' : 'span 3'}>
+                      <GridItem key={index}>
                         <NewsContent
                           name_content={data.name}
                           src_content={data.src}
