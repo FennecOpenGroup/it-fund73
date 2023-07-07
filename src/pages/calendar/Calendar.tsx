@@ -143,9 +143,26 @@ export const Calendar = React.memo(() => {
             bg={themeIsDark ? '#121212' : 'brand.beige'}
             ref={refCalendar}
           >
-            <Text color="#BBBBBB" fontSize={['xs', 'lg', '2xl']} fontWeight="bold" align="center">
-              Не выбран месяц
-            </Text>
+            {january ||
+            february ||
+            april ||
+            march ||
+            may ||
+            june ||
+            july ||
+            august ||
+            september ||
+            october ||
+            november ||
+            december ? (
+              <Text color="#BBBBBB" fontSize={['xs', 'lg', '2xl']} fontWeight="bold" align="center">
+                выбран месяц
+              </Text>
+            ) : (
+              <Text color="#BBBBBB" fontSize={['xs', 'lg', '2xl']} fontWeight="bold" align="center">
+                Не выбран месяц
+              </Text>
+            )}
           </VStack>
           <HStack w="full" justify="center" align="center">
             {refCalendar.current?.clientWidth && (
