@@ -21,8 +21,6 @@ import React, { Dispatch, useEffect } from 'react';
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi';
 import { BsYoutube } from 'react-icons/bs';
 import { SlSocialVkontakte } from 'react-icons/sl';
-import { FaTelegram } from 'react-icons/fa';
-import { SiOdnoklassniki } from 'react-icons/si';
 import { BiCaretDown } from 'react-icons/bi';
 import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -112,9 +110,6 @@ export const Header = React.memo(() => {
                 p={0}
               />
             </Tooltip>
-            <Tooltip label="Телеграм">
-              <Button variant="brand-icon" leftIcon={<FaTelegram size="15px" />} iconSpacing={0} size="xs" p={0} />
-            </Tooltip>
             <Tooltip label="Ютуб">
               <Button
                 as={Link}
@@ -122,18 +117,6 @@ export const Header = React.memo(() => {
                 isExternal
                 variant="brand-icon"
                 leftIcon={<BsYoutube size="15px" />}
-                iconSpacing={0}
-                size="xs"
-                p={0}
-              />
-            </Tooltip>
-            <Tooltip label="Одноклассники">
-              <Button
-                as={Link}
-                href="https://ok.ru/group/70000001880401"
-                isExternal
-                variant="brand-icon"
-                leftIcon={<SiOdnoklassniki size="15px" />}
                 iconSpacing={0}
                 size="xs"
                 p={0}

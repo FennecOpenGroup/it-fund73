@@ -51,6 +51,7 @@ export const AboutUs = React.memo(() => {
   const refDocs = useRef<HTMLDivElement>(null);
   const refRecs = useRef<HTMLDivElement>(null);
   const refContacts = useRef<HTMLDivElement>(null);
+  const refCharts = useRef<HTMLDivElement>(null);
 
   const [isLargerThan1155] = useMediaQuery('(min-width: 1155px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
@@ -101,6 +102,9 @@ export const AboutUs = React.memo(() => {
               </Text>
             </HStack>
             <Stack direction={isLargerThan480 ? 'row' : 'column'} w="full" align="center" justify="center">
+              <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refCharts)}>
+                Цифры и Факты
+              </Button>
               <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refTeam)}>
                 Команда
               </Button>
@@ -253,547 +257,602 @@ export const AboutUs = React.memo(() => {
               w="full"
               align="center"
               bgGradient={themeIsDark ? 'none' : 'linear(to-b, #e3f2fb 2%, transparent 95%)'}
-            >
-              <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="800" fontSize={['xl', '2xl', '3xl']}>
-                ЦИФРЫ И ФАКТЫ
-              </Text>
-            </VStack>
-            <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
-              Получено субсидий
-            </Text>
-            {themeIsDark ? (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Получено субсидий Правительства Ульяновской области в млн.руб'],
-                  ['2016', 2.753],
-                  ['2017', 5.709],
-                  ['2018', 22.166],
-                  ['2019', 25],
-                  ['2020', 12.762],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  backgroundColor: 'transparent',
-                  titleTextStyle: {
-                    color: 'white',
-                  },
-                  legendTextStyle: {
-                    color: 'white',
-                  },
-                  hAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  vAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 1500,
-                  },
-                }}
-                width="100%"
-                legendToggle
-              />
-            ) : (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Получено субсидий Правительства Ульяновской области в млн.руб'],
-                  ['2016', 2.753],
-                  ['2017', 5.709],
-                  ['2018', 22.166],
-                  ['2019', 25],
-                  ['2020', 12.762],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 1500,
-                  },
-                }}
-                width="100%"
-                legendToggle
-              />
-            )}
-            <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
-              Объём средств софинансирования
-            </Text>
-            {themeIsDark ? (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Объём средств софинансирования в млн.руб'],
-                  ['2016', 1],
-                  ['2017', 0.5],
-                  ['2018', 2.236],
-                  ['2019', 0.299],
-                  ['2020', 0.291],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  backgroundColor: 'transparent',
-                  titleTextStyle: {
-                    color: 'white',
-                  },
-                  legendTextStyle: {
-                    color: 'white',
-                  },
-                  hAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  vAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            ) : (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Объём средств софинансирования в млн.руб'],
-                  ['2016', 1],
-                  ['2017', 0.5],
-                  ['2018', 2.236],
-                  ['2019', 0.299],
-                  ['2020', 0.291],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            )}
-
-            <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
-              Проведено конкурсов
-            </Text>
-            {themeIsDark ? (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Проведено конкурсов проектов для реализации'],
-                  ['2016', 2],
-                  ['2017', 2],
-                  ['2018', 2],
-                  ['2019', 3],
-                  ['2020', 1],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  backgroundColor: 'transparent',
-                  titleTextStyle: {
-                    color: 'white',
-                  },
-                  legendTextStyle: {
-                    color: 'white',
-                  },
-                  hAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  vAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            ) : (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Проведено конкурсов проектов для реализации'],
-                  ['2016', 2],
-                  ['2017', 2],
-                  ['2018', 2],
-                  ['2019', 3],
-                  ['2020', 1],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            )}
-
-            <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
-              Подано проектов на конкурсы
-            </Text>
-            {themeIsDark ? (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Подано проектов на конкурсы для реализации'],
-                  ['2016', 44],
-                  ['2017', 53],
-                  ['2018', 83],
-                  ['2019', 135],
-                  ['2020', 124],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  backgroundColor: 'transparent',
-                  titleTextStyle: {
-                    color: 'white',
-                  },
-                  legendTextStyle: {
-                    color: 'white',
-                  },
-                  hAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  vAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            ) : (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Подано проектов на конкурсы для реализации'],
-                  ['2016', 44],
-                  ['2017', 53],
-                  ['2018', 83],
-                  ['2019', 135],
-                  ['2020', 124],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            )}
-            <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
-              Общая сумма поданных проектов
-            </Text>
-            {themeIsDark ? (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Общая сумма поданных проектов в млн. руб.'],
-                  ['2016', 43.425],
-                  ['2017', 19.05],
-                  ['2018', 94.12],
-                  ['2019', 225.313],
-                  ['2020', 87.85],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  backgroundColor: 'transparent',
-                  titleTextStyle: {
-                    color: 'white',
-                  },
-                  legendTextStyle: {
-                    color: 'white',
-                  },
-                  hAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  vAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            ) : (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Общая сумма поданных проектов в млн. руб.'],
-                  ['2016', 43.425],
-                  ['2017', 19.05],
-                  ['2018', 94.12],
-                  ['2019', 225.313],
-                  ['2020', 87.85],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            )}
-            <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
-              Поддержано проектов
-            </Text>
-            {themeIsDark ? (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Поддержано проектов'],
-                  ['2016', 12],
-                  ['2017', 25],
-                  ['2018', 38],
-                  ['2019', 58],
-                  ['2020', 32],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  backgroundColor: 'transparent',
-                  titleTextStyle: {
-                    color: 'white',
-                  },
-                  legendTextStyle: {
-                    color: 'white',
-                  },
-                  hAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  vAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            ) : (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Поддержано проектов'],
-                  ['2016', 12],
-                  ['2017', 25],
-                  ['2018', 38],
-                  ['2019', 58],
-                  ['2020', 32],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            )}
-            <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
-              Общая сумма поддержанных проектов
-            </Text>
-            {themeIsDark ? (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Общая сумма поддержанных проектов в млн.руб'],
-                  ['2016', 3.052],
-                  ['2017', 5.709],
-                  ['2018', 21.545],
-                  ['2019', 23.751],
-                  ['2020', 9.879],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  backgroundColor: 'transparent',
-                  titleTextStyle: {
-                    color: 'white',
-                  },
-                  legendTextStyle: {
-                    color: 'white',
-                  },
-                  hAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  vAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            ) : (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Общая сумма поддержанных проектов в млн.руб'],
-                  ['2016', 3.052],
-                  ['2017', 5.709],
-                  ['2018', 21.545],
-                  ['2019', 23.751],
-                  ['2020', 9.879],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            )}
-            <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="bold" fontSize={['lg', 'xl', '2xl']} px={4}>
-              Охват аудитории проектами
-            </Text>
-            {themeIsDark ? (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Охват аудитории проектами, получившими поддержку'],
-                  ['2016', 3000],
-                  ['2017', 12000],
-                  ['2018', 25000],
-                  ['2019', 27000],
-                  ['2020', 7187],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  backgroundColor: 'transparent',
-                  titleTextStyle: {
-                    color: 'white',
-                  },
-                  legendTextStyle: {
-                    color: 'white',
-                  },
-                  hAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  vAxis: {
-                    textStyle: {
-                      color: 'white',
-                    },
-                  },
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            ) : (
-              <Chart
-                chartType="AreaChart"
-                data={[
-                  ['Год', 'Охват аудитории проектами, получившими поддержку'],
-                  ['2016', 3000],
-                  ['2017', 12000],
-                  ['2018', 25000],
-                  ['2019', 27000],
-                  ['2020', 7187],
-                ]}
-                options={{
-                  colors: ['#7775ed'],
-                  animation: {
-                    startup: true,
-                    easing: 'linear',
-                    duration: 3500,
-                  },
-                }}
-                width="100%"
-                height="full"
-                legendToggle
-              />
-            )}
+            ></VStack>
+            <Accordion allowMultiple w="full">
+              <AccordionItem>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left" ref={refCharts}>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
+                      <b>ЦИФРЫ И ФАКТЫ</b>
+                    </Text>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel pb={0}>
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontWeight="bold"
+                    fontSize={['lg', 'xl', '2xl']}
+                    px={0}
+                  >
+                    Получено субсидий
+                  </Text>
+                  {themeIsDark ? (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Получено субсидий Правительства Ульяновской области в млн.руб'],
+                        ['2016', 2.753],
+                        ['2017', 5.709],
+                        ['2018', 22.166],
+                        ['2019', 25],
+                        ['2020', 12.762],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        backgroundColor: 'transparent',
+                        titleTextStyle: {
+                          color: 'white',
+                        },
+                        legendTextStyle: {
+                          color: 'white',
+                        },
+                        hAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        vAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 1500,
+                        },
+                      }}
+                      width="100%"
+                      legendToggle
+                    />
+                  ) : (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Получено субсидий Правительства Ульяновской области в млн.руб'],
+                        ['2016', 2.753],
+                        ['2017', 5.709],
+                        ['2018', 22.166],
+                        ['2019', 25],
+                        ['2020', 12.762],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 1500,
+                        },
+                      }}
+                      width="100%"
+                      legendToggle
+                    />
+                  )}
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontWeight="bold"
+                    fontSize={['lg', 'xl', '2xl']}
+                    px={4}
+                  >
+                    Объём средств софинансирования
+                  </Text>
+                  {themeIsDark ? (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Объём средств софинансирования в млн.руб'],
+                        ['2016', 1],
+                        ['2017', 0.5],
+                        ['2018', 2.236],
+                        ['2019', 0.299],
+                        ['2020', 0.291],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        backgroundColor: 'transparent',
+                        titleTextStyle: {
+                          color: 'white',
+                        },
+                        legendTextStyle: {
+                          color: 'white',
+                        },
+                        hAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        vAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  ) : (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Объём средств софинансирования в млн.руб'],
+                        ['2016', 1],
+                        ['2017', 0.5],
+                        ['2018', 2.236],
+                        ['2019', 0.299],
+                        ['2020', 0.291],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  )}
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontWeight="bold"
+                    fontSize={['lg', 'xl', '2xl']}
+                    px={4}
+                  >
+                    Проведено конкурсов
+                  </Text>
+                  {themeIsDark ? (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Проведено конкурсов проектов для реализации'],
+                        ['2016', 2],
+                        ['2017', 2],
+                        ['2018', 2],
+                        ['2019', 3],
+                        ['2020', 1],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        backgroundColor: 'transparent',
+                        titleTextStyle: {
+                          color: 'white',
+                        },
+                        legendTextStyle: {
+                          color: 'white',
+                        },
+                        hAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        vAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  ) : (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Проведено конкурсов проектов для реализации'],
+                        ['2016', 2],
+                        ['2017', 2],
+                        ['2018', 2],
+                        ['2019', 3],
+                        ['2020', 1],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  )}
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontWeight="bold"
+                    fontSize={['lg', 'xl', '2xl']}
+                    px={4}
+                  >
+                    Подано проектов на конкурсы
+                  </Text>
+                  {themeIsDark ? (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Подано проектов на конкурсы для реализации'],
+                        ['2016', 44],
+                        ['2017', 53],
+                        ['2018', 83],
+                        ['2019', 135],
+                        ['2020', 124],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        backgroundColor: 'transparent',
+                        titleTextStyle: {
+                          color: 'white',
+                        },
+                        legendTextStyle: {
+                          color: 'white',
+                        },
+                        hAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        vAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  ) : (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Подано проектов на конкурсы для реализации'],
+                        ['2016', 44],
+                        ['2017', 53],
+                        ['2018', 83],
+                        ['2019', 135],
+                        ['2020', 124],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  )}
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontWeight="bold"
+                    fontSize={['lg', 'xl', '2xl']}
+                    px={4}
+                  >
+                    Общая сумма поданных проектов
+                  </Text>
+                  {themeIsDark ? (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Общая сумма поданных проектов в млн. руб.'],
+                        ['2016', 43.425],
+                        ['2017', 19.05],
+                        ['2018', 94.12],
+                        ['2019', 225.313],
+                        ['2020', 87.85],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        backgroundColor: 'transparent',
+                        titleTextStyle: {
+                          color: 'white',
+                        },
+                        legendTextStyle: {
+                          color: 'white',
+                        },
+                        hAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        vAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  ) : (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Общая сумма поданных проектов в млн. руб.'],
+                        ['2016', 43.425],
+                        ['2017', 19.05],
+                        ['2018', 94.12],
+                        ['2019', 225.313],
+                        ['2020', 87.85],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  )}
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontWeight="bold"
+                    fontSize={['lg', 'xl', '2xl']}
+                    px={4}
+                  >
+                    Поддержано проектов
+                  </Text>
+                  {themeIsDark ? (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Поддержано проектов'],
+                        ['2016', 12],
+                        ['2017', 25],
+                        ['2018', 38],
+                        ['2019', 58],
+                        ['2020', 32],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        backgroundColor: 'transparent',
+                        titleTextStyle: {
+                          color: 'white',
+                        },
+                        legendTextStyle: {
+                          color: 'white',
+                        },
+                        hAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        vAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  ) : (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Поддержано проектов'],
+                        ['2016', 12],
+                        ['2017', 25],
+                        ['2018', 38],
+                        ['2019', 58],
+                        ['2020', 32],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  )}
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontWeight="bold"
+                    fontSize={['lg', 'xl', '2xl']}
+                    px={4}
+                  >
+                    Общая сумма поддержанных проектов
+                  </Text>
+                  {themeIsDark ? (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Общая сумма поддержанных проектов в млн.руб'],
+                        ['2016', 3.052],
+                        ['2017', 5.709],
+                        ['2018', 21.545],
+                        ['2019', 23.751],
+                        ['2020', 9.879],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        backgroundColor: 'transparent',
+                        titleTextStyle: {
+                          color: 'white',
+                        },
+                        legendTextStyle: {
+                          color: 'white',
+                        },
+                        hAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        vAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  ) : (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Общая сумма поддержанных проектов в млн.руб'],
+                        ['2016', 3.052],
+                        ['2017', 5.709],
+                        ['2018', 21.545],
+                        ['2019', 23.751],
+                        ['2020', 9.879],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  )}
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontWeight="bold"
+                    fontSize={['lg', 'xl', '2xl']}
+                    px={4}
+                  >
+                    Охват аудитории проектами
+                  </Text>
+                  {themeIsDark ? (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Охват аудитории проектами, получившими поддержку'],
+                        ['2016', 3000],
+                        ['2017', 12000],
+                        ['2018', 25000],
+                        ['2019', 27000],
+                        ['2020', 7187],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        backgroundColor: 'transparent',
+                        titleTextStyle: {
+                          color: 'white',
+                        },
+                        legendTextStyle: {
+                          color: 'white',
+                        },
+                        hAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        vAxis: {
+                          textStyle: {
+                            color: 'white',
+                          },
+                        },
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  ) : (
+                    <Chart
+                      chartType="AreaChart"
+                      data={[
+                        ['Год', 'Охват аудитории проектами, получившими поддержку'],
+                        ['2016', 3000],
+                        ['2017', 12000],
+                        ['2018', 25000],
+                        ['2019', 27000],
+                        ['2020', 7187],
+                      ]}
+                      options={{
+                        colors: ['#7775ed'],
+                        animation: {
+                          startup: true,
+                          easing: 'linear',
+                          duration: 3500,
+                        },
+                      }}
+                      width="100%"
+                      height="full"
+                      legendToggle
+                    />
+                  )}
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+            <VStack></VStack>
+            <VStack></VStack>
+            <VStack></VStack>
+            <VStack></VStack>
+            <VStack></VStack>
+            <VStack></VStack>
+            <VStack></VStack>
             <Accordion allowMultiple w="full">
               <AccordionItem>
                 <AccordionButton>
