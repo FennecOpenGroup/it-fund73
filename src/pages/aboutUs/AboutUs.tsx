@@ -139,14 +139,7 @@ export const AboutUs = React.memo(() => {
               </Text>
             </VStack>
           </VStack>
-          <VStack
-            w="full"
-            align="start"
-            spacing={0}
-            mx={['10%', '20%']}
-            pt={[5, 10]}
-            bg={themeIsDark ? '#242323' : 'white'}
-          >
+          <VStack w="full" align="start" mx={['10%', '20%']} pt={[5, 10]} bg={themeIsDark ? '#242323' : 'white'}>
             <VStack
               w="full"
               align="center"
@@ -255,14 +248,9 @@ export const AboutUs = React.memo(() => {
                 </Text>
               </VStack>
             </VStack>
-            <VStack
-              w="full"
-              align="center"
-              bgGradient={themeIsDark ? 'none' : 'linear(to-b, #e3f2fb 2%, transparent 95%)'}
-            ></VStack>
             <Accordion allowMultiple w="full">
-              <AccordionItem>
-                <AccordionButton onClick={() => setCharts(true)}>
+              <AccordionItem color={themeIsDark ? 'white' : 'brand.dark'}>
+                <AccordionButton onClick={() => setCharts(!charts)}>
                   <Box as="span" flex="1" textAlign="left" ref={refCharts}>
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
                       <b>ЦИФРЫ И ФАКТЫ</b>
@@ -850,14 +838,7 @@ export const AboutUs = React.memo(() => {
                 )}
               </AccordionItem>
             </Accordion>
-            <VStack></VStack>
-            <VStack></VStack>
-            <VStack></VStack>
-            <VStack></VStack>
-            <VStack></VStack>
-            <VStack></VStack>
-            <VStack></VStack>
-            <Accordion allowMultiple w="full">
+            <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionItem>
                 <AccordionButton>
                   <Box as="span" flex="1" textAlign="left" ref={refTeam}>
@@ -1141,7 +1122,7 @@ export const AboutUs = React.memo(() => {
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
-            <Accordion allowMultiple w="full">
+            <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionItem>
                 <AccordionButton>
                   <Box as="span" flex="1" textAlign="left" ref={refDocs}>
@@ -1176,7 +1157,7 @@ export const AboutUs = React.memo(() => {
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
-            <Accordion allowMultiple w="full">
+            <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionItem>
                 <AccordionButton>
                   <Box as="span" flex="1" textAlign="left" ref={refRecs}>
@@ -1581,7 +1562,7 @@ export const AboutUs = React.memo(() => {
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
-            <Accordion allowMultiple w="full">
+            <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionItem>
                 <AccordionButton>
                   <Box as="span" flex="1" textAlign="left" ref={refContacts}>

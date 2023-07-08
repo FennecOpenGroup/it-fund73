@@ -732,9 +732,10 @@ export const Education = React.memo(() => {
             </Grid>
           )}
           {student && (
-            <VStack w="full" align="start">
+            <VStack w="full" align="start" spacing={0}>
               <HStack spacing={[1, 2]}>
                 <InfoIcon color="yellow.500" />
+                <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
                 <Checkbox
                   color={themeIsDark ? 'white' : 'brand.dark'}
                   fontSize="xl"
@@ -753,6 +754,7 @@ export const Education = React.memo(() => {
                 >
                   Бесплатное
                 </Checkbox>
+                <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
                 <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
                   Дополнительное образование
                 </Text>
@@ -773,9 +775,10 @@ export const Education = React.memo(() => {
             </VStack>
           )}
           {specialist && (
-            <VStack w="full" align="start">
+            <VStack w="full" align="start" spacing={0}>
               <HStack spacing={[1, 2]}>
                 <InfoIcon color="yellow.500" />
+                <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
                 <Checkbox
                   color={themeIsDark ? 'white' : 'brand.dark'}
                   fontSize="xl"
@@ -794,6 +797,7 @@ export const Education = React.memo(() => {
                 >
                   Бесплатное
                 </Checkbox>
+                <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
                 <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
                   Дополнительное образование
                 </Text>

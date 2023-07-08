@@ -19,15 +19,12 @@ import {
 } from '@chakra-ui/react';
 import React, { Dispatch, useEffect } from 'react';
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi';
-import { BsYoutube } from 'react-icons/bs';
-import { SlSocialVkontakte } from 'react-icons/sl';
+import { SlSocialVkontakte, SlSocialYoutube } from 'react-icons/sl';
 import { BiCaretDown } from 'react-icons/bi';
 import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RiTeamFill } from 'react-icons/ri';
-
-// import LocalizedStrings from 'react-localization';
 
 import logo from '../../assets/logo.svg';
 import {
@@ -81,12 +78,12 @@ export const Header = React.memo(() => {
       spacing={0}
     >
       <HStack w="full">
-        <VStack align="start">
+        <VStack align="end" justify="end">
           <HStack w="full">
             <Tooltip label="Сменить тему">
               <Button
                 variant="brand-icon"
-                leftIcon={themeIsDark ? <HiOutlineSun size="15px" /> : <HiOutlineMoon size="15px" />}
+                leftIcon={themeIsDark ? <HiOutlineSun size="16px" /> : <HiOutlineMoon size="16px" />}
                 onClick={() => {
                   dispatch(coreSetTheme(!themeIsDark));
                   localStorage.setItem('theme', themeIsDark ? 'light' : 'dark');
@@ -102,7 +99,7 @@ export const Header = React.memo(() => {
                 href="https://vk.com/itfund73"
                 isExternal
                 variant="brand-icon"
-                leftIcon={<SlSocialVkontakte size="15px" />}
+                leftIcon={<SlSocialVkontakte size="16px" />}
                 iconSpacing={0}
                 size="xs"
                 p={0}
@@ -114,7 +111,7 @@ export const Header = React.memo(() => {
                 href="https://youtube.com/@user-or8ou2iv4e"
                 isExternal
                 variant="brand-icon"
-                leftIcon={<BsYoutube size="15px" />}
+                leftIcon={<SlSocialYoutube size="16px" />}
                 iconSpacing={0}
                 size="xs"
                 p={0}
@@ -201,7 +198,7 @@ export const Header = React.memo(() => {
                       Образование
                     </Checkbox>
                     <Checkbox color="white" isChecked={it} onChange={() => dispatch(coreSetITNews(!it))}>
-                      IT
+                      ИТ
                     </Checkbox>
                   </HStack>
                   <HStack justify="start" w="full">

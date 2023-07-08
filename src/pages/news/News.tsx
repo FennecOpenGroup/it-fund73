@@ -98,6 +98,15 @@ export const News = React.memo(() => {
 
   const news_content = newsData.find(news => news.short_name === short_name);
 
+  const tag =
+    news_content?.tag === 'GOVERNMENT'
+      ? 'ГОСУДАРСТВО'
+      : news_content?.tag === 'BUSINESS'
+      ? 'БИЗНЕС'
+      : news_content?.tag === 'EDUCATION'
+      ? 'ОБРАЗОВАНИЕ'
+      : 'ИТ';
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -173,13 +182,13 @@ export const News = React.memo(() => {
                   </Stack>
                   <HStack p={0} m={0}>
                     <Text color="#BBBBBB" fontSize={['sm', 'md']}>
-                      {news_content?.date.toDateString()}
+                      {news_content?.date.toLocaleDateString('ru-RU')}
                     </Text>
                     <Text color="#BBBBBB" fontSize={['sm', 'md']}>
                       ||
                     </Text>
                     <Text color="#BBBBBB" fontSize={['sm', 'md']}>
-                      {news_content?.tag}
+                      {tag}
                     </Text>
                     <Text color="#BBBBBB" fontSize={['sm', 'md']}>
                       ||

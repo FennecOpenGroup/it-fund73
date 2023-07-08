@@ -22,6 +22,14 @@ export const NewsContent = React.memo(
 
     const highlightFontSize = isLargerThan590 ? '18px' : '14px';
     const highlightColor = themeIsDark ? 'white' : '#121212';
+    const tag =
+      tag_content === 'GOVERNMENT'
+        ? 'ГОСУДАРСТВО'
+        : tag_content === 'BUSINESS'
+        ? 'БИЗНЕС'
+        : tag_content === 'EDUCATION'
+        ? 'ОБРАЗОВАНИЕ'
+        : 'ИТ';
 
     const Highlight = ({ text = '', highlight = '' }) => {
       if (!highlight.trim()) {
@@ -53,12 +61,12 @@ export const NewsContent = React.memo(
           <Image
             src={src_content}
             w={load ? 'full' : '0px'}
-            h={load ? `${height / 3.8}px` : '0px'}
+            h={load ? `${height / 3.5}px` : '0px'}
             borderRadius="5px"
             objectFit="cover"
             transitionDuration="0.3s"
             onLoad={() => setLoad(true)}
-            _hover={{ height: `${height / 3.5}px` }}
+            _hover={{ height: `${height / 3.2}px` }}
           />
           {load === false && (
             <Skeleton w="full" minH={`${height / 4}px`} border="5px" startColor="#BBBBBB" endColor="#e5e5e5" />
@@ -79,7 +87,7 @@ export const NewsContent = React.memo(
           ) : (
             <VStack m={0} px={2} spacing={2} justify="start" align="start">
               <Text color="#BBBBBB" fontSize={['xs', 'sm']}>
-                {date_content?.toDateString()}
+                {date_content?.toLocaleDateString('ru-RU')}
               </Text>
             </VStack>
           )}
@@ -98,9 +106,9 @@ export const NewsContent = React.memo(
           </HStack>
         </HStack>
         {isLargerThan590 && (
-          <HStack w="full" m={0} px={2} spacing={2} justify="start">
-            <Text color="#BBBBBB">{date_content?.toDateString()}</Text>
-            <Text color="#BBBBBB">{tag_content}</Text>
+          <HStack w="full" m={0} p={0} spacing={2} justify="start">
+            <Text color="#BBBBBB">{date_content?.toLocaleDateString('ru-RU')}</Text>
+            <Text color="#BBBBBB">{tag}</Text>
           </HStack>
         )}
       </VStack>

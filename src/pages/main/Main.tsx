@@ -85,9 +85,13 @@ export const Main = React.memo(() => {
   const search = useSelector((state: IRootState) => state.core.search);
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
+  const [isLargerThan1572] = useMediaQuery('(min-width: 1572px)');
   const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
-  const [isLargerThan430] = useMediaQuery('(min-width: 430px)');
+  const [isLargerThan620] = useMediaQuery('(min-width: 620px)');
+
+  let rowsCount = 0;
+  let rowEven = false;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -110,17 +114,17 @@ export const Main = React.memo(() => {
           w="full"
           minH={`${height}px`}
           bg={themeIsDark ? '#242323' : 'brand.beige'}
-          pl={[2, 3, 4]}
-          pb={[4, 6]}
+          pl={[1, 2, 3, 4]}
+          pr={isLargerThan620 ? 0 : [1, 2, 3, 4]}
           boxShadow="5px 0px rgb(3,0,15,15%)"
         >
           <HStack w="full" align="flex-start">
             <VStack w="full" pt={[1, 2, 6]}>
               <Grid
                 w="full"
-                gap={['1.5', '2.5']}
-                templateRows="auto"
-                templateColumns={isLargerThan1025 ? 'repeat(3, 3fr)' : 'repeat(1, 1fr)'}
+                gap={['0.5', '1.5', '2.5']}
+                templateRows={`repeat(${rowsCount}, 1fr)`}
+                templateColumns={isLargerThan1025 ? 'repeat(6, 3fr)' : 'repeat(1, 1fr)'}
               >
                 {Object.keys(newsData).map(index => {
                   const data = newsData[index as unknown as keyof typeof newsData];
@@ -130,9 +134,23 @@ export const Main = React.memo(() => {
                   business && arr.push(TagsEnum.BUSINESS);
                   government && arr.push(TagsEnum.GOVERNMENT);
 
+                  if (rowEven === true) {
+                    if (rowsCount < 2) rowsCount += 1;
+                    else {
+                      rowsCount = 0;
+                      rowEven = false;
+                    }
+                  }
+                  if (rowEven === false) {
+                    if (rowsCount < 2) rowsCount += 1;
+                    else {
+                      rowsCount = 0;
+                      rowEven = true;
+                    }
+                  }
                   if (arr.includes(data.tag) && (search === undefined || data.name.includes(search))) {
                     return (
-                      <GridItem key={index}>
+                      <GridItem key={index} colSpan={isLargerThan1572 ? (rowEven ? 2 : 3) : 3}>
                         <NewsContent
                           name_content={data.name}
                           src_content={data.src}
@@ -150,7 +168,7 @@ export const Main = React.memo(() => {
                 })}
               </Grid>
             </VStack>
-            {isLargerThan430 && (
+            {isLargerThan620 && (
               <VStack
                 w="full"
                 maxW={isLargerThan1025 ? '20%' : '35%'}
