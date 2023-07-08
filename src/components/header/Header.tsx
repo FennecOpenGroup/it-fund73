@@ -69,7 +69,6 @@ export const Header = React.memo(() => {
     dispatch(coreGetTheme());
   }, []);
 
-  
   return (
     <VStack
       position="sticky"

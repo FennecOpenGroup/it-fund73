@@ -73,18 +73,6 @@ export const newsData = {
     date: new Date(2023, 4, 3),
     reaction: undefined,
   },
-  '5': {
-    src: education_img,
-    name: 'Промышленное программирование на Python для подростков в Лицее Академии Яндекса',
-    short_name: transliterating('Промышленное программирование на Python для подростков в Лицее Академии Яндекса'),
-    content:
-      'Академия Яндекса открыла набор на офлайн-курс для подростков 13-18 лет, которые уже знакомы с основами языка Python.<br /><br />Пройти онлайн тестирование ученики 8-11 классов и студенты 1-2 курсов техникумов и колледжей могут до 27 июня на сайте: https://vk.cc/coh7Mx<br /><br />Участники программы научатся:<br />Разрабатывать веб-приложения<br />Создавать чат-боты<br />Обучать Алису<br />Тестировать программы<br />Писать красивый код<br />Работать в команде<br /><br />Программа длится год и рассчитана на совмещение курса с основной учёбой. Обучение бесплатное, по окончании участники получат сертификат.<br /><br />В Ульяновске заниматься можно на площадке Лицея Академии Яндекса по адресу ул. Северный Венец, 32к3.<br /><br />Заполнить анкету и пройти онлайн-тестирование нужно до 27 июня: https://vk.cc/coh7Mx',
-
-    tag: TagsEnum.EDUCATION,
-    views: undefined,
-    date: new Date(2023, 4, 30),
-    reaction: undefined,
-  },
 };
 
 export const Main = React.memo(() => {
@@ -133,39 +121,6 @@ export const Main = React.memo(() => {
                 gap={['1.5', '2.5']}
                 templateRows="auto"
                 templateColumns={isLargerThan1025 ? 'repeat(2, 3fr)' : 'repeat(, 1fr)'}
-              >
-                {Object.keys(newsData).map(index => {
-                  const data = newsData[index as unknown as keyof typeof newsData];
-                  const arr = [];
-                  it && arr.push(TagsEnum.IT);
-                  education && arr.push(TagsEnum.EDUCATION);
-                  business && arr.push(TagsEnum.BUSINESS);
-                  government && arr.push(TagsEnum.GOVERNMENT);
-
-                  if (arr.includes(data.tag) && (search === undefined || data.name.includes(search))) {
-                    return (
-                      <GridItem key={index}>
-                        <NewsContent
-                          name_content={data.name}
-                          src_content={data.src}
-                          views_content={data.views}
-                          tag_content={data.tag}
-                          date_content={data.date}
-                          main_content={data.content}
-                          reaction_content={data.reaction}
-                          short_name={data.short_name}
-                        />
-                      </GridItem>
-                    );
-                  }
-                  return false;
-                })}
-              </Grid>
-              <Grid
-                w="full"
-                gap={['1.5', '2.5']}
-                templateRows="auto"
-                templateColumns={isLargerThan1025 ? 'repeat(3, 1fr)' : 'repeat(, 1fr)'}
               >
                 {Object.keys(newsData).map(index => {
                   const data = newsData[index as unknown as keyof typeof newsData];
