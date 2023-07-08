@@ -136,12 +136,14 @@ export const Calendar = React.memo(() => {
           <VStack
             w="full"
             minH={`${height / 2}px`}
+            maxH={`${height / 1.2}px`}
             border="2px"
             borderRadius="5px"
             borderColor={themeIsDark ? 'gray' : 'brand.dark'}
             justify="center"
             bg={themeIsDark ? '#121212' : 'brand.beige'}
             ref={refCalendar}
+            overflow="scroll"
           >
             {january ||
             february ||
@@ -163,6 +165,125 @@ export const Calendar = React.memo(() => {
                 Не выбран месяц
               </Text>
             )}
+            <VStack w="full">
+              <Grid w="full" gap={0.5} templateRows="auto">
+                <GridItem>
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize="lg">
+                    Часы
+                  </Text>
+                </GridItem>
+                <GridItem>
+                  <Button
+                    variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    w="50px"
+                    h="50px"
+                  >
+                    1
+                  </Button>
+                </GridItem>
+                <GridItem>
+                  <Button
+                    variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    w="50px"
+                    h="50px"
+                  >
+                    2
+                  </Button>
+                </GridItem>
+                <GridItem>
+                  <Button
+                    variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    w="50px"
+                    h="50px"
+                  >
+                    3
+                  </Button>
+                </GridItem>
+                <GridItem>
+                  <Button
+                    variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    w="50px"
+                    h="50px"
+                  >
+                    4
+                  </Button>
+                </GridItem>
+                <GridItem>
+                  <Button
+                    variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    w="50px"
+                    h="50px"
+                  >
+                    5
+                  </Button>
+                </GridItem>
+                <GridItem>
+                  <Button
+                    variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    w="50px"
+                    h="50px"
+                  >
+                    6
+                  </Button>
+                </GridItem>
+                <GridItem>
+                  <Button
+                    variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    w="50px"
+                    h="50px"
+                  >
+                    7
+                  </Button>
+                </GridItem>
+                <GridItem>
+                  <Button
+                    variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    w="50px"
+                    h="50px"
+                  >
+                    8
+                  </Button>
+                </GridItem>
+                <GridItem>
+                  <Button
+                    variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    w="50px"
+                    h="50px"
+                  >
+                    9
+                  </Button>
+                </GridItem>
+                <GridItem>
+                  <Button
+                    variant="brand-calendar"
+                    bg={themeIsDark ? '#121212' : 'white'}
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    w="50px"
+                    h="50px"
+                  >
+                    10
+                  </Button>
+                </GridItem>
+              </Grid>
+            </VStack>
           </VStack>
           <HStack w="full" justify="center" align="center">
             {refCalendar.current?.clientWidth && (
