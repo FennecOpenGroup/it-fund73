@@ -30,7 +30,6 @@ import { RiTeamFill } from 'react-icons/ri';
 // import LocalizedStrings from 'react-localization';
 
 import logo from '../../assets/logo.svg';
-import erofeev from '../../assets/team/erofeev_png.png';
 import {
   ROUTE_ABOUTUS,
   ROUTE_CALENDAR,
@@ -152,7 +151,6 @@ export const Header = React.memo(() => {
                 </Text>
               </VStack>
             </Stack>
-            {isLargerThan1090 && <Image src={erofeev} maxH="150px" loading="lazy" />}
           </HStack>
         )}
       </HStack>
