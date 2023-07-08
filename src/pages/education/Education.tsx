@@ -52,29 +52,12 @@ export const Education = React.memo(() => {
             justify="start"
             spacing={4}
           >
-            {themeIsDark ? (
-              <YMaps>
-                <Map
-                  width="100%"
-                  height={`${height / 2}px`}
-                  defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}
-                >
-                  <Placemark defaultGeometry={[54.352498, 48.387667]} />
-                  <Placemark defaultGeometry={[54.30348, 48.367426]} />
-                </Map>
-              </YMaps>
-            ) : (
-              <YMaps>
-                <Map
-                  width="100%"
-                  height={`${height / 2}px`}
-                  defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}
-                >
-                  <Placemark defaultGeometry={[54.352498, 48.387667]} />
-                  <Placemark defaultGeometry={[54.30348, 48.367426]} />
-                </Map>
-              </YMaps>
-            )}
+            <YMaps>
+              <Map width="100%" height={`${height / 2}px`} defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}>
+                <Placemark defaultGeometry={[54.352498, 48.387667]} />
+                <Placemark defaultGeometry={[54.30348, 48.367426]} />
+              </Map>
+            </YMaps>
             {isLargerThan960 ? (
               <VStack align="start">
                 <Button

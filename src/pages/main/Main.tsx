@@ -120,7 +120,7 @@ export const Main = React.memo(() => {
                 w="full"
                 gap={['1.5', '2.5']}
                 templateRows="auto"
-                templateColumns={isLargerThan1025 ? 'repeat(2, 3fr)' : 'repeat(, 1fr)'}
+                templateColumns={isLargerThan1025 ? 'repeat(3, 3fr)' : 'repeat(1, 1fr)'}
               >
                 {Object.keys(newsData).map(index => {
                   const data = newsData[index as unknown as keyof typeof newsData];
