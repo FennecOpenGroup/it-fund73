@@ -1,5 +1,5 @@
 import { InfoIcon } from '@chakra-ui/icons';
-import { VStack, Text, Button, HStack, Stack, Checkbox, useMediaQuery, Grid, GridItem } from '@chakra-ui/react';
+import { VStack, Text, HStack, Stack, Checkbox, useMediaQuery, Grid, GridItem } from '@chakra-ui/react';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -14,15 +14,11 @@ export const Education = React.memo(() => {
   const { height } = useWindowDimensions();
 
   const [isLargerThan960] = useMediaQuery('(min-width: 960px)');
-  const [isLargerThan610] = useMediaQuery('(min-width: 610px)');
 
-  const [schoolboy, setSchoolboy] = useState(true);
-  const [student, setStudent] = useState(false);
-  const [specialist, setSpecialist] = useState(false);
-  const [freeAdditionalTraining, setFreeAdditionalTraining] = useState(false);
-  const [paidAdditionalTraining, setPaidAdditionalTraining] = useState(false);
-  const [higherEducation, setHigherEducation] = useState(false);
-  const [secondaryEducation, setSecondaryEducation] = useState(false);
+  const [freeAdditionalTraining, setFreeAdditionalTraining] = useState(true);
+  const [paidAdditionalTraining, setPaidAdditionalTraining] = useState(true);
+  const [higherEducation, setHigherEducation] = useState(true);
+  const [secondaryEducation, setSecondaryEducation] = useState(true);
 
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
@@ -59,14 +55,14 @@ export const Education = React.memo(() => {
           >
             <YMaps>
               <Map width="100%" height={`${height / 2}px`} defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}>
-                {!higherEducation && (
+                {higherEducation && (
                   <>
                     <Placemark defaultGeometry={[54.30348, 48.367426]} />
                     <Placemark defaultGeometry={[54.240584, 49.59949]} />
                     <Placemark defaultGeometry={[54.349556, 48.386271]} />
                   </>
                 )}
-                {!secondaryEducation && (
+                {secondaryEducation && (
                   <>
                     <Placemark
                       defaultGeometry={[52.724448, 47.630509]}
@@ -106,7 +102,7 @@ export const Education = React.memo(() => {
                     />
                   </>
                 )}
-                {!freeAdditionalTraining && (
+                {freeAdditionalTraining && (
                   <>
                     <Placemark
                       defaultGeometry={[54.352498, 48.387667]}
@@ -470,7 +466,7 @@ export const Education = React.memo(() => {
                     />
                   </>
                 )}
-                {!paidAdditionalTraining && (
+                {paidAdditionalTraining && (
                   <>
                     <Placemark
                       defaultGeometry={[54.279796, 48.292037]}
@@ -560,269 +556,82 @@ export const Education = React.memo(() => {
                 )}
               </Map>
             </YMaps>
-            {isLargerThan960 ? (
-              <VStack align="start">
-                <Button
-                  variant="brand-high-white"
-                  isActive={schoolboy}
-                  onClick={() => {
-                    setSchoolboy(true);
-                    setStudent(false);
-                    setSpecialist(false);
-                  }}
-                  fontSize={['lg', 'xl']}
-                  w="full"
-                  p={isLargerThan960 ? 6 : 8}
-                >
-                  Школьник
-                </Button>
-                <Button
-                  variant="brand-high-white"
-                  isActive={student}
-                  onClick={() => {
-                    setSchoolboy(false);
-                    setStudent(true);
-                    setSpecialist(false);
-                  }}
-                  fontSize={['lg', 'xl']}
-                  w="full"
-                  p={isLargerThan960 ? 6 : 8}
-                >
-                  Студент
-                </Button>
-                <Button
-                  variant="brand-high-white"
-                  isActive={specialist}
-                  onClick={() => {
-                    setSchoolboy(false);
-                    setStudent(false);
-                    setSpecialist(true);
-                  }}
-                  fontSize={['lg', 'xl']}
-                  p={isLargerThan960 ? 6 : 8}
-                >
-                  Начинающий специалист
-                </Button>
-                <Stack border="1px" w="full" p={0} my={2} borderColor={themeIsDark ? 'white' : 'brand.dark'} />
-              </VStack>
-            ) : (
-              <VStack w="full">
-                <Stack
-                  direction={isLargerThan610 ? 'row' : 'column'}
-                  w="full"
-                  align="center"
-                  justify="center"
-                  borderColor={themeIsDark ? 'white' : 'brand.dark'}
-                >
-                  <Button
-                    variant="brand-high-white"
-                    isActive={schoolboy}
-                    onClick={() => {
-                      setSchoolboy(true);
-                      setStudent(false);
-                      setSpecialist(false);
-                    }}
-                    fontSize={['md', 'lg', 'xl']}
-                    p={[2, 4, 6, 8]}
-                    w={isLargerThan610 ? 'auto' : 'full'}
-                  >
-                    Школьник
-                  </Button>
-                  <Button
-                    variant="brand-high-white"
-                    isActive={student}
-                    onClick={() => {
-                      setSchoolboy(false);
-                      setStudent(true);
-                      setSpecialist(false);
-                    }}
-                    fontSize={['md', 'lg', 'xl']}
-                    p={[2, 4, 6, 8]}
-                    w={isLargerThan610 ? 'auto' : 'full'}
-                  >
-                    Студент
-                  </Button>
-                  <Button
-                    variant="brand-high-white"
-                    isActive={specialist}
-                    onClick={() => {
-                      setSchoolboy(false);
-                      setStudent(false);
-                      setSpecialist(true);
-                    }}
-                    fontSize={['md', 'lg', 'xl']}
-                    p={[2, 4, 6, 8]}
-                    w={isLargerThan610 ? 'auto' : 'full'}
-                  >
-                    Начинающий специалист
-                  </Button>
-                </Stack>
-              </VStack>
-            )}
+            <VStack>
+              <Grid w="full">
+                <GridItem>
+                  <HStack spacing={[1, 2]}>
+                    <InfoIcon color="yellow.500" />
+                    <VStack spacing={0}>
+                      <HStack>
+                        <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
+                        <Checkbox
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize="md"
+                          size="md"
+                          isChecked={paidAdditionalTraining}
+                          onChange={() => setPaidAdditionalTraining(!paidAdditionalTraining)}
+                        >
+                          Платное
+                        </Checkbox>
+                        <Checkbox
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize="md"
+                          size="md"
+                          isChecked={freeAdditionalTraining}
+                          onChange={() => setFreeAdditionalTraining(!freeAdditionalTraining)}
+                        >
+                          Бесплатное
+                        </Checkbox>
+                        <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
+                      </HStack>
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                        Дополнительное образование
+                      </Text>
+                    </VStack>
+                  </HStack>
+                </GridItem>
+                <GridItem>
+                  <HStack spacing={[1, 2]}>
+                    <InfoIcon color="blue.500" />
+                    <Checkbox
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize="md"
+                      size="lg"
+                      isChecked={higherEducation}
+                      onChange={() => setHigherEducation(!higherEducation)}
+                    />
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                      Высшее образование
+                    </Text>
+                  </HStack>
+                </GridItem>
+                <GridItem>
+                  <HStack spacing={[1, 2]}>
+                    <InfoIcon color="green.500" />
+                    <Checkbox
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize="xl"
+                      size="lg"
+                      isChecked={secondaryEducation}
+                      onChange={() => setSecondaryEducation(!secondaryEducation)}
+                    />
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                      Среднее образование
+                    </Text>
+                  </HStack>
+                </GridItem>
+                <GridItem>
+                  <HStack spacing={[1, 2]}>
+                    <InfoIcon color="red.500" />
+                    <Checkbox color={themeIsDark ? 'white' : 'brand.dark'} fontSize="xl" size="lg" defaultChecked />
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                      Подготовка к гос. экзаменам
+                    </Text>
+                  </HStack>
+                </GridItem>
+              </Grid>
+            </VStack>
           </Stack>
-          {schoolboy && (
-            <Grid w="full">
-              <GridItem>
-                <HStack spacing={[1, 2]}>
-                  <InfoIcon color="yellow.500" />
-                  <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
-                  <Checkbox
-                    color={themeIsDark ? 'white' : 'brand.dark'}
-                    fontSize="xl"
-                    size="lg"
-                    defaultChecked
-                    onChange={() => setPaidAdditionalTraining(!paidAdditionalTraining)}
-                  >
-                    Платное
-                  </Checkbox>
-                  <Checkbox
-                    color={themeIsDark ? 'white' : 'brand.dark'}
-                    fontSize="xl"
-                    size="lg"
-                    defaultChecked
-                    onChange={() => setFreeAdditionalTraining(!freeAdditionalTraining)}
-                  >
-                    Бесплатное
-                  </Checkbox>
-                  <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
-                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                    Дополнительное образование
-                  </Text>
-                </HStack>
-              </GridItem>
-              <GridItem>
-                <HStack spacing={[1, 2]}>
-                  <InfoIcon color="blue.500" />
-                  <Checkbox
-                    color={themeIsDark ? 'white' : 'brand.dark'}
-                    fontSize="xl"
-                    size="lg"
-                    defaultChecked
-                    onChange={() => setHigherEducation(!higherEducation)}
-                  />
-                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                    Высшее образование
-                  </Text>
-                </HStack>
-              </GridItem>
-              <GridItem>
-                <HStack spacing={[1, 2]}>
-                  <InfoIcon color="green.500" />
-                  <Checkbox
-                    color={themeIsDark ? 'white' : 'brand.dark'}
-                    fontSize="xl"
-                    size="lg"
-                    defaultChecked
-                    onChange={() => setSecondaryEducation(!secondaryEducation)}
-                  />
-                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                    Среднее образование
-                  </Text>
-                </HStack>
-              </GridItem>
-              <GridItem>
-                <HStack spacing={[1, 2]}>
-                  <InfoIcon color="red.500" />
-                  <Checkbox color={themeIsDark ? 'white' : 'brand.dark'} fontSize="xl" size="lg" defaultChecked />
-                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                    Подготовка к гос. экзаменам
-                  </Text>
-                </HStack>
-              </GridItem>
-            </Grid>
-          )}
-          {student && (
-            <VStack w="full" align="start" spacing={0}>
-              <HStack spacing={[1, 2]}>
-                <InfoIcon color="yellow.500" />
-                <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
-                <Checkbox
-                  color={themeIsDark ? 'white' : 'brand.dark'}
-                  fontSize="xl"
-                  size="lg"
-                  defaultChecked
-                  onChange={() => setPaidAdditionalTraining(!paidAdditionalTraining)}
-                >
-                  Платное
-                </Checkbox>
-                <Checkbox
-                  color={themeIsDark ? 'white' : 'brand.dark'}
-                  fontSize="xl"
-                  size="lg"
-                  defaultChecked
-                  onChange={() => setFreeAdditionalTraining(!freeAdditionalTraining)}
-                >
-                  Бесплатное
-                </Checkbox>
-                <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
-                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                  Дополнительное образование
-                </Text>
-              </HStack>
-              <HStack spacing={[1, 2]}>
-                <InfoIcon color="blue.500" />
-                <Checkbox
-                  color={themeIsDark ? 'white' : 'brand.dark'}
-                  fontSize="xl"
-                  size="lg"
-                  defaultChecked
-                  onChange={() => setHigherEducation(!higherEducation)}
-                />
-                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                  Высшее образование
-                </Text>
-              </HStack>
-            </VStack>
-          )}
-          {specialist && (
-            <VStack w="full" align="start" spacing={0}>
-              <HStack spacing={[1, 2]}>
-                <InfoIcon color="yellow.500" />
-                <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
-                <Checkbox
-                  color={themeIsDark ? 'white' : 'brand.dark'}
-                  fontSize="xl"
-                  size="lg"
-                  defaultChecked
-                  onChange={() => setPaidAdditionalTraining(!paidAdditionalTraining)}
-                >
-                  Платное
-                </Checkbox>
-                <Checkbox
-                  color={themeIsDark ? 'white' : 'brand.dark'}
-                  fontSize="xl"
-                  size="lg"
-                  defaultChecked
-                  onChange={() => setFreeAdditionalTraining(!freeAdditionalTraining)}
-                >
-                  Бесплатное
-                </Checkbox>
-                <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
-                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                  Дополнительное образование
-                </Text>
-              </HStack>
-              <HStack spacing={[1, 2]}>
-                <InfoIcon color="blue.500" />
-                <Checkbox
-                  color={themeIsDark ? 'white' : 'brand.dark'}
-                  fontSize="xl"
-                  size="lg"
-                  defaultChecked
-                  onChange={() => setHigherEducation(!higherEducation)}
-                />
-                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                  Высшее образование
-                </Text>
-              </HStack>
-              <HStack spacing={[1, 2]}>
-                <InfoIcon color="red.500" />
-                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                  Работа
-                </Text>
-              </HStack>
-            </VStack>
-          )}
         </VStack>
       </VStack>
       <Footer />
