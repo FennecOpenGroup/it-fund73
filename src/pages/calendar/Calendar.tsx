@@ -135,15 +135,19 @@ export const Calendar = React.memo(() => {
           </Stack>
           <VStack
             w="full"
-            minH={`${height / 2}px`}
-            maxH={`${height / 1.2}px`}
+            maxH={`${height / 1.5}px`}
             border="2px"
             borderRadius="5px"
             borderColor={themeIsDark ? 'gray' : 'brand.dark'}
             justify="center"
             bg={themeIsDark ? '#121212' : 'brand.beige'}
             ref={refCalendar}
-            overflow="scroll"
+            overflow="auto"
+            __css={{
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: `brand.beige`,
+              },
+            }}
           >
             {january ||
             february ||
@@ -157,13 +161,80 @@ export const Calendar = React.memo(() => {
             october ||
             november ||
             december ? (
-              <Text color="#BBBBBB" fontSize={['xs', 'lg', '2xl']} fontWeight="bold" align="center">
-                выбран месяц
-              </Text>
+              <VStack w="full" spacing={0}>
+                <Grid w="full" gap={0} templateColumns="repeat(7, 1fr)" templateRows="auto">
+                  <GridItem>
+                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
+                      ПН
+                    </Text>
+                  </GridItem>
+                  <GridItem>
+                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
+                      ВТ
+                    </Text>
+                  </GridItem>
+                  <GridItem>
+                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
+                      СР
+                    </Text>
+                  </GridItem>
+                  <GridItem>
+                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
+                      ЧТ
+                    </Text>
+                  </GridItem>
+                  <GridItem>
+                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
+                      ПТ
+                    </Text>
+                  </GridItem>
+                  <GridItem>
+                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
+                      СБ
+                    </Text>
+                  </GridItem>
+                  <GridItem>
+                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
+                      ВС
+                    </Text>
+                  </GridItem>
+                </Grid>
+                <Grid w="full" gap={0} templateColumns="repeat(7, 1fr)" templateRows="auto">
+                  {Object.keys(Array(31).fill('')).map(index => {
+                    return (
+                      <GridItem key={index}>
+                        <Button
+                          bg={themeIsDark ? '#121212' : 'white'}
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          border="1px"
+                          h="100px"
+                          minW="120px"
+                          w="full"
+                          _active={{
+                            color: 'white',
+                            bg: 'brand.blue',
+                            border: '1px',
+                            borderColor: 'transparent',
+                            borderRadius: '5px',
+                          }}
+                          _hover={{
+                            borderColor: 'transparent',
+                            bg: 'brand.blue',
+                          }}
+                        >
+                          {Number(index) + 1}
+                        </Button>
+                      </GridItem>
+                    );
+                  })}
+                </Grid>
+              </VStack>
             ) : (
-              <Text color="#BBBBBB" fontSize={['xs', 'lg', '2xl']} fontWeight="bold" align="center">
-                Не выбран месяц
-              </Text>
+              <VStack minH={`${height / 2}px`} w="full" justify="center">
+                <Text color="#BBBBBB" fontSize={['xs', 'lg', '2xl']} fontWeight="bold" align="center">
+                  Не выбран месяц
+                </Text>
+              </VStack>
             )}
           </VStack>
           <HStack w="full" justify="center" align="center">
