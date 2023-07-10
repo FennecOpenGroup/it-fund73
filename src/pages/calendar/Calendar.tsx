@@ -55,6 +55,22 @@ export const Calendar = React.memo(() => {
 
   const [year, setYear] = useState(2023);
 
+  const isLeapYear = (yearLeap: number) => {
+    if (yearLeap % 4 !== 0) return false;
+    if (yearLeap % 100 !== 0) return true;
+    if (yearLeap % 400 !== 0) return false;
+    return true;
+  };
+
+  const mounthCount =
+    january || march || may || july || august || october || december
+      ? 31
+      : february
+      ? isLeapYear(year)
+        ? 29
+        : 28
+      : 30;
+
   const changeMounth = (mounth: string) => {
     setJanuary(mounth === 'january');
     setFebruary(mounth === 'february');
@@ -123,12 +139,24 @@ export const Calendar = React.memo(() => {
                 >
                   {year}
                 </MenuButton>
-                <MenuList>
-                  <MenuItem onClick={() => setYear(2020)}>2020</MenuItem>
-                  <MenuItem onClick={() => setYear(2021)}>2021</MenuItem>
-                  <MenuItem onClick={() => setYear(2022)}>2022</MenuItem>
+                <MenuList maxH="250px" overflow="auto">
                   <MenuItem onClick={() => setYear(2023)}>2023</MenuItem>
                   <MenuItem onClick={() => setYear(2024)}>2024</MenuItem>
+                  <MenuItem onClick={() => setYear(2025)}>2025</MenuItem>
+                  <MenuItem onClick={() => setYear(2026)}>2026</MenuItem>
+                  <MenuItem onClick={() => setYear(2027)}>2027</MenuItem>
+                  <MenuItem onClick={() => setYear(2028)}>2028</MenuItem>
+                  <MenuItem onClick={() => setYear(2029)}>2029</MenuItem>
+                  <MenuItem onClick={() => setYear(2030)}>2030</MenuItem>
+                  <MenuItem onClick={() => setYear(2031)}>2031</MenuItem>
+                  <MenuItem onClick={() => setYear(2032)}>2032</MenuItem>
+                  <MenuItem onClick={() => setYear(2033)}>2033</MenuItem>
+                  <MenuItem onClick={() => setYear(2034)}>2034</MenuItem>
+                  <MenuItem onClick={() => setYear(2035)}>2035</MenuItem>
+                  <MenuItem onClick={() => setYear(2036)}>2036</MenuItem>
+                  <MenuItem onClick={() => setYear(2037)}>2037</MenuItem>
+                  <MenuItem onClick={() => setYear(2038)}>2038</MenuItem>
+                  <MenuItem onClick={() => setYear(2039)}>2039</MenuItem>
                 </MenuList>
               </Menu>
             </HStack>
@@ -163,51 +191,13 @@ export const Calendar = React.memo(() => {
             december ? (
               <VStack w="full" spacing={0}>
                 <Grid w="full" gap={0} templateColumns="repeat(7, 1fr)" templateRows="auto">
-                  <GridItem>
-                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
-                      ПН
-                    </Text>
-                  </GridItem>
-                  <GridItem>
-                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
-                      ВТ
-                    </Text>
-                  </GridItem>
-                  <GridItem>
-                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
-                      СР
-                    </Text>
-                  </GridItem>
-                  <GridItem>
-                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
-                      ЧТ
-                    </Text>
-                  </GridItem>
-                  <GridItem>
-                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
-                      ПТ
-                    </Text>
-                  </GridItem>
-                  <GridItem>
-                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
-                      СБ
-                    </Text>
-                  </GridItem>
-                  <GridItem>
-                    <Text align="center" fontWeight="bold" fontSize="lg" w="full" minW="120px">
-                      ВС
-                    </Text>
-                  </GridItem>
-                </Grid>
-                <Grid w="full" gap={0} templateColumns="repeat(7, 1fr)" templateRows="auto">
-                  {Object.keys(Array(31).fill('')).map(index => {
+                  {Object.keys(Array(mounthCount).fill('')).map(index => {
                     return (
                       <GridItem key={index}>
                         <Button
                           bg={themeIsDark ? '#121212' : 'white'}
                           color={themeIsDark ? 'white' : 'brand.dark'}
                           border="1px"
-                          h="100px"
                           minW="120px"
                           w="full"
                           _active={{
