@@ -19,6 +19,7 @@ export const Education = React.memo(() => {
   const [paidAdditionalTraining, setPaidAdditionalTraining] = useState(true);
   const [higherEducation, setHigherEducation] = useState(true);
   const [secondaryEducation, setSecondaryEducation] = useState(true);
+  const [preparationForStateExams, setPreparationForStateExams] = useState(true);
 
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
@@ -554,6 +555,28 @@ export const Education = React.memo(() => {
                     />
                   </>
                 )}
+                {preparationForStateExams && (
+                  <>
+                    <Placemark
+                      defaultGeometry={[54.30346, 48.366283]}
+                      options={{
+                        iconColor: '#dc3545',
+                      }}
+                    />
+                    <Placemark
+                      defaultGeometry={[54.349556, 48.386271]}
+                      options={{
+                        iconColor: '#dc3545',
+                      }}
+                    />
+                    <Placemark
+                      defaultGeometry={[54.319742, 48.3959]}
+                      options={{
+                        iconColor: '#dc3545',
+                      }}
+                    />
+                  </>
+                )}
               </Map>
             </YMaps>
             <VStack>
@@ -623,7 +646,13 @@ export const Education = React.memo(() => {
                 <GridItem>
                   <HStack spacing={[1, 2]}>
                     <InfoIcon color="red.500" />
-                    <Checkbox color={themeIsDark ? 'white' : 'brand.dark'} fontSize="xl" size="lg" defaultChecked />
+                    <Checkbox
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize="xl"
+                      size="lg"
+                      isChecked={preparationForStateExams}
+                      onChange={() => setPreparationForStateExams(!preparationForStateExams)}
+                    />
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
                       Подготовка к гос. экзаменам
                     </Text>

@@ -8,7 +8,7 @@ import ul_logo from '../../assets/ul-logo.svg';
 export const Footer = React.memo(() => {
   const [isLargerThan820] = useMediaQuery('(min-width: 820px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
-  const [isLargerThan710] = useMediaQuery('(min-width: 430px)');
+  const [isLargerThan410] = useMediaQuery('(min-width: 430px)');
 
   return (
     <Stack
@@ -16,6 +16,7 @@ export const Footer = React.memo(() => {
       w="full"
       minH="160px"
       justify="center"
+      align={isLargerThan820 ? 'center' : 'start'}
       backgroundColor="brand.dark"
       py={2}
       direction={isLargerThan820 ? 'row' : 'column'}
@@ -24,7 +25,9 @@ export const Footer = React.memo(() => {
         src={mini_logo}
         alt="itfund"
         loading="lazy"
-        maxW={isLargerThan820 ? '120px' : isLargerThan710 ? '60px' : '50px'}
+        maxW={isLargerThan820 ? '80px' : isLargerThan410 ? '60px' : '50px'}
+        maxH={isLargerThan820 ? '70px' : isLargerThan410 ? '55px' : '45px'}
+        p={2}
       />
       <VStack align="left" spacing={1}>
         <Text>

@@ -134,7 +134,7 @@ export const Companies = React.memo(() => {
               h={isLargerThan770 ? 'auto' : '110px'}
             >
               <Image src={logo} alt="itfund" loading="lazy" w={['40px', '50px']} htmlWidth="full" htmlHeight="full" />
-              <Stack p={0} m={0} spacing={0} w="full">
+              <Stack p={1} m={0} spacing={0} w="full">
                 <Text fontSize={['sm', 'md', 'xl']}>ИТ-организаций –</Text>
                 {isLargerThan770 && (
                   <CountUp
@@ -161,7 +161,15 @@ export const Companies = React.memo(() => {
               w="full"
               h={isLargerThan770 ? 'auto' : '110px'}
             >
-              <Image src={logo} alt="itfund" loading="lazy" w={['40px', '50px']} htmlWidth="full" htmlHeight="full" />
+              <Image
+                src={logo}
+                alt="itfund"
+                loading="lazy"
+                w={['40px', '50px']}
+                htmlWidth="full"
+                htmlHeight="full"
+                align="center"
+              />
               <Stack p={1} m={0} spacing={0} w="full">
                 <Text fontSize={['sm', 'md', 'xl']}>Аккредитованных ИТ-компаний в Минцифры России – </Text>
                 {isLargerThan770 && (

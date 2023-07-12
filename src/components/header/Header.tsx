@@ -119,8 +119,8 @@ export const Header = React.memo(() => {
             </Tooltip>
           </HStack>
           <Spacer />
-          <HStack cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE}>
-            <Image src={logo} minW={['80px', '120px', '260px']} loading="lazy" py={2} />
+          <HStack cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE} align="center">
+            <Image src={logo} h="70px" loading="lazy" py={0} />
           </HStack>
         </VStack>
         {isLargerThan425 && (
