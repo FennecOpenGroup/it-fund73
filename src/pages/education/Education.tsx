@@ -48,11 +48,10 @@ export const Education = React.memo(() => {
           <Stack
             direction={isLargerThan960 ? 'row' : 'column'}
             w="full"
-            p={[2, 3, 4]}
             ml={6}
             align="start"
             justify="start"
-            spacing={4}
+            spacing={2}
           >
             <YMaps>
               <Map width="100%" height={`${height / 2}px`} defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}>
