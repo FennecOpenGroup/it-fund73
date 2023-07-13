@@ -104,7 +104,12 @@ export const Calendar = React.memo(() => {
         <title>it-fund | Когда будут мероприятия?</title>
       </Helmet>
       <Header />
-      <VStack justify="start" px={isLargerThan770 ? '10%' : '5%'} bg={themeIsDark ? '#242323' : 'white'}>
+      <VStack
+        justify="start"
+        minH={`${height}px`}
+        px={isLargerThan770 ? '10%' : '5%'}
+        bg={themeIsDark ? '#242323' : 'white'}
+      >
         <VStack w="full" p={[1, 2, 3]}>
           <Stack direction={isLargerThan620 ? 'row' : 'column'} w="full" justify="center" align="center" pr={[1, 2]}>
             <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
@@ -199,6 +204,7 @@ export const Calendar = React.memo(() => {
                           color={themeIsDark ? 'white' : 'brand.dark'}
                           border="1px"
                           minW="120px"
+                          minH="100px"
                           w="full"
                           _active={{
                             color: 'white',

@@ -43,13 +43,11 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   const [formSended, setFormSended] = useState(false);
+  const [number, setNumber] = useState('');
 
   const { width } = useWindowDimensions();
 
   const [isLargerThan1000] = useMediaQuery('(min-width: 800px)');
-
-  const phoneRegExp =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const FormSchema = Yup.object().shape({
     name: Yup.string()
@@ -62,13 +60,15 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
       .required('Обязательно к заполению'),
     email: Yup.string().email('Недопустимый формат электронной почты').required('Обязательно к заполению'),
     date: Yup.date().required('Обязательно к заполению'),
-    tel: Yup.string().matches(phoneRegExp, 'Номер введён не верно').required('Обязательно к заполению'),
   });
 
   const handleFormSubmit = (values: IForm) => {
     // eslint-disable-next-line
-    console.log(values);
+    values.tel = number;
     setFormSended(true);
+    setTimeout(() => {
+      setFormSended(false);
+    }, 2000);
   };
 
   return (
@@ -78,13 +78,15 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
         <ModalContent bg={themeIsDark ? '#121212' : 'white'} border="2px">
           <ModalCloseButton color={themeIsDark ? 'white' : 'brand.dark'} />
           <ModalHeader fontSize={['lg', 'xl']} color={themeIsDark ? 'white' : 'brand.dark'}>
-            Мероприятие
+            Данные мероприятия
           </ModalHeader>
           <ModalBody w="full">
             <VStack w="full">
               <Formik
                 key="suggest-an-event"
-                initialValues={{ name: '', date: new Date(), address: '', email: '', tel: '' } as IForm}
+                initialValues={
+                  { name: '', date: new Date(), address: '', email: '', tel: '', file: undefined } as IForm
+                }
                 validationSchema={FormSchema}
                 onSubmit={handleFormSubmit}
               >
@@ -180,7 +182,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                                     <NotAllowedIcon color="red" />
                                   </Tooltip>
                                 ) : (
-                                  <CheckIcon color="red" />
+                                  <CheckIcon color="green" />
                                 )}
                               </Fade>
                             </InputRightElement>
@@ -216,7 +218,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                                     <NotAllowedIcon color="red" />
                                   </Tooltip>
                                 ) : (
-                                  <CheckIcon color="red" />
+                                  <CheckIcon color="green" />
                                 )}
                               </Fade>
                             </InputRightElement>
@@ -255,11 +257,15 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                                     }
                               }
                               dropdownStyle={
-                                themeIsDark ? { color: 'white', backgroundColor: 'dark' } : { color: 'black' }
+                                themeIsDark
+                                  ? { color: 'gray', backgroundColor: '#1a1a1a', colorScheme: 'dark' }
+                                  : { color: 'black' }
                               }
                               buttonStyle={{
                                 backgroundColor: 'transparent',
                               }}
+                              value={number}
+                              onChange={event => setNumber(event)}
                             />
                             <InputRightElement>
                               <Fade in={!!form.errors.tel || !!form.values.tel}>
@@ -268,7 +274,83 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                                     <NotAllowedIcon color="red" />
                                   </Tooltip>
                                 ) : (
-                                  <CheckIcon color="red" />
+                                  <CheckIcon color="green" />
+                                )}
+                              </Fade>
+                            </InputRightElement>
+                          </InputGroup>
+                        </FormControl>
+                      )}
+                    </Field>
+                    <Field name="file">
+                      {({ field, form }: FieldProps<string, IForm>) => (
+                        <FormControl isRequired isInvalid={!!form.values.file && !!form.errors.file}>
+                          <InputGroup size="md">
+                            {themeIsDark ? (
+                              <label
+                                htmlFor="form-file"
+                                style={{
+                                  color: 'white',
+                                  cursor: 'pointer',
+                                  display: 'flex',
+                                  alignContent: 'center',
+                                  alignItems: 'center',
+                                  fontWeight: '600',
+                                  paddingTop: '10px',
+                                  paddingBottom: '10px',
+                                }}
+                              >
+                                <Input
+                                  {...field}
+                                  variant="brand-file"
+                                  id="form-file"
+                                  h="40px"
+                                  border="0px"
+                                  color={themeIsDark ? 'white' : 'brand.dark'}
+                                  type="file"
+                                  multiple
+                                  hidden
+                                />
+                                Приложите файл
+                                <AddIcon w="30px" color="white" />
+                              </label>
+                            ) : (
+                              <label
+                                htmlFor="form-file"
+                                style={{
+                                  color: '#1a1a1a',
+                                  cursor: 'pointer',
+                                  display: 'flex',
+                                  alignContent: 'center',
+                                  alignItems: 'center',
+                                  fontWeight: 'bold',
+                                  paddingTop: '10px',
+                                  paddingBottom: '10px',
+                                }}
+                              >
+                                <Input
+                                  {...field}
+                                  variant="brand-file"
+                                  id="form-file"
+                                  h="40px"
+                                  border="0px"
+                                  color={themeIsDark ? 'white' : 'brand.dark'}
+                                  type="file"
+                                  multiple
+                                  hidden
+                                />
+                                Приложите файл
+                                <AddIcon w="30px" color="brand.dark" />
+                              </label>
+                            )}
+                            <InputRightElement>
+                              <Fade in={!!form.errors.file || !!form.values.file}>
+                                {form.errors.file ? (
+                                  <Tooltip label={form.errors.file} placement="bottom">
+                                    <NotAllowedIcon color="red" />
+                                  </Tooltip>
+                                ) : (
+                                  <CheckIcon color="green" />
                                 )}
                               </Fade>
                             </InputRightElement>
@@ -277,64 +359,6 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                       )}
                     </Field>
                     <VStack>
-                      {themeIsDark ? (
-                        <label
-                          htmlFor="file"
-                          style={{
-                            color: 'white',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            alignContent: 'center',
-                            alignItems: 'center',
-                            fontWeight: '600',
-                            paddingTop: '10px',
-                            paddingBottom: '10px',
-                          }}
-                        >
-                          <Input
-                            name=""
-                            variant="brand-file"
-                            id="file"
-                            h="40px"
-                            border="0px"
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            type="file"
-                            multiple
-                            hidden
-                          />
-                          Приложите файл
-                          <AddIcon w="30px" color="white" />
-                        </label>
-                      ) : (
-                        <label
-                          htmlFor="file"
-                          style={{
-                            color: '#1a1a1a',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            alignContent: 'center',
-                            alignItems: 'center',
-                            fontWeight: 'bold',
-                            paddingTop: '10px',
-                            paddingBottom: '10px',
-                          }}
-                        >
-                          <Input
-                            name=""
-                            variant="brand-file"
-                            id="file"
-                            h="40px"
-                            border="0px"
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            type="file"
-                            multiple
-                            hidden
-                          />
-                          Приложите файл
-                          <AddIcon w="30px" color="brand.dark" />
-                        </label>
-                      )}
-
                       <Button
                         type="submit"
                         variant="brand-high"
@@ -346,12 +370,10 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                           !formik.values.date ||
                           !formik.values.address ||
                           !formik.values.email ||
-                          !formik.values.tel ||
                           !!formik.errors.name ||
                           !!formik.errors.date ||
                           !!formik.errors.address ||
                           !!formik.errors.email ||
-                          !!formik.errors.tel ||
                           formSended
                         }
                         rightIcon={formSended ? <CheckIcon boxSize="15px" /> : <></>}

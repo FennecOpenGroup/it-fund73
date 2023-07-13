@@ -152,7 +152,7 @@ export const AboutUs = React.memo(() => {
               w="full"
               align="center"
               bgGradient={themeIsDark ? 'none' : 'linear(to-t, #e3f2fb 5%, transparent 95%)'}
-              pb={[0, 2, 5]}
+              pb={5}
             >
               <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="800" fontSize={['xl', '2xl', '3xl']}>
                 НАШИ ЦЕЛИ
@@ -256,11 +256,11 @@ export const AboutUs = React.memo(() => {
                 </Text>
               </VStack>
             </VStack>
-            <VStack w="full" align="center" justify="center">
+            <VStack w="full" align="center" justify="center" pb={5}>
               <Text
                 color={themeIsDark ? 'white' : 'brand.dark'}
                 fontWeight="800"
-                fontSize={['lg', 'xl', '2xl']}
+                fontSize={['xl', '2xl', '3xl']}
                 align="center"
               >
                 ПРОЕКТЫ ПОДДЕРЖАННЫЕ ФОНДОМ В 2023 ГОДУ
@@ -270,7 +270,7 @@ export const AboutUs = React.memo(() => {
                   w="full"
                   variant="striped"
                   colorScheme="blue"
-                  size={isLargerThan1300 ? 'lg' : 'sm'}
+                  size={isLargerThan1300 ? 'lg' : 'md'}
                   color={themeIsDark ? 'white' : 'brand.dark'}
                   backgroundColor={themeIsDark ? '#242323' : 'white'}
                   overflow="hidden"
@@ -278,10 +278,21 @@ export const AboutUs = React.memo(() => {
                 >
                   <Thead>
                     <Tr>
-                      <Th color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
+                      <Th
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                        fontSize={['sm', 'md', 'lg']}
+                        fontFamily="Jost"
+                        fontWeight="800"
+                      >
                         Наименование проектов
                       </Th>
-                      <Th isNumeric color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
+                      <Th
+                        isNumeric
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                        fontSize={['sm', 'md', 'lg']}
+                        fontFamily="Jost"
+                        fontWeight="800"
+                      >
                         Колличество участников
                       </Th>
                     </Tr>

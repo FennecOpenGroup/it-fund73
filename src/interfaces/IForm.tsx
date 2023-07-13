@@ -4,4 +4,5 @@ export interface IForm {
   address: string;
   email: string;
   tel: string;
+  file: any;
 }
