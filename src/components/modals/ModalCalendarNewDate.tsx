@@ -21,6 +21,8 @@ import { AddIcon, NotAllowedIcon, CheckIcon } from '@chakra-ui/icons';
 import React, { Dispatch, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, FieldProps, Form, Formik } from 'formik';
+import 'react-phone-input-2/lib/style.css';
+import PhoneInput from 'react-phone-input-2';
 import * as Yup from 'yup';
 
 import { coreRemoveVisibleModal } from '../../actions/coreActions';
@@ -52,9 +54,9 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
   const FormSchema = Yup.object().shape({
     name: Yup.string()
       .min(5, 'Слишком короткое название')
-      .max(256, 'Слишком длинное название')
+      .max(100, 'Слишком длинное название')
       .required('Обязательно к заполению'),
-    adress: Yup.string()
+    address: Yup.string()
       .min(5, 'Слишком короткое название')
       .max(300, 'Слишком длинное название')
       .required('Обязательно к заполению'),
@@ -82,7 +84,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
             <VStack w="full">
               <Formik
                 key="suggest-an-event"
-                initialValues={{ name: '', date: new Date(), adress: '', email: '', tel: '' } as IForm}
+                initialValues={{ name: '', date: new Date(), address: '', email: '', tel: '' } as IForm}
                 validationSchema={FormSchema}
                 onSubmit={handleFormSubmit}
               >
@@ -93,7 +95,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                         <FormControl isRequired isInvalid={!!form.values.name && !!form.errors.name}>
                           <FormLabel
                             htmlFor="form-name"
-                            color="white"
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             requiredIndicator={<></>}
                             fontSize={['xs', 'sm']}
                           >
@@ -105,19 +107,20 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                               id="form-name"
                               h="40px"
                               minW="275px"
-                              w={isLargerThan1000 ? width / 4 : width / 2}
-                              bgColor="#D0D0D0"
-                              color="brand.dark"
+                              w={isLargerThan1000 ? width / 4.6 : width / 2}
+                              bgColor="transparent"
+                              color={themeIsDark ? 'white' : 'brand.dark'}
                               placeholder="Название мероприятия"
+                              variant="brand-support"
                             />
                             <InputRightElement>
-                              <Fade in={!!form.errors.name}>
+                              <Fade in={!!form.errors.name || !!form.values.name}>
                                 {form.errors.name ? (
                                   <Tooltip label={form.errors.name} placement="bottom">
                                     <NotAllowedIcon color="red" />
                                   </Tooltip>
                                 ) : (
-                                  <CheckIcon color="red" />
+                                  <CheckIcon color="green" />
                                 )}
                               </Fade>
                             </InputRightElement>
@@ -127,38 +130,34 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                     </Field>
                     <Field name="date">
                       {({ field, form }: FieldProps<string, IForm>) => (
-                        <FormControl isRequired isInvalid={!!form.values.date && !!form.errors.date}>
+                        <FormControl isRequired isInvalid={!!form.values.date && !!form.errors.date} pb={2}>
                           <FormLabel
                             htmlFor="form-date"
-                            color="white"
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             requiredIndicator={<></>}
                             fontSize={['xs', 'sm']}
                           >
                             Дата
                           </FormLabel>
-                          <InputGroup size="md" pb={2}>
-                            <Input {...field} id="Date" h="40px" color="brand.dark" type="date" bgColor="#D0D0D0" />
-                            <InputRightElement>
-                              <Fade in={!!form.errors.date}>
-                                {form.errors.date ? (
-                                  <Tooltip label={form.errors.date} placement="bottom">
-                                    <NotAllowedIcon color="red" />
-                                  </Tooltip>
-                                ) : (
-                                  <CheckIcon color="red" />
-                                )}
-                              </Fade>
-                            </InputRightElement>
-                          </InputGroup>
+                          <Input
+                            {...field}
+                            id="form-date"
+                            h="40px"
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            type="date"
+                            bgColor="transparent"
+                            variant="brand-support"
+                            style={themeIsDark ? { colorScheme: 'dark' } : { colorScheme: 'white' }}
+                          />
                         </FormControl>
                       )}
                     </Field>
-                    <Field name="adress">
+                    <Field name="address">
                       {({ field, form }: FieldProps<string, IForm>) => (
-                        <FormControl isRequired isInvalid={!!form.values.adress && !!form.errors.adress}>
+                        <FormControl isRequired isInvalid={!!form.values.address && !!form.errors.address}>
                           <FormLabel
-                            htmlFor="form-adress"
-                            color="white"
+                            htmlFor="form-address"
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             requiredIndicator={<></>}
                             fontSize={['xs', 'sm']}
                           >
@@ -167,16 +166,17 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                           <InputGroup size="md" pb={2}>
                             <Input
                               {...field}
-                              id="form-adress"
+                              id="form-address"
                               h="40px"
-                              color="brand.dark"
-                              bgColor="#D0D0D0"
                               placeholder="г.Ульяновск, ул.Уличная, 10"
+                              bgColor="transparent"
+                              variant="brand-support"
+                              color={themeIsDark ? 'white' : 'brand.dark'}
                             />
                             <InputRightElement>
-                              <Fade in={!!form.errors.adress}>
-                                {form.errors.adress ? (
-                                  <Tooltip label={form.errors.adress} placement="bottom">
+                              <Fade in={!!form.errors.address || !!form.values.address}>
+                                {form.errors.address ? (
+                                  <Tooltip label={form.errors.address} placement="bottom">
                                     <NotAllowedIcon color="red" />
                                   </Tooltip>
                                 ) : (
@@ -193,7 +193,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                         <FormControl isRequired isInvalid={!!form.values.email && !!form.errors.email}>
                           <FormLabel
                             htmlFor="form-email"
-                            color="white"
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             requiredIndicator={<></>}
                             fontSize={['xs', 'sm']}
                           >
@@ -204,12 +204,13 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                               {...field}
                               id="form-email"
                               h="40px"
-                              color="brand.dark"
-                              bgColor="#D0D0D0"
+                              bgColor="transparent"
                               placeholder="IvanIvanov@example.com"
+                              variant="brand-support"
+                              color={themeIsDark ? 'white' : 'brand.dark'}
                             />
                             <InputRightElement>
-                              <Fade in={!!form.errors.email}>
+                              <Fade in={!!form.errors.email || !!form.values.email}>
                                 {form.errors.email ? (
                                   <Tooltip label={form.errors.email} placement="bottom">
                                     <NotAllowedIcon color="red" />
@@ -226,21 +227,42 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                     <Field name="tel">
                       {({ field, form }: FieldProps<string, IForm>) => (
                         <FormControl isRequired isInvalid={!!form.values.tel && !!form.errors.tel}>
-                          <FormLabel htmlFor="form-tel" color="white" requiredIndicator={<></>} fontSize={['xs', 'sm']}>
+                          <FormLabel
+                            htmlFor="form-tel"
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            requiredIndicator={<></>}
+                            fontSize={['xs', 'sm']}
+                          >
                             Номер телефона
                           </FormLabel>
                           <InputGroup size="md">
-                            <Input
+                            <PhoneInput
                               {...field}
-                              id="form-tel"
-                              h="40px"
-                              color="brand.dark"
-                              bgColor="#D0D0D0"
-                              placeholder="+70123456789"
-                              type="tel"
+                              country="ru"
+                              inputStyle={
+                                themeIsDark
+                                  ? {
+                                      color: 'white',
+                                      backgroundColor: 'transparent',
+                                      width: '100%',
+                                      height: '40px',
+                                    }
+                                  : {
+                                      color: 'black',
+                                      backgroundColor: 'transparent',
+                                      width: '100%',
+                                      height: '40px',
+                                    }
+                              }
+                              dropdownStyle={
+                                themeIsDark ? { color: 'white', backgroundColor: 'dark' } : { color: 'black' }
+                              }
+                              buttonStyle={{
+                                backgroundColor: 'transparent',
+                              }}
                             />
                             <InputRightElement>
-                              <Fade in={!!form.errors.tel}>
+                              <Fade in={!!form.errors.tel || !!form.values.tel}>
                                 {form.errors.tel ? (
                                   <Tooltip label={form.errors.tel} placement="bottom">
                                     <NotAllowedIcon color="red" />
@@ -254,32 +276,65 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                         </FormControl>
                       )}
                     </Field>
-                    <VStack py={5}>
-                      <label
-                        htmlFor="file"
-                        style={{
-                          color: 'gray',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignContent: 'center',
-                          alignItems: 'center',
-                          fontWeight: 'bold',
-                        }}
-                      >
-                        <Input
-                          name=""
-                          variant="brand-file"
-                          id="file"
-                          h="40px"
-                          border="0px"
-                          color={themeIsDark ? 'white' : 'brand.dark'}
-                          type="file"
-                          multiple
-                          hidden
-                        />
-                        Приложите файл
-                        <AddIcon w="30px" color={themeIsDark ? 'white' : 'brand.dark'} />
-                      </label>
+                    <VStack>
+                      {themeIsDark ? (
+                        <label
+                          htmlFor="file"
+                          style={{
+                            color: 'white',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignContent: 'center',
+                            alignItems: 'center',
+                            fontWeight: '600',
+                            paddingTop: '10px',
+                            paddingBottom: '10px',
+                          }}
+                        >
+                          <Input
+                            name=""
+                            variant="brand-file"
+                            id="file"
+                            h="40px"
+                            border="0px"
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            type="file"
+                            multiple
+                            hidden
+                          />
+                          Приложите файл
+                          <AddIcon w="30px" color="white" />
+                        </label>
+                      ) : (
+                        <label
+                          htmlFor="file"
+                          style={{
+                            color: '#1a1a1a',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignContent: 'center',
+                            alignItems: 'center',
+                            fontWeight: 'bold',
+                            paddingTop: '10px',
+                            paddingBottom: '10px',
+                          }}
+                        >
+                          <Input
+                            name=""
+                            variant="brand-file"
+                            id="file"
+                            h="40px"
+                            border="0px"
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            type="file"
+                            multiple
+                            hidden
+                          />
+                          Приложите файл
+                          <AddIcon w="30px" color="brand.dark" />
+                        </label>
+                      )}
+
                       <Button
                         type="submit"
                         variant="brand-high"
@@ -289,12 +344,12 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                         isDisabled={
                           !formik.values.name ||
                           !formik.values.date ||
-                          !formik.values.adress ||
+                          !formik.values.address ||
                           !formik.values.email ||
                           !formik.values.tel ||
                           !!formik.errors.name ||
                           !!formik.errors.date ||
-                          !!formik.errors.adress ||
+                          !!formik.errors.address ||
                           !!formik.errors.email ||
                           !!formik.errors.tel ||
                           formSended

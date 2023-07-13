@@ -116,7 +116,7 @@ export const Calendar = React.memo(() => {
                 rightIcon={isCalenderNewDateSelect ? <MinusIcon /> : <AddIcon />}
                 onClick={handleCalenderNewDateClick}
                 fontSize={['sm', 'md', 'lg']}
-                bg={themeIsDark ? '#121212' : 'white'}
+                bg="transparent"
                 color={themeIsDark ? 'white' : 'brand.dark'}
                 _hover={{
                   bg: 'brand.blue',
@@ -131,7 +131,7 @@ export const Calendar = React.memo(() => {
                   py={2}
                   as={Button}
                   rightIcon={<BsChevronDown />}
-                  bg={themeIsDark ? '#121212' : 'white'}
+                  bg="transparent"
                   color={themeIsDark ? 'white' : 'brand.dark'}
                   _hover={{
                     bg: 'brand.blue',

@@ -1,7 +1,7 @@
 export interface IForm {
   name: string;
   date: Date;
-  adress: string;
+  address: string;
   email: string;
   tel: string;
 }

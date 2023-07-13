@@ -4,7 +4,7 @@ export const InputStyles = {
   parts: parts.keys,
   baseStyle: {
     field: {
-      borderRadius: '20px',
+      borderRadius: '1px',
     },
   },
   sizes: {
@@ -16,33 +16,11 @@ export const InputStyles = {
     },
   },
   variants: {
-    'brand-search': {
-      field: {
-        borderRadius: '5px',
-        fontSize: 'sm',
-        color: 'brand.gray.dark',
-        bg: 'brand.gray.smoky',
-        _focus: {
-          boxShadow: 'inner',
-        },
-      },
-    },
-    'brand-registration': {
-      field: {
-        borderRadius: '20px',
-        fontSize: 'sm',
-        color: 'brand.gray.dark',
-        bg: 'brand.gray.smoky',
-        _focus: {
-          boxShadow: 'inset 0 2px 4px 0 rgba(0,0,0,0.15)',
-        },
-      },
-    },
     'brand-support': {
       field: {
         borderRadius: '5px',
         border: '1px',
-        borderColor: 'white',
+        borderColor: '#CACACA',
         fontSize: 'sm',
         color: 'white',
         bg: 'transparent',
