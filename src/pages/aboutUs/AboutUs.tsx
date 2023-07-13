@@ -14,6 +14,13 @@ import {
   useToast,
   Link,
   Button,
+  Table,
+  TableContainer,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
 } from '@chakra-ui/react';
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -55,10 +62,11 @@ export const AboutUs = React.memo(() => {
 
   const [charts, setCharts] = useState(false);
 
+  const [isLargerThan1300] = useMediaQuery('(min-width: 1300px)');
   const [isLargerThan1155] = useMediaQuery('(min-width: 1155px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
-  const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
   const [isLargerThan530] = useMediaQuery('(min-width: 530px)');
+  const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
 
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
@@ -247,6 +255,65 @@ export const AboutUs = React.memo(() => {
                   </VStack>
                 </Text>
               </VStack>
+            </VStack>
+            <VStack w="full" align="center" justify="center">
+              <Text
+                color={themeIsDark ? 'white' : 'brand.dark'}
+                fontWeight="800"
+                fontSize={['lg', 'xl', '2xl']}
+                align="center"
+              >
+                ПРОЕКТЫ ПОДДЕРЖАННЫЕ ФОНДОМ В 2023 ГОДУ
+              </Text>
+              <TableContainer w="full">
+                <Table
+                  w="full"
+                  variant="striped"
+                  colorScheme="blue"
+                  size={isLargerThan1300 ? 'lg' : 'sm'}
+                  color={themeIsDark ? 'white' : 'brand.dark'}
+                  backgroundColor={themeIsDark ? '#242323' : 'white'}
+                  overflow="hidden"
+                  whiteSpace="normal"
+                >
+                  <Thead>
+                    <Tr>
+                      <Th color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
+                        Наименование проектов
+                      </Th>
+                      <Th isNumeric color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
+                        Колличество участников
+                      </Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    <Tr textColor="brand.dark">
+                      <Td>Международная цифровая олимпиада «Волга-IT»</Td>
+                      <Td isNumeric>2000</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Развитие сообщества Код-классов (клубов по программированию) в Ульяновской области</Td>
+                      <Td isNumeric>800</Td>
+                    </Tr>
+                    <Tr textColor="brand.dark">
+                      <Td>Турнир «ИТ-Марафон» среди студентов и преподавателей СПО</Td>
+                      <Td isNumeric>710</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Чемпионат ИТ-сферы Ульяновской области среди школьников</Td>
+                      <Td isNumeric>400</Td>
+                    </Tr>
+                    <Tr textColor="brand.dark">
+                      <Td>Командный студенческий чемпионат Ульяновской области по программированию</Td>
+                      <Td isNumeric>45</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>«Инженерно-техническая подготовка в школьном образовании»</Td>
+                      <Td isNumeric>25</Td>
+                    </Tr>
+                  </Tbody>
+                </Table>
+              </TableContainer>
             </VStack>
             <Accordion allowMultiple w="full">
               <AccordionItem color={themeIsDark ? 'white' : 'brand.dark'}>

@@ -22,10 +22,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import CountUp from 'react-countup';
 import { useSelector } from 'react-redux';
+import { BsGraphUpArrow } from 'react-icons/bs';
+import { MdPeopleAlt, MdComputer } from 'react-icons/md';
+import { FaFileContract } from 'react-icons/fa';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
-import logo from '../../assets/mini-logo.svg';
+import { IRootState } from '../../interfaces/IRootState';
 import simbirsoft from '../../assets/companies/simbirsoft.svg';
 import mobirate from '../../assets/companies/mobirate.svg';
 import nord from '../../assets/companies/nord.svg';
@@ -33,7 +36,6 @@ import IBS from '../../assets/companies/IBS.svg';
 import advanshop from '../../assets/companies/advanshop.svg';
 import scheme_accreditation from '../../assets/schemes/scheme_accreditation.svg';
 import scheme_accreditation_dark from '../../assets/schemes/scheme_accreditation_dark.svg';
-import { IRootState } from '../../interfaces/IRootState';
 
 export const Companies = React.memo(() => {
   const [support, setSupport] = useState(false);
@@ -120,7 +122,7 @@ export const Companies = React.memo(() => {
         <VStack w="full" p={[2, 3, 4]} justify="start" align="center">
           <Grid
             w="full"
-            minH={isLargerThan770 ? 'auto' : '105px'}
+            minH={isLargerThan770 ? '170' : '105px'}
             gap={3}
             templateRows="auto"
             templateColumns={isLargerThan770 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)'}
@@ -131,9 +133,11 @@ export const Companies = React.memo(() => {
               borderRadius="5px"
               backgroundColor="brand.dark"
               w="full"
-              h={isLargerThan770 ? 'auto' : '110px'}
+              minH={isLargerThan770 ? '170' : '110px'}
             >
-              <Image src={logo} alt="itfund" loading="lazy" w={['40px', '50px']} htmlWidth="full" htmlHeight="full" />
+              <VStack minW={['3em', '4em', '5em']}>
+                <MdComputer size={isLargerThan770 ? '4em' : '3em'} color="white" />
+              </VStack>
               <Stack p={1} m={0} spacing={0} w="full">
                 <Text fontSize={['sm', 'md', 'xl']}>ИТ-организаций –</Text>
                 {isLargerThan770 && (
@@ -159,17 +163,11 @@ export const Companies = React.memo(() => {
               borderRadius="5px"
               backgroundColor="brand.dark"
               w="full"
-              h={isLargerThan770 ? 'auto' : '110px'}
+              minH={isLargerThan770 ? '170' : '110px'}
             >
-              <Image
-                src={logo}
-                alt="itfund"
-                loading="lazy"
-                w={['40px', '50px']}
-                htmlWidth="full"
-                htmlHeight="full"
-                align="center"
-              />
+              <VStack minW={['3em', '4em', '5em']}>
+                <FaFileContract size={isLargerThan770 ? '4em' : '3em'} color="white" />
+              </VStack>
               <Stack p={1} m={0} spacing={0} w="full">
                 <Text fontSize={['sm', 'md', 'xl']}>Аккредитованных ИТ-компаний в Минцифры России – </Text>
                 {isLargerThan770 && (
@@ -186,9 +184,11 @@ export const Companies = React.memo(() => {
               borderRadius="5px"
               backgroundColor="brand.dark"
               w="full"
-              h={isLargerThan770 ? 'auto' : '110px'}
+              minH={isLargerThan770 ? '170' : '110px'}
             >
-              <Image src={logo} alt="itfund" loading="lazy" w={['40px', '50px']} htmlWidth="full" htmlHeight="full" />
+              <VStack minW={['3em', '4em', '5em']}>
+                <BsGraphUpArrow size={isLargerThan770 ? '4em' : '3em'} color="white" />
+              </VStack>
               <Stack p={0} m={0} spacing={0} w="full">
                 <Text fontSize={['sm', 'md', 'xl']}>Налоговые поступления в региональный бюджет – </Text>
                 {isLargerThan770 && (
@@ -213,9 +213,11 @@ export const Companies = React.memo(() => {
               borderRadius="5px"
               backgroundColor="brand.dark"
               w="full"
-              h={isLargerThan770 ? 'auto' : '110px'}
+              minH={isLargerThan770 ? '170' : '110px'}
             >
-              <Image src={logo} alt="itfund" loading="lazy" w={['40px', '50px']} htmlWidth="full" htmlHeight="full" />
+              <VStack minW={['3em', '4em', '5em']}>
+                <MdPeopleAlt size={isLargerThan770 ? '4em' : '3em'} color="white" />
+              </VStack>
               <Stack p={0} m={0} spacing={0} w="full">
                 <Text fontSize={['sm', 'md', 'xl']}>Среднесписочная численность работников – </Text>
                 {isLargerThan770 && (
