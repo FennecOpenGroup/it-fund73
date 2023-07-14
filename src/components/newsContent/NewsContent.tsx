@@ -24,9 +24,9 @@ export const NewsContent = React.memo(
     const highlightColor = themeIsDark ? 'white' : '#121212';
     const tag =
       tag_content === 'GOVERNMENT'
-        ? 'ГОСУДАРСТВО'
+        ? 'Государство'
         : tag_content === 'BUSINESS'
-        ? 'БИЗНЕС'
+        ? 'Бизнес'
         : tag_content === 'EDUCATION'
         ? 'ОБРАЗОВАНИЕ'
         : 'ИТ';

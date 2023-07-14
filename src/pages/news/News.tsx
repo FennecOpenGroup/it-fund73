@@ -5,7 +5,6 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { BiShow } from 'react-icons/bi';
 import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
 
 import { Emotions } from '../../components/emotions/Emotions';
 import { Footer } from '../../components/footer/Footer';
@@ -20,12 +19,14 @@ import { TagsEnum } from '../../enums/TagsEnum';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
 import { calculateReadingTime } from '../../textfunctions/reattime/readtime';
 import { ADRESS, ROUTE_MAINPAGE, ROUTE_NEWS } from '../../constants/routes';
+import { useSelector } from 'react-redux';
 import { IRootState } from '../../interfaces/IRootState';
 
 export const News = React.memo(() => {
   const { height } = useWindowDimensions();
   const { short_name } = useParams<{ short_name: string }>();
-
+  const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
+  
   const toast = useToast();
 
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
@@ -34,8 +35,6 @@ export const News = React.memo(() => {
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan680] = useMediaQuery('(min-width: 680px)');
   const [isLargerThan395] = useMediaQuery('(min-width: 395px)');
-
-  const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   const newsData = [
     {
