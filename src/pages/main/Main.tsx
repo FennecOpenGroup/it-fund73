@@ -93,6 +93,13 @@ export const Main = React.memo(() => {
   let rowsCount = 0;
   let rowEven = false;
 
+  const url = new URL(`uploads/755999103766645_ebb4903cf1.jpg`, 'http://89.108.102.229:1337/' || window.location.href);
+  const response = fetch(url.toString(), {
+    method: 'GET',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+  }).then(data => console.log(data));
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

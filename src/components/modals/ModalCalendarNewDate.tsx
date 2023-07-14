@@ -61,7 +61,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
     email: Yup.string().email('Недопустимый формат электронной почты').required('Обязательно к заполению'),
     date: Yup.date().required('Обязательно к заполению'),
   });
-
+  
   const handleFormSubmit = (values: IForm) => {
     // eslint-disable-next-line
     values.tel = number;
@@ -75,7 +75,11 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
     <>
       <Modal isOpen={isOpen} onClose={handleClose} size="md">
         <ModalOverlay />
-        <ModalContent bg={themeIsDark ? '#121212' : 'white'} border="2px">
+        <ModalContent
+          bg={themeIsDark ? '#121212' : 'white'}
+          border="2px"
+          minW={isLargerThan1000 ? width / 4.5 : width / 1.8}
+        >
           <ModalCloseButton color={themeIsDark ? 'white' : 'brand.dark'} />
           <ModalHeader fontSize={['lg', 'xl']} color={themeIsDark ? 'white' : 'brand.dark'}>
             Данные мероприятия

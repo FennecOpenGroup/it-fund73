@@ -106,7 +106,7 @@ export const Calendar = React.memo(() => {
       <Header />
       <VStack
         justify="start"
-        minH={`${height}px`}
+        minH={`${height / 1.3}px`}
         px={isLargerThan770 ? '10%' : '5%'}
         bg={themeIsDark ? '#242323' : 'white'}
       >
@@ -138,6 +138,7 @@ export const Calendar = React.memo(() => {
                   rightIcon={<BsChevronDown />}
                   bg="transparent"
                   color={themeIsDark ? 'white' : 'brand.dark'}
+                  style={{ colorScheme: 'dark' }}
                   _hover={{
                     bg: 'brand.blue',
                   }}

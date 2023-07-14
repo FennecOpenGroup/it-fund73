@@ -33,7 +33,7 @@ export const Education = React.memo(() => {
         <title>it-fund | Где получить образование?</title>
       </Helmet>
       <Header />
-      <VStack justify="start" minH={`${height}px`} px="10%" bg={themeIsDark ? '#242323' : 'white'}>
+      <VStack justify="start" minH={`${height / 1.3}px`} px="10%" bg={themeIsDark ? '#242323' : 'white'}>
         <VStack w="full" pl={[2, 3, 4]} pb={[4, 5, 6]} bg={themeIsDark ? '#242323' : 'transparent'}>
           <Text
             color="brand.blue"
