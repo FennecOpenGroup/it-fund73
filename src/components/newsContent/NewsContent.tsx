@@ -6,12 +6,20 @@ import { useSelector } from 'react-redux';
 
 import { ROUTE_MAINPAGE, ROUTE_NEWS } from '../../constants/routes';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
-import { INews } from '../../interfaces/INews';
 import { Emotions } from '../emotions/Emotions';
 import { IRootState } from '../../interfaces/IRootState';
 
+interface INewsContentProps {
+  src_content: string;
+  name_content: string;
+  views_content?: number;
+  date_content: Date;
+  tag_content: string;
+  url_name: string;
+}
+
 export const NewsContent = React.memo(
-  ({ src_content, name_content, views_content, date_content, tag_content, short_name }: INews) => {
+  ({ src_content, name_content, views_content, date_content, tag_content, url_name }: INewsContentProps) => {
     const { height } = useWindowDimensions();
     const [load, setLoad] = useState(false);
 
@@ -24,9 +32,9 @@ export const NewsContent = React.memo(
     const highlightColor = themeIsDark ? 'white' : '#121212';
     const tag =
       tag_content === 'GOVERNMENT'
-        ? 'Государство'
+        ? 'ГОСУДАРСТВО'
         : tag_content === 'BUSINESS'
-        ? 'Бизнес'
+        ? 'БИЗНЕС'
         : tag_content === 'EDUCATION'
         ? 'ОБРАЗОВАНИЕ'
         : 'ИТ';
@@ -57,7 +65,7 @@ export const NewsContent = React.memo(
 
     return (
       <VStack w="full">
-        <VStack w="full" cursor="pointer" as={RouterLink} to={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${short_name}`}>
+        <VStack w="full" cursor="pointer" as={RouterLink} to={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${url_name}`}>
           <Image
             src={src_content}
             w={load ? 'full' : '0px'}
@@ -87,7 +95,7 @@ export const NewsContent = React.memo(
           ) : (
             <VStack m={0} px={2} spacing={2} justify="start" align="start">
               <Text color="#BBBBBB" fontSize={['xs', 'sm']}>
-                {date_content?.toLocaleDateString('ru-RU')}
+                {date_content}
               </Text>
             </VStack>
           )}
@@ -107,7 +115,7 @@ export const NewsContent = React.memo(
         </HStack>
         {isLargerThan590 && (
           <HStack w="full" m={0} p={0} spacing={2} justify="start">
-            <Text color="#BBBBBB">{date_content?.toLocaleDateString('ru-RU')}</Text>
+            <Text color="#BBBBBB">{date_content}</Text>
             <Text color="#BBBBBB">{tag}</Text>
           </HStack>
         )}

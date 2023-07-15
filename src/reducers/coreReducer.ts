@@ -33,16 +33,28 @@ export function coreReducer(state: ICoreState = initialCoreState, action: CoreAc
         [action.payload.value]: false,
       };
     }
-    case ThemeEnum.CORE_THEME_IS_DARK: {
-      return {
-        ...state,
-        themeIsDark: action.payload.value,
-      };
-    }
     case CoreActionsEnum.CORE_SET_LANG: {
       return {
         ...state,
         lang: action.payload.lang,
+      };
+    }
+    case CoreActionsEnum.CORE_SET_NEWS: {
+      return {
+        ...state,
+        news: action.payload.value,
+      };
+    }
+    case CoreActionsEnum.CORE_SET_DOCS: {
+      return {
+        ...state,
+        docs: action.payload.value,
+      };
+    }
+    case ThemeEnum.CORE_THEME_IS_DARK: {
+      return {
+        ...state,
+        themeIsDark: action.payload.value,
       };
     }
     case TagsEnum.IT: {

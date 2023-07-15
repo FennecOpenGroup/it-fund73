@@ -1,14 +1,39 @@
 import { HStack, Link, Spacer, Text, Image, VStack, Stack, useMediaQuery } from '@chakra-ui/react';
-import React from 'react';
+import React, { Dispatch, useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { coreGetDocs } from '../../actions/coreActions';
 import fog_logo from '../../assets/logo-fog.svg';
 import mini_logo from '../../assets/mini-logo.svg';
 import ul_logo from '../../assets/ul-logo.svg';
+import { API_URL } from '../../constants/env';
+import { IRootState } from '../../interfaces/IRootState';
+import { RootActions } from '../../types/RootActions';
 
 export const Footer = React.memo(() => {
   const [isLargerThan820] = useMediaQuery('(min-width: 820px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan430] = useMediaQuery('(min-width: 430px)');
+
+  const dispatch = useDispatch<Dispatch<RootActions>>();
+
+  const docs = useSelector((state: IRootState) => state.core.docs);
+
+  const personalData = useMemo(
+    () => docs?.find(doc => doc.attributes.name.includes('Политика в отношении обработки персональных данных')),
+    [docs],
+  );
+  const personalDatafile = personalData ? personalData.attributes.file.data['0'].attributes : undefined;
+
+  const userAgreement = useMemo(
+    () => docs?.find(doc => doc.attributes.name.includes('Пользовательское соглашение')),
+    [docs],
+  );
+  const userAgreementfile = userAgreement ? userAgreement.attributes.file.data['0'].attributes : undefined;
+
+  useEffect(() => {
+    dispatch(coreGetDocs());
+  }, []);
 
   return (
     <Stack
@@ -48,12 +73,16 @@ export const Footer = React.memo(() => {
       {isLargerThan820 && <Spacer />}
       <VStack align="left" spacing={1}>
         <VStack align="left" spacing={0}>
-          <Link href="" variant="brand-Link">
-            Политика в отношении обработки персональных данных
-          </Link>
-          <Link href="" variant="brand-Link">
-            Пользовательское соглашение
-          </Link>
+          {personalDatafile && (
+            <Link href={`${API_URL}${personalDatafile.url}`} variant="brand-Link" isExternal>
+              Политика в отношении обработки персональных данных
+            </Link>
+          )}
+          {userAgreementfile && (
+            <Link href={`${API_URL}${userAgreementfile.url}`} variant="brand-Link" isExternal>
+              Пользовательское соглашение
+            </Link>
+          )}
         </VStack>
         <HStack borderBottom="1px solid white" w="full" m={0} p={0} />
         <Text>© Все права защищены и охраняются законом</Text>

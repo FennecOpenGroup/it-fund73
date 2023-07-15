@@ -22,15 +22,15 @@ import {
   Tbody,
   Td,
 } from '@chakra-ui/react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Dispatch, useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Chart } from 'react-google-charts';
-import { AiOutlineApartment } from 'react-icons/ai';
+import { AiOutlineApartment, AiOutlineFile } from 'react-icons/ai';
 import { GiVintageRobot } from 'react-icons/gi';
 import { MdEmojiPeople, MdBiotech, MdCellTower } from 'react-icons/md';
-import { BsFiletypeDocx, BsFillPersonFill, BsMailbox, BsTelephone } from 'react-icons/bs';
+import { BsFillPersonFill, BsMailbox, BsTelephone } from 'react-icons/bs';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
@@ -40,9 +40,13 @@ import Erofeev from '../../assets/team/Erofeev.jpg';
 import andronova from '../../assets/team/andronova.jpg';
 import ulyanovsk from '../../assets/Ulyanovsk.jpg';
 import { IRootState } from '../../interfaces/IRootState';
+import { coreGetDocs } from '../../actions/coreActions';
+import { RootActions } from '../../types/RootActions';
+import { API_URL } from '../../constants/env';
 
 export const AboutUs = React.memo(() => {
   const { height, width } = useWindowDimensions();
+  const dispatch = useDispatch<Dispatch<RootActions>>();
 
   const toast = useToast();
 
@@ -69,6 +73,11 @@ export const AboutUs = React.memo(() => {
   const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
 
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
+  const docs = useSelector((state: IRootState) => state.core.docs);
+
+  useEffect(() => {
+    dispatch(coreGetDocs());
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -329,7 +338,7 @@ export const AboutUs = React.memo(() => {
             <Accordion allowMultiple w="full">
               <AccordionItem color={themeIsDark ? 'white' : 'brand.dark'}>
                 <AccordionButton onClick={() => setCharts(!charts)}>
-                  <Box as="span" flex="1" textAlign="left" ref={refCharts}>
+                  <Box flex="1" textAlign="left" ref={refCharts}>
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
                       <b>ЦИФРЫ И ФАКТЫ</b>
                     </Text>
@@ -919,7 +928,7 @@ export const AboutUs = React.memo(() => {
             <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionItem>
                 <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left" ref={refTeam}>
+                  <Box flex="1" textAlign="left" ref={refTeam}>
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
                       <b>КОМАНДА</b>
                     </Text>
@@ -1203,7 +1212,7 @@ export const AboutUs = React.memo(() => {
             <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionItem>
                 <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left" ref={refDocs}>
+                  <Box flex="1" textAlign="left" ref={refDocs}>
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
                       <b>ДОКУМЕНТЫ</b>
                     </Text>
@@ -1211,34 +1220,47 @@ export const AboutUs = React.memo(() => {
                   <AccordionIcon />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <VStack w="full" align="start">
-                    <HStack w="full" align="start">
-                      <Link
-                        color={themeIsDark ? 'white' : 'brand.dark'}
-                        fontSize={['sm', 'md', 'lg']}
-                        href=""
-                        isExternal
-                        w="full"
-                      >
-                        <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                          Порядок конкурсного отбора проектов Фонда ИТ
-                        </Text>
-                        <HStack spacing={0} pl={4}>
-                          <BsFiletypeDocx size="1.5em" />
-                          <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']} align="end">
-                            106.61 КБ
-                          </Text>
-                        </HStack>
-                      </Link>
-                    </HStack>
-                  </VStack>
+                  {docs && (
+                    <VStack w="full" align="start">
+                      {Object.keys(docs).map(index => {
+                        const data = docs[Number(index)].attributes;
+                        const file = data.file.data['0'].attributes;
+                        return (
+                          <HStack w="full" align="start" key={index}>
+                            <Link
+                              color={themeIsDark ? 'white' : 'brand.dark'}
+                              fontSize={['sm', 'md', 'lg']}
+                              href={`${API_URL}${file.url}`}
+                              isExternal
+                              w="full"
+                              alignItems="flex-start"
+                            >
+                              <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
+                                {data.name}
+                              </Text>
+                              <HStack spacing={0} pl={4}>
+                                <AiOutlineFile size="1.5em" />
+                                <Text
+                                  color={themeIsDark ? 'white' : 'brand.dark'}
+                                  fontSize={['sm', 'md', 'lg']}
+                                  align="end"
+                                >
+                                  {`${file.size}КБ`}
+                                </Text>
+                              </HStack>
+                            </Link>
+                          </HStack>
+                        );
+                      })}
+                    </VStack>
+                  )}
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
             <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionItem>
                 <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left" ref={refRecs}>
+                  <Box flex="1" textAlign="left" ref={refRecs}>
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
                       <b>РЕКВИЗИТЫ</b>
                     </Text>
@@ -1643,7 +1665,7 @@ export const AboutUs = React.memo(() => {
             <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionItem>
                 <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left" ref={refContacts}>
+                  <Box flex="1" textAlign="left" ref={refContacts}>
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
                       <b>КОНТАКТЫ</b>
                     </Text>

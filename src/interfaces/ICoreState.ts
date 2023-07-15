@@ -1,5 +1,7 @@
 import { LangEnum } from '../enums/LangEnum';
 import { ModalsEnum } from '../enums/ModalsEnum';
+import { IDocs } from './IDocs';
+import { INews } from './INews';
 
 export type ModalsEnumState = {
   [key in ModalsEnum]?: boolean;
@@ -7,10 +9,14 @@ export type ModalsEnumState = {
 
 export interface ICoreState extends ModalsEnumState {
   lang: LangEnum;
+
   it: boolean;
   education: boolean;
   business: boolean;
   government: boolean;
   themeIsDark: boolean;
   search?: string;
+
+  news?: INews[];
+  docs?: IDocs[];
 }

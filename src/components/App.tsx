@@ -28,9 +28,9 @@ export const App = () => (
         <Route key={ROUTE_EDUCATION} exact path={ROUTE_EDUCATION} component={EducationPage} />
         <Route key={ROUTE_COMPANIES} exact path={ROUTE_COMPANIES} component={CompaniesPage} />
         <Route
-          key={`${ROUTE_MAINPAGE + ROUTE_NEWS}/:short_name`}
+          key={`${ROUTE_MAINPAGE + ROUTE_NEWS}/:url_name`}
           exact
-          path={`${ROUTE_MAINPAGE + ROUTE_NEWS}/:short_name`}
+          path={`${ROUTE_MAINPAGE + ROUTE_NEWS}/:url_name`}
           component={NewsPage}
         />
       </Switch>

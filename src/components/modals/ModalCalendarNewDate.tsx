@@ -61,7 +61,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
     email: Yup.string().email('Недопустимый формат электронной почты').required('Обязательно к заполению'),
     date: Yup.date().required('Обязательно к заполению'),
   });
-  
+
   const handleFormSubmit = (values: IForm) => {
     // eslint-disable-next-line
     values.tel = number;

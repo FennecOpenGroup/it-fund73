@@ -5,6 +5,8 @@ import { LangEnum } from '../enums/LangEnum';
 import { ModalsEnum } from '../enums/ModalsEnum';
 import { TagsEnum } from '../enums/TagsEnum';
 import { ThemeEnum } from '../enums/ThemeEnum';
+import { IDocs } from '../interfaces/IDocs';
+import { INews } from '../interfaces/INews';
 
 export const coreSetVisibleModal = (value: ModalsEnum) => action(CoreActionsEnum.CORE_SET_VISIBLE_MODAL, { value });
 export const coreRemoveVisibleModal = (value: ModalsEnum) =>
@@ -21,3 +23,9 @@ export const coreSetSearchDraft = (value: string) => action(TagsEnum.SEARCH, { v
 
 export const coreSetTheme = (value: boolean) => action(ThemeEnum.CORE_THEME_IS_DARK, { value });
 export const coreGetTheme = () => action(ThemeEnum.CORE_GET_THEME_IS_DARK);
+
+export const coreGetNews = () => action(CoreActionsEnum.CORE_GET_NEWS);
+export const coreSetNews = (value: INews[]) => action(CoreActionsEnum.CORE_SET_NEWS, { value });
+
+export const coreGetDocs = () => action(CoreActionsEnum.CORE_GET_DOCS);
+export const coreSetDocs = (value: IDocs[]) => action(CoreActionsEnum.CORE_SET_DOCS, { value });
