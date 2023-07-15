@@ -11,3 +11,18 @@ export async function fetchNews(): Promise<INews[]> {
     headers: { 'Content-Type': 'application/json' },
   }).then(handleResponse);
 }
+
+export async function fetchChangeViews(newsId: number, newsViews: number): Promise<void> {
+  const url = new URL(`/api/news/${newsId}`, API_URL || window.location.href);
+  return fetch(url.toString(), {
+    method: 'PUT',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      data: {
+        views: newsViews + 1
+      }
+        
+    }),
+  }).then(handleResponse);
+}

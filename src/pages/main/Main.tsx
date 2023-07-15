@@ -108,6 +108,7 @@ export const Main = React.memo(() => {
                           }
                         >
                           <NewsContent
+                            id={news[Number(index)].id}
                             name_content={data.heading}
                             src_content={`${API_URL}${image.url}`}
                             views_content={data.views}

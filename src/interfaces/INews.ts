@@ -1,6 +1,7 @@
 import { IImage } from './IImage';
 
 export interface INews {
+  id: number;
   attributes: {
     angry?: number;
     delight?: number;

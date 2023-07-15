@@ -8,8 +8,10 @@ import { ROUTE_MAINPAGE, ROUTE_NEWS } from '../../constants/routes';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { Emotions } from '../emotions/Emotions';
 import { IRootState } from '../../interfaces/IRootState';
+import { fetchChangeViews } from '../../api/newsApi';
 
 interface INewsContentProps {
+  id: number;
   src_content: string;
   name_content: string;
   views_content?: number;
@@ -19,7 +21,7 @@ interface INewsContentProps {
 }
 
 export const NewsContent = React.memo(
-  ({ src_content, name_content, views_content, date_content, tag_content, url_name }: INewsContentProps) => {
+  ({ src_content, name_content, views_content, date_content, tag_content, url_name, id }: INewsContentProps) => {
     const { height } = useWindowDimensions();
     const [load, setLoad] = useState(false);
 
@@ -65,7 +67,15 @@ export const NewsContent = React.memo(
 
     return (
       <VStack w="full">
-        <VStack w="full" cursor="pointer" as={RouterLink} to={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${url_name}`}>
+        <VStack
+          w="full"
+          cursor="pointer"
+          as={RouterLink}
+          to={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${url_name}`}
+          onClick={async () => {
+            await fetchChangeViews(id, views_content);
+          }}
+        >
           <Image
             src={src_content}
             w={load ? 'full' : '0px'}
