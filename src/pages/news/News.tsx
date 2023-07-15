@@ -110,9 +110,15 @@ export const News = React.memo(() => {
                   <Stack direction={isLargerThan395 ? 'row' : 'column-reverse'} p={0} m={0}>
                     <HStack p={0}>
                       <BiShow color="#BBBBBB" />
-                      <Text color="#BBBBBB" p={0} m={0} fontSize={['sm', 'md']}>
-                        Нет просмотров
-                      </Text>
+                      {newsСontent?.attributes.views !== undefined ? (
+                        <Text color="#BBBBBB" p={0} m={0} fontSize={['sm', 'md']}>
+                          {newsСontent?.attributes.views}
+                        </Text>
+                      ) : (
+                        <Text color="#BBBBBB" p={0} m={0} fontSize={['sm', 'md']}>
+                          Нет просмотров
+                        </Text>
+                      )}
                     </HStack>
                     {isLargerThan395 && (
                       <Text color="#BBBBBB" fontSize={['sm', 'md']}>

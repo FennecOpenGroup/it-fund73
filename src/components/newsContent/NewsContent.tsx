@@ -29,7 +29,7 @@ export const NewsContent = React.memo(
     const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
     const [isLargerThan590] = useMediaQuery('(min-width: 590px)');
-
+    console.log(views_content);
     const highlightFontSize = isLargerThan590 ? '18px' : '14px';
     const highlightColor = themeIsDark ? 'white' : '#121212';
     const tag =
@@ -67,38 +67,40 @@ export const NewsContent = React.memo(
 
     return (
       <VStack w="full">
-        <VStack
-          w="full"
-          cursor="pointer"
-          as={RouterLink}
-          to={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${url_name}`}
-          onClick={async () => {
-            await fetchChangeViews(id, views_content);
-          }}
-        >
-          <Image
-            src={src_content}
-            w={load ? 'full' : '0px'}
-            h={load ? `${height / 3.5}px` : '0px'}
-            borderRadius="5px"
-            objectFit="cover"
-            transitionDuration="0.3s"
-            onLoad={() => setLoad(true)}
-            _hover={{ height: `${height / 3.2}px` }}
-          />
-          {load === false && (
-            <Skeleton w="full" minH={`${height / 4}px`} border="5px" startColor="#BBBBBB" endColor="#e5e5e5" />
-          )}
-          <Stack border="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
-          <Stack align="start" w="full" m={1}>
-            {name_content ? (
-              <Highlight text={name_content} highlight={search} />
-            ) : (
-              <Skeleton w="full" minH={`${height / 16}px`} border="5px" startColor="#BBBBBB" endColor="#e5e5e5" />
+        {views_content !== undefined && (
+          <VStack
+            w="full"
+            cursor="pointer"
+            as={RouterLink}
+            to={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${url_name}`}
+            onClick={async () => {
+              await fetchChangeViews(id, views_content);
+            }}
+          >
+            <Image
+              src={src_content}
+              w={load ? 'full' : '0px'}
+              h={load ? `${height / 3.5}px` : '0px'}
+              borderRadius="5px"
+              objectFit="cover"
+              transitionDuration="0.3s"
+              onLoad={() => setLoad(true)}
+              _hover={{ height: `${height / 3.2}px` }}
+            />
+            {load === false && (
+              <Skeleton w="full" minH={`${height / 4}px`} border="5px" startColor="#BBBBBB" endColor="#e5e5e5" />
             )}
-          </Stack>
-          <Stack border="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
-        </VStack>
+            <Stack border="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+            <Stack align="start" w="full" m={1}>
+              {name_content ? (
+                <Highlight text={name_content} highlight={search} />
+              ) : (
+                <Skeleton w="full" minH={`${height / 16}px`} border="5px" startColor="#BBBBBB" endColor="#e5e5e5" />
+              )}
+            </Stack>
+            <Stack border="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+          </VStack>
+        )}
         <HStack align="center" justify="center" w="full">
           {isLargerThan590 ? (
             <Emotions />
