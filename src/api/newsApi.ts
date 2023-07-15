@@ -20,9 +20,9 @@ export async function fetchChangeViews(newsId: number, newsViews: number): Promi
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       data: {
-        views: newsViews + 1
-      }
-        
+        views: newsViews + 1,
+      },
     }),
   }).then(handleResponse);
 }
+

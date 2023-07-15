@@ -1,12 +1,23 @@
 import { HStack, Text, Button } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { fetchChangeEmojiPlus } from '../../api/emojiApi';
 
-export const Emotions = React.memo(() => {
-  const [like, setLike] = useState(false);
-  const [dislike, setDislike] = useState(false);
+interface IEmoutionsProps {
+  newsId: number;
+  like: number;
+  dislike: number;
+  delight: number;
+  shock: number;
+  smile_face: number;
+  angry: number;
+}
+
+export const Emotions = React.memo(({ newsId, like, dislike, delight, shock, smile_face, angry }: IEmoutionsProps) => {
+  const [likeState, setLikeState] = useState(false);
+  const [dislikeState, setDislikeState] = useState(false);
   const [happy, setHappy] = useState(false);
   const [shocked, setShocked] = useState(false);
-  const [angry, setAngry] = useState(false);
+  const [angryState, setAngryState] = useState(false);
   const [smile, setSmile] = useState(false);
 
   return (
@@ -15,13 +26,14 @@ export const Emotions = React.memo(() => {
         variant="brand-reactions"
         size="30px"
         iconSpacing={0}
-        onClick={() => {
+        onClick={async () => {
           setHappy(!happy);
-          setLike(false);
-          setDislike(false);
+          setLikeState(false);
+          setDislikeState(false);
           setShocked(false);
-          setAngry(false);
+          setAngryState(false);
           setSmile(false);
+          await fetchChangeEmojiPlus(newsId, 'delight', delight);
         }}
         p={0}
         m={0}
@@ -39,13 +51,14 @@ export const Emotions = React.memo(() => {
         variant="brand-reactions"
         size="30px"
         iconSpacing={0}
-        onClick={() => {
+        onClick={async () => {
           setShocked(!shocked);
-          setLike(false);
-          setDislike(false);
+          setLikeState(false);
+          setDislikeState(false);
           setHappy(false);
-          setAngry(false);
+          setAngryState(false);
           setSmile(false);
+          await fetchChangeEmojiPlus(newsId, 'shock', shock);
         }}
         p={0}
         m={0}
@@ -63,13 +76,14 @@ export const Emotions = React.memo(() => {
         variant="brand-reactions"
         size="30px"
         iconSpacing={0}
-        onClick={() => {
+        onClick={async () => {
           setSmile(!smile);
-          setLike(false);
-          setDislike(false);
+          setLikeState(false);
+          setDislikeState(false);
           setHappy(false);
           setShocked(false);
-          setAngry(false);
+          setAngryState(false);
+          await fetchChangeEmojiPlus(newsId, 'smile_face', smile_face);
         }}
         p={0}
         m={0}
@@ -87,18 +101,19 @@ export const Emotions = React.memo(() => {
         variant="brand-reactions"
         size="30px"
         iconSpacing={0}
-        onClick={() => {
-          setAngry(!angry);
-          setLike(false);
-          setDislike(false);
+        onClick={async () => {
+          setAngryState(!angryState);
+          setLikeState(false);
+          setDislikeState(false);
           setHappy(false);
           setShocked(false);
           setSmile(false);
+          await fetchChangeEmojiPlus(newsId, 'angry', angry);
         }}
         p={0}
         m={0}
         leftIcon={
-          angry ? (
+          angryState ? (
             <Text fontSize="22px">😡</Text>
           ) : (
             <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
@@ -111,18 +126,19 @@ export const Emotions = React.memo(() => {
         variant="brand-reactions"
         size="30px"
         iconSpacing={0}
-        onClick={() => {
-          setDislike(!dislike);
-          setLike(false);
+        onClick={async () => {
+          setDislikeState(!dislikeState);
+          setLikeState(false);
           setSmile(false);
           setHappy(false);
           setShocked(false);
-          setAngry(false);
+          setAngryState(false);
+          await fetchChangeEmojiPlus(newsId, 'dislike', dislike);
         }}
         p={0}
         m={0}
         leftIcon={
-          dislike ? (
+          dislikeState ? (
             <Text fontSize="22px">👎</Text>
           ) : (
             <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
@@ -135,18 +151,19 @@ export const Emotions = React.memo(() => {
         variant="brand-reactions"
         size="30px"
         iconSpacing={0}
-        onClick={() => {
-          setLike(!like);
-          setDislike(false);
+        onClick={async () => {
+          setLikeState(!likeState);
+          setDislikeState(false);
           setSmile(false);
           setHappy(false);
           setShocked(false);
-          setAngry(false);
+          setAngryState(false);
+          await fetchChangeEmojiPlus(newsId, 'like', like);
         }}
         p={0}
         m={0}
         leftIcon={
-          like ? (
+          likeState ? (
             <Text fontSize="22px">👍</Text>
           ) : (
             <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">

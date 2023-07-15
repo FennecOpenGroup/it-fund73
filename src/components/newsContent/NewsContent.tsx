@@ -18,10 +18,30 @@ interface INewsContentProps {
   date_content: Date;
   tag_content: string;
   url_name: string;
+  like?: number;
+  dislike?: number;
+  delight?: number;
+  shock?: number;
+  smile_face?: number;
+  angry?: number;
 }
 
 export const NewsContent = React.memo(
-  ({ src_content, name_content, views_content, date_content, tag_content, url_name, id }: INewsContentProps) => {
+  ({
+    src_content,
+    name_content,
+    views_content,
+    date_content,
+    tag_content,
+    url_name,
+    id,
+    like,
+    dislike,
+    delight,
+    shock,
+    smile_face,
+    angry,
+  }: INewsContentProps) => {
     const { height } = useWindowDimensions();
     const [load, setLoad] = useState(false);
 
@@ -103,7 +123,15 @@ export const NewsContent = React.memo(
         )}
         <HStack align="center" justify="center" w="full">
           {isLargerThan590 ? (
-            <Emotions />
+            <Emotions
+              newsId={id}
+              like={like ? like : 0}
+              dislike={dislike}
+              delight={delight}
+              shock={shock}
+              smile_face={smile_face}
+              angry={angry}
+            />
           ) : (
             <VStack m={0} px={2} spacing={2} justify="start" align="start">
               <Text color="#BBBBBB" fontSize={['xs', 'sm']}>

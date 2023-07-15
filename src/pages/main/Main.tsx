@@ -111,6 +111,12 @@ export const Main = React.memo(() => {
                               tag_content={data.tags}
                               date_content={data.date}
                               url_name={transliterating(data.heading)}
+                              like={data.like}
+                              dislike={data.dislike}
+                              delight={data.delight}
+                              shock={data.shock}
+                              smile_face={data.smile_face}
+                              angry={data.angry}
                             />
                           </GridItem>
                         );

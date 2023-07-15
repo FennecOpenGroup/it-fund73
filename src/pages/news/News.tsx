@@ -104,7 +104,7 @@ export const News = React.memo(() => {
                 justify={isLargerThan1280 ? 'center' : 'start'}
                 w="full"
               >
-                <Emotions />
+                <Emotions newsId={0} like={0} dislike={0} delight={0} shock={0} smile_face={0} angry={0} />
                 <Spacer />
                 <Stack direction={isLargerThan680 ? 'row' : 'column-reverse'} m={0} px={2} spacing={2} justify="start">
                   <Stack direction={isLargerThan395 ? 'row' : 'column-reverse'} p={0} m={0}>
