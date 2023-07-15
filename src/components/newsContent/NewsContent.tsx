@@ -43,7 +43,7 @@ export const NewsContent = React.memo(
 
     const Highlight = ({ text = '', highlight = '' }) => {
       if (!highlight.trim()) {
-        return <span style={{ color: highlightColor, fontWeight: '700', fontSize: highlightFontSize }}>{text}</span>;
+        return <span style={{ color: highlightColor, fontWeight: 'bold', fontSize: highlightFontSize }}>{text}</span>;
       }
       const regex = new RegExp(`(${highlight})`, 'gi');
       const parts = text.split(regex);
@@ -52,11 +52,11 @@ export const NewsContent = React.memo(
         <span>
           {parts.filter(String).map((part, i) => {
             return regex.test(part) ? (
-              <mark key={i} style={{ color: '#1a1a1a', fontWeight: '700', fontSize: highlightFontSize }}>
+              <mark key={i} style={{ color: '#1a1a1a', fontWeight: 'bold', fontSize: highlightFontSize }}>
                 {part}
               </mark>
             ) : (
-              <span key={i} style={{ color: '#1a1a1a', fontWeight: '700', fontSize: highlightFontSize }}>
+              <span key={i} style={{ color: '#1a1a1a', fontWeight: 'bold', fontSize: highlightFontSize }}>
                 {part}
               </span>
             );

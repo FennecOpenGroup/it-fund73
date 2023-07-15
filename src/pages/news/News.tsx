@@ -1,5 +1,6 @@
 import { HStack, VStack, Text, Image, Stack, Spacer, useToast, useMediaQuery } from '@chakra-ui/react';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import ReactMarkdown from 'react-markdown';
 import { LinkIcon } from '@chakra-ui/icons';
 import React, { Dispatch, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
@@ -165,9 +166,7 @@ export const News = React.memo(() => {
               </Stack>
               <Stack border="1px" w="full" m={0} p={0} borderColor={themeIsDark ? 'white' : 'brand.dark'} />
               <Stack w="full" justify="start" align="start" pt={4}>
-                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize="md">
-                  {newsСontent?.attributes.text}
-                </Text>
+                {newsСontent && <ReactMarkdown>{newsСontent?.attributes.text}</ReactMarkdown>}
               </Stack>
             </VStack>
             {isLargerThan1030 && (

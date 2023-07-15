@@ -27,7 +27,6 @@ export const Main = React.memo(() => {
   const news = useSelector((state: IRootState) => state.core.news);
   const dispatch = useDispatch<Dispatch<RootActions>>();
 
-  const [isLargerThan1572] = useMediaQuery('(min-width: 1572px)');
   const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan620] = useMediaQuery('(min-width: 620px)');
@@ -73,54 +72,51 @@ export const Main = React.memo(() => {
                   templateRows={`repeat(${rowsCount}, 1fr)`}
                   templateColumns={isLargerThan1025 ? 'repeat(6, 3fr)' : 'repeat(1, 1fr)'}
                 >
-                  {Object.keys(news).map(index => {
-                    const data = news[Number(index)].attributes;
-                    const image = data.image.data['0'].attributes;
-                    const arr = [];
-                    it && arr.push(TagsEnum.IT);
-                    education && arr.push(TagsEnum.EDUCATION);
-                    business && arr.push(TagsEnum.BUSINESS);
-                    government && arr.push(TagsEnum.GOVERNMENT);
+                  {Object.keys(news)
+                    .reverse()
+                    .map(index => {
+                      const data = news[Number(index)].attributes;
+                      const image = data.image.data['0'].attributes;
+                      const arr = [];
+                      it && arr.push(TagsEnum.IT);
+                      education && arr.push(TagsEnum.EDUCATION);
+                      business && arr.push(TagsEnum.BUSINESS);
+                      government && arr.push(TagsEnum.GOVERNMENT);
 
-                    if (rowEven === true) {
-                      if (rowsCount < 2) rowsCount += 1;
-                      else {
-                        rowsCount = 0;
-                        rowEven = false;
+                      if (rowEven === true) {
+                        if (rowsCount < 2) rowsCount += 1;
+                        else {
+                          rowsCount = 0;
+                          rowEven = false;
+                        }
                       }
-                    }
-                    if (rowEven === false) {
-                      if (rowsCount < 2) rowsCount += 1;
-                      else {
-                        rowsCount = 0;
-                        rowEven = true;
+                      if (rowEven === false) {
+                        if (rowsCount < 2) rowsCount += 1;
+                        else {
+                          rowsCount = 0;
+                          rowEven = true;
+                        }
                       }
-                    }
-                    if (
-                      arr.includes(data.tags as TagsEnum) &&
-                      (search === undefined || data.heading.includes(search))
-                    ) {
-                      return (
-                        <GridItem
-                          key={index}
-                          colSpan={
-                            isLargerThan1572 && it && education && business && government ? (rowEven ? 2 : 3) : 3
-                          }
-                        >
-                          <NewsContent
-                            id={news[Number(index)].id}
-                            name_content={data.heading}
-                            src_content={`${API_URL}${image.url}`}
-                            views_content={data.views}
-                            tag_content={data.tags}
-                            date_content={data.date}
-                            url_name={transliterating(data.heading)}
-                          />
-                        </GridItem>
-                      );
-                    }
-                    return false;
-                  })}
+                      if (
+                        arr.includes(data.tags as TagsEnum) &&
+                        (search === undefined || data.heading.includes(search))
+                      ) {
+                        return (
+                          <GridItem key={index} colSpan={3}>
+                            <NewsContent
+                              id={news[Number(index)].id}
+                              name_content={data.heading}
+                              src_content={`${API_URL}${image.url}`}
+                              views_content={data.views}
+                              tag_content={data.tags}
+                              date_content={data.date}
+                              url_name={transliterating(data.heading)}
+                            />
+                          </GridItem>
+                        );
+                      }
+                      return false;
+                    })}
                 </Grid>
               )}
             </VStack>
