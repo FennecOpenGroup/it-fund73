@@ -49,7 +49,7 @@ export const NewsContent = React.memo(
     const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
     const [isLargerThan590] = useMediaQuery('(min-width: 590px)');
-    console.log(views_content);
+
     const highlightFontSize = isLargerThan590 ? '18px' : '14px';
     const highlightColor = themeIsDark ? 'white' : '#121212';
     const tag =
