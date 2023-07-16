@@ -52,6 +52,7 @@ export const NewsContent = React.memo(
 
     const highlightFontSize = isLargerThan590 ? '18px' : '14px';
     const highlightColor = themeIsDark ? 'white' : '#121212';
+
     const tag =
       tag_content === 'GOVERNMENT'
         ? 'ГОСУДАРСТВО'
@@ -125,7 +126,7 @@ export const NewsContent = React.memo(
           {isLargerThan590 ? (
             <Emotions
               newsId={id}
-              like={like ? like : 0}
+              like={like}
               dislike={dislike}
               delight={delight}
               shock={shock}

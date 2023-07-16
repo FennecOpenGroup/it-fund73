@@ -104,7 +104,18 @@ export const News = React.memo(() => {
                 justify={isLargerThan1280 ? 'center' : 'start'}
                 w="full"
               >
-                <Emotions newsId={0} like={0} dislike={0} delight={0} shock={0} smile_face={0} angry={0} />
+                {newsСontent && (
+                  <Emotions
+                    newsId={newsСontent?.id}
+                    like={newsСontent.attributes.like}
+                    dislike={newsСontent.attributes.dislike}
+                    delight={newsСontent.attributes.delight}
+                    shock={newsСontent.attributes.shock}
+                    smile_face={newsСontent.attributes.smile_face}
+                    angry={newsСontent.attributes.angry}
+                  />
+                )}
+
                 <Spacer />
                 <Stack direction={isLargerThan680 ? 'row' : 'column-reverse'} m={0} px={2} spacing={2} justify="start">
                   <Stack direction={isLargerThan395 ? 'row' : 'column-reverse'} p={0} m={0}>

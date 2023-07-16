@@ -1,3 +1,4 @@
+/* eslint no-return-assign: "error" */
 import { HStack, VStack, Text, Grid, GridItem, useMediaQuery } from '@chakra-ui/react';
 import React, { Dispatch, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
@@ -36,33 +37,33 @@ export const Main = React.memo(() => {
 
   useEffect(() => {
     const data = localStorage.getItem('newsReadtions');
-    if (!data) {
-      const newsReadtions: {
-        [x: string]: {
-          dislike: boolean;
-          delight: boolean;
-          shock: boolean;
-          smile_face: boolean;
-          angry: boolean;
-          like: boolean;
-        };
-      } = {};
-      news &&
-        Object.keys(news)
-          .reverse()
-          .map(index => {
-            newsReadtions[`${news[Number(index)].id}`] = {
-              dislike: false,
-              delight: false,
-              shock: false,
-              smile_face: false,
-              angry: false,
-              like: false,
-            };
+    const newsReadtions: {
+      [x: string]: {
+        dislike: boolean;
+        delight: boolean;
+        shock: boolean;
+        smile_face: boolean;
+        angry: boolean;
+        like: boolean;
+      };
+    } = {};
+    if (!data && news) {
+      Object.keys(news)
+        .reverse()
+        .map(index => {
+          return (newsReadtions[`${news[Number(index)].id}`] = {
+            dislike: false,
+            delight: false,
+            shock: false,
+            smile_face: false,
+            angry: false,
+            like: false,
           });
-      localStorage.setItem('newsReadtions', newsReadtions);
+        });
+      const list = JSON.stringify(newsReadtions);
+      localStorage.setItem('newsReadtions', list);
     }
-  }, []);
+  }, [news]);
 
   useEffect(() => {
     dispatch(coreGetNews());
