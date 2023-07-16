@@ -23,6 +23,7 @@ import { coreSetVisibleModal, coreGetEvents } from '../../actions/coreActions';
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { ModalCalendarNewDate } from '../../components/modals/ModalCalendarNewDate';
+import { ModalCalendarEventInfo } from '../../components/modals/ModalCalendarEventInfo';
 import { ModalsEnum } from '../../enums/ModalsEnum';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { IRootState } from '../../interfaces/IRootState';
@@ -56,6 +57,7 @@ export const Calendar = React.memo(() => {
   const [isLargerThan600] = useMediaQuery('(min-width: 600px)');
 
   const [year, setYear] = useState(2023);
+  const [id, setId] = useState('');
 
   const isLeapYear = (yearLeap: number) => {
     if (yearLeap % 4 !== 0) return false;
@@ -92,8 +94,14 @@ export const Calendar = React.memo(() => {
   const dispatch = useDispatch<Dispatch<RootActions>>();
 
   const isCalenderNewDateSelect = useSelector((state: IRootState) => state.core[ModalsEnum.CALENDAR_NEW_DATE]);
+  const isCalenderEventSelect = useSelector((state: IRootState) => state.core[ModalsEnum.CALENDAR_EVENT_INFO]);
+
   const handleCalenderNewDateClick = useCallback(
     () => dispatch(coreSetVisibleModal(ModalsEnum.CALENDAR_NEW_DATE)),
+    [dispatch],
+  );
+  const handleCalenderEventClick = useCallback(
+    () => dispatch(coreSetVisibleModal(ModalsEnum.CALENDAR_EVENT_INFO)),
     [dispatch],
   );
 
@@ -218,7 +226,7 @@ export const Calendar = React.memo(() => {
               <VStack w="full" spacing={0}>
                 <Grid w="full" gap={0} templateColumns="repeat(7, 1fr)" templateRows="auto">
                   {Object.keys(Array(mounthCount).fill('')).map(index => {
-                    let eventTag;
+                    let eventTag: any;
                     if (events) {
                       Object.keys(events).forEach(function (element) {
                         if (
@@ -253,11 +261,20 @@ export const Calendar = React.memo(() => {
                               borderColor: 'transparent',
                               bg: 'brand.blue',
                             }}
+                            onClick={() => {
+                              handleCalenderEventClick();
+                              setId(eventTag);
+                            }}
                           >
-                            <VStack align="center">
+                            <VStack align="center" spacing={0}>
                               <p style={{ fontSize: '25px' }}>{Number(index) + 1}</p>
-                              <p style={{ fontSize: '12px' }}>{events && events[Number(eventTag)].attributes.name}</p>
-                              <p style={{ fontSize: '12px' }}>
+                              <p style={{ fontSize: '12px', fontWeight: 'lighter' }}>
+                                {events && events[Number(eventTag)].attributes.name}
+                              </p>
+                              <p style={{ fontSize: '12px', fontWeight: 'lighter', paddingTop: '4px' }}>
+                                {events && events[Number(eventTag)].attributes.address}
+                              </p>
+                              <p style={{ fontSize: '12px', fontWeight: 'lighter' }}>
                                 {events &&
                                   new Date(events[Number(eventTag)].attributes.date).toLocaleString('ru-RU', {
                                     weekday: 'long',
@@ -752,6 +769,7 @@ export const Calendar = React.memo(() => {
       </VStack>
       <Footer />
       <ModalCalendarNewDate isOpen={!!isCalenderNewDateSelect} />
+      <ModalCalendarEventInfo isOpen={!!isCalenderEventSelect} id={id} />
     </>
   );
 });
