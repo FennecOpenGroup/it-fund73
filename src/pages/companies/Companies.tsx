@@ -65,6 +65,20 @@ export const Companies = React.memo(() => {
     <>
       <Helmet>
         <title>it-fund | Что происходит в отрасли?</title>
+        <meta charSet="UTF-8" />
+        <meta name="Что происходит в отрасли?" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="it-fund" />
+        <meta property="og:title" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
+        <meta property="og:descripsion" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
+        <meta property="og:image" content="/assets/logo.svg" />
+        <meta property="og:image:type" content="image/svg" />
+        <meta property="og:image:width" content="200" />
+        <meta property="og:image:height" content="60" />
+        <meta name="vk:card" content="image/svg" />
+        <meta name="vk:title" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
+        <meta name="vk:descripsion" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
+        <meta name="vk:image" content="/assets/logo.svg" />
       </Helmet>
       <Header />
       <VStack justify="center" px={isLargerThan770 ? '10%' : '5%'} bg={themeIsDark ? '#242323' : 'white'}>

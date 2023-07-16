@@ -102,6 +102,20 @@ export const Calendar = React.memo(() => {
     <>
       <Helmet>
         <title>it-fund | Когда будут мероприятия?</title>
+        <meta charSet="UTF-8" />
+        <meta name="Календарь мероприятий" content="" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="it-fund" />
+        <meta property="og:title" content="Календарь мероприятий" />
+        <meta property="og:descripsion" content="Календарь мероприятий" />
+        <meta property="og:image" content="/assets/logo.svg" />
+        <meta property="og:image:type" content="image/svg" />
+        <meta property="og:image:width" content="200" />
+        <meta property="og:image:height" content="60" />
+        <meta name="vk:card" content="image/svg" />
+        <meta name="vk:title" content="Календарь мероприятий" />
+        <meta name="vk:descripsion" content="Календарь мероприятий" />
+        <meta name="vk:image" content="/assets/logo.svg" />
       </Helmet>
       <Header />
       <VStack

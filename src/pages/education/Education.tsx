@@ -31,6 +31,20 @@ export const Education = React.memo(() => {
     <>
       <Helmet>
         <title>it-fund | Где получить образование?</title>
+        <meta charSet="UTF-8" />
+        <meta name="Где получить образование?" content="Где получить образование?" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="it-fund" />
+        <meta property="og:title" content="Где получить образование?" />
+        <meta property="og:descripsion" content="Где получить образование??" />
+        <meta property="og:image" content="/assets/logo.svg" />
+        <meta property="og:image:type" content="image/svg" />
+        <meta property="og:image:width" content="200" />
+        <meta property="og:image:height" content="60" />
+        <meta name="vk:card" content="image/svg" />
+        <meta name="vk:title" content="Где получить образование?" />
+        <meta name="vk:descripsion" content="Где получить образование?" />
+        <meta name="vk:image" content="/assets/logo.svg" />
       </Helmet>
       <Header />
       <VStack justify="start" minH={`${height / 1.3}px`} px="10%" bg={themeIsDark ? '#242323' : 'white'}>

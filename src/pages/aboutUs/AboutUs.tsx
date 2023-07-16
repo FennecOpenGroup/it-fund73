@@ -87,6 +87,29 @@ export const AboutUs = React.memo(() => {
     <>
       <Helmet>
         <title>it-fund | О фонде</title>
+        <meta charSet="UTF-8" />
+        <meta
+          name="Информация о фонде"
+          content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="it-fund" />
+        <meta property="og:title" content="Фонд развития информационный технологий Ульяновской области." />
+        <meta
+          property="og:descripsion"
+          content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года"
+        />
+        <meta property="og:image" content="/assets/logo.svg" />
+        <meta property="og:image:type" content="image/svg" />
+        <meta property="og:image:width" content="200" />
+        <meta property="og:image:height" content="60" />
+        <meta name="vk:card" content="image/svg" />
+        <meta name="vk:title" content="Фонд развития информационный технологий Ульяновской области." />
+        <meta
+          name="vk:descripsion"
+          content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года"
+        />
+        <meta name="vk:image" content="/assets/logo.svg" />
       </Helmet>
       <VStack w="full" p={0} m={0} ref={refHeader}>
         <Header />

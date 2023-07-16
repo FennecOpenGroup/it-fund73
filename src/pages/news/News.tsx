@@ -63,6 +63,20 @@ export const News = React.memo(() => {
     <>
       <Helmet>
         <title>it-fund | Новости</title>
+        <meta charSet="UTF-8" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="it-fund" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="600" />
+        {newsСontent && <meta name="Новости" content={newsСontent.attributes.text} />}
+        {newsСontent && <meta property="og:title" content={newsСontent.attributes.text} />}
+        {newsСontent && <meta property="og:descripsion" content={newsСontent.attributes.text} />}
+        {newsСontent && <meta name="vk:title" content={newsСontent.attributes.text} />}
+        {newsСontent && <meta name="vk:descripsion" content={newsСontent.attributes.text} />}
+        {image && <meta property="og:image:type" content={`${image.mime}`} />}
+        {image && <meta name="vk:image" content={`${API_URL}${image.url}`} />}
+        {image && <meta name="vk:image" content={`${API_URL}${image.url}`} />}
+        {image && <meta name="vk:card" content={`${image.mime}`} />}
       </Helmet>
       <Header />
       <VStack
@@ -116,7 +130,6 @@ export const News = React.memo(() => {
                     info={true}
                   />
                 )}
-
                 <Spacer />
                 <Stack direction={isLargerThan680 ? 'row' : 'column-reverse'} m={0} px={2} spacing={2} justify="start">
                   <Stack direction={isLargerThan395 ? 'row' : 'column-reverse'} p={0} m={0}>
