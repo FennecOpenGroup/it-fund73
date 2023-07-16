@@ -53,14 +53,14 @@ export const Main = React.memo(() => {
         <meta property="og:site_name" content="it-fund" />
         <meta property="og:title" content="Фонд развития информационный технологий" />
         <meta property="og:descripsion" content="Фонд развития информационный технологий" />
-        <meta property="og:image" content="/assets/logo.svg" />
+        <meta property="og:image" content="../../assets/logo.svg" />
         <meta property="og:image:type" content="image/svg" />
         <meta property="og:image:width" content="200" />
         <meta property="og:image:height" content="60" />
         <meta name="vk:card" content="image/svg" />
         <meta name="vk:title" content="Фонд развития информационный технологий" />
         <meta name="vk:descripsion" content="Фонд развития информационный технологий" />
-        <meta name="vk:image" content="/assets/logo.svg" />
+        <meta name="vk:image" content="../../assets/logo.svg" />
       </Helmet>
       <Header />
       <VStack

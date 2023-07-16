@@ -50,8 +50,8 @@ export const Footer = React.memo(() => {
         src={mini_logo}
         alt="itfund"
         loading="lazy"
-        maxW={isLargerThan820 ? '80px' : isLargerThan430 ? '60px' : '50px'}
-        maxH={isLargerThan820 ? '70px' : isLargerThan430 ? '55px' : '45px'}
+        maxW={isLargerThan820 ? '85px' : isLargerThan430 ? '65px' : '55px'}
+        maxH={isLargerThan820 ? '85px' : isLargerThan430 ? '65px' : '55px'}
         p={2}
       />
       <VStack align="left" spacing={1}>

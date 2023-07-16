@@ -99,7 +99,7 @@ export const AboutUs = React.memo(() => {
           property="og:descripsion"
           content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года"
         />
-        <meta property="og:image" content="/assets/logo.svg" />
+        <meta property="og:image" content="../../assets/logo.svg" />
         <meta property="og:image:type" content="image/svg" />
         <meta property="og:image:width" content="200" />
         <meta property="og:image:height" content="60" />
@@ -109,7 +109,7 @@ export const AboutUs = React.memo(() => {
           name="vk:descripsion"
           content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года"
         />
-        <meta name="vk:image" content="/assets/logo.svg" />
+        <meta name="vk:image" content="../../assets/logo.svg" />
       </Helmet>
       <VStack w="full" p={0} m={0} ref={refHeader}>
         <Header />
