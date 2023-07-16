@@ -51,6 +51,12 @@ export function coreReducer(state: ICoreState = initialCoreState, action: CoreAc
         docs: action.payload.value,
       };
     }
+    case CoreActionsEnum.CORE_SET_EMOTIONS: {
+      return {
+        ...state,
+        emotions: action.payload.value,
+      };
+    }
     case ThemeEnum.CORE_THEME_IS_DARK: {
       return {
         ...state,

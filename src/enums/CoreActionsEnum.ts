@@ -10,4 +10,6 @@ export enum CoreActionsEnum {
 
   CORE_GET_DOCS = 'CORE_GET_DOCS',
   CORE_SET_DOCS = 'CORE_SET_DOCS',
+
+  CORE_SET_EMOTIONS = 'CORE_SET_EMOTIONS',
 }

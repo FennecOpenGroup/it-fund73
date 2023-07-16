@@ -36,36 +36,6 @@ export const Main = React.memo(() => {
   let rowEven = false;
 
   useEffect(() => {
-    const data = localStorage.getItem('newsReadtions');
-    const newsReadtions: {
-      [x: string]: {
-        dislike: boolean;
-        delight: boolean;
-        shock: boolean;
-        smile_face: boolean;
-        angry: boolean;
-        like: boolean;
-      };
-    } = {};
-    if (!data && news) {
-      Object.keys(news)
-        .reverse()
-        .map(index => {
-          return (newsReadtions[`${news[Number(index)].id}`] = {
-            dislike: false,
-            delight: false,
-            shock: false,
-            smile_face: false,
-            angry: false,
-            like: false,
-          });
-        });
-      const list = JSON.stringify(newsReadtions);
-      localStorage.setItem('newsReadtions', list);
-    }
-  }, [news]);
-
-  useEffect(() => {
     dispatch(coreGetNews());
   }, []);
 

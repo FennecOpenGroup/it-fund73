@@ -1,6 +1,7 @@
 import { LangEnum } from '../enums/LangEnum';
 import { ModalsEnum } from '../enums/ModalsEnum';
 import { IDocs } from './IDocs';
+import { IEmotions } from './IEmotions';
 import { INews } from './INews';
 
 export type ModalsEnumState = {
@@ -19,4 +20,5 @@ export interface ICoreState extends ModalsEnumState {
 
   news?: INews[];
   docs?: IDocs[];
+  emotions?: IEmotions[];
 }

@@ -6,6 +6,7 @@ import { ModalsEnum } from '../enums/ModalsEnum';
 import { TagsEnum } from '../enums/TagsEnum';
 import { ThemeEnum } from '../enums/ThemeEnum';
 import { IDocs } from '../interfaces/IDocs';
+import { IEmotions } from '../interfaces/IEmotions';
 import { INews } from '../interfaces/INews';
 
 export const coreSetVisibleModal = (value: ModalsEnum) => action(CoreActionsEnum.CORE_SET_VISIBLE_MODAL, { value });
@@ -29,3 +30,5 @@ export const coreSetNews = (value: INews[]) => action(CoreActionsEnum.CORE_SET_N
 
 export const coreGetDocs = () => action(CoreActionsEnum.CORE_GET_DOCS);
 export const coreSetDocs = (value: IDocs[]) => action(CoreActionsEnum.CORE_SET_DOCS, { value });
+
+export const coreSetEmotions = (value: IEmotions[]) => action(CoreActionsEnum.CORE_SET_EMOTIONS, { value });

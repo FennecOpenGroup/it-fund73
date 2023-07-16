@@ -113,6 +113,7 @@ export const News = React.memo(() => {
                     shock={newsСontent.attributes.shock}
                     smile_face={newsСontent.attributes.smile_face}
                     angry={newsСontent.attributes.angry}
+                    info={true}
                   />
                 )}
 
