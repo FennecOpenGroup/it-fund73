@@ -32,6 +32,8 @@ import { IRootState } from '../../interfaces/IRootState';
 import { IForm } from '../../interfaces/IForm';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 
+import { fetchPropose } from '../../api/eventsApi';
+
 interface IModalCalendarNewDateProps {
   isOpen: boolean;
 }
@@ -62,9 +64,21 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
     date: Yup.date().required('Обязательно к заполению'),
   });
 
-  const handleFormSubmit = (values: IForm) => {
+  const handleFormSubmit = async (values: IForm) => {
     // eslint-disable-next-line
     values.tel = number;
+
+    await fetchPropose({
+      data: {
+        name: values.name,
+        place: values.address,
+        date: values.date,
+        email: values.email,
+        phone: values.tel,
+        tag: 'Не проверено',
+      },
+    });
+    console.log(values.date);
     setFormSended(true);
     setTimeout(() => {
       setFormSended(false);
