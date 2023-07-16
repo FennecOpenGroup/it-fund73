@@ -31,7 +31,6 @@ import { ModalsEnum } from '../../enums/ModalsEnum';
 import { IRootState } from '../../interfaces/IRootState';
 import { IForm } from '../../interfaces/IForm';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
-
 import { fetchPropose } from '../../api/eventsApi';
 
 interface IModalCalendarNewDateProps {
@@ -61,7 +60,8 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
       .max(300, 'Слишком длинное название')
       .required('Обязательно к заполению'),
     email: Yup.string().email('Недопустимый формат электронной почты').required('Обязательно к заполению'),
-    date: Yup.date().required('Обязательно к заполению'),
+    date: Yup.date().min(new Date(), 'Неактуальная дата').required('Обязательно к заполению'),
+    file: Yup.string().required('Обязательно к заполению'),
   });
 
   const handleFormSubmit = async (values: IForm) => {
@@ -78,7 +78,6 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
         tag: 'Не проверено',
       },
     });
-    console.log(values.date);
     setFormSended(true);
     setTimeout(() => {
       setFormSended(false);
@@ -159,16 +158,29 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                           >
                             Дата
                           </FormLabel>
-                          <Input
-                            {...field}
-                            id="form-date"
-                            h="40px"
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            type="date"
-                            bgColor="transparent"
-                            variant="brand-support"
-                            style={themeIsDark ? { colorScheme: 'dark' } : { colorScheme: 'white' }}
-                          />
+                          <InputGroup size="md" pb={2}>
+                            <Input
+                              {...field}
+                              id="form-date"
+                              h="40px"
+                              color={themeIsDark ? 'white' : 'brand.dark'}
+                              type="date"
+                              bgColor="transparent"
+                              variant="brand-support"
+                              style={themeIsDark ? { colorScheme: 'dark' } : { colorScheme: 'white' }}
+                            />
+                            <InputRightElement>
+                              <Fade in={!!form.errors.date || !!form.values.date}>
+                                {form.errors.date ? (
+                                  <Tooltip label={form.errors.date} placement="bottom">
+                                    <NotAllowedIcon color="red" />
+                                  </Tooltip>
+                                ) : (
+                                  <CheckIcon color="green" />
+                                )}
+                              </Fade>
+                            </InputRightElement>
+                          </InputGroup>
                         </FormControl>
                       )}
                     </Field>
@@ -304,63 +316,46 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                       {({ field, form }: FieldProps<string, IForm>) => (
                         <FormControl isRequired isInvalid={!!form.values.file && !!form.errors.file}>
                           <InputGroup size="md">
-                            {themeIsDark ? (
-                              <label
-                                htmlFor="form-file"
-                                style={{
-                                  color: 'white',
-                                  cursor: 'pointer',
-                                  display: 'flex',
-                                  alignContent: 'center',
-                                  alignItems: 'center',
-                                  fontWeight: '600',
-                                  paddingTop: '10px',
-                                  paddingBottom: '10px',
-                                }}
-                              >
-                                <Input
-                                  {...field}
-                                  variant="brand-file"
-                                  id="form-file"
-                                  h="40px"
-                                  border="0px"
-                                  color={themeIsDark ? 'white' : 'brand.dark'}
-                                  type="file"
-                                  multiple
-                                  hidden
-                                />
-                                Приложите файл
-                                <AddIcon w="30px" color="white" />
-                              </label>
-                            ) : (
-                              <label
-                                htmlFor="form-file"
-                                style={{
-                                  color: '#1a1a1a',
-                                  cursor: 'pointer',
-                                  display: 'flex',
-                                  alignContent: 'center',
-                                  alignItems: 'center',
-                                  fontWeight: 'bold',
-                                  paddingTop: '10px',
-                                  paddingBottom: '10px',
-                                }}
-                              >
-                                <Input
-                                  {...field}
-                                  variant="brand-file"
-                                  id="form-file"
-                                  h="40px"
-                                  border="0px"
-                                  color={themeIsDark ? 'white' : 'brand.dark'}
-                                  type="file"
-                                  multiple
-                                  hidden
-                                />
-                                Приложите файл
-                                <AddIcon w="30px" color="brand.dark" />
-                              </label>
-                            )}
+                            <label
+                              htmlFor="file"
+                              style={
+                                themeIsDark
+                                  ? {
+                                      color: 'white',
+                                      cursor: 'pointer',
+                                      display: 'flex',
+                                      alignContent: 'center',
+                                      alignItems: 'center',
+                                      fontWeight: '600',
+                                      paddingTop: '10px',
+                                      paddingBottom: '10px',
+                                    }
+                                  : {
+                                      color: 'black',
+                                      cursor: 'pointer',
+                                      display: 'flex',
+                                      alignContent: 'center',
+                                      alignItems: 'center',
+                                      fontWeight: '600',
+                                      paddingTop: '10px',
+                                      paddingBottom: '10px',
+                                    }
+                              }
+                            >
+                              <Input
+                                {...field}
+                                id="file"
+                                h="40px"
+                                border="0px"
+                                color={themeIsDark ? 'white' : 'brand.dark'}
+                                type="file"
+                                multiple
+                                display="none"
+                                required={false}
+                              />
+                              Приложите файл
+                              <AddIcon w="30px" color={themeIsDark ? 'white' : 'brand.dark'} />
+                            </label>
                             <InputRightElement>
                               <Fade in={!!form.errors.file || !!form.values.file}>
                                 {form.errors.file ? (
@@ -388,10 +383,12 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                           !formik.values.date ||
                           !formik.values.address ||
                           !formik.values.email ||
+                          !formik.values.file ||
                           !!formik.errors.name ||
                           !!formik.errors.date ||
                           !!formik.errors.address ||
                           !!formik.errors.email ||
+                          !!formik.errors.file ||
                           formSended
                         }
                         rightIcon={formSended ? <CheckIcon boxSize="15px" /> : <></>}

@@ -131,8 +131,13 @@ export const News = React.memo(() => {
                   />
                 )}
                 <Spacer />
-                <Stack direction={isLargerThan680 ? 'row' : 'column-reverse'} m={0} px={2} spacing={2} justify="start">
-                  <Stack direction={isLargerThan395 ? 'row' : 'column-reverse'} p={0} m={0}>
+                <Stack direction={isLargerThan680 ? 'row' : 'column-reverse'} m={0} px={1} spacing={1} justify="start">
+                  <Stack
+                    direction={isLargerThan395 ? 'row' : 'column-reverse'}
+                    p={0}
+                    m={0}
+                    align={isLargerThan395 ? 'center' : 'start'}
+                  >
                     <HStack p={0}>
                       <BiShow color="#BBBBBB" />
                       {newsСontent?.attributes.views !== undefined ? (
@@ -163,7 +168,12 @@ export const News = React.memo(() => {
                   </Stack>
                   <HStack p={0} m={0}>
                     <Text color="#BBBBBB" fontSize={['sm', 'md']}>
-                      {newsСontent?.attributes.date}
+                      {new Date(`${newsСontent?.attributes.date}`).toLocaleDateString('ru-RU', {
+                        weekday: 'short',
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })}
                     </Text>
                     <Text color="#BBBBBB" fontSize={['sm', 'md']}>
                       ||

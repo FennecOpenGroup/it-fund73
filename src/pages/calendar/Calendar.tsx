@@ -19,7 +19,7 @@ import { Helmet } from 'react-helmet';
 import { BsChevronDown } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { coreSetVisibleModal } from '../../actions/coreActions';
+import { coreSetVisibleModal, coreGetEvents } from '../../actions/coreActions';
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { ModalCalendarNewDate } from '../../components/modals/ModalCalendarNewDate';
@@ -33,6 +33,7 @@ export const Calendar = React.memo(() => {
 
   const refCalendar = useRef<HTMLDivElement>(null);
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
+  const events = useSelector((state: IRootState) => state.core.events);
 
   const [january, setJanuary] = useState(false);
   const [february, setFebruary] = useState(false);
@@ -46,6 +47,7 @@ export const Calendar = React.memo(() => {
   const [october, setOctober] = useState(false);
   const [november, setNovember] = useState(false);
   const [december, setDecember] = useState(false);
+  const [currentMounth, setCurrentMounth] = useState('');
 
   const [isLargerThan1440] = useMediaQuery('(min-width: 1440px)');
   const [isLargerThan950] = useMediaQuery('(min-width: 950px)');
@@ -72,18 +74,19 @@ export const Calendar = React.memo(() => {
       : 30;
 
   const changeMounth = (mounth: string) => {
-    setJanuary(mounth === 'january');
-    setFebruary(mounth === 'february');
-    setMarch(mounth === 'march');
-    setApril(mounth === 'april');
-    setMay(mounth === 'may');
-    setJune(mounth === 'june');
-    setJuly(mounth === 'july');
-    setAugust(mounth === 'august');
-    setSeptember(mounth === 'september');
-    setOctober(mounth === 'october');
-    setNovember(mounth === 'november');
-    setDecember(mounth === 'december');
+    setJanuary(mounth === 'January');
+    setFebruary(mounth === 'February');
+    setMarch(mounth === 'March');
+    setApril(mounth === 'April');
+    setMay(mounth === 'May');
+    setJune(mounth === 'June');
+    setJuly(mounth === 'July');
+    setAugust(mounth === 'August');
+    setSeptember(mounth === 'September');
+    setOctober(mounth === 'October');
+    setNovember(mounth === 'November');
+    setDecember(mounth === 'December');
+    setCurrentMounth(mounth);
   };
 
   const dispatch = useDispatch<Dispatch<RootActions>>();
@@ -96,6 +99,9 @@ export const Calendar = React.memo(() => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
+    dispatch(coreGetEvents());
   }, []);
 
   return (
@@ -212,29 +218,76 @@ export const Calendar = React.memo(() => {
               <VStack w="full" spacing={0}>
                 <Grid w="full" gap={0} templateColumns="repeat(7, 1fr)" templateRows="auto">
                   {Object.keys(Array(mounthCount).fill('')).map(index => {
+                    let eventTag;
+                    if (events) {
+                      Object.keys(events).forEach(function (element) {
+                        if (
+                          new Date(events[Number(element)].attributes.date).getFullYear() === year &&
+                          new Date(events[Number(element)].attributes.date).toLocaleString('en-us', {
+                            month: 'long',
+                          }) === currentMounth &&
+                          new Date(events[Number(element)].attributes.date).getDate() === Number(index) + 1
+                        ) {
+                          eventTag = Number(element);
+                        }
+                      });
+                    }
                     return (
                       <GridItem key={index}>
-                        <Button
-                          bg={themeIsDark ? '#121212' : 'white'}
-                          color={themeIsDark ? 'white' : 'brand.dark'}
-                          border="1px"
-                          minW="120px"
-                          minH="100px"
-                          w="full"
-                          _active={{
-                            color: 'white',
-                            bg: 'brand.blue',
-                            border: '1px',
-                            borderColor: 'transparent',
-                            borderRadius: '5px',
-                          }}
-                          _hover={{
-                            borderColor: 'transparent',
-                            bg: 'brand.blue',
-                          }}
-                        >
-                          {Number(index) + 1}
-                        </Button>
+                        {eventTag !== undefined ? (
+                          <Button
+                            bg={themeIsDark ? '#121212' : 'white'}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            border="1px"
+                            minW="120px"
+                            minH="100px"
+                            w="full"
+                            _active={{
+                              color: 'white',
+                              bg: 'brand.blue',
+                              border: '1px',
+                              borderColor: 'transparent',
+                              borderRadius: '5px',
+                            }}
+                            _hover={{
+                              borderColor: 'transparent',
+                              bg: 'brand.blue',
+                            }}
+                          >
+                            <VStack align="center">
+                              <p style={{ fontSize: '25px' }}>{Number(index) + 1}</p>
+                              <p style={{ fontSize: '12px' }}>{events && events[Number(eventTag)].attributes.name}</p>
+                              <p style={{ fontSize: '12px' }}>
+                                {events &&
+                                  new Date(events[Number(eventTag)].attributes.date).toLocaleString('ru-RU', {
+                                    weekday: 'long',
+                                  })}
+                              </p>
+                            </VStack>
+                          </Button>
+                        ) : (
+                          <Button
+                            bg={themeIsDark ? '#121212' : 'white'}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            border="1px"
+                            minW="120px"
+                            minH="100px"
+                            w="full"
+                            _active={{
+                              color: 'white',
+                              bg: 'brand.blue',
+                              border: '1px',
+                              borderColor: 'transparent',
+                              borderRadius: '5px',
+                            }}
+                            _hover={{
+                              borderColor: 'transparent',
+                              bg: 'brand.blue',
+                            }}
+                          >
+                            {Number(index) + 1}
+                          </Button>
+                        )}
                       </GridItem>
                     );
                   })}
@@ -267,7 +320,7 @@ export const Calendar = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
-                    onClick={() => changeMounth('january')}
+                    onClick={() => changeMounth('January')}
                     _active={{
                       color: 'white',
                       bg: 'brand.blue',
@@ -303,7 +356,7 @@ export const Calendar = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
-                    onClick={() => changeMounth('february')}
+                    onClick={() => changeMounth('February')}
                     _active={{
                       color: 'white',
                       bg: 'brand.blue',
@@ -339,7 +392,7 @@ export const Calendar = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
-                    onClick={() => changeMounth('march')}
+                    onClick={() => changeMounth('March')}
                     _active={{
                       color: 'white',
                       bg: 'brand.blue',
@@ -375,7 +428,7 @@ export const Calendar = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
-                    onClick={() => changeMounth('april')}
+                    onClick={() => changeMounth('April')}
                     _active={{
                       color: 'white',
                       bg: 'brand.blue',
@@ -411,7 +464,7 @@ export const Calendar = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
-                    onClick={() => changeMounth('may')}
+                    onClick={() => changeMounth('May')}
                     _active={{
                       color: 'white',
                       bg: 'brand.blue',
@@ -447,7 +500,7 @@ export const Calendar = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
-                    onClick={() => changeMounth('june')}
+                    onClick={() => changeMounth('June')}
                     _active={{
                       color: 'white',
                       bg: 'brand.blue',
@@ -483,7 +536,7 @@ export const Calendar = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
-                    onClick={() => changeMounth('july')}
+                    onClick={() => changeMounth('July')}
                     _active={{
                       color: 'white',
                       bg: 'brand.blue',
@@ -519,7 +572,7 @@ export const Calendar = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
-                    onClick={() => changeMounth('august')}
+                    onClick={() => changeMounth('August')}
                     _active={{
                       color: 'white',
                       bg: 'brand.blue',
@@ -555,7 +608,7 @@ export const Calendar = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
-                    onClick={() => changeMounth('september')}
+                    onClick={() => changeMounth('September')}
                     _active={{
                       color: 'white',
                       bg: 'brand.blue',
@@ -591,7 +644,7 @@ export const Calendar = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
-                    onClick={() => changeMounth('october')}
+                    onClick={() => changeMounth('October')}
                     _active={{
                       color: 'white',
                       bg: 'brand.blue',
@@ -627,7 +680,7 @@ export const Calendar = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
-                    onClick={() => changeMounth('november')}
+                    onClick={() => changeMounth('November')}
                     _active={{
                       color: 'white',
                       bg: 'brand.blue',
@@ -663,7 +716,7 @@ export const Calendar = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     w="100%"
                     h={['80px', '100px']}
-                    onClick={() => changeMounth('december')}
+                    onClick={() => changeMounth('December')}
                     _active={{
                       color: 'white',
                       bg: 'brand.blue',

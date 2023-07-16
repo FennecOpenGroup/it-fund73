@@ -76,6 +76,7 @@ export const Main = React.memo(() => {
           bg={themeIsDark ? '#242323' : 'brand.beige'}
           pl={[1, 2, 3, 4]}
           pr={isLargerThan620 ? 0 : [1, 2, 3, 4]}
+          pb={2}
           boxShadow="5px 0px rgb(3,0,15,15%)"
         >
           <HStack w="full" align="flex-start">

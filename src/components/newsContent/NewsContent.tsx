@@ -73,11 +73,11 @@ export const NewsContent = React.memo(
         <span>
           {parts.filter(String).map((part, i) => {
             return regex.test(part) ? (
-              <mark key={i} style={{ color: '#1a1a1a', fontWeight: 'bold', fontSize: highlightFontSize }}>
+              <mark key={i} style={{ color: highlightColor, fontWeight: 'bold', fontSize: highlightFontSize }}>
                 {part}
               </mark>
             ) : (
-              <span key={i} style={{ color: '#1a1a1a', fontWeight: 'bold', fontSize: highlightFontSize }}>
+              <span key={i} style={{ color: highlightColor, fontWeight: 'bold', fontSize: highlightFontSize }}>
                 {part}
               </span>
             );
@@ -132,11 +132,17 @@ export const NewsContent = React.memo(
               shock={shock}
               smile_face={smile_face}
               angry={angry}
+              info={true}
             />
           ) : (
             <VStack m={0} px={2} spacing={2} justify="start" align="start">
-              <Text color="#BBBBBB" fontSize={['xs', 'sm']}>
-                {date_content}
+              <Text color="#BBBBBB" fontSize={['sm', 'md']}>
+                {new Date(`${date_content}`).toLocaleDateString('ru-RU', {
+                  weekday: 'short',
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
               </Text>
             </VStack>
           )}
@@ -156,7 +162,14 @@ export const NewsContent = React.memo(
         </HStack>
         {isLargerThan590 && (
           <HStack w="full" m={0} p={0} spacing={2} justify="start">
-            <Text color="#BBBBBB">{date_content}</Text>
+            <Text color="#BBBBBB" fontSize={['sm', 'md']}>
+              {new Date(`${date_content}`).toLocaleDateString('ru-RU', {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })}
+            </Text>
             <Text color="#BBBBBB">{tag}</Text>
           </HStack>
         )}
