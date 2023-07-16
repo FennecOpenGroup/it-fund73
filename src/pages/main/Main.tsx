@@ -35,6 +35,36 @@ export const Main = React.memo(() => {
   let rowEven = false;
 
   useEffect(() => {
+    const data = localStorage.getItem('newsReadtions');
+    if (!data) {
+      const newsReadtions: {
+        [x: string]: {
+          dislike: boolean;
+          delight: boolean;
+          shock: boolean;
+          smile_face: boolean;
+          angry: boolean;
+          like: boolean;
+        };
+      } = {};
+      news &&
+        Object.keys(news)
+          .reverse()
+          .map(index => {
+            newsReadtions[`${news[Number(index)].id}`] = {
+              dislike: false,
+              delight: false,
+              shock: false,
+              smile_face: false,
+              angry: false,
+              like: false,
+            };
+          });
+      localStorage.setItem('newsReadtions', newsReadtions);
+    }
+  }, []);
+
+  useEffect(() => {
     dispatch(coreGetNews());
   }, []);
 
@@ -68,7 +98,7 @@ export const Main = React.memo(() => {
               {news && (
                 <Grid
                   w="full"
-                  gap={['0.5', '1.5', '2.5']}
+                  gap="2.5"
                   templateRows={`repeat(${rowsCount}, 1fr)`}
                   templateColumns={isLargerThan1025 ? 'repeat(6, 3fr)' : 'repeat(1, 1fr)'}
                 >

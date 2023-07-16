@@ -171,7 +171,7 @@ export const News = React.memo(() => {
                 </Stack>
               </Stack>
               <Stack border="1px" w="full" m={0} p={0} borderColor={themeIsDark ? 'white' : 'brand.dark'} />
-              <Stack w="full" justify="start" align="start" pt={4}>
+              <Stack w="full" justify="start" align="start" pt={4} color={themeIsDark ? 'white' : 'brand.dark'}>
                 {newsСontent && <ReactMarkdown>{newsСontent?.attributes.text}</ReactMarkdown>}
               </Stack>
             </VStack>
@@ -201,7 +201,13 @@ export const News = React.memo(() => {
           </HStack>
           {!isLargerThan1030 && (
             <VStack w="full" spacing={2} minH={`${height / 2}px`}>
-              <Text w="full" color="brand.dark" fontSize={['lg', 'xl', '2xl']} borderBottom="2px" align="center">
+              <Text
+                w="full"
+                fontSize={['lg', 'xl', '2xl']}
+                borderBottom="2px"
+                align="center"
+                color={themeIsDark ? 'white' : 'brand.dark'}
+              >
                 Ещё новости
               </Text>
               <Text color="#BBBBBB" fontSize={['xs', 'sm', 'md']} px={2} align="center">
