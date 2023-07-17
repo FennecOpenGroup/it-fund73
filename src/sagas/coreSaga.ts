@@ -1,7 +1,14 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
 import { CoreActionsEnum } from '../enums/CoreActionsEnum';
-import { coreSetDocs, coreSetEvents, coreSetLang, coreSetNews, coreSetTheme } from '../actions/coreActions';
+import {
+  coreSetDocs,
+  coreSetEvents,
+  coreSetLang,
+  coreSetNews,
+  coreSetTeam,
+  coreSetTheme,
+} from '../actions/coreActions';
 import { LangEnum } from '../enums/LangEnum';
 import { ThemeEnum } from '../enums/ThemeEnum';
 import { fetchNews } from '../api/newsApi';
@@ -10,6 +17,8 @@ import { fetchDocs } from '../api/docsApi';
 import { IDocs } from '../interfaces/IDocs';
 import { IEvents } from '../interfaces/IEvents';
 import { fetchEvents } from '../api/eventsApi';
+import { ITeam } from '../interfaces/ITeam';
+import { fetchTeam } from '../api/teamApi';
 
 export function* watchCoreSaga() {
   yield takeEvery(CoreActionsEnum.CORE_GET_LANG, coreGetLangSaga);
@@ -17,6 +26,7 @@ export function* watchCoreSaga() {
   yield takeEvery(CoreActionsEnum.CORE_GET_NEWS, coreGetNewsSaga);
   yield takeEvery(CoreActionsEnum.CORE_GET_DOCS, coreGetDocsSaga);
   yield takeEvery(CoreActionsEnum.CORE_GET_EVENTS, coreGetEventsSaga);
+  yield takeEvery(CoreActionsEnum.CORE_GET_TEAM, coreGetTeamSaga);
 }
 
 export function* coreGetLangSaga() {
@@ -38,6 +48,17 @@ export function* coreGetNewsSaga() {
   try {
     const news: INews[] = yield fetchNews();
     yield put(coreSetNews(news));
+  } catch {
+    //
+  } finally {
+    //
+  }
+}
+
+export function* coreGetTeamSaga() {
+  try {
+    const team: ITeam[] = yield fetchTeam();
+    yield put(coreSetTeam(team));
   } catch {
     //
   } finally {

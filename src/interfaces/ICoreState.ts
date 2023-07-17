@@ -4,6 +4,7 @@ import { IDocs } from './IDocs';
 import { IEmotions } from './IEmotions';
 import { INews } from './INews';
 import { IEvents } from './IEvents';
+import { ITeam } from './ITeam';
 
 export type ModalsEnumState = {
   [key in ModalsEnum]?: boolean;
@@ -23,4 +24,5 @@ export interface ICoreState extends ModalsEnumState {
   docs?: IDocs[];
   emotions?: IEmotions[];
   events?: IEvents[];
+  team?: ITeam[];
 }

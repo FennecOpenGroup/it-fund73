@@ -19,5 +19,7 @@ export interface INews {
     date: Date;
     publishedAt: Date;
     updatedAt: Date;
+
+    isShort?: boolean;
   };
 }

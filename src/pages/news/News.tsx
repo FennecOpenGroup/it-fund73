@@ -1,8 +1,8 @@
-import { HStack, VStack, Text, Image, Stack, Spacer, useToast, useMediaQuery } from '@chakra-ui/react';
+import { HStack, VStack, Text, Image, Stack, Spacer, useToast, useMediaQuery, Link } from '@chakra-ui/react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import ReactMarkdown from 'react-markdown';
 import { LinkIcon } from '@chakra-ui/icons';
-import React, { Dispatch, useEffect, useMemo } from 'react';
+import React, { Dispatch, useEffect, useMemo, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { BiShow } from 'react-icons/bi';
 import { useParams } from 'react-router';
@@ -41,7 +41,10 @@ export const News = React.memo(() => {
     () => news?.find(newsData => transliterating(newsData.attributes.heading) === url_name),
     [news],
   );
+
   const image = newsСontent ? newsСontent.attributes.image.data['0'].attributes : undefined;
+
+  const refNews = useRef<HTMLDivElement>(null);
 
   const tag =
     newsСontent?.attributes.tags === 'GOVERNMENT'
@@ -93,7 +96,15 @@ export const News = React.memo(() => {
           boxShadow="5px 0px rgb(3,0,15,15%)"
         >
           <HStack w="full" align="flex-start">
-            <VStack w="full" maxW={isLargerThan1030 ? ['60%', '80%'] : '100%'} pt={4} pl={2} pr={5} align="start">
+            <VStack
+              w="full"
+              maxW={isLargerThan1030 ? ['60%', '80%'] : '100%'}
+              pt={4}
+              pl={2}
+              pr={5}
+              align="start"
+              ref={refNews}
+            >
               <Text
                 color={themeIsDark ? 'white' : 'brand.dark'}
                 fontSize={['lg', 'xl', '2xl']}
@@ -217,7 +228,9 @@ export const News = React.memo(() => {
                 spacing={2}
                 borderLeft="2px"
                 minH={`${height}px`}
+                h={`${refNews.current?.clientHeight}px`}
                 borderColor={themeIsDark ? 'white' : 'brand.dark'}
+                px={[1, 2]}
               >
                 <Text
                   w="full"
@@ -228,14 +241,31 @@ export const News = React.memo(() => {
                 >
                   Ещё новости
                 </Text>
-                <Text color="#BBBBBB" px={2} align="center">
-                  Нет подходящих новостей
-                </Text>
+                {news ? (
+                  Object.keys(news).map(index => {
+                    return (
+                      <Link
+                        href={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${transliterating(
+                          news[Number(index)].attributes.heading,
+                        )}`}
+                        key={index}
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                        fontSize={['sm', 'md']}
+                      >
+                        {news[Number(index)].attributes.heading}
+                      </Link>
+                    );
+                  })
+                ) : (
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
+                    Нет подходящих новостей
+                  </Text>
+                )}
               </VStack>
             )}
           </HStack>
           {!isLargerThan1030 && (
-            <VStack w="full" spacing={2} minH={`${height / 2}px`}>
+            <VStack w="full" spacing={2} minH={`${height / 2}px`} px={[1, 2]}>
               <Text
                 w="full"
                 fontSize={['lg', 'xl', '2xl']}
@@ -245,9 +275,24 @@ export const News = React.memo(() => {
               >
                 Ещё новости
               </Text>
-              <Text color="#BBBBBB" fontSize={['xs', 'sm', 'md']} px={2} align="center">
-                Нет подходящих новостей
-              </Text>
+              {news ? (
+                Object.keys(news).map(index => {
+                  return (
+                    <Link
+                      href={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${transliterating(news[Number(index)].attributes.heading)}`}
+                      key={index}
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['sm', 'md']}
+                    >
+                      {news[Number(index)].attributes.heading}
+                    </Link>
+                  );
+                })
+              ) : (
+                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
+                  Нет подходящих новостей
+                </Text>
+              )}
             </VStack>
           )}
         </VStack>

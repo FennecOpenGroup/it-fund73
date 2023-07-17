@@ -1,6 +1,6 @@
 /* eslint no-return-assign: "error" */
-import { HStack, VStack, Text, Grid, GridItem, useMediaQuery } from '@chakra-ui/react';
-import React, { Dispatch, useEffect } from 'react';
+import { HStack, VStack, Text, Grid, GridItem, useMediaQuery, Link } from '@chakra-ui/react';
+import React, { Dispatch, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,6 +14,7 @@ import { API_URL } from '../../constants/env';
 import { RootActions } from '../../types/RootActions';
 import { coreGetNews } from '../../actions/coreActions';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
+import { ROUTE_NEWS } from '../../constants/routes';
 
 export const Main = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -27,6 +28,8 @@ export const Main = React.memo(() => {
 
   const news = useSelector((state: IRootState) => state.core.news);
   const dispatch = useDispatch<Dispatch<RootActions>>();
+
+  const refNews = useRef<HTMLDivElement>(null);
 
   const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
@@ -80,7 +83,7 @@ export const Main = React.memo(() => {
           boxShadow="5px 0px rgb(3,0,15,15%)"
         >
           <HStack w="full" align="flex-start">
-            <VStack w="full" pt={[1, 2, 6]}>
+            <VStack w="full" pt={[1, 2, 6]} ref={refNews}>
               {news && (
                 <Grid
                   w="full"
@@ -150,6 +153,9 @@ export const Main = React.memo(() => {
                 borderLeft="2px"
                 borderColor={themeIsDark ? 'white' : 'brand.dark'}
                 minH={`${height}px`}
+                h={`${refNews.current?.clientHeight}px`}
+                align="center"
+                px={[1, 2]}
               >
                 <Text
                   w="full"
@@ -158,11 +164,26 @@ export const Main = React.memo(() => {
                   borderBottom="2px"
                   align="center"
                 >
-                  Новости
+                  Ещё новости
                 </Text>
-                <Text color="#BBBBBB" fontSize={['xs', 'sm', 'md']} align="center">
-                  Нет подходящих новостей
-                </Text>
+                {news ? (
+                  Object.keys(news).map(index => {
+                    return (
+                      <Link
+                        href={`${ROUTE_NEWS}/${transliterating(news[Number(index)].attributes.heading)}`}
+                        key={index}
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                        fontSize={['sm', 'md']}
+                      >
+                        {news[Number(index)].attributes.heading}
+                      </Link>
+                    );
+                  })
+                ) : (
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
+                    Нет подходящих новостей
+                  </Text>
+                )}
               </VStack>
             )}
           </HStack>

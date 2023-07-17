@@ -9,6 +9,7 @@ import { IDocs } from '../interfaces/IDocs';
 import { IEmotions } from '../interfaces/IEmotions';
 import { IEvents } from '../interfaces/IEvents';
 import { INews } from '../interfaces/INews';
+import { ITeam } from '../interfaces/ITeam';
 
 export const coreSetVisibleModal = (value: ModalsEnum) => action(CoreActionsEnum.CORE_SET_VISIBLE_MODAL, { value });
 export const coreRemoveVisibleModal = (value: ModalsEnum) =>
@@ -36,3 +37,6 @@ export const coreSetEmotions = (value: IEmotions[]) => action(CoreActionsEnum.CO
 
 export const coreGetEvents = () => action(CoreActionsEnum.CORE_GET_EVENTS);
 export const coreSetEvents = (value: IEvents[]) => action(CoreActionsEnum.CORE_SET_EVENTS, { value });
+
+export const coreGetTeam = () => action(CoreActionsEnum.CORE_GET_TEAM);
+export const coreSetTeam = (value: ITeam[]) => action(CoreActionsEnum.CORE_SET_TEAM, { value });

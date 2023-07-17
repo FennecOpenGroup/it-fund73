@@ -35,12 +35,9 @@ import { BsFillPersonFill, BsMailbox, BsTelephone } from 'react-icons/bs';
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
-import kuznezov from '../../assets/team/kuznezov.jpg';
-import Erofeev from '../../assets/team/Erofeev.jpg';
-import andronova from '../../assets/team/andronova.jpg';
 import ulyanovsk from '../../assets/Ulyanovsk.jpg';
 import { IRootState } from '../../interfaces/IRootState';
-import { coreGetDocs } from '../../actions/coreActions';
+import { coreGetDocs, coreGetTeam } from '../../actions/coreActions';
 import { RootActions } from '../../types/RootActions';
 import { API_URL } from '../../constants/env';
 
@@ -74,9 +71,11 @@ export const AboutUs = React.memo(() => {
 
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
   const docs = useSelector((state: IRootState) => state.core.docs);
+  const team = useSelector((state: IRootState) => state.core.team);
 
   useEffect(() => {
     dispatch(coreGetDocs());
+    dispatch(coreGetTeam());
   }, []);
 
   useEffect(() => {
@@ -952,8 +951,12 @@ export const AboutUs = React.memo(() => {
               <AccordionItem>
                 <AccordionButton>
                   <Box flex="1" textAlign="left" ref={refTeam}>
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
-                      <b>КОМАНДА</b>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['xl', '2xl', '3xl']}
+                      fontWeight="bold"
+                    >
+                      КОМАНДА
                     </Text>
                   </Box>
                   <AccordionIcon />
@@ -965,98 +968,59 @@ export const AboutUs = React.memo(() => {
                     </Text>
                     <Stack borderTop="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
                     <VStack w="full" align="start" justify="start">
-                      <Stack
-                        direction={isLargerThan530 ? 'row' : 'column'}
-                        align={isLargerThan530 ? 'start' : 'center'}
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
-                        w="full"
-                      >
-                        <Image src={kuznezov} w={['160px', '200px']} h={['160px', '200px']} borderRadius={5} />
-                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['lg', 'xl', '2xl']}
-                            align="center"
-                          >
-                            <b>Кузнецов Виталий Евгеньевич</b>
-                          </Text>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['sm', 'md', 'lg']}
-                            align="center"
-                          >
-                            Министр Ульяновской области
-                          </Text>
-                        </VStack>
-                      </Stack>
-                    </VStack>
-                    <VStack w="full">
-                      <Stack
-                        direction={isLargerThan530 ? 'row' : 'column'}
-                        align={isLargerThan530 ? 'start' : 'center'}
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
-                        w="full"
-                      >
-                        <Box minW="200px">
-                          <BsFillPersonFill size="200px" color="white" />
-                        </Box>
-                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['lg', 'xl', '2xl']}
-                            align="center"
-                          >
-                            <b>Ягфаров Олег Модорисович</b>
-                          </Text>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['sm', 'md', 'lg']}
-                            align="center"
-                          >
-                            Директор ОГКУ «Правительство для граждан»
-                          </Text>
-                        </VStack>
-                      </Stack>
-                    </VStack>
-                    <VStack w="full">
-                      <Stack
-                        direction={isLargerThan530 ? 'row' : 'column'}
-                        align={isLargerThan530 ? 'start' : 'center'}
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
-                        w="full"
-                      >
-                        <Box minW="200px">
-                          <BsFillPersonFill size="200px" color="white" />
-                        </Box>
-                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['lg', 'xl', '2xl']}
-                            align="center"
-                          >
-                            <b>Механюк Александр Владимирович</b>
-                          </Text>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['sm', 'md', 'lg']}
-                            align="center"
-                          >
-                            Директор ГУЗ «МИАЦ»
-                          </Text>
-                        </VStack>
-                      </Stack>
+                      {team &&
+                        Object.keys(team).map(index => {
+                          const image = team[Number(index)].attributes.photo;
+                          if (team[Number(index)].attributes.team === 'management') {
+                            return (
+                              <Stack
+                                direction={isLargerThan530 ? 'row' : 'column'}
+                                align={isLargerThan530 ? 'start' : 'center'}
+                                justify="start"
+                                marginTop="25px"
+                                p={2}
+                                borderRadius="5px"
+                                backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
+                                w="full"
+                                key={index}
+                              >
+                                {image.data === null ? (
+                                  <Box minW="200px">
+                                    <BsFillPersonFill size="200px" color="white" />
+                                  </Box>
+                                ) : (
+                                  <Image
+                                    src={`${API_URL}${image.data.attributes.url}`}
+                                    w={['160px', '200px']}
+                                    h={['160px', '200px']}
+                                    borderRadius={5}
+                                  />
+                                )}
+                                <VStack
+                                  align={isLargerThan530 ? 'start' : 'center'}
+                                  px={isLargerThan530 ? '20px' : '5px'}
+                                >
+                                  <Text
+                                    color={themeIsDark ? 'white' : 'brand.dark'}
+                                    fontSize={['lg', 'xl', '2xl']}
+                                    align="center"
+                                    fontWeight="bold"
+                                  >
+                                    {team[Number(index)].attributes.name}
+                                  </Text>
+                                  <Text
+                                    color={themeIsDark ? 'white' : 'brand.dark'}
+                                    fontSize={['sm', 'md', 'lg']}
+                                    align="center"
+                                  >
+                                    {team[Number(index)].attributes.post}
+                                  </Text>
+                                </VStack>
+                              </Stack>
+                            );
+                          }
+                          return false;
+                        })}
                     </VStack>
                   </VStack>
                   <VStack w="full" align="start" p={0} m={0}>
@@ -1065,168 +1029,59 @@ export const AboutUs = React.memo(() => {
                     </Text>
                     <Stack borderTop="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
                     <VStack w="full" align="start" justify="start">
-                      <Stack
-                        direction={isLargerThan530 ? 'row' : 'column'}
-                        align={isLargerThan530 ? 'start' : 'center'}
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
-                        w="full"
-                      >
-                        <Image src={Erofeev} w={['160px', '200px']} h={['160px', '200px']} borderRadius={5} />
-                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['lg', 'xl', '2xl']}
-                            align="center"
-                          >
-                            <b>Ерофеев Сергей Александрович</b>
-                          </Text>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['sm', 'md', 'lg']}
-                            align="center"
-                          >
-                            Исполнительный директор
-                          </Text>
-                        </VStack>
-                      </Stack>
-                    </VStack>
-                    <VStack w="full" align="start" justify="start">
-                      <Stack
-                        direction={isLargerThan530 ? 'row' : 'column'}
-                        align={isLargerThan530 ? 'start' : 'center'}
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
-                        w="full"
-                      >
-                        <Image src={andronova} w={['160px', '200px']} h={['160px', '200px']} borderRadius={5} />
-                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['lg', 'xl', '2xl']}
-                            align="center"
-                          >
-                            <b>Андронова Ольга Александровна</b>
-                          </Text>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['sm', 'md', 'lg']}
-                            align="center"
-                          >
-                            Финансовый директор - главный бухгалтер
-                          </Text>
-                        </VStack>
-                      </Stack>
-                    </VStack>
-                    <VStack
-                      w="full"
-                      align={isLargerThan530 ? 'start' : 'center'}
-                      justify={isLargerThan530 ? 'start' : 'center'}
-                    >
-                      <Stack
-                        direction={isLargerThan530 ? 'row' : 'column'}
-                        align={isLargerThan530 ? 'start' : 'center'}
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
-                        w="full"
-                      >
-                        <Box minW="200px">
-                          <BsFillPersonFill size="200px" color="white" />
-                        </Box>
-                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['lg', 'xl', '2xl']}
-                            align="center"
-                          >
-                            <b>Горлов Сергей Петрович</b>
-                          </Text>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['sm', 'md', 'lg']}
-                            align="center"
-                          >
-                            Директор департамента развития отрасли информационных технологий
-                          </Text>
-                        </VStack>
-                      </Stack>
-                    </VStack>
-                    <VStack
-                      w="full"
-                      align={isLargerThan530 ? 'start' : 'center'}
-                      justify={isLargerThan530 ? 'start' : 'center'}
-                    >
-                      <Stack
-                        direction={isLargerThan530 ? 'row' : 'column'}
-                        align={isLargerThan530 ? 'start' : 'center'}
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
-                        w="full"
-                      >
-                        <Box minW="200px">
-                          <BsFillPersonFill size="200px" color="white" />
-                        </Box>
-                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['lg', 'xl', '2xl']}
-                            align="center"
-                          >
-                            <b>Филиппова Ольга Вячеславовна</b>
-                          </Text>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['sm', 'md', 'lg']}
-                            align="center"
-                          >
-                            Главный специалист департамента развития отрасли информационных технологий
-                          </Text>
-                        </VStack>
-                      </Stack>
-                    </VStack>
-                    <VStack w="full" align={isLargerThan530 ? 'start' : 'center'} justify="start">
-                      <Stack
-                        direction={isLargerThan530 ? 'row' : 'column'}
-                        align={isLargerThan530 ? 'start' : 'center'}
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
-                        w="full"
-                      >
-                        <Box minW="160px">
-                          <BsFillPersonFill size="200px" color="white" />
-                        </Box>
-                        <VStack align={isLargerThan530 ? 'start' : 'center'} px={isLargerThan530 ? '20px' : '5px'}>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['lg', 'xl', '2xl']}
-                            align="center"
-                          >
-                            <b>Халимова Руфина Расиховна</b>
-                          </Text>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['sm', 'md', 'lg']}
-                            align="center"
-                          >
-                            Пресс-служба
-                          </Text>
-                        </VStack>
-                      </Stack>
+                      {team &&
+                        Object.keys(team).map(index => {
+                          const image = team[Number(index)].attributes.photo;
+                          if (team[Number(index)].attributes.team === 'staff') {
+                            return (
+                              <Stack
+                                direction={isLargerThan530 ? 'row' : 'column'}
+                                align={isLargerThan530 ? 'start' : 'center'}
+                                justify="start"
+                                marginTop="25px"
+                                p={2}
+                                borderRadius="5px"
+                                backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
+                                w="full"
+                                key={index}
+                              >
+                                {image.data === null ? (
+                                  <Box minW="200px">
+                                    <BsFillPersonFill size="200px" color="white" />
+                                  </Box>
+                                ) : (
+                                  <Image
+                                    src={`${API_URL}${image.data.attributes.url}`}
+                                    w={['160px', '200px']}
+                                    h={['160px', '200px']}
+                                    borderRadius={5}
+                                  />
+                                )}
+                                <VStack
+                                  align={isLargerThan530 ? 'start' : 'center'}
+                                  px={isLargerThan530 ? '20px' : '5px'}
+                                >
+                                  <Text
+                                    color={themeIsDark ? 'white' : 'brand.dark'}
+                                    fontSize={['lg', 'xl', '2xl']}
+                                    align="center"
+                                    fontWeight="bold"
+                                  >
+                                    {team[Number(index)].attributes.name}
+                                  </Text>
+                                  <Text
+                                    color={themeIsDark ? 'white' : 'brand.dark'}
+                                    fontSize={['sm', 'md', 'lg']}
+                                    align="center"
+                                  >
+                                    {team[Number(index)].attributes.post}
+                                  </Text>
+                                </VStack>
+                              </Stack>
+                            );
+                          }
+                          return false;
+                        })}
                     </VStack>
                   </VStack>
                 </AccordionPanel>
@@ -1236,8 +1091,12 @@ export const AboutUs = React.memo(() => {
               <AccordionItem>
                 <AccordionButton>
                   <Box flex="1" textAlign="left" ref={refDocs}>
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
-                      <b>ДОКУМЕНТЫ</b>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['xl', '2xl', '3xl']}
+                      fontWeight="bold"
+                    >
+                      ДОКУМЕНТЫ
                     </Text>
                   </Box>
                   <AccordionIcon />
@@ -1284,8 +1143,12 @@ export const AboutUs = React.memo(() => {
               <AccordionItem>
                 <AccordionButton>
                   <Box flex="1" textAlign="left" ref={refRecs}>
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
-                      <b>РЕКВИЗИТЫ</b>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['xl', '2xl', '3xl']}
+                      fontWeight="bold"
+                    >
+                      РЕКВИЗИТЫ
                     </Text>
                   </Box>
                   <AccordionIcon />
@@ -1689,8 +1552,12 @@ export const AboutUs = React.memo(() => {
               <AccordionItem>
                 <AccordionButton>
                   <Box flex="1" textAlign="left" ref={refContacts}>
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
-                      <b>КОНТАКТЫ</b>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['xl', '2xl', '3xl']}
+                      fontWeight="bold"
+                    >
+                      КОНТАКТЫ
                     </Text>
                   </Box>
                   <AccordionIcon />

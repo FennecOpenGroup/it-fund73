@@ -4,7 +4,7 @@ import { BiShow } from 'react-icons/bi';
 import { Link as RouterLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { ROUTE_MAINPAGE, ROUTE_NEWS } from '../../constants/routes';
+import { ROUTE_NEWS } from '../../constants/routes';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { Emotions } from '../emotions/Emotions';
 import { IRootState } from '../../interfaces/IRootState';
@@ -93,7 +93,7 @@ export const NewsContent = React.memo(
             w="full"
             cursor="pointer"
             as={RouterLink}
-            to={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${url_name}`}
+            to={`${ROUTE_NEWS}/${url_name}`}
             onClick={async () => {
               await fetchChangeViews(id, views_content);
             }}
