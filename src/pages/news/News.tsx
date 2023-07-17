@@ -13,7 +13,7 @@ import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { calculateReadingTime } from '../../textfunctions/reattime/readtime';
-import { ROUTE_MAINPAGE, ROUTE_NEWS } from '../../constants/routes';
+import { ROUTE_NEWS } from '../../constants/routes';
 import { IRootState } from '../../interfaces/IRootState';
 import { coreGetNews } from '../../actions/coreActions';
 import { RootActions } from '../../types/RootActions';
@@ -196,7 +196,7 @@ export const News = React.memo(() => {
                       ||
                     </Text>
                     <CopyToClipboard
-                      text={`${API_URL + ROUTE_MAINPAGE + ROUTE_NEWS}/${url_name}`}
+                      text={`${API_URL + ROUTE_NEWS}/${url_name}`}
                       onCopy={() =>
                         toast({
                           description: 'Ссылка скопирована!',
@@ -245,9 +245,7 @@ export const News = React.memo(() => {
                   Object.keys(news).map(index => {
                     return (
                       <Link
-                        href={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${transliterating(
-                          news[Number(index)].attributes.heading,
-                        )}`}
+                        href={`${ROUTE_NEWS}/${transliterating(news[Number(index)].attributes.heading)}`}
                         key={index}
                         color={themeIsDark ? 'white' : 'brand.dark'}
                         fontSize={['sm', 'md']}
@@ -279,7 +277,7 @@ export const News = React.memo(() => {
                 Object.keys(news).map(index => {
                   return (
                     <Link
-                      href={`${ROUTE_MAINPAGE + ROUTE_NEWS}/${transliterating(news[Number(index)].attributes.heading)}`}
+                      href={`${ROUTE_NEWS}/${transliterating(news[Number(index)].attributes.heading)}`}
                       key={index}
                       color={themeIsDark ? 'white' : 'brand.dark'}
                       fontSize={['sm', 'md']}
