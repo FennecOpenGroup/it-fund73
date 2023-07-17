@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ee7e0831.css",
+    "main.js": "/static/js/main.74f11230.js",
+    "static/media/Ulyanovsk.jpg": "/static/media/Ulyanovsk.de91603c3e10fbaee854.jpg",
+    "static/media/scheme_accreditation_dark.svg": "/static/media/scheme_accreditation_dark.4b8c06db2a11c6499825ed9df10b758b.svg",
+    "static/media/scheme_accreditation.svg": "/static/media/scheme_accreditation.7a06173f58427dc42b4cc9da3f00901e.svg",
+    "static/media/ul-logo.svg": "/static/media/ul-logo.c8cbfb04712c8833a5e4584f45b608a4.svg",
+    "static/media/mobirate.svg": "/static/media/mobirate.b9ceb7798cb735b043bb78d8ede3b4af.svg",
+    "static/media/simbirsoft.svg": "/static/media/simbirsoft.e3c0a78ceff45cac74be1c792fd74673.svg",
+    "static/media/advanshop.svg": "/static/media/advanshop.2a79dafa34411012bd8ad5d40b710bfd.svg",
+    "static/media/IBS.svg": "/static/media/IBS.a1fb68440f619d90a6e5449210f049a6.svg",
+    "static/media/jost-all-400-normal.woff": "/static/media/jost-all-400-normal.d59c6565d4d0717bd281.woff",
+    "static/media/logo.svg": "/static/media/logo.3d6873685551c4872a8f51c902d0c1fb.svg",
+    "static/media/jost-latin-400-normal.woff2": "/static/media/jost-latin-400-normal.3ee0e9b131b30b82441b.woff2",
+    "static/media/jost-latin-ext-400-normal.woff2": "/static/media/jost-latin-ext-400-normal.4d7ae0b2f2addfdb042a.woff2",
+    "static/media/jost-cyrillic-400-normal.woff2": "/static/media/jost-cyrillic-400-normal.6132b2e344b5a75d6bf9.woff2",
+    "static/media/mini-logo.svg": "/static/media/mini-logo.c48cfdf54ac28fc042ff4414f866d6dd.svg",
+    "index.html": "/index.html",
+    "static/media/logo-fog.svg": "/static/media/logo-fog.17a6a3d610b0c68941cf611c82ced211.svg",
+    "static/media/nord.svg": "/static/media/nord.990a7326bdd3c7f0b70de24a554272d8.svg"
+  },
+  "entrypoints": [
+    "static/css/main.ee7e0831.css",
+    "static/js/main.74f11230.js"
+  ]
+}
