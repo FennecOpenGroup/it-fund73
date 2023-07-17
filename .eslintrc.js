@@ -50,6 +50,7 @@ module.exports = {
       ],
     ],
     'react/display-name': 'off',
+    'no-irregular-whitespace': 0,
     'prettier/prettier': 'warn',
     'object-curly-newline': 'off',
     'react/no-unused-prop-types': 'error',

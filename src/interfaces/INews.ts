@@ -1,10 +1,25 @@
+import { IImage } from './IImage';
+
 export interface INews {
-  src_content?: any;
-  name_content?: string;
-  short_name?: string;
-  main_content?: string;
-  tag_content?: string;
-  views_content?: string;
-  date_content?: Date;
-  reaction_content?: string;
+  id: number;
+  attributes: {
+    angry?: number;
+    delight?: number;
+    dislike?: number;
+    like?: number;
+    shock?: number;
+    smile_face?: number;
+    views?: number;
+
+    tags: string;
+    heading: string;
+    image: IImage;
+    text: string;
+
+    date: Date;
+    publishedAt: Date;
+    updatedAt: Date;
+
+    isShort?: boolean;
+  };
 }

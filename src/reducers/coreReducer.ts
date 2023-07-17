@@ -5,6 +5,7 @@ import * as actions from '../actions/coreActions';
 import { CoreActionsEnum } from '../enums/CoreActionsEnum';
 import { LangEnum } from '../enums/LangEnum';
 import { TagsEnum } from '../enums/TagsEnum';
+import { ThemeEnum } from '../enums/ThemeEnum';
 import { ICoreState } from '../interfaces/ICoreState';
 
 export type CoreAction = ActionType<typeof actions>;
@@ -15,6 +16,7 @@ const initialCoreState: ICoreState = {
   education: true,
   business: true,
   government: true,
+  themeIsDark: false,
 };
 
 export function coreReducer(state: ICoreState = initialCoreState, action: CoreAction) {
@@ -35,6 +37,42 @@ export function coreReducer(state: ICoreState = initialCoreState, action: CoreAc
       return {
         ...state,
         lang: action.payload.lang,
+      };
+    }
+    case CoreActionsEnum.CORE_SET_NEWS: {
+      return {
+        ...state,
+        news: action.payload.value,
+      };
+    }
+    case CoreActionsEnum.CORE_SET_TEAM: {
+      return {
+        ...state,
+        team: action.payload.value,
+      };
+    }
+    case CoreActionsEnum.CORE_SET_EVENTS: {
+      return {
+        ...state,
+        events: action.payload.value,
+      };
+    }
+    case CoreActionsEnum.CORE_SET_DOCS: {
+      return {
+        ...state,
+        docs: action.payload.value,
+      };
+    }
+    case CoreActionsEnum.CORE_SET_EMOTIONS: {
+      return {
+        ...state,
+        emotions: action.payload.value,
+      };
+    }
+    case ThemeEnum.CORE_THEME_IS_DARK: {
+      return {
+        ...state,
+        themeIsDark: action.payload.value,
       };
     }
     case TagsEnum.IT: {

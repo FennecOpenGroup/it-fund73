@@ -4,489 +4,1164 @@ import {
   Stack,
   HStack,
   Image,
+  useMediaQuery,
   Accordion,
   AccordionItem,
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
   Box,
-  List,
-  ListItem,
-  ListIcon,
   useToast,
+  Link,
+  Button,
+  Table,
+  TableContainer,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { Dispatch, useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { useDispatch, useSelector } from 'react-redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Chart } from 'react-google-charts';
-import { GiGearStickPattern, GiBrain, GiTechnoHeart, GiVintageRobot, GiSatelliteCommunication } from 'react-icons/gi';
+import { AiOutlineApartment, AiOutlineFile } from 'react-icons/ai';
+import { GiVintageRobot } from 'react-icons/gi';
+import { MdEmojiPeople, MdBiotech, MdCellTower } from 'react-icons/md';
+import { BsFillPersonFill, BsMailbox, BsTelephone } from 'react-icons/bs';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
-import petrishchev from '../../assets/petrishchev.jpg';
-import yarushkina from '../../assets/yarushkina.jpg';
-import kostishko from '../../assets/kostishko.jpg';
-import kuznezov from '../../assets/kuznezov.jpg';
-import pavlov from '../../assets/pavlov.jpg';
-import Erofeev from '../../assets/Erofeev.jpg';
-import andronova from '../../assets/andronova.jpg';
-import Gorbunova from '../../assets/Gorbunova.jpg';
+import ulyanovsk from '../../assets/Ulyanovsk.jpg';
+import { IRootState } from '../../interfaces/IRootState';
+import { coreGetDocs, coreGetTeam } from '../../actions/coreActions';
+import { RootActions } from '../../types/RootActions';
+import { API_URL } from '../../constants/env';
 
 export const AboutUs = React.memo(() => {
-  const { height } = useWindowDimensions();
+  const { height, width } = useWindowDimensions();
+  const dispatch = useDispatch<Dispatch<RootActions>>();
+
   const toast = useToast();
+
+  const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current !== null) {
+      window.scrollTo({ behavior: 'smooth', top: ref.current.offsetTop });
+    }
+  };
+
+  const refHeader = useRef<HTMLDivElement>(null);
+  const refHeading = useRef<HTMLDivElement>(null);
+  const refTeam = useRef<HTMLDivElement>(null);
+  const refDocs = useRef<HTMLDivElement>(null);
+  const refRecs = useRef<HTMLDivElement>(null);
+  const refContacts = useRef<HTMLDivElement>(null);
+  const refCharts = useRef<HTMLDivElement>(null);
+
+  const [charts, setCharts] = useState(false);
+
+  const [isLargerThan1300] = useMediaQuery('(min-width: 1300px)');
+  const [isLargerThan1155] = useMediaQuery('(min-width: 1155px)');
+  const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
+  const [isLargerThan530] = useMediaQuery('(min-width: 530px)');
+  const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
+
+  const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
+  const docs = useSelector((state: IRootState) => state.core.docs);
+  const team = useSelector((state: IRootState) => state.core.team);
+
+  useEffect(() => {
+    dispatch(coreGetDocs());
+    dispatch(coreGetTeam());
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
       <Helmet>
         <title>it-fund | О фонде</title>
+        <meta charSet="UTF-8" />
+        <meta
+          name="Информация о фонде"
+          content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="it-fund" />
+        <meta property="og:title" content="Фонд развития информационный технологий Ульяновской области." />
+        <meta
+          property="og:descripsion"
+          content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года"
+        />
+        <meta property="og:image" content="../../assets/logo.svg" />
+        <meta property="og:image:type" content="image/svg" />
+        <meta property="og:image:width" content="200" />
+        <meta property="og:image:height" content="60" />
+        <meta name="vk:card" content="image/svg" />
+        <meta name="vk:title" content="Фонд развития информационный технологий Ульяновской области." />
+        <meta
+          name="vk:descripsion"
+          content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года"
+        />
+        <meta name="vk:image" content="../../assets/logo.svg" />
       </Helmet>
-      <Header />
-      <VStack minH={`${height}px`} justify="start" px="10%">
-        <VStack
-          w="full"
-          minH={`${height}px`}
-          bg="brand.beige"
-          px={[2, 3, 4]}
-          pb={[4, 6]}
-          boxShadow="5px 0px rgb(3,0,15,15%)"
-          align="flex-start"
-        >
-          <VStack w="full" justify="center" spacing={5} my={2}>
+      <VStack w="full" p={0} m={0} ref={refHeader}>
+        <Header />
+      </VStack>
+      <VStack minH={`${height}px`} justify="start" px="10%" bg={themeIsDark ? '#242323' : 'white'}>
+        <VStack w="full" minH={`${height}px`} pb={[4, 6]} align="flex-start">
+          <Image
+            src={ulyanovsk}
+            objectFit="cover"
+            top={refHeader.current?.clientHeight}
+            left={0}
+            w={width}
+            h={refHeading.current?.clientHeight}
+            filter="brightness(35%)"
+            zIndex={0}
+            position="absolute"
+            loading="lazy"
+          />
+          <VStack
+            w="full"
+            minH={`${height / 2}px`}
+            justify="center"
+            spacing={[2, 5]}
+            py={[4, 6, 10]}
+            mt={[0, 2, 4]}
+            ref={refHeading}
+            zIndex={2}
+          >
             <HStack>
-              <Text color="brand.dark" fontWeight="900px" fontSize="3xl">
-                О ФОНДЕ
+              <Text fontWeight="800" align="center" fontSize={['lg', 'xl', '2xl', '4xl']} textTransform="uppercase">
+                Фонд развития информациионных технологий Ульяновской области
               </Text>
             </HStack>
+            <Stack direction={isLargerThan480 ? 'row' : 'column'} w="full" align="center" justify="center">
+              <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refCharts)}>
+                Цифры и Факты
+              </Button>
+              <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refTeam)}>
+                Команда
+              </Button>
+              <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refDocs)}>
+                Документы
+              </Button>
+              <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refRecs)}>
+                Реквизиты
+              </Button>
+              <Button
+                color="white"
+                variant="brand-link"
+                fontSize={['lg', 'xl']}
+                onClick={() => scrollToRef(refContacts)}
+              >
+                Контакты
+              </Button>
+            </Stack>
             <VStack align="center" justify="center">
-              <Text color="brand.dark" fontSize="xl" align="center">
+              <Text fontSize={['sm', 'md', 'lg']} align="center">
                 Фонд развития информационный технологий в Ульяновской области является оператором государственный
                 поддержки IT-проектов и компаний в регионе с 2016 года.
               </Text>
             </VStack>
             <VStack align="center" justify="center">
-              <Text color="brand.dark" fontWeight="bold" fontSize="xl" align="center">
+              <Text fontSize={['sm', 'md', 'lg']} align="center">
                 Миссия Фонда – всемерно стимулировать развитие ИТ-экосистемы Ульяновской области, обеспечивать системную
                 поддержку образовательных и профориентационных проектов в сфере информационных технологий и создавать
-                условия для устойчивого роста ИТ-отрасли региона.
+                условия для устойчивого роста IT-отрасли региона.
               </Text>
             </VStack>
           </VStack>
-          <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
-          <VStack w="full" align="center" p={5} mx="20%">
-            <Text color="brand.dark" fontWeight="900px" fontSize="3xl">
-              НАШИ ЦЕЛИ
-            </Text>
-            <VStack align="center" justify="center">
-              <Text color="brand.dark" fontSize="lg" align="start">
-                Основной целью деятельности Фонда является формирование имущества (в том числе финансовых средств) на
-                основе добровольных имущественных взносов (в том числе денежных) и иных законных поступлений, и
-                направление их на:
-                <List spacing={6} my={2} py={4} px="15%">
-                  <ListItem>
-                    <ListIcon as={GiGearStickPattern} w="5em" h="5em" color="brand.blue" />
-                    Содействие развитию информационных технологий на территории Ульяновской области.
-                  </ListItem>
-                  <ListItem>
-                    <ListIcon as={GiBrain} w="5em" h="5em" color="brand.blue" />
-                    Развитие человеческого потенциала отрасли информационных технологий.
-                  </ListItem>
-                  <ListItem>
-                    <ListIcon as={GiTechnoHeart} w="5em" h="5em" color="brand.blue" />
-                    Создание условий для появления передовых технологий, организаций, методов обучения федерального и
-                    мирового уровня в сфере информационных технологий.
-                  </ListItem>
-                  <ListItem>
-                    <ListIcon as={GiVintageRobot} w="5em" h="5em" color="brand.blue" />
-                    Развитие проектов, осуществляемых в форме или посредством информационных технологий,
-                    телекоммуникационных технологий, в том числе информационно-телекоммуникационной сети Интернет,
-                    робототехники, облачных вычислений, больших данных, человеко-машинных интерфейсов, систем управления
-                    и так далее.
-                  </ListItem>
-                  <ListItem>
-                    <ListIcon as={GiSatelliteCommunication} w="5em" h="5em" color="brand.blue" size="200px" />
-                    Развитие Интернет-предпринимательства и экосистемы Интернет-предпринимательства.
-                  </ListItem>
-                </List>
+          <VStack w="full" align="start" mx={['10%', '20%']} pt={[5, 10]} bg={themeIsDark ? '#242323' : 'white'}>
+            <VStack
+              w="full"
+              align="center"
+              bgGradient={themeIsDark ? 'none' : 'linear(to-t, #e3f2fb 5%, transparent 95%)'}
+              pb={5}
+            >
+              <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="800" fontSize={['xl', '2xl', '3xl']}>
+                НАШИ ЦЕЛИ
               </Text>
+              <VStack align="center" justify="center" px={[0, 4]}>
+                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']} align="start">
+                  Основной целью деятельности Фонда является формирование имущества (в том числе финансовых средств) на
+                  основе добровольных имущественных взносов (в том числе денежных) и иных законных поступлений, и
+                  направление их на:
+                  <VStack w="full" px={isLargerThan770 ? '25%' : '5%'} align="center">
+                    <Stack
+                      w="full"
+                      direction={isLargerThan530 ? 'row' : 'column'}
+                      align={isLargerThan530 ? 'start' : 'center'}
+                    >
+                      <VStack minW={['3em', '4em', '5em']}>
+                        <AiOutlineApartment size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
+                      </VStack>
+                      <Text
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                        fontSize={['sm', 'md', 'lg']}
+                        w="full"
+                        align="start"
+                      >
+                        Содействие развитию информационных технологий на территории Ульяновской области.
+                      </Text>
+                    </Stack>
+                    <Stack
+                      w="full"
+                      direction={isLargerThan530 ? 'row' : 'column'}
+                      align={isLargerThan530 ? 'start' : 'center'}
+                    >
+                      <VStack minW={['3em', '4em', '5em']}>
+                        <MdEmojiPeople size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
+                      </VStack>
+                      <Text
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                        fontSize={['sm', 'md', 'lg']}
+                        w="full"
+                        align="start"
+                      >
+                        Развитие человеческого потенциала отрасли информационных технологий.
+                      </Text>
+                    </Stack>
+                    <Stack
+                      w="full"
+                      direction={isLargerThan530 ? 'row' : 'column'}
+                      align={isLargerThan530 ? 'start' : 'center'}
+                    >
+                      <VStack minW={['3em', '4em', '5em']}>
+                        <MdBiotech size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
+                      </VStack>
+                      <Text
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                        fontSize={['sm', 'md', 'lg']}
+                        w="full"
+                        align="start"
+                      >
+                        Создание условий для появления передовых технологий, организаций, методов обучения федерального
+                        и мирового уровня в сфере информационных технологий.
+                      </Text>
+                    </Stack>
+                    <Stack
+                      w="full"
+                      direction={isLargerThan530 ? 'row' : 'column'}
+                      align={isLargerThan530 ? 'start' : 'center'}
+                    >
+                      <VStack minW={['3em', '4em', '5em']}>
+                        <GiVintageRobot size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
+                      </VStack>
+                      <Text
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                        fontSize={['sm', 'md', 'lg']}
+                        w="full"
+                        align="start"
+                      >
+                        Развитие проектов, осуществляемых в форме или посредством информационных технологий,
+                        телекоммуникационных технологий, в том числе информационно-телекоммуникационной сети Интернет,
+                        робототехники, облачных вычислений, больших данных, человеко-машинных интерфейсов, систем
+                        управления и так далее.
+                      </Text>
+                    </Stack>
+                    <Stack
+                      w="full"
+                      direction={isLargerThan530 ? 'row' : 'column'}
+                      align={isLargerThan530 ? 'start' : 'center'}
+                    >
+                      <VStack minW={['3em', '4em', '5em']}>
+                        <MdCellTower size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
+                      </VStack>
+                      <Text
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                        fontSize={['sm', 'md', 'lg']}
+                        w="full"
+                        align="start"
+                      >
+                        Развитие Интернет-предпринимательства и экосистемы Интернет-предпринимательства.
+                      </Text>
+                    </Stack>
+                  </VStack>
+                </Text>
+              </VStack>
             </VStack>
-            <Text color="brand.dark" fontWeight="900px" fontSize="3xl">
-              Цифры и факты
-            </Text>
-            <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl">
-              Получено субсидий
-            </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Получено субсидий Правительства Ульяновской области в млн.руб'],
-                ['2016', 2.753],
-                ['2017', 5.709],
-                ['2018', 22.166],
-                ['2019', 25],
-                ['2020', 12.762],
-              ]}
-              options={{ colors: ['#7775ed'] }}
-              width="100%"
-              legendToggle
-            />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl">
-              Объём средств софинансирования
-            </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Объём средств софинансирования в млн.руб'],
-                ['2016', 1],
-                ['2017', 0.5],
-                ['2018', 2.236],
-                ['2019', 0.299],
-                ['2020', 0.291],
-              ]}
-              options={{ colors: ['#7775ed'] }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl">
-              Проведено конкурсов
-            </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Проведено конкурсов проектов для реализации'],
-                ['2016', 2],
-                ['2017', 2],
-                ['2018', 2],
-                ['2019', 3],
-                ['2020', 1],
-              ]}
-              options={{ colors: ['#7775ed'] }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl">
-              Подано проектов на конкурсы
-            </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Подано проектов на конкурсы для реализации'],
-                ['2016', 44],
-                ['2017', 53],
-                ['2018', 83],
-                ['2019', 135],
-                ['2020', 124],
-              ]}
-              options={{ colors: ['#7775ed'] }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl">
-              Общая сумма поданных проектов
-            </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Общая сумма поданных проектов в млн. руб.'],
-                ['2016', 43.425],
-                ['2017', 19.05],
-                ['2018', 94.12],
-                ['2019', 225.313],
-                ['2020', 87.85],
-              ]}
-              options={{ colors: ['#7775ed'] }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl">
-              Поддержано проектов
-            </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Поддержано проектов'],
-                ['2016', 12],
-                ['2017', 25],
-                ['2018', 38],
-                ['2019', 58],
-                ['2020', 32],
-              ]}
-              options={{ colors: ['#7775ed'] }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl">
-              Общая сумма поддержанных проектов
-            </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Общая сумма поддержанных проектов в млн.руб'],
-                ['2016', 3.052],
-                ['2017', 5.709],
-                ['2018', 21.545],
-                ['2019', 23.751],
-                ['2020', 9.879],
-              ]}
-              options={{ colors: ['#7775ed'] }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
-            <Text color="brand.dark" fontWeight="bold" fontSize="2xl">
-              Охват аудитории проектами
-            </Text>
-            <Chart
-              chartType="AreaChart"
-              data={[
-                ['Год', 'Охват аудитории проектами, получившими поддержку'],
-                ['2016', 3000],
-                ['2017', 12000],
-                ['2018', 25000],
-                ['2019', 27000],
-                ['2020', 7187],
-              ]}
-              options={{ colors: ['#7775ed'] }}
-              width="100%"
-              height="full"
-              legendToggle
-            />
+            <VStack w="full" align="center" justify="center" pb={5}>
+              <Text
+                color={themeIsDark ? 'white' : 'brand.dark'}
+                fontWeight="800"
+                fontSize={['xl', '2xl', '3xl']}
+                align="center"
+              >
+                ПРОЕКТЫ ПОДДЕРЖАННЫЕ ФОНДОМ В 2023 ГОДУ
+              </Text>
+              <TableContainer w="full">
+                <Table
+                  w="full"
+                  variant="striped"
+                  colorScheme="blue"
+                  size={isLargerThan1300 ? 'lg' : 'md'}
+                  color={themeIsDark ? 'white' : 'brand.dark'}
+                  backgroundColor={themeIsDark ? '#242323' : 'white'}
+                  overflow="hidden"
+                  whiteSpace="normal"
+                >
+                  <Thead>
+                    <Tr>
+                      <Th
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                        fontSize={['sm', 'md', 'lg']}
+                        fontFamily="Jost"
+                        fontWeight="800"
+                      >
+                        Наименование проектов
+                      </Th>
+                      <Th
+                        isNumeric
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                        fontSize={['sm', 'md', 'lg']}
+                        fontFamily="Jost"
+                        fontWeight="800"
+                      >
+                        Колличество участников
+                      </Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    <Tr textColor="brand.dark">
+                      <Td>Международная цифровая олимпиада «Волга-IT»</Td>
+                      <Td isNumeric>2000</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Развитие сообщества Код-классов (клубов по программированию) в Ульяновской области</Td>
+                      <Td isNumeric>800</Td>
+                    </Tr>
+                    <Tr textColor="brand.dark">
+                      <Td>Турнир «ИТ-Марафон» среди студентов и преподавателей СПО</Td>
+                      <Td isNumeric>710</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Чемпионат ИТ-сферы Ульяновской области среди школьников</Td>
+                      <Td isNumeric>400</Td>
+                    </Tr>
+                    <Tr textColor="brand.dark">
+                      <Td>Командный студенческий чемпионат Ульяновской области по программированию</Td>
+                      <Td isNumeric>45</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>«Инженерно-техническая подготовка в школьном образовании»</Td>
+                      <Td isNumeric>25</Td>
+                    </Tr>
+                  </Tbody>
+                </Table>
+              </TableContainer>
+            </VStack>
             <Accordion allowMultiple w="full">
+              <AccordionItem color={themeIsDark ? 'white' : 'brand.dark'}>
+                <AccordionButton onClick={() => setCharts(!charts)}>
+                  <Box flex="1" textAlign="left" ref={refCharts}>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
+                      <b>ЦИФРЫ И ФАКТЫ</b>
+                    </Text>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                {charts && (
+                  <AccordionPanel pb={0}>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontWeight="bold"
+                      fontSize={['lg', 'xl', '2xl']}
+                      px={0}
+                    >
+                      Получено субсидий
+                    </Text>
+                    {themeIsDark ? (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Получено субсидий Правительства Ульяновской области в млн.руб'],
+                          ['2016', 2.753],
+                          ['2017', 5.709],
+                          ['2018', 22.166],
+                          ['2019', 25],
+                          ['2020', 12.762],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          backgroundColor: 'transparent',
+                          titleTextStyle: {
+                            color: 'white',
+                          },
+                          legendTextStyle: {
+                            color: 'white',
+                          },
+                          hAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          vAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 1500,
+                          },
+                        }}
+                        width="100%"
+                        legendToggle
+                      />
+                    ) : (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Получено субсидий Правительства Ульяновской области в млн.руб'],
+                          ['2016', 2.753],
+                          ['2017', 5.709],
+                          ['2018', 22.166],
+                          ['2019', 25],
+                          ['2020', 12.762],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 1500,
+                          },
+                        }}
+                        width="100%"
+                        legendToggle
+                      />
+                    )}
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontWeight="bold"
+                      fontSize={['lg', 'xl', '2xl']}
+                      px={4}
+                    >
+                      Объём средств софинансирования
+                    </Text>
+                    {themeIsDark ? (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Объём средств софинансирования в млн.руб'],
+                          ['2016', 1],
+                          ['2017', 0.5],
+                          ['2018', 2.236],
+                          ['2019', 0.299],
+                          ['2020', 0.291],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          backgroundColor: 'transparent',
+                          titleTextStyle: {
+                            color: 'white',
+                          },
+                          legendTextStyle: {
+                            color: 'white',
+                          },
+                          hAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          vAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    ) : (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Объём средств софинансирования в млн.руб'],
+                          ['2016', 1],
+                          ['2017', 0.5],
+                          ['2018', 2.236],
+                          ['2019', 0.299],
+                          ['2020', 0.291],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    )}
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontWeight="bold"
+                      fontSize={['lg', 'xl', '2xl']}
+                      px={4}
+                    >
+                      Проведено конкурсов
+                    </Text>
+                    {themeIsDark ? (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Проведено конкурсов проектов для реализации'],
+                          ['2016', 2],
+                          ['2017', 2],
+                          ['2018', 2],
+                          ['2019', 3],
+                          ['2020', 1],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          backgroundColor: 'transparent',
+                          titleTextStyle: {
+                            color: 'white',
+                          },
+                          legendTextStyle: {
+                            color: 'white',
+                          },
+                          hAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          vAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    ) : (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Проведено конкурсов проектов для реализации'],
+                          ['2016', 2],
+                          ['2017', 2],
+                          ['2018', 2],
+                          ['2019', 3],
+                          ['2020', 1],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    )}
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontWeight="bold"
+                      fontSize={['lg', 'xl', '2xl']}
+                      px={4}
+                    >
+                      Подано проектов на конкурсы
+                    </Text>
+                    {themeIsDark ? (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Подано проектов на конкурсы для реализации'],
+                          ['2016', 44],
+                          ['2017', 53],
+                          ['2018', 83],
+                          ['2019', 135],
+                          ['2020', 124],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          backgroundColor: 'transparent',
+                          titleTextStyle: {
+                            color: 'white',
+                          },
+                          legendTextStyle: {
+                            color: 'white',
+                          },
+                          hAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          vAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    ) : (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Подано проектов на конкурсы для реализации'],
+                          ['2016', 44],
+                          ['2017', 53],
+                          ['2018', 83],
+                          ['2019', 135],
+                          ['2020', 124],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    )}
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontWeight="bold"
+                      fontSize={['lg', 'xl', '2xl']}
+                      px={4}
+                    >
+                      Общая сумма поданных проектов
+                    </Text>
+                    {themeIsDark ? (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Общая сумма поданных проектов в млн. руб.'],
+                          ['2016', 43.425],
+                          ['2017', 19.05],
+                          ['2018', 94.12],
+                          ['2019', 225.313],
+                          ['2020', 87.85],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          backgroundColor: 'transparent',
+                          titleTextStyle: {
+                            color: 'white',
+                          },
+                          legendTextStyle: {
+                            color: 'white',
+                          },
+                          hAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          vAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    ) : (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Общая сумма поданных проектов в млн. руб.'],
+                          ['2016', 43.425],
+                          ['2017', 19.05],
+                          ['2018', 94.12],
+                          ['2019', 225.313],
+                          ['2020', 87.85],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    )}
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontWeight="bold"
+                      fontSize={['lg', 'xl', '2xl']}
+                      px={4}
+                    >
+                      Поддержано проектов
+                    </Text>
+                    {themeIsDark ? (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Поддержано проектов'],
+                          ['2016', 12],
+                          ['2017', 25],
+                          ['2018', 38],
+                          ['2019', 58],
+                          ['2020', 32],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          backgroundColor: 'transparent',
+                          titleTextStyle: {
+                            color: 'white',
+                          },
+                          legendTextStyle: {
+                            color: 'white',
+                          },
+                          hAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          vAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    ) : (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Поддержано проектов'],
+                          ['2016', 12],
+                          ['2017', 25],
+                          ['2018', 38],
+                          ['2019', 58],
+                          ['2020', 32],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    )}
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontWeight="bold"
+                      fontSize={['lg', 'xl', '2xl']}
+                      px={4}
+                    >
+                      Общая сумма поддержанных проектов
+                    </Text>
+                    {themeIsDark ? (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Общая сумма поддержанных проектов в млн.руб'],
+                          ['2016', 3.052],
+                          ['2017', 5.709],
+                          ['2018', 21.545],
+                          ['2019', 23.751],
+                          ['2020', 9.879],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          backgroundColor: 'transparent',
+                          titleTextStyle: {
+                            color: 'white',
+                          },
+                          legendTextStyle: {
+                            color: 'white',
+                          },
+                          hAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          vAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    ) : (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Общая сумма поддержанных проектов в млн.руб'],
+                          ['2016', 3.052],
+                          ['2017', 5.709],
+                          ['2018', 21.545],
+                          ['2019', 23.751],
+                          ['2020', 9.879],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    )}
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontWeight="bold"
+                      fontSize={['lg', 'xl', '2xl']}
+                      px={4}
+                    >
+                      Охват аудитории проектами
+                    </Text>
+                    {themeIsDark ? (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Охват аудитории проектами, получившими поддержку'],
+                          ['2016', 3000],
+                          ['2017', 12000],
+                          ['2018', 25000],
+                          ['2019', 27000],
+                          ['2020', 7187],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          backgroundColor: 'transparent',
+                          titleTextStyle: {
+                            color: 'white',
+                          },
+                          legendTextStyle: {
+                            color: 'white',
+                          },
+                          hAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          vAxis: {
+                            textStyle: {
+                              color: 'white',
+                            },
+                          },
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    ) : (
+                      <Chart
+                        chartType="AreaChart"
+                        data={[
+                          ['Год', 'Охват аудитории проектами, получившими поддержку'],
+                          ['2016', 3000],
+                          ['2017', 12000],
+                          ['2018', 25000],
+                          ['2019', 27000],
+                          ['2020', 7187],
+                        ]}
+                        options={{
+                          colors: ['#7775ed'],
+                          animation: {
+                            startup: true,
+                            easing: 'linear',
+                            duration: 3500,
+                          },
+                        }}
+                        width="100%"
+                        height="full"
+                        legendToggle
+                      />
+                    )}
+                  </AccordionPanel>
+                )}
+              </AccordionItem>
+            </Accordion>
+            <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionItem>
                 <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
-                    <Text color="brand.dark" fontSize="3xl">
-                      <b>КОМАНДА</b>
+                  <Box flex="1" textAlign="left" ref={refTeam}>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['xl', '2xl', '3xl']}
+                      fontWeight="bold"
+                    >
+                      КОМАНДА
                     </Text>
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
                   <VStack w="full" align="start" p={0} m={0}>
-                    <Text color="brand.dark" fontSize="2xl" fontWeight="900">
-                      Попечительский Совет Фонда
-                    </Text>
-                    <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
-                  </VStack>
-                  <VStack w="full" align="start" justify="start">
-                    <HStack
-                      align="start"
-                      justify="start"
-                      marginTop="25px"
-                      p={2}
-                      borderRadius="5px"
-                      backgroundColor="#dcdcdc"
-                      w="full"
-                    >
-                      <Image src={petrishchev} w="200px" h="200px" borderRadius={5} objectFit="cover" />
-                      <VStack align="start" px="20px">
-                        <Text color="brand.dark" fontSize="2xl">
-                          <b>Петрищев Игорь Олегович</b>
-                        </Text>
-                        <Text color="brand.dark" fontSize="lg">
-                          Ректор ФГБОУ ВО «Ульяновский государственный педагогический университет»
-                        </Text>
-                      </VStack>
-                    </HStack>
-                  </VStack>
-                  <VStack w="full">
-                    <HStack
-                      align="start"
-                      justify="start"
-                      marginTop="25px"
-                      p={2}
-                      borderRadius="5px"
-                      backgroundColor="#dcdcdc"
-                      w="full"
-                    >
-                      <Image src={yarushkina} w="200px" h="200px" borderRadius={5} />
-                      <VStack align="start" px="20px">
-                        <Text color="brand.dark" fontSize="2xl">
-                          <b>Ярушкина Надежда Глебовна</b>
-                        </Text>
-                        <Text color="brand.dark" fontSize="lg">
-                          Ректор ФГБОУ ВО «Ульяновский государственный технический университет», доктор технических
-                          наук, профессор
-                        </Text>
-                      </VStack>
-                    </HStack>
-                  </VStack>
-                  <VStack w="full">
-                    <HStack
-                      align="start"
-                      justify="start"
-                      marginTop="25px"
-                      p={2}
-                      borderRadius="5px"
-                      backgroundColor="#dcdcdc"
-                      w="full"
-                    >
-                      <Image src={kostishko} w="200px" h="200px" borderRadius={5} />
-                      <VStack align="start" px="20px">
-                        <Text color="brand.dark" fontSize="2xl">
-                          <b>Костишко Алла Евгеньевна</b>
-                        </Text>
-                        <Text color="brand.dark" fontSize="lg">
-                          Директор Центра Интернет-образования ФГБОУ ВО «Ульяновский государственный университет»
-                        </Text>
-                      </VStack>
-                    </HStack>
-                  </VStack>
-                  <VStack w="full" align="start" p={0} m={0}>
-                    <Text color="brand.dark" fontSize="2xl" fontWeight="900">
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['lg', 'xl', '2xl']} fontWeight="900">
                       Правление Фонда
                     </Text>
-                    <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
+                    <Stack borderTop="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
                     <VStack w="full" align="start" justify="start">
-                      <HStack
-                        align="start"
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor="#dcdcdc"
-                        w="full"
-                      >
-                        <Image src={kuznezov} w="200px" h="200px" borderRadius={5} />
-                        <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
-                            <b>Кузнецов Виталий Евгеньевич</b>
-                          </Text>
-                          <Text color="brand.dark" fontSize="lg">
-                            Министр Ульяновской области
-                          </Text>
-                        </VStack>
-                      </HStack>
-                    </VStack>
-                    <VStack w="full">
-                      <HStack
-                        align="start"
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor="#dcdcdc"
-                        w="full"
-                      >
-                        <Image src={pavlov} w="200px" h="200px" borderRadius={5} />
-                        <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
-                            <b>Павлов Вадим Вячеславович</b>
-                          </Text>
-                          <Text color="brand.dark" fontSize="lg">
-                            Генеральный директор АНО ДО «Агентство технологического развития Ульяновской области»,
-                            Советник Губернатора по инновационному и технологическому развитию Ульяновской области
-                          </Text>
-                        </VStack>
-                      </HStack>
+                      {team &&
+                        Object.keys(team).map(index => {
+                          const image = team[Number(index)].attributes.photo;
+                          if (team[Number(index)].attributes.team === 'management') {
+                            return (
+                              <Stack
+                                direction={isLargerThan530 ? 'row' : 'column'}
+                                align={isLargerThan530 ? 'start' : 'center'}
+                                justify="start"
+                                marginTop="25px"
+                                p={2}
+                                borderRadius="5px"
+                                backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
+                                w="full"
+                                key={index}
+                              >
+                                {image.data === null ? (
+                                  <Box minW="200px">
+                                    <BsFillPersonFill size="200px" color="white" />
+                                  </Box>
+                                ) : (
+                                  <Image
+                                    src={`${API_URL}${image.data.attributes.url}`}
+                                    w={['160px', '200px']}
+                                    h={['160px', '200px']}
+                                    borderRadius={5}
+                                  />
+                                )}
+                                <VStack
+                                  align={isLargerThan530 ? 'start' : 'center'}
+                                  px={isLargerThan530 ? '20px' : '5px'}
+                                >
+                                  <Text
+                                    color={themeIsDark ? 'white' : 'brand.dark'}
+                                    fontSize={['lg', 'xl', '2xl']}
+                                    align="center"
+                                    fontWeight="bold"
+                                  >
+                                    {team[Number(index)].attributes.name}
+                                  </Text>
+                                  <Text
+                                    color={themeIsDark ? 'white' : 'brand.dark'}
+                                    fontSize={['sm', 'md', 'lg']}
+                                    align="center"
+                                  >
+                                    {team[Number(index)].attributes.post}
+                                  </Text>
+                                </VStack>
+                              </Stack>
+                            );
+                          }
+                          return false;
+                        })}
                     </VStack>
                   </VStack>
                   <VStack w="full" align="start" p={0} m={0}>
-                    <Text color="brand.dark" fontSize="2xl" fontWeight="900">
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['lg', 'xl', '2xl']} fontWeight="900">
                       Сотрудники Фонда
                     </Text>
-                    <Stack borderTop="1px" borderColor="brand.dark" w="full" m={0} p={0} />
+                    <Stack borderTop="1px" borderColor={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
                     <VStack w="full" align="start" justify="start">
-                      <HStack
-                        align="start"
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor="#dcdcdc"
-                        w="full"
-                      >
-                        <Image src={Erofeev} w="200px" h="200px" borderRadius={5} />
-                        <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
-                            <b>Ерофеев Сергей Александрович</b>
-                          </Text>
-                          <Text color="brand.dark" fontSize="lg">
-                            Исполнительный директор
-                          </Text>
-                        </VStack>
-                      </HStack>
-                    </VStack>
-                    <VStack w="full" align="start" justify="start">
-                      <HStack
-                        align="start"
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor="#dcdcdc"
-                        w="full"
-                      >
-                        <Image src={andronova} w="200px" h="200px" borderRadius={5} />
-                        <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
-                            <b>Андронова Ольга Александровна</b>
-                          </Text>
-                          <Text color="brand.dark" fontSize="lg">
-                            Финансовый директор - главный бухгалтер
-                          </Text>
-                        </VStack>
-                      </HStack>
-                    </VStack>
-                    <VStack w="full" align="start" justify="start">
-                      <HStack
-                        align="start"
-                        justify="start"
-                        marginTop="25px"
-                        p={2}
-                        borderRadius="5px"
-                        backgroundColor="#dcdcdc"
-                        w="full"
-                      >
-                        <Image src={Gorbunova} w="200px" h="200px" borderRadius={5} />
-                        <VStack align="start" px="20px">
-                          <Text color="brand.dark" fontSize="2xl">
-                            <b>Горбунова Светлана Александровна</b>
-                          </Text>
-                          <Text color="brand.dark" fontSize="lg">
-                            Главный специалист
-                          </Text>
-                        </VStack>
-                      </HStack>
+                      {team &&
+                        Object.keys(team).map(index => {
+                          const image = team[Number(index)].attributes.photo;
+                          if (team[Number(index)].attributes.team === 'staff') {
+                            return (
+                              <Stack
+                                direction={isLargerThan530 ? 'row' : 'column'}
+                                align={isLargerThan530 ? 'start' : 'center'}
+                                justify="start"
+                                marginTop="25px"
+                                p={2}
+                                borderRadius="5px"
+                                backgroundColor={themeIsDark ? '#313131' : 'brand.beige'}
+                                w="full"
+                                key={index}
+                              >
+                                {image.data === null ? (
+                                  <Box minW="200px">
+                                    <BsFillPersonFill size="200px" color="white" />
+                                  </Box>
+                                ) : (
+                                  <Image
+                                    src={`${API_URL}${image.data.attributes.url}`}
+                                    w={['160px', '200px']}
+                                    h={['160px', '200px']}
+                                    borderRadius={5}
+                                  />
+                                )}
+                                <VStack
+                                  align={isLargerThan530 ? 'start' : 'center'}
+                                  px={isLargerThan530 ? '20px' : '5px'}
+                                >
+                                  <Text
+                                    color={themeIsDark ? 'white' : 'brand.dark'}
+                                    fontSize={['lg', 'xl', '2xl']}
+                                    align="center"
+                                    fontWeight="bold"
+                                  >
+                                    {team[Number(index)].attributes.name}
+                                  </Text>
+                                  <Text
+                                    color={themeIsDark ? 'white' : 'brand.dark'}
+                                    fontSize={['sm', 'md', 'lg']}
+                                    align="center"
+                                  >
+                                    {team[Number(index)].attributes.post}
+                                  </Text>
+                                </VStack>
+                              </Stack>
+                            );
+                          }
+                          return false;
+                        })}
                     </VStack>
                   </VStack>
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
-            <Accordion allowMultiple w="full">
+            <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionItem>
                 <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
-                    <Text color="brand.dark" fontSize="3xl">
-                      <b>ДОКУМЕНТЫ</b>
+                  <Box flex="1" textAlign="left" ref={refDocs}>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['xl', '2xl', '3xl']}
+                      fontWeight="bold"
+                    >
+                      ДОКУМЕНТЫ
                     </Text>
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
+                <AccordionPanel pb={4}>
+                  {docs && (
+                    <VStack w="full" align="start">
+                      {Object.keys(docs).map(index => {
+                        const data = docs[Number(index)].attributes;
+                        const file = data.file.data['0'].attributes;
+                        return (
+                          <HStack w="full" align="start" key={index}>
+                            <Link
+                              color={themeIsDark ? 'white' : 'brand.dark'}
+                              fontSize={['sm', 'md', 'lg']}
+                              href={`${API_URL}${file.url}`}
+                              isExternal
+                              w="full"
+                              alignItems="flex-start"
+                            >
+                              <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
+                                {data.name}
+                              </Text>
+                              <HStack spacing={0} pl={4}>
+                                <AiOutlineFile size="1.5em" />
+                                <Text
+                                  color={themeIsDark ? 'white' : 'brand.dark'}
+                                  fontSize={['sm', 'md', 'lg']}
+                                  align="end"
+                                >
+                                  {`${file.size}КБ`}
+                                </Text>
+                              </HStack>
+                            </Link>
+                          </HStack>
+                        );
+                      })}
+                    </VStack>
+                  )}
+                </AccordionPanel>
               </AccordionItem>
             </Accordion>
-            <Accordion allowMultiple w="full">
+            <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionItem>
                 <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
-                    <Text color="brand.dark" fontSize="3xl">
-                      <b>РЕКВИЗИТЫ</b>
+                  <Box flex="1" textAlign="left" ref={refRecs}>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['xl', '2xl', '3xl']}
+                      fontWeight="bold"
+                    >
+                      РЕКВИЗИТЫ
                     </Text>
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
                 <AccordionPanel>
-                  <VStack w="full" spacing={10}>
+                  <VStack w="full" spacing={[5, 10]}>
                     <VStack w="full" justify="start" align="start">
-                      <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           Полное наименование:
                         </Text>
                         <CopyToClipboard
@@ -501,17 +1176,21 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
                             Фонд развития информационных технологий Ульяновской области
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
-                      <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                      </Stack>
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           Сокращённое наименование:
                         </Text>
                         <CopyToClipboard
@@ -526,17 +1205,21 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
                             ФРИТУО
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
-                      <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                      </Stack>
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           Полное наименование Фонда на английском языке:
                         </Text>
                         <CopyToClipboard
@@ -551,17 +1234,21 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
                             Ulyanovsk Region Information Technology Development Fund
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
-                      <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                      </Stack>
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           Краткое наименование Фонда на английском языке:
                         </Text>
                         <CopyToClipboard
@@ -576,19 +1263,23 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
                             URITDF
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
+                      </Stack>
                     </VStack>
                     <VStack w="full" align="start">
-                      <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           Адрес юридический:
                         </Text>
                         <CopyToClipboard
@@ -603,19 +1294,23 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
                             432017, г. Ульяновск, улица Минаева, дом 11, офис 305
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
+                      </Stack>
                     </VStack>
                     <VStack w="full" align="start">
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           ИНН:
                         </Text>
                         <CopyToClipboard
@@ -630,8 +1325,8 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
@@ -640,7 +1335,11 @@ export const AboutUs = React.memo(() => {
                         </CopyToClipboard>
                       </HStack>
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           КПП:
                         </Text>
                         <CopyToClipboard
@@ -655,8 +1354,8 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
@@ -665,7 +1364,11 @@ export const AboutUs = React.memo(() => {
                         </CopyToClipboard>
                       </HStack>
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           ОГРН:
                         </Text>
                         <CopyToClipboard
@@ -680,8 +1383,8 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
@@ -691,8 +1394,12 @@ export const AboutUs = React.memo(() => {
                       </HStack>
                     </VStack>
                     <VStack w="full" align="start">
-                      <HStack align="start">
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           Банк:
                         </Text>
                         <CopyToClipboard
@@ -707,8 +1414,8 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
@@ -717,9 +1424,13 @@ export const AboutUs = React.memo(() => {
                             л/с 41203136D05)
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
-                      <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                      </Stack>
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           Расчётный счёт:
                         </Text>
                         <CopyToClipboard
@@ -734,17 +1445,21 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
                             №40102810645370000061
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
+                      </Stack>
                       <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           БИК:
                         </Text>
                         <CopyToClipboard
@@ -759,8 +1474,8 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
@@ -768,8 +1483,12 @@ export const AboutUs = React.memo(() => {
                           </Text>
                         </CopyToClipboard>
                       </HStack>
-                      <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           Казначейский счет:
                         </Text>
                         <CopyToClipboard
@@ -784,19 +1503,23 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
                             03226643730000006800
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
+                      </Stack>
                     </VStack>
                     <VStack w="full" align="start">
-                      <HStack>
-                        <Text color="brand.dark" fontSize="lg" fontWeight="bold">
+                      <Stack direction={isLargerThan1155 ? 'row' : 'column'}>
+                        <Text
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md', 'lg']}
+                          fontWeight="bold"
+                        >
                           Исполнительный директор:
                         </Text>
                         <CopyToClipboard
@@ -811,16 +1534,62 @@ export const AboutUs = React.memo(() => {
                           }
                         >
                           <Text
-                            fontSize="lg"
-                            color="brand.dark"
+                            fontSize={['sm', 'md', 'lg']}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
                             Ерофеев Сергей Александрович действует на основании Устава
                           </Text>
                         </CopyToClipboard>
-                      </HStack>
+                      </Stack>
                     </VStack>
+                  </VStack>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+            <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
+              <AccordionItem>
+                <AccordionButton>
+                  <Box flex="1" textAlign="left" ref={refContacts}>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['xl', '2xl', '3xl']}
+                      fontWeight="bold"
+                    >
+                      КОНТАКТЫ
+                    </Text>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel pb={4}>
+                  <VStack w="full" align="start">
+                    <HStack>
+                      <BsMailbox size="1em" color="#7775ed" />
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['md', 'lg']} fontWeight="bold">
+                        Email:
+                      </Text>
+                      <Link
+                        href="mailto:it_ulsk@mail.ru"
+                        fontSize={['md', 'lg']}
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                      >
+                        it_ulsk@mail.ru
+                      </Link>
+                    </HStack>
+                    <HStack>
+                      <BsTelephone size="1em" color="#7775ed" />
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['md', 'lg']} fontWeight="bold">
+                        Телефон:
+                      </Text>
+                      <Link
+                        href="tel:8 (8422) 58-17-47"
+                        fontSize={['md', 'lg']}
+                        color={themeIsDark ? 'white' : 'brand.dark'}
+                      >
+                        8 (8422) 58-17-47
+                      </Link>
+                    </HStack>
                   </VStack>
                 </AccordionPanel>
               </AccordionItem>
