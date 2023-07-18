@@ -1,42 +1,43 @@
 /* eslint no-return-assign: "error" */
-import { HStack, VStack, Text, Grid, GridItem, useMediaQuery, Link } from '@chakra-ui/react';
-import React, { Dispatch, useEffect, useRef } from 'react';
+import { VStack, useMediaQuery, Text, Image } from '@chakra-ui/react';
+import React, { Dispatch, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { NewsContent } from '../../components/newsContent/NewsContent';
-import { Footer } from '../../components/footer/Footer';
-import { Header } from '../../components/header/Header';
+// import { NewsContent } from '../../components/newsContent/NewsContent';
+// import { Footer } from '../../components/footer/Footer';
+// import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
-import { TagsEnum } from '../../enums/TagsEnum';
+// import { TagsEnum } from '../../enums/TagsEnum';
 import { IRootState } from '../../interfaces/IRootState';
-import { API_URL } from '../../constants/env';
+// import { API_URL } from '../../constants/env';
 import { RootActions } from '../../types/RootActions';
 import { coreGetNews } from '../../actions/coreActions';
-import { transliterating } from '../../textfunctions/transliterating/transliterating';
-import { ROUTE_NEWS } from '../../constants/routes';
+// import { transliterating } from '../../textfunctions/transliterating/transliterating';
+// import { ROUTE_NEWS } from '../../constants/routes';
+import mini_logo from '../../assets/mini-logo.svg';
 
 export const Main = React.memo(() => {
   const { height } = useWindowDimensions();
 
-  const it = useSelector((state: IRootState) => state.core.it);
-  const education = useSelector((state: IRootState) => state.core.education);
-  const business = useSelector((state: IRootState) => state.core.business);
-  const government = useSelector((state: IRootState) => state.core.government);
-  const search = useSelector((state: IRootState) => state.core.search);
+  // const it = useSelector((state: IRootState) => state.core.it);
+  // const education = useSelector((state: IRootState) => state.core.education);
+  // const business = useSelector((state: IRootState) => state.core.business);
+  // const government = useSelector((state: IRootState) => state.core.government);
+  // const search = useSelector((state: IRootState) => state.core.search);
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
-  const news = useSelector((state: IRootState) => state.core.news);
+  // const news = useSelector((state: IRootState) => state.core.news);
   const dispatch = useDispatch<Dispatch<RootActions>>();
 
-  const refNews = useRef<HTMLDivElement>(null);
+  // const refNews = useRef<HTMLDivElement>(null);
 
-  const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
+  // const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
-  const [isLargerThan620] = useMediaQuery('(min-width: 620px)');
+  // const [isLargerThan620] = useMediaQuery('(min-width: 620px)');
 
-  let rowsCount = 0;
-  let rowEven = false;
+  // let rowsCount = 0;
+  // let rowEven = false;
 
   useEffect(() => {
     dispatch(coreGetNews());
@@ -65,15 +66,36 @@ export const Main = React.memo(() => {
         <meta name="vk:descripsion" content="Фонд развития информационный технологий" />
         <meta name="vk:image" content="../../assets/logo.svg" />
       </Helmet>
-      <Header />
+      {/* <Header /> */}
       <VStack
         minH={`${height}px`}
-        align="start"
-        justify="start"
+        // align="start"
+        // justify="start"
+        justify="center"
+        align="center"
         px={isLargerThan770 ? '10%' : '5%'}
         bg={themeIsDark ? '#121212' : 'white'}
       >
         <VStack
+          w="30%"
+          minW="300px"
+          h="150px"
+          bgColor="brand.beige"
+          borderRadius="25px"
+          spacing={0}
+          justify="center"
+          align="center"
+          p={2}
+        >
+          <Text color="brand.dark" align="center" fontWeight="bold" fontSize={['lg', 'xl']}>
+            На сайте ведутся технические работы
+          </Text>
+          <Text color="brand.dark" align="center">
+            В скором времени сайт обновится
+          </Text>
+          <Image src={mini_logo} alt="itfund" w={['40px', '50px', '60px']} loading="lazy" p={2} />
+        </VStack>
+        {/* <VStack
           w="full"
           minH={`${height}px`}
           bg={themeIsDark ? '#242323' : 'brand.beige'}
@@ -187,9 +209,9 @@ export const Main = React.memo(() => {
               </VStack>
             )}
           </HStack>
-        </VStack>
+        </VStack> */}
       </VStack>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 });
