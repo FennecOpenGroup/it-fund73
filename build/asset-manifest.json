@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1c1fa8f5.css",
+    "main.js": "/static/js/main.5350b24e.js",
+    "static/media/jost-all-400-normal.woff": "/static/media/jost-all-400-normal.d59c6565d4d0717bd281.woff",
+    "static/media/jost-latin-400-normal.woff2": "/static/media/jost-latin-400-normal.3ee0e9b131b30b82441b.woff2",
+    "static/media/jost-latin-ext-400-normal.woff2": "/static/media/jost-latin-ext-400-normal.4d7ae0b2f2addfdb042a.woff2",
+    "static/media/jost-cyrillic-400-normal.woff2": "/static/media/jost-cyrillic-400-normal.6132b2e344b5a75d6bf9.woff2",
+    "static/media/mini-logo.svg": "/static/media/mini-logo.c48cfdf54ac28fc042ff4414f866d6dd.svg",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.1c1fa8f5.css",
+    "static/js/main.5350b24e.js"
+  ]
+}
