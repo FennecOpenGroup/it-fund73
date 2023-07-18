@@ -34,6 +34,18 @@ import mobirate from '../../assets/companies/mobirate.svg';
 import nord from '../../assets/companies/nord.svg';
 import IBS from '../../assets/companies/IBS.svg';
 import advanshop from '../../assets/companies/advanshop.svg';
+import ITECH from '../../assets/companies/ITECH.svg';
+import PROF_IT from '../../assets/companies/PROF-IT.svg';
+import Apps from '../../assets/companies/65apps.svg';
+import ASTRIO from '../../assets/companies/ASTRIO.svg';
+import DaoTech from '../../assets/companies/DAO-TECH.svg';
+import IRLIX from '../../assets/companies/IRLIX.svg';
+import AnyRun from '../../assets/companies/ANY-RUN.svg';
+import funbox from '../../assets/companies/funbox.svg';
+import LitotaLabs from '../../assets/companies/LilotaLabs.svg';
+import MadBrains from '../../assets/companies/MadBrains.svg';
+import CSCART from '../../assets/companies/CSCART.svg';
+import simtech from '../../assets/companies/simtech.svg';
 import scheme_accreditation from '../../assets/schemes/scheme_accreditation.svg';
 import scheme_accreditation_dark from '../../assets/schemes/scheme_accreditation_dark.svg';
 
@@ -515,9 +527,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #0bcf6b, green.900)" p={[2, 4]}>
                       <HStack align="center">
-                        <Text fontSize={['xl', '2xl', '3xl']} fontWeight="900" color="white">
-                          {'/*'}
-                        </Text>
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -591,6 +600,332 @@ export const Companies = React.memo(() => {
                         ADVANTSHOP – это единая система для создания интернет-магазина, благодаря которой вы
                         оптимизируете работу для удобства клиентов и поднимете управление бизнес-процессами на новый
                         уровень.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #c92727, #f94d4d)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Image src={ITECH} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://itech-group.ru/"
+                          isExternal
+                        >
+                          ITECH
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        ITECH — IT-компания полного цикла, мы специализируемся в области веб-разработки,
+                        интернет-маркетинга, сопровождения и развития интернет-проектов.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #4bd587, #1f3695)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://zebrains.ru/"
+                          isExternal
+                        >
+                          ZEBRAINS
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        ZeBrains – разработка программного обеспечения Разработка программного обеспечения на заказ,
+                        ИТ-аутсорсинг. Внедряем технические решения для интернет-магазинов, финансовых, страховых,
+                        медицинских, ритейл организаций.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #112ebd, #2f52ff)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Image src={PROF_IT} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://prof-itgroup.ru/"
+                          isExternal
+                        >
+                          PROF-IT GROUP
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        PROF-IT GROUP – это группа ИТ-компаний, занимающихся комплексной автоматизацией управления
+                        крупными предприятиями, проектированием и внедрением инжиниринговых и ИТ-проектов, консалтингом,
+                        разработкой прикладного и инновационного программного обеспечения, проектами в сфере цифрового
+                        производства и технологий для Умного города.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #c46511, #ff9436)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Image src={ASTRIO} h={['20px', '30px', '40px']} w={['30px', '60px', '80px']} />
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://astrio.ru/"
+                          isExternal
+                        >
+                          ASTRIO
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        ASTRIO – Профессиональная разработка интернет-магазинов на платформе Magento. Собственная
+                        команда сертифицированных Magento разработчиков.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #182670, #4961d8)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Image src={Apps} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://65apps.com/"
+                          isExternal
+                        >
+                          65APPS
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        65apps – IT-компания с фокусом на разработку сложных информационных сервисов и мобильных
+                        приложений для крупного бизнеса.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #6d4afa, #3718b5)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://intelsy.ru/"
+                          isExternal
+                        >
+                          INTELSY
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        Intelsy – Разработка, развитие и поддержка веб-сервисов и мобильных приложений. Помогаем
+                        запускать интернет-магазины, продукты для финтеха, корпоративные сайты, личные кабинеты и
+                        автоматизировать бизнес-процессы.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #19c1cd, #5fa0a5)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://agatech.ru/"
+                          isExternal
+                        >
+                          AGATECH
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        AGATECH - Веб-студия, интернет маркетинг и академия AGATECH и cитема управления контентом САГА
+                        3.0.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #eb6e60, #693eb2)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Image src={DaoTech} h={['20px', '30px', '40px']} w={['35px', '60px', '70px']} />
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://daotech.ru/ru"
+                          isExternal
+                        >
+                          DAO TECH
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        DAO TECH – это быстро растущая IT компания с большим количеством интересных внешних проектов,
+                        строящихся на новейших идеях индустрии и технологиях. Большинство наших клиентов являются
+                        крупными компаниями из США, Нидерландов, Германии и Великобритании. DAO TECH также является
+                        одной из немногих компаний на российском рынке, которая работает в отрасли Legal tech.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #4e8bd1, #32639c)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://www.rogii.ru/"
+                          isExternal
+                        >
+                          RODGII
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        ROGII – Технологии для совершенствования бурения скважин. Наши программные продукты позволяют
+                        реализовывать любые задачи, возникающие во время геонавигации, мониторинга бурения, сбора и
+                        передачи данных с буровой на серверы!
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #216c29, #68dc36)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Image src={funbox} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://funbox.ru/"
+                          isExternal
+                        >
+                          FUNBOX
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        FunBox – Сервисы для сотовых операторов. Более 16 лет мы разрабатываем решения для операторов
+                        сотовой связи и их клиентов.Наш первый проект стартовал в декабре 2006 года, и его реализовали
+                        всего три человека. Сейчас в нашем портфолио более 300 проектов, а команда превышает 500
+                        человек.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #003881, #33deff)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Image src={AnyRun} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://any.run/why-us/"
+                          isExternal
+                        >
+                          ANY.RUN
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        ANY.RUN – Исследование вредоносных программ. Поднимите свою исследовательскую работу на новый
+                        уровень с нашей интерактивной песочницей для анализа вредоносных программ, используя наши
+                        инновационные технологии для вашей киберзащиты!
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #094e01, #2d8b56)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Image src={IRLIX} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://irlix.com/"
+                          isExternal
+                        >
+                          IRLIX
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        IRLIX – Создаем цифровые решения для крупного и среднего бизнеса.Создаем персональное решение
+                        для вашего бизнеса, устраняя зависимость от иностранного ПО. Разработка продукта под ключ
+                        обеспечиваем весь цикл работ по созданию продукта от Вашей идеи до внедрения готового решения.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #fd570f, #fd8e0f)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Image src={MadBrains} h={['30px', '60px', '80px']} w={['30px', '60px', '80px']} />
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://madbrains.ru/"
+                          isExternal
+                        >
+                          BRAINS
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        Mad Brains — это российская IT-компания, специализирующаяся на разработке сервисов для мобильных
+                        устройств. Компания имеет опыт в реализации интеграционных решений, собственные продукты в сфере
+                        мобильной электронной коммерции и входит в 20-ку лучших мобильных разработчиков России и СНГ.
+                        Среди наших клиентов Магнит, DNS, Яндекс, Home Credit Bank, QIWI, Pfizer, OneTwoTrip! и другие
+                        крупные бренды.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #9b0005, #da0007)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Image src={LitotaLabs} h={['30px', '40px', '60px']} w={['30px', '40px', '60px']} />
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://litota.ru/#slide8"
+                          isExternal
+                        >
+                          LITOTA LABS
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        LITOTA LABS – Разрабатываем программное обеспечение для вашего бизнеса. С 2006 года компания
+                        успешно создает и внедряет уникальные ИТ-решения уровня предприятия в сфере букмекерского
+                        бизнеса. Стабильно высокое качество услуг разработки позволило компании добиться долгосрочных
+                        доверительных отношений с нашими клиентами. Вместе с сотрудниками главного офиса в Ульяновске с
+                        нами работает удаленная команда профессионалов из разных уголков мира, таких как Украина,
+                        Черногория, Испания, Великобритания и США.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #d2303b, #ff2130)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Link
+                          fontSize={['xl', 'xl', '2xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://www.company-dis.ru/"
+                          isExternal
+                        >
+                          ДЕЛОВЫЕ ИНФОРМАЦИОННЫЕ СИСТЕМЫ
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        Деловые информационные системы – Повышаем ценность бизнеса с помощью глубокого преобразования
+                        бизнес-процессов используя цифровые технологии.Совершенствование и ведение корпоративного
+                        портала на основе цифровой платформы 1С-Битрикс. Успешно запущен проект по созданию и внедрению
+                        универсальных VR-тренажеров для производственных и строительных предприятий, а также для
+                        объектов добычи нефти, газа и угля.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #bf271d, #ff2414)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Image src={simtech} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://simtech.ru/"
+                          isExternal
+                        >
+                          SIMTECH
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        Simtech – Группа компаний азрабатывает программы и веб-сервисы для интернет‑предпринимателей.
+                        Помогаем клиентам зарабатывать больше, расширяя функционал их интернет-магазинов.
+                      </Text>
+                    </GridItem>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #0194f6, #48649c)" p={[2, 4]}>
+                      <HStack align="center">
+                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
+                        <Link
+                          fontSize={['xl', '2xl', '3xl']}
+                          fontWeight="900"
+                          color="white"
+                          href="https://www.cs-cart.ru/"
+                          isExternal
+                        >
+                          CS CART
+                        </Link>
+                      </HStack>
+                      <Text fontSize={['sm', 'sm', 'md']}>
+                        CS–Cart – Мы занимаемся разработкой решений для интернет-торговли с 2005 года. За это время наши
+                        клиенты из 170 стран приобрели более 35 000 копий программы CS–Cart для своих магазинов. Тысячи
+                        компаний по всему миру год за годом выбирают решения на платформе CS–Cart для своего
+                        интернет-бизнеса, подтверждая высокий уровень технологий и услуг компании. В 2014 году CS–Cart
+                        был признан E-commerce решением №2 в России и СНГ. А компания Simtech Development, которая
+                        входит в нашу группу компаний, была признана E-commerce студией №1 в России.
                       </Text>
                     </GridItem>
                   </Grid>

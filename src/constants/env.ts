@@ -1,1 +1,1 @@
-export const API_URL = 'https://pop.it-fund73.ru';
+export const API_URL = 'http://89.108.102.229:1337';
