@@ -61,7 +61,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
       .required('Обязательно к заполению'),
     email: Yup.string().email('Недопустимый формат электронной почты').required('Обязательно к заполению'),
     date: Yup.date().min(new Date(), 'Неактуальная дата').required('Обязательно к заполению'),
-    file: Yup.string().required('Обязательно к заполению'),
+    file: Yup.string(),
   });
 
   const handleFormSubmit = async (values: IForm) => {
