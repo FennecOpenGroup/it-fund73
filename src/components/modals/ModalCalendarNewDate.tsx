@@ -36,6 +36,7 @@ import { IRootState } from '../../interfaces/IRootState';
 import { IForm } from '../../interfaces/IForm';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { fetchPropose } from '../../api/eventsApi';
+import { fetchMedia } from '../../api/mediaApi';
 
 interface IModalCalendarNewDateProps {
   isOpen: boolean;
@@ -69,6 +70,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
   });
 
   const handleFormSubmit = async (values: IForm) => {
+    const fileID = currentFile ? await fetchMedia(currentFile) : undefined;
     await fetchPropose({
       data: {
         name: values.name,
@@ -76,7 +78,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
         date: values.date,
         email: values.email,
         phone: number,
-        file: currentFile,
+        file: fileID,
       },
     });
     setFormSended(true);
