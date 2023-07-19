@@ -76,7 +76,7 @@ export const Companies = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund | Что происходит в отрасли?</title>
+        <title>it-fund73 | Что происходит в отрасли?</title>
         <meta charSet="UTF-8" />
         <meta name="Что происходит в отрасли?" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta property="og:type" content="website" />

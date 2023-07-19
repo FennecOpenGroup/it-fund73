@@ -56,7 +56,8 @@ export const Calendar = React.memo(() => {
   const [isLargerThan620] = useMediaQuery('(min-width: 620px)');
   const [isLargerThan600] = useMediaQuery('(min-width: 600px)');
 
-  const [year, setYear] = useState(2023);
+  const currentYear = new Date().getFullYear();
+  const [year, setYear] = useState(currentYear);
   const [id, setId] = useState('');
 
   const isLeapYear = (yearLeap: number) => {
@@ -115,7 +116,7 @@ export const Calendar = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund | Когда будут мероприятия?</title>
+        <title>it-fund73 | Когда будут мероприятия?</title>
         <meta charSet="UTF-8" />
         <meta name="Календарь мероприятий" content="" />
         <meta property="og:type" content="website" />
@@ -174,23 +175,13 @@ export const Calendar = React.memo(() => {
                   {year}
                 </MenuButton>
                 <MenuList maxH="250px" overflow="auto">
-                  <MenuItem onClick={() => setYear(2023)}>2023</MenuItem>
-                  <MenuItem onClick={() => setYear(2024)}>2024</MenuItem>
-                  <MenuItem onClick={() => setYear(2025)}>2025</MenuItem>
-                  <MenuItem onClick={() => setYear(2026)}>2026</MenuItem>
-                  <MenuItem onClick={() => setYear(2027)}>2027</MenuItem>
-                  <MenuItem onClick={() => setYear(2028)}>2028</MenuItem>
-                  <MenuItem onClick={() => setYear(2029)}>2029</MenuItem>
-                  <MenuItem onClick={() => setYear(2030)}>2030</MenuItem>
-                  <MenuItem onClick={() => setYear(2031)}>2031</MenuItem>
-                  <MenuItem onClick={() => setYear(2032)}>2032</MenuItem>
-                  <MenuItem onClick={() => setYear(2033)}>2033</MenuItem>
-                  <MenuItem onClick={() => setYear(2034)}>2034</MenuItem>
-                  <MenuItem onClick={() => setYear(2035)}>2035</MenuItem>
-                  <MenuItem onClick={() => setYear(2036)}>2036</MenuItem>
-                  <MenuItem onClick={() => setYear(2037)}>2037</MenuItem>
-                  <MenuItem onClick={() => setYear(2038)}>2038</MenuItem>
-                  <MenuItem onClick={() => setYear(2039)}>2039</MenuItem>
+                  {Object.keys(Array(20).fill('')).map(index => {
+                    return (
+                      <MenuItem key={index} onClick={() => setYear(currentYear + Number(index))}>
+                        {currentYear + Number(index)}
+                      </MenuItem>
+                    );
+                  })}
                 </MenuList>
               </Menu>
             </HStack>

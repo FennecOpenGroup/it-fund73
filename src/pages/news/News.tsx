@@ -65,7 +65,7 @@ export const News = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund | Новости</title>
+        <title>it-fund73 | {`${newsСontent?.attributes.heading}`}</title>
         <meta charSet="UTF-8" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />

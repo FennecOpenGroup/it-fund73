@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import {
   VStack,
   Text,
@@ -85,7 +86,7 @@ export const AboutUs = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund | О фонде</title>
+        <title>it-fund73 | О фонде</title>
         <meta charSet="UTF-8" />
         <meta
           name="Информация о фонде"
@@ -1127,7 +1128,7 @@ export const AboutUs = React.memo(() => {
                                   fontSize={['sm', 'md', 'lg']}
                                   align="end"
                                 >
-                                  {`${file.size}КБ`}
+                                  {file?.size > 1024 ? `${Math.floor(file?.size / 1024)}MB` : `${file?.size}KB`}
                                 </Text>
                               </HStack>
                             </Link>

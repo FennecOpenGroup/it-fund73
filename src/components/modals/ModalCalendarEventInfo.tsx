@@ -9,6 +9,7 @@ import {
   VStack,
   Text,
   HStack,
+  ModalFooter,
 } from '@chakra-ui/react';
 import React, { Dispatch, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -49,7 +50,9 @@ export const ModalCalendarEventInfo = React.memo(({ isOpen, id }: IModalCalendar
                 {events && <ReactMarkdown>{events[Number(id)].attributes.text}</ReactMarkdown>}
               </Text>
             </VStack>
-            <VStack w="full" align="start" spacing={0} pt={4}>
+          </ModalBody>
+          <ModalFooter>
+            <VStack w="full" align="start" spacing={0}>
               <HStack>
                 <MdDateRange size="1.2em" color="gray" />
                 <Text color="gray" fontSize={['sm', 'md']}>
@@ -69,7 +72,7 @@ export const ModalCalendarEventInfo = React.memo(({ isOpen, id }: IModalCalendar
                 </Text>
               </HStack>
             </VStack>
-          </ModalBody>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
