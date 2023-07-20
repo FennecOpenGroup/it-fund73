@@ -1,3 +1,4 @@
+/* eslint no-unsafe-optional-chaining: "error" */
 import {
   VStack,
   HStack,
@@ -48,8 +49,11 @@ import CSCART from '../../assets/companies/CSCART.svg';
 import simtech from '../../assets/companies/simtech.svg';
 import scheme_accreditation from '../../assets/schemes/scheme_accreditation.svg';
 import scheme_accreditation_dark from '../../assets/schemes/scheme_accreditation_dark.svg';
+import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 
 export const Companies = React.memo(() => {
+  const { height } = useWindowDimensions();
+
   const [support, setSupport] = useState(false);
   const [accreditation, setAccreditation] = useState(false);
   const [company, setCompany] = useState(false);
@@ -60,6 +64,8 @@ export const Companies = React.memo(() => {
     }
   };
 
+  const refHeader = useRef<HTMLDivElement>(null);
+  const refFooter = useRef<HTMLDivElement>(null);
   const refSupport = useRef<HTMLDivElement>(null);
   const refAccreditaion = useRef<HTMLDivElement>(null);
   const refCompany = useRef<HTMLDivElement>(null);
@@ -92,8 +98,19 @@ export const Companies = React.memo(() => {
         <meta name="vk:descripsion" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta name="vk:image" content="../../assets/logo.svg" />
       </Helmet>
-      <Header />
-      <VStack justify="center" px={isLargerThan770 ? '10%' : '5%'} bg={themeIsDark ? '#242323' : 'white'}>
+      <VStack ref={refHeader}>
+        <Header />
+      </VStack>
+      <VStack
+        justify="center"
+        px={isLargerThan770 ? '10%' : '5%'}
+        bg={themeIsDark ? '#242323' : 'white'}
+        minH={`${
+          refHeader.current &&
+          refFooter.current &&
+          height - refHeader.current?.clientHeight - refFooter.current?.clientHeight
+        }px`}
+      >
         <Text
           color="brand.blue"
           fontSize={['lg', 'xl', '2xl', '4xl']}
@@ -935,7 +952,9 @@ export const Companies = React.memo(() => {
           </Accordion>
         </VStack>
       </VStack>
-      <Footer />
+      <VStack ref={refFooter}>
+        <Footer />
+      </VStack>
     </>
   );
 });

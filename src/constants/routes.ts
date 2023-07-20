@@ -1,4 +1,5 @@
 export const ROUTE_MAINPAGE = '/';
+export const ROUTE_NOT_FOUND = '/404';
 
 export const ROUTE_CALENDAR = '/calendar';
 export const ROUTE_ABOUTUS = '/aboutus';

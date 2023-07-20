@@ -7,6 +7,7 @@ import { Calendar as CalendarPage } from '../pages/calendar/Calendar';
 import { Education as EducationPage } from '../pages/education/Education';
 import { Companies as CompaniesPage } from '../pages/companies/Companies';
 import { News as NewsPage } from '../pages/news/News';
+import { notFound as notFoundPage } from '../pages/notFound/notFound';
 import { store } from '../reducers/store';
 import {
   ROUTE_ABOUTUS,
@@ -15,6 +16,7 @@ import {
   ROUTE_EDUCATION,
   ROUTE_COMPANIES,
   ROUTE_NEWS,
+  ROUTE_NOT_FOUND,
 } from '../constants/routes';
 
 export const App = () => (
@@ -28,6 +30,7 @@ export const App = () => (
         <Route key={ROUTE_EDUCATION} exact path={ROUTE_EDUCATION} component={EducationPage} />
         <Route key={ROUTE_COMPANIES} exact path={ROUTE_COMPANIES} component={CompaniesPage} />
         <Route key={`${ROUTE_NEWS}/:url_name`} exact path={`${ROUTE_NEWS}/:url_name`} component={NewsPage} />
+        <Route key={ROUTE_NOT_FOUND} path="*" component={notFoundPage} />
       </Switch>
     </BrowserRouter>
   </Provider>

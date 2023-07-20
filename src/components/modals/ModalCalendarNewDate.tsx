@@ -378,7 +378,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                               <Text
                                 color={themeIsDark ? 'white' : 'brand.dark'}
                                 pb={2}
-                                maxW={isLargerThan1000 ? width / 4.6 : width / 2}
+                                maxW={isLargerThan1000 ? width / 6 : width / 3}
                               >
                                 {currentFile?.name}
                               </Text>
