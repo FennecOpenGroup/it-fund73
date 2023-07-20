@@ -81,17 +81,21 @@ export const News = React.memo(() => {
         <meta charSet="UTF-8" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
+        <meta property="og:url" content={`${API_URL + ROUTE_NEWS}/${url_name}`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="600" />
-        {newsСontent && <meta name="Новости" content={newsСontent.attributes.text} />}
+        {newsСontent && <meta name="descripsion" content={newsСontent.attributes.text} />}
         {newsСontent && <meta property="og:title" content={newsСontent.attributes.text} />}
         {newsСontent && <meta property="og:descripsion" content={newsСontent.attributes.text} />}
         {newsСontent && <meta name="vk:title" content={newsСontent.attributes.text} />}
         {newsСontent && <meta name="vk:descripsion" content={newsСontent.attributes.text} />}
         {image && <meta property="og:image:type" content={`${image.mime}`} />}
         {image && <meta name="vk:image" content={`${API_URL}${image.url}`} />}
-        {image && <meta name="vk:image" content={`${API_URL}${image.url}`} />}
         {image && <meta name="vk:card" content={`${image.mime}`} />}
+        <meta
+          name="keywords"
+          content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, ИТ-отрасль, Где получить образование?, Что происходит в отрасли?"
+        />
       </Helmet>
       <Header />
       <VStack

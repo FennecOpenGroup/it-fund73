@@ -32,19 +32,25 @@ export const Education = React.memo(() => {
       <Helmet>
         <title>it-fund73 | Где получить образование?</title>
         <meta charSet="UTF-8" />
-        <meta name="Где получить образование?" content="Где получить образование?" />
+        <meta name="description" content="Где получить образование?" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
+        <meta property="og:url" content="https://www.it-fund73.ru/education" />
         <meta property="og:title" content="Где получить образование?" />
         <meta property="og:descripsion" content="Где получить образование??" />
-        <meta property="og:image" content="../../assets/logo.svg" />
-        <meta property="og:image:type" content="image/svg" />
-        <meta property="og:image:width" content="200" />
-        <meta property="og:image:height" content="60" />
-        <meta name="vk:card" content="image/svg" />
+        <meta property="og:image" content="%PUBLIC_URL%/logo_ref.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="vk:card" content="image/jpg" />
+        <meta property="vk:url" content="https://www.it-fund73.ru/education" />
         <meta name="vk:title" content="Где получить образование?" />
         <meta name="vk:descripsion" content="Где получить образование?" />
-        <meta name="vk:image" content="../../assets/logo.svg" />
+        <meta name="vk:image" content=".%PUBLIC_URL%/logo_ref.jpg" />
+        <meta
+          name="keywords"
+          content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, ИТ-отрасль, Где получить образование?"
+        />
       </Helmet>
       <Header />
       <VStack justify="start" minH={`${height / 1.3}px`} px="10%" bg={themeIsDark ? '#242323' : 'white'}>

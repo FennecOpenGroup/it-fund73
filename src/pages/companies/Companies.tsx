@@ -72,25 +72,32 @@ export const Companies = React.memo(() => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  
 
   return (
     <>
       <Helmet>
         <title>it-fund73 | Что происходит в отрасли?</title>
         <meta charSet="UTF-8" />
-        <meta name="Что происходит в отрасли?" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
+        <meta name="description" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
+        <meta property="og:url" content="https://www.it-fund73.ru/companies"/>
         <meta property="og:title" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta property="og:descripsion" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
-        <meta property="og:image" content="../../assets/logo.svg" />
-        <meta property="og:image:type" content="image/svg" />
-        <meta property="og:image:width" content="200" />
-        <meta property="og:image:height" content="60" />
-        <meta name="vk:card" content="image/svg" />
+        <meta property="og:image" content="%PUBLIC_URL%/logo_ref.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="vk:card" content="image/jpg" />
+        <meta property="vk:url" content="https://www.it-fund73.ru/companies"/>
         <meta name="vk:title" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta name="vk:descripsion" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
-        <meta name="vk:image" content="../../assets/logo.svg" />
+        <meta name="vk:image" content=".%PUBLIC_URL%/logo_ref.jpg" />
+        <meta
+          name="keywords"
+          content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, ИТ-отрасль"
+        />
       </Helmet>
       <Header />
       <VStack justify="center" px={isLargerThan770 ? '10%' : '5%'} bg={themeIsDark ? '#242323' : 'white'}>
@@ -712,7 +719,7 @@ export const Companies = React.memo(() => {
                         автоматизировать бизнес-процессы.
                       </Text>
                     </GridItem>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #19c1cd, #5fa0a5)" p={[2, 4]}>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #00b5c1, #44e9f5)" p={[2, 4]}>
                       <HStack align="center">
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
@@ -825,7 +832,7 @@ export const Companies = React.memo(() => {
                         обеспечиваем весь цикл работ по созданию продукта от Вашей идеи до внедрения готового решения.
                       </Text>
                     </GridItem>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #fd570f, #fd8e0f)" p={[2, 4]}>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #ff5500, #ff9925)" p={[2, 4]}>
                       <HStack align="center">
                         <Image src={MadBrains} h={['30px', '60px', '80px']} w={['30px', '60px', '80px']} />
                         <Link
@@ -868,10 +875,10 @@ export const Companies = React.memo(() => {
                         Черногория, Испания, Великобритания и США.
                       </Text>
                     </GridItem>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #d2303b, #ff2130)" p={[2, 4]}>
+                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #3056d2, #ff2130)" p={[2, 4]}>
                       <HStack align="center">
                         <Link
-                          fontSize={['xl', 'xl', '2xl']}
+                          fontSize={['lg', 'lg', 'xl']}
                           fontWeight="900"
                           color="white"
                           href="https://www.company-dis.ru/"
