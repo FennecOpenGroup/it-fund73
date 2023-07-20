@@ -1,8 +1,11 @@
 /* eslint no-return-assign: "error" */
-import { VStack, useMediaQuery, Text, Grid, GridItem, HStack, Link } from '@chakra-ui/react';
-import React, { Dispatch, useEffect, useRef } from 'react';
+/* eslint no-unsafe-optional-chaining: "error" */
+import { VStack, useMediaQuery, Text, Grid, GridItem, HStack, Link, Button } from '@chakra-ui/react';
+import React, { Dispatch, useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
+import { BiPlus } from 'react-icons/bi';
 
 import { NewsContent } from '../../components/newsContent/NewsContent';
 import { Footer } from '../../components/footer/Footer';
@@ -30,7 +33,11 @@ export const Main = React.memo(() => {
   const shortNews = useSelector((state: IRootState) => state.core.shortNews);
   const dispatch = useDispatch<Dispatch<RootActions>>();
 
+  const loadCount = 5;
+  const [newsCounter, setNewsCounter] = useState(loadCount);
+
   const refNews = useRef<HTMLDivElement>(null);
+  const contentHeight = refNews.current?.clientHeight;
 
   const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
@@ -76,8 +83,6 @@ export const Main = React.memo(() => {
       <Header />
       <VStack
         minH={`${height}px`}
-        // align="start"
-        // justify="start"
         justify="center"
         align="center"
         px={isLargerThan770 ? '10%' : '5%'}
@@ -89,11 +94,12 @@ export const Main = React.memo(() => {
           bg={themeIsDark ? '#242323' : 'brand.beige'}
           pl={[1, 2, 3, 4]}
           pr={isLargerThan620 ? 0 : [1, 2, 3, 4]}
-          pb={2}
           boxShadow="5px 0px rgb(3,0,15,15%)"
+          ref={refNews}
+          pb={2}
         >
           <HStack w="full" align="flex-start">
-            <VStack w="full" pt={[1, 2, 6]} ref={refNews}>
+            <VStack w="full" pt={[1, 2, 6]}>
               {news && (
                 <Grid
                   w="full"
@@ -101,58 +107,70 @@ export const Main = React.memo(() => {
                   templateRows={`repeat(${rowsCount}, 1fr)`}
                   templateColumns={isLargerThan1025 ? 'repeat(6, 3fr)' : 'repeat(1, 1fr)'}
                 >
-                  {Object.keys(news)
-                    .reverse()
-                    .map(index => {
-                      const data = news[Number(index)].attributes;
-                      const image = data.image.data['0'].attributes;
-                      const arr = [];
-                      it && arr.push(TagsEnum.IT);
-                      education && arr.push(TagsEnum.EDUCATION);
-                      business && arr.push(TagsEnum.BUSINESS);
-                      government && arr.push(TagsEnum.GOVERNMENT);
+                  {Object.keys(Array(newsCounter).fill('')).map(index => {
+                    const data = news[Number(index)].attributes;
+                    const image = data.image.data['0'].attributes;
+                    const arr = [];
+                    it && arr.push(TagsEnum.IT);
+                    education && arr.push(TagsEnum.EDUCATION);
+                    business && arr.push(TagsEnum.BUSINESS);
+                    government && arr.push(TagsEnum.GOVERNMENT);
 
-                      if (rowEven === true) {
-                        if (rowsCount < 2) rowsCount += 1;
-                        else {
-                          rowsCount = 0;
-                          rowEven = false;
-                        }
+                    if (rowEven === true) {
+                      if (rowsCount < 2) rowsCount += 1;
+                      else {
+                        rowsCount = 0;
+                        rowEven = false;
                       }
-                      if (rowEven === false) {
-                        if (rowsCount < 2) rowsCount += 1;
-                        else {
-                          rowsCount = 0;
-                          rowEven = true;
-                        }
+                    }
+                    if (rowEven === false) {
+                      if (rowsCount < 2) rowsCount += 1;
+                      else {
+                        rowsCount = 0;
+                        rowEven = true;
                       }
-                      if (
-                        arr.includes(data.tags as TagsEnum) &&
-                        (search === undefined || data.heading.includes(search))
-                      ) {
-                        return (
-                          <GridItem key={index} colSpan={3}>
-                            <NewsContent
-                              id={news[Number(index)].id}
-                              name_content={data.heading}
-                              src_content={`${API_URL}${image.url}`}
-                              views_content={data.views}
-                              tag_content={data.tags}
-                              date_content={data.date}
-                              url_name={transliterating(data.heading)}
-                              like={data.like}
-                              dislike={data.dislike}
-                              delight={data.delight}
-                              shock={data.shock}
-                              smile_face={data.smile_face}
-                              angry={data.angry}
-                            />
-                          </GridItem>
-                        );
-                      }
-                      return false;
-                    })}
+                    }
+                    if (
+                      arr.includes(data.tags as TagsEnum) &&
+                      (search === undefined || data.heading.includes(search))
+                    ) {
+                      return (
+                        <GridItem key={index} colSpan={3}>
+                          <NewsContent
+                            id={news[Number(index)].id}
+                            name_content={data.heading}
+                            src_content={`${API_URL}${image.url}`}
+                            views_content={data.views}
+                            tag_content={data.tags}
+                            date_content={data.date}
+                            url_name={transliterating(data.heading)}
+                            like={data.like}
+                            dislike={data.dislike}
+                            delight={data.delight}
+                            shock={data.shock}
+                            smile_face={data.smile_face}
+                            angry={data.angry}
+                          />
+                        </GridItem>
+                      );
+                    }
+                    return false;
+                  })}
                 </Grid>
+              )}
+              {news && newsCounter < news?.length && (
+                <Button
+                  variant="brand-news"
+                  rightIcon={<BiPlus />}
+                  w="full"
+                  color={themeIsDark ? 'white' : 'brand.dark'}
+                  onClick={() => {
+                    const newsUp = newsCounter + loadCount <= news?.length ? loadCount : news?.length - newsCounter;
+                    setNewsCounter(newsCounter + newsUp);
+                  }}
+                >
+                  Ещё новости
+                </Button>
               )}
             </VStack>
             {isLargerThan620 && (
@@ -163,7 +181,7 @@ export const Main = React.memo(() => {
                 borderLeft="2px"
                 borderColor={themeIsDark ? 'white' : 'brand.dark'}
                 minH={`${height}px`}
-                h={`${refNews.current?.clientHeight}px`}
+                h={contentHeight}
                 align="center"
               >
                 <Text
@@ -173,14 +191,15 @@ export const Main = React.memo(() => {
                   borderBottom="2px"
                   align="center"
                 >
-                  Ещё новости
+                  Новости
                 </Text>
                 <VStack w="full" px={[1, 2, 3]}>
                   {shortNews ? (
                     Object.keys(shortNews).map(index => {
                       return (
                         <Link
-                          href={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
+                          as={RouterLink}
+                          to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
                           key={index}
                           color={themeIsDark ? 'white' : 'brand.dark'}
                           fontSize={['sm', 'md']}

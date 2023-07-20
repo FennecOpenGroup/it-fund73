@@ -1,3 +1,4 @@
+/* eslint no-unsafe-optional-chaining: "error" */
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import {
   HStack,
@@ -33,6 +34,9 @@ export const Calendar = React.memo(() => {
   const { height } = useWindowDimensions();
 
   const refCalendar = useRef<HTMLDivElement>(null);
+  const refHeader = useRef<HTMLDivElement>(null);
+  const refFooter = useRef<HTMLDivElement>(null);
+
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
   const events = useSelector((state: IRootState) => state.core.events);
 
@@ -138,10 +142,16 @@ export const Calendar = React.memo(() => {
           content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, мероприятия, календарь событий"
         />
       </Helmet>
-      <Header />
+      <VStack ref={refHeader}>
+        <Header />
+      </VStack>
       <VStack
         justify="start"
-        minH={`${height / 1.3}px`}
+        minH={`${
+          refHeader.current &&
+          refFooter.current &&
+          height - refHeader.current?.clientHeight - refFooter.current?.clientHeight
+        }px`}
         px={isLargerThan770 ? '10%' : '5%'}
         bg={themeIsDark ? '#242323' : 'white'}
       >
@@ -764,7 +774,9 @@ export const Calendar = React.memo(() => {
           </HStack>
         </VStack>
       </VStack>
-      <Footer />
+      <VStack ref={refFooter}>
+        <Footer />
+      </VStack>
       <ModalCalendarNewDate isOpen={!!isCalenderNewDateSelect} />
       <ModalCalendarEventInfo isOpen={!!isCalenderEventSelect} id={id} />
     </>

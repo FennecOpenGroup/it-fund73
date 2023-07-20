@@ -72,6 +72,16 @@ export const ButtonStyles = {
         color: 'brand.blue',
       },
     },
+    'brand-news': {
+      color: 'brand.dark',
+      bg: 'transparent',
+      borderRadius: '0px',
+      borderTop: '2px',
+      borderBottom: '2px',
+      _hover: {
+        color: 'brand.blue',
+      },
+    },
     'brand-link': {
       color: 'brand.dark',
       borderRadius: '0px',

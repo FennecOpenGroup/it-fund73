@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 import { BiShow } from 'react-icons/bi';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { Emotions } from '../../components/emotions/Emotions';
 import { Footer } from '../../components/footer/Footer';
@@ -256,12 +257,13 @@ export const News = React.memo(() => {
                 >
                   Ещё новости
                 </Text>
-                <VStack w="full" px={[1, 2]}>
+                <VStack w="full" px={[1, 2, 3]}>
                   {shortNews ? (
                     Object.keys(shortNews).map(index => {
                       return (
                         <Link
-                          href={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
+                          as={RouterLink}
+                          to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
                           key={index}
                           color={themeIsDark ? 'white' : 'brand.dark'}
                           fontSize={['sm', 'md']}
@@ -294,10 +296,11 @@ export const News = React.memo(() => {
                 Object.keys(shortNews).map(index => {
                   return (
                     <Link
-                      href={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
-                      key={index}
+                      as={RouterLink}
+                      to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
                       color={themeIsDark ? 'white' : 'brand.dark'}
                       fontSize={['sm', 'md']}
+                      key={index}
                     >
                       {shortNews[Number(index)].attributes.heading}
                     </Link>
