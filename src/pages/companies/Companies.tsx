@@ -835,7 +835,7 @@ export const Companies = React.memo(() => {
                           href="https://madbrains.ru/"
                           isExternal
                         >
-                          BRAINS
+                          MAD BRAINS
                         </Link>
                       </HStack>
                       <Text fontSize={['sm', 'sm', 'md']}>

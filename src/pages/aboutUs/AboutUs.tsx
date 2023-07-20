@@ -313,7 +313,7 @@ export const AboutUs = React.memo(() => {
                       <Th
                         color={themeIsDark ? 'white' : 'brand.dark'}
                         fontSize={['sm', 'md', 'lg']}
-                        fontFamily="Jost"
+                        fontFamily="Museo Cyrl"
                         fontWeight="800"
                       >
                         Наименование проектов
@@ -322,7 +322,7 @@ export const AboutUs = React.memo(() => {
                         isNumeric
                         color={themeIsDark ? 'white' : 'brand.dark'}
                         fontSize={['sm', 'md', 'lg']}
-                        fontFamily="Jost"
+                        fontFamily="Museo Cyrl"
                         fontWeight="800"
                       >
                         Колличество участников

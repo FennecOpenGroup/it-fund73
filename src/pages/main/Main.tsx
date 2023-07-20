@@ -12,7 +12,7 @@ import { TagsEnum } from '../../enums/TagsEnum';
 import { IRootState } from '../../interfaces/IRootState';
 import { API_URL } from '../../constants/env';
 import { RootActions } from '../../types/RootActions';
-import { coreGetNews } from '../../actions/coreActions';
+import { coreGetNews, coreGetShortNews } from '../../actions/coreActions';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
 import { ROUTE_NEWS } from '../../constants/routes';
 
@@ -27,6 +27,7 @@ export const Main = React.memo(() => {
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   const news = useSelector((state: IRootState) => state.core.news);
+  const shortNews = useSelector((state: IRootState) => state.core.shortNews);
   const dispatch = useDispatch<Dispatch<RootActions>>();
 
   const refNews = useRef<HTMLDivElement>(null);
@@ -40,6 +41,7 @@ export const Main = React.memo(() => {
 
   useEffect(() => {
     dispatch(coreGetNews());
+    dispatch(coreGetShortNews());
   }, []);
 
   useEffect(() => {
@@ -157,7 +159,6 @@ export const Main = React.memo(() => {
                 minH={`${height}px`}
                 h={`${refNews.current?.clientHeight}px`}
                 align="center"
-                px={[1, 2]}
               >
                 <Text
                   w="full"
@@ -168,24 +169,26 @@ export const Main = React.memo(() => {
                 >
                   Ещё новости
                 </Text>
-                {news ? (
-                  Object.keys(news).map(index => {
-                    return (
-                      <Link
-                        href={`${ROUTE_NEWS}/${transliterating(news[Number(index)].attributes.heading)}`}
-                        key={index}
-                        color={themeIsDark ? 'white' : 'brand.dark'}
-                        fontSize={['sm', 'md']}
-                      >
-                        {news[Number(index)].attributes.heading}
-                      </Link>
-                    );
-                  })
-                ) : (
-                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
-                    Нет подходящих новостей
-                  </Text>
-                )}
+                <VStack w="full" px={[1, 2, 3]}>
+                  {shortNews ? (
+                    Object.keys(shortNews).map(index => {
+                      return (
+                        <Link
+                          href={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
+                          key={index}
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md']}
+                        >
+                          {shortNews[Number(index)].attributes.heading}
+                        </Link>
+                      );
+                    })
+                  ) : (
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
+                      Нет подходящих новостей
+                    </Text>
+                  )}
+                </VStack>
               </VStack>
             )}
           </HStack>

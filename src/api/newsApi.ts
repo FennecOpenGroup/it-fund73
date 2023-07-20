@@ -12,6 +12,16 @@ export async function fetchNews(): Promise<INews[]> {
   }).then(handleResponse);
 }
 
+export async function fetchShorts(): Promise<INews[]> {
+  const url = new URL(`/api/shorts?populate=deep`, API_URL || window.location.href);
+
+  return fetch(url.toString(), {
+    method: 'GET',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+  }).then(handleResponse);
+}
+
 export async function fetchChangeViews(newsId: number, newsViews: number): Promise<void> {
   const url = new URL(`/api/news/${newsId}`, API_URL || window.location.href);
   return fetch(url.toString(), {
@@ -25,4 +35,3 @@ export async function fetchChangeViews(newsId: number, newsViews: number): Promi
     }),
   }).then(handleResponse);
 }
-

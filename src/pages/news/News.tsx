@@ -2,7 +2,7 @@ import { HStack, VStack, Text, Image, Stack, Spacer, useToast, useMediaQuery, Li
 import CopyToClipboard from 'react-copy-to-clipboard';
 import ReactMarkdown from 'react-markdown';
 import { LinkIcon } from '@chakra-ui/icons';
-import React, { Dispatch, useEffect, useMemo, useRef } from 'react';
+import React, { Dispatch, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { BiShow } from 'react-icons/bi';
 import { useParams } from 'react-router';
@@ -15,10 +15,11 @@ import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { calculateReadingTime } from '../../textfunctions/reattime/readtime';
 import { ROUTE_NEWS } from '../../constants/routes';
 import { IRootState } from '../../interfaces/IRootState';
-import { coreGetNews } from '../../actions/coreActions';
+import { coreGetNews, coreGetShortNews } from '../../actions/coreActions';
 import { RootActions } from '../../types/RootActions';
 import { API_URL } from '../../constants/env';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
+import { INews } from '../../interfaces/INews';
 
 export const News = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -26,6 +27,7 @@ export const News = React.memo(() => {
   const dispatch = useDispatch<Dispatch<RootActions>>();
 
   const news = useSelector((state: IRootState) => state.core.news);
+  const shortNews = useSelector((state: IRootState) => state.core.shortNews);
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   const toast = useToast();
@@ -37,9 +39,15 @@ export const News = React.memo(() => {
   const [isLargerThan680] = useMediaQuery('(min-width: 680px)');
   const [isLargerThan395] = useMediaQuery('(min-width: 395px)');
 
-  const newsСontent = useMemo(
+  const [newsСontent, setNewsContent] = useState<INews>();
+
+  const newsСontentMain = useMemo(
     () => news?.find(newsData => transliterating(newsData.attributes.heading) === url_name),
     [news],
+  );
+  const newsСontentShorts = useMemo(
+    () => shortNews?.find(newsData => transliterating(newsData.attributes.heading) === url_name),
+    [shortNews],
   );
 
   const image = newsСontent ? newsСontent.attributes.image.data['0'].attributes : undefined;
@@ -57,7 +65,11 @@ export const News = React.memo(() => {
 
   useEffect(() => {
     dispatch(coreGetNews());
+    dispatch(coreGetShortNews());
   }, []);
+  useEffect(() => {
+    newsСontentMain !== undefined ? setNewsContent(newsСontentMain) : setNewsContent(newsСontentShorts);
+  }, [newsСontentMain, newsСontentShorts]);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -230,7 +242,6 @@ export const News = React.memo(() => {
                 minH={`${height}px`}
                 h={`${refNews.current?.clientHeight}px`}
                 borderColor={themeIsDark ? 'white' : 'brand.dark'}
-                px={[1, 2]}
               >
                 <Text
                   w="full"
@@ -241,24 +252,26 @@ export const News = React.memo(() => {
                 >
                   Ещё новости
                 </Text>
-                {news ? (
-                  Object.keys(news).map(index => {
-                    return (
-                      <Link
-                        href={`${ROUTE_NEWS}/${transliterating(news[Number(index)].attributes.heading)}`}
-                        key={index}
-                        color={themeIsDark ? 'white' : 'brand.dark'}
-                        fontSize={['sm', 'md']}
-                      >
-                        {news[Number(index)].attributes.heading}
-                      </Link>
-                    );
-                  })
-                ) : (
-                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
-                    Нет подходящих новостей
-                  </Text>
-                )}
+                <VStack w="full" px={[1, 2]}>
+                  {shortNews ? (
+                    Object.keys(shortNews).map(index => {
+                      return (
+                        <Link
+                          href={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
+                          key={index}
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['sm', 'md']}
+                        >
+                          {shortNews[Number(index)].attributes.heading}
+                        </Link>
+                      );
+                    })
+                  ) : (
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
+                      Нет подходящих новостей
+                    </Text>
+                  )}
+                </VStack>
               </VStack>
             )}
           </HStack>
@@ -273,16 +286,16 @@ export const News = React.memo(() => {
               >
                 Ещё новости
               </Text>
-              {news ? (
-                Object.keys(news).map(index => {
+              {shortNews ? (
+                Object.keys(shortNews).map(index => {
                   return (
                     <Link
-                      href={`${ROUTE_NEWS}/${transliterating(news[Number(index)].attributes.heading)}`}
+                      href={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
                       key={index}
                       color={themeIsDark ? 'white' : 'brand.dark'}
                       fontSize={['sm', 'md']}
                     >
-                      {news[Number(index)].attributes.heading}
+                      {shortNews[Number(index)].attributes.heading}
                     </Link>
                   );
                 })

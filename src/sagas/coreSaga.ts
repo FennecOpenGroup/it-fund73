@@ -6,12 +6,13 @@ import {
   coreSetEvents,
   coreSetLang,
   coreSetNews,
+  coreSetShortNews,
   coreSetTeam,
   coreSetTheme,
 } from '../actions/coreActions';
 import { LangEnum } from '../enums/LangEnum';
 import { ThemeEnum } from '../enums/ThemeEnum';
-import { fetchNews } from '../api/newsApi';
+import { fetchNews, fetchShorts } from '../api/newsApi';
 import { INews } from '../interfaces/INews';
 import { fetchDocs } from '../api/docsApi';
 import { IDocs } from '../interfaces/IDocs';
@@ -24,6 +25,7 @@ export function* watchCoreSaga() {
   yield takeEvery(CoreActionsEnum.CORE_GET_LANG, coreGetLangSaga);
   yield takeEvery(ThemeEnum.CORE_GET_THEME_IS_DARK, coreGetThemeSaga);
   yield takeEvery(CoreActionsEnum.CORE_GET_NEWS, coreGetNewsSaga);
+  yield takeEvery(CoreActionsEnum.CORE_GET_SHORT_NEWS, coreGetShortsSaga);
   yield takeEvery(CoreActionsEnum.CORE_GET_DOCS, coreGetDocsSaga);
   yield takeEvery(CoreActionsEnum.CORE_GET_EVENTS, coreGetEventsSaga);
   yield takeEvery(CoreActionsEnum.CORE_GET_TEAM, coreGetTeamSaga);
@@ -48,6 +50,17 @@ export function* coreGetNewsSaga() {
   try {
     const news: INews[] = yield fetchNews();
     yield put(coreSetNews(news));
+  } catch {
+    //
+  } finally {
+    //
+  }
+}
+
+export function* coreGetShortsSaga() {
+  try {
+    const shorts: INews[] = yield fetchShorts();
+    yield put(coreSetShortNews(shorts));
   } catch {
     //
   } finally {

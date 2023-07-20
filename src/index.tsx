@@ -5,7 +5,6 @@ import { CookiesProvider } from 'react-cookie';
 import { App } from './components/App';
 import { theme } from './styles/theme';
 
-import '@fontsource/jost';
 import './styles/main.scss';
 
 ReactDOM.render(

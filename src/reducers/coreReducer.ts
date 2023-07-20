@@ -45,6 +45,12 @@ export function coreReducer(state: ICoreState = initialCoreState, action: CoreAc
         news: action.payload.value,
       };
     }
+    case CoreActionsEnum.CORE_SET_SHORT_NEWS: {
+      return {
+        ...state,
+        shortNews: action.payload.value,
+      };
+    }
     case CoreActionsEnum.CORE_SET_TEAM: {
       return {
         ...state,

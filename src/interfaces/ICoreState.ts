@@ -21,6 +21,7 @@ export interface ICoreState extends ModalsEnumState {
   search?: string;
 
   news?: INews[];
+  shortNews?: INews[];
   docs?: IDocs[];
   emotions?: IEmotions[];
   events?: IEvents[];

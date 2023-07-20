@@ -71,12 +71,7 @@ export const Education = React.memo(() => {
               <Map width="100%" height={`${height / 2}px`} defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}>
                 {higherEducation && (
                   <>
-                    <Placemark
-                      defaultGeometry={[54.30348, 48.367426]}
-                      options={{
-                        iconColor: '#1d1d1d',
-                      }}
-                    />
+                    <Placemark defaultGeometry={[54.30348, 48.367426]} />
                     <Placemark defaultGeometry={[54.240584, 49.59949]} />
                     <Placemark defaultGeometry={[54.349556, 48.386271]} />
                   </>
