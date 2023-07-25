@@ -45,16 +45,16 @@ export const Emotions = React.memo(
       if (news) {
         let emotionStatus =
           emotion === 'like'
-            ? news[newsId - 1].attributes.like
+            ? news?.find(name => name.id === newsId).attributes.like
             : emotion === 'dislike'
-            ? news[newsId - 1].attributes.dislike
+            ? news?.find(name => name.id === newsId).attributes.dislike
             : emotion === 'shock'
-            ? news[newsId - 1].attributes.shock
+            ? news?.find(name => name.id === newsId).attributes.shock
             : emotion === 'smile_face'
-            ? news[newsId - 1].attributes.smile_face
+            ? news?.find(name => name.id === newsId).attributes.smile_face
             : emotion === 'delight'
-            ? news[newsId - 1].attributes.delight
-            : news[newsId - 1].attributes.angry;
+            ? news?.find(name => name.id === newsId).attributes.delight
+            : news?.find(name => name.id === newsId).attributes.angry;
 
         Object.keys(emotionInfo[newsId]).forEach(async function (element) {
           if (element !== emotion && news) {
@@ -118,7 +118,8 @@ export const Emotions = React.memo(
         localStorage.setItem(`lastEmotionCount:${newsId}`, '0');
       }
     }, []);
-
+    console.log(`${newsId}`);
+    console.log(news?.find(name => name.id === newsId));
     return (
       <HStack spacing={2} p={0} m={0}>
         {emotionsData !== undefined && emotions !== undefined && delight !== undefined && (
@@ -134,7 +135,7 @@ export const Emotions = React.memo(
                 <HStack spacing={0}>
                   <Text fontSize="22px">😍</Text>
                   {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.delight}</Text>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news?.find(name => name.id === newsId).attributes.delight}</Text>
                   )}
                 </HStack>
               ) : (
@@ -143,7 +144,7 @@ export const Emotions = React.memo(
                     😍
                   </Text>
                   {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.delight}</Text>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news?.find(name => name.id === newsId).attributes.delight}</Text>
                   )}
                 </HStack>
               )
@@ -163,7 +164,7 @@ export const Emotions = React.memo(
                 <HStack spacing={0}>
                   <Text fontSize="22px">😯</Text>
                   {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.shock}</Text>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news?.find(name => name.id === newsId).attributes.shock}</Text>
                   )}
                 </HStack>
               ) : (
@@ -172,7 +173,7 @@ export const Emotions = React.memo(
                     😯
                   </Text>
                   {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.shock}</Text>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news?.find(name => name.id === newsId).attributes.shock}</Text>
                   )}
                 </HStack>
               )
@@ -192,7 +193,7 @@ export const Emotions = React.memo(
                 <HStack spacing={0}>
                   <Text fontSize="22px">🙂</Text>
                   {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.smile_face}</Text>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news?.find(name => name.id === newsId).attributes.smile_face}</Text>
                   )}
                 </HStack>
               ) : (
@@ -201,7 +202,7 @@ export const Emotions = React.memo(
                     🙂
                   </Text>
                   {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.smile_face}</Text>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news?.find(name => name.id === newsId).attributes.smile_face}</Text>
                   )}
                 </HStack>
               )
@@ -221,7 +222,7 @@ export const Emotions = React.memo(
                 <HStack spacing={0}>
                   <Text fontSize="22px">😡</Text>
                   {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.angry}</Text>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news?.find(name => name.id === newsId).attributes.angry}</Text>
                   )}
                 </HStack>
               ) : (
@@ -230,7 +231,7 @@ export const Emotions = React.memo(
                     😠
                   </Text>
                   {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.angry}</Text>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news?.find(name => name.id === newsId).attributes.angry}</Text>
                   )}
                 </HStack>
               )
@@ -250,7 +251,7 @@ export const Emotions = React.memo(
                 <HStack spacing={0}>
                   <Text fontSize="22px">👎</Text>
                   {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.dislike}</Text>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news?.find(name => name.id === newsId).attributes.dislike}</Text>
                   )}
                 </HStack>
               ) : (
@@ -259,7 +260,7 @@ export const Emotions = React.memo(
                     👎
                   </Text>
                   {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.dislike}</Text>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news?.find(name => name.id === newsId).attributes.dislike}</Text>
                   )}
                 </HStack>
               )
@@ -279,7 +280,7 @@ export const Emotions = React.memo(
                 <HStack spacing={0}>
                   <Text fontSize="22px">👍</Text>
                   {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.like}</Text>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news?.find(name => name.id === newsId).attributes.like}</Text>
                   )}
                 </HStack>
               ) : (
@@ -288,7 +289,7 @@ export const Emotions = React.memo(
                     👍
                   </Text>
                   {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.like}</Text>
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news?.find(name => name.id === newsId).attributes.like}</Text>
                   )}
                 </HStack>
               )
