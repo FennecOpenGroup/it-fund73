@@ -51,7 +51,7 @@ export const News = React.memo(() => {
     () => shortNews?.find(newsData => transliterating(newsData.attributes.heading) === url_name),
     [shortNews],
   );
-
+  console.log(newsСontent);
   const image = newsСontent ? newsСontent.attributes.image.data['0'].attributes : undefined;
 
   const refNews = useRef<HTMLDivElement>(null);
