@@ -47,7 +47,6 @@ export const Main = React.memo(() => {
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan620] = useMediaQuery('(min-width: 620px)');
 
-
   let shortRowsCount = 0;
   let rowsCount = 0;
   let rowEven = false;
@@ -115,7 +114,6 @@ export const Main = React.memo(() => {
                   templateRows={`repeat(${rowsCount}, 1fr)`}
                   templateColumns={isLargerThan1025 ? 'repeat(6, 3fr)' : 'repeat(1, 1fr)'}
                 >
-
                   {Object.keys(Array(newsCounter).fill('')).map(index => {
                     const data = news[Number(index)].attributes;
 
@@ -190,7 +188,6 @@ export const Main = React.memo(() => {
                           />
                         </GridItem>
                       );
-                      
                     }
 
                     return false;
@@ -235,50 +232,49 @@ export const Main = React.memo(() => {
                 <VStack w="full" px={[1, 2, 3]}>
                   {shortNews ? (
                     Object.keys(shortNews).map(index => {
-                      if (shortRowsCount < shortNewsCounter){
+                      if (shortRowsCount < shortNewsCounter) {
                         shortRowsCount += 1;
 
                         return (
-                        <Link
-                          as={RouterLink}
-                          to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
-                          key={index}
-                          color={themeIsDark ? 'white' : 'brand.dark'}
-                          fontSize={['sm', 'md']}
-                          onClick={async () => {
-                            await fetchChangeShortsViews(
-                              shortNews[Number(index)].id,
-                              Number(shortNews[Number(index)].attributes.views),
-                            );
-                          }}
-                        >
-                          {shortNews[Number(index)].attributes.heading}
-                        </Link>
-                      );
-                    }
-                    return false;
-                  })
+                          <Link
+                            as={RouterLink}
+                            to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
+                            key={index}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            fontSize={['sm', 'md']}
+                            onClick={async () => {
+                              await fetchChangeShortsViews(
+                                shortNews[Number(index)].id,
+                                Number(shortNews[Number(index)].attributes.views),
+                              );
+                            }}
+                          >
+                            {shortNews[Number(index)].attributes.heading}
+                          </Link>
+                        );
+                      }
+                      return false;
+                    })
                   ) : (
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
                       Нет подходящих новостей
                     </Text>
                   )}
-                {shortNews && shortNewsCounter < shortNews?.length && (
-                <Button
-                  variant="brand-news"
-                  rightIcon={<BiPlus />}
-                  w="full"
-                  color={themeIsDark ? 'white' : 'brand.dark'}
-                  onClick={() => {
-                    const newsUp = shortNewsCounter + loadShortCount;
+                  {shortNews && shortNewsCounter < shortNews?.length && (
+                    <Button
+                      variant="brand-news"
+                      rightIcon={<BiPlus />}
+                      w="full"
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      onClick={() => {
+                        const newsUp = shortNewsCounter + loadShortCount;
 
-                    setShortNewsCounter(newsUp);
-
-                }}
-                >
-                  Ещё новости
-                </Button>
-              )}
+                        setShortNewsCounter(newsUp);
+                      }}
+                    >
+                      Ещё новости
+                    </Button>
+                  )}
                 </VStack>
               </VStack>
             )}
