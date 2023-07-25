@@ -37,6 +37,9 @@ export const Main = React.memo(() => {
   const loadCount = 5;
   const [newsCounter, setNewsCounter] = useState(loadCount);
 
+  const loadShortCount = 2;
+  const [shortNewsCounter, setShortNewsCounter] = useState(loadShortCount);
+
   const refNews = useRef<HTMLDivElement>(null);
   const contentHeight = refNews.current?.clientHeight;
 
@@ -44,8 +47,11 @@ export const Main = React.memo(() => {
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan620] = useMediaQuery('(min-width: 620px)');
 
+
+  let shortRowsCount = 0;
   let rowsCount = 0;
   let rowEven = false;
+  let newsCount = 0;
 
   useEffect(() => {
     dispatch(coreGetNews());
@@ -109,8 +115,10 @@ export const Main = React.memo(() => {
                   templateRows={`repeat(${rowsCount}, 1fr)`}
                   templateColumns={isLargerThan1025 ? 'repeat(6, 3fr)' : 'repeat(1, 1fr)'}
                 >
+
                   {Object.keys(Array(newsCounter).fill('')).map(index => {
                     const data = news[Number(index)].attributes;
+
                     const image = data.image.data['0'].attributes;
                     const arr = [];
                     it && arr.push(TagsEnum.IT);
@@ -134,8 +142,10 @@ export const Main = React.memo(() => {
                     }
                     if (
                       arr.includes(data.tags as TagsEnum) &&
-                      (search === undefined || data.heading.includes(search))
+                      (search === undefined || data.heading.includes(search)) &&
+                      newsCount <= 1
                     ) {
+                      newsCount += 1;
                       return (
                         <GridItem key={index} colSpan={3}>
                           <NewsContent
@@ -156,6 +166,33 @@ export const Main = React.memo(() => {
                         </GridItem>
                       );
                     }
+                    if (
+                      arr.includes(data.tags as TagsEnum) &&
+                      (search === undefined || data.heading.includes(search)) &&
+                      newsCount > 1
+                    ) {
+                      return (
+                        <GridItem key={index} colSpan={2}>
+                          <NewsContent
+                            id={news[Number(index)].id}
+                            name_content={data.heading}
+                            src_content={`${API_URL}${image.url}`}
+                            views_content={data.views}
+                            tag_content={data.tags}
+                            date_content={data.date}
+                            url_name={transliterating(data.heading)}
+                            like={data.like}
+                            dislike={data.dislike}
+                            delight={data.delight}
+                            shock={data.shock}
+                            smile_face={data.smile_face}
+                            angry={data.angry}
+                          />
+                        </GridItem>
+                      );
+                      
+                    }
+
                     return false;
                   })}
                 </Grid>
@@ -198,7 +235,10 @@ export const Main = React.memo(() => {
                 <VStack w="full" px={[1, 2, 3]}>
                   {shortNews ? (
                     Object.keys(shortNews).map(index => {
-                      return (
+                      if (shortRowsCount < shortNewsCounter){
+                        shortRowsCount += 1;
+
+                        return (
                         <Link
                           as={RouterLink}
                           to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
@@ -215,12 +255,30 @@ export const Main = React.memo(() => {
                           {shortNews[Number(index)].attributes.heading}
                         </Link>
                       );
-                    })
+                    }
+                    return false;
+                  })
                   ) : (
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
                       Нет подходящих новостей
                     </Text>
                   )}
+                {shortNews && shortNewsCounter < shortNews?.length && (
+                <Button
+                  variant="brand-news"
+                  rightIcon={<BiPlus />}
+                  w="full"
+                  color={themeIsDark ? 'white' : 'brand.dark'}
+                  onClick={() => {
+                    const newsUp = shortNewsCounter + loadShortCount;
+
+                    setShortNewsCounter(newsUp);
+
+                }}
+                >
+                  Ещё новости
+                </Button>
+              )}
                 </VStack>
               </VStack>
             )}
