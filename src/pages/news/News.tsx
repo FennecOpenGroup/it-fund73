@@ -21,6 +21,7 @@ import { RootActions } from '../../types/RootActions';
 import { API_URL } from '../../constants/env';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
 import { INews } from '../../interfaces/INews';
+import { fetchChangeShortsViews } from '../../api/newsApi';
 
 export const News = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -267,6 +268,12 @@ export const News = React.memo(() => {
                           key={index}
                           color={themeIsDark ? 'white' : 'brand.dark'}
                           fontSize={['sm', 'md']}
+                          onClick={async () => {
+                            await fetchChangeShortsViews(
+                              shortNews[Number(index)].id,
+                              Number(shortNews[Number(index)].attributes.views),
+                            );
+                          }}
                         >
                           {shortNews[Number(index)].attributes.heading}
                         </Link>
@@ -301,6 +308,12 @@ export const News = React.memo(() => {
                       color={themeIsDark ? 'white' : 'brand.dark'}
                       fontSize={['sm', 'md']}
                       key={index}
+                      onClick={async () => {
+                        await fetchChangeShortsViews(
+                          shortNews[Number(index)].id,
+                          Number(shortNews[Number(index)].attributes.views),
+                        );
+                      }}
                     >
                       {shortNews[Number(index)].attributes.heading}
                     </Link>

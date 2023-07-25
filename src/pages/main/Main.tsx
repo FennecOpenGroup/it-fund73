@@ -18,6 +18,7 @@ import { RootActions } from '../../types/RootActions';
 import { coreGetNews, coreGetShortNews } from '../../actions/coreActions';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
 import { ROUTE_NEWS } from '../../constants/routes';
+import { fetchChangeShortsViews } from '../../api/newsApi';
 
 export const Main = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -63,15 +64,18 @@ export const Main = React.memo(() => {
         <meta name="descripsion" content="Главная страница" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
-        <meta property="og:url" content="https://www.it-fund73.ru/"/>
-        <meta property="og:title" content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года." />
+        <meta property="og:url" content="https://www.it-fund73.ru/" />
+        <meta
+          property="og:title"
+          content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года."
+        />
         <meta property="og:descripsion" content="Фонд развития информационный технологий" />
         <meta property="og:image" content="%PUBLIC_URL%/logo_ref.jpg" />
         <meta property="og:image:type" content="image/jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="vk:card" content="image/jpg" />
-        <meta property="vk:url" content="https://www.it-fund73.ru/"/>
+        <meta property="vk:url" content="https://www.it-fund73.ru/" />
         <meta name="vk:title" content="Фонд развития информационный технологий" />
         <meta name="vk:descripsion" content="Фонд развития информационный технологий" />
         <meta name="vk:image" content=".%PUBLIC_URL%/logo_ref.jpg" />
@@ -82,7 +86,6 @@ export const Main = React.memo(() => {
       </Helmet>
       <Header />
       <VStack
-        minH={`${height}px`}
         justify="center"
         align="center"
         px={isLargerThan770 ? '10%' : '5%'}
@@ -90,7 +93,6 @@ export const Main = React.memo(() => {
       >
         <VStack
           w="full"
-          minH={`${height}px`}
           bg={themeIsDark ? '#242323' : 'brand.beige'}
           pl={[1, 2, 3, 4]}
           pr={isLargerThan620 ? 0 : [1, 2, 3, 4]}
@@ -203,6 +205,12 @@ export const Main = React.memo(() => {
                           key={index}
                           color={themeIsDark ? 'white' : 'brand.dark'}
                           fontSize={['sm', 'md']}
+                          onClick={async () => {
+                            await fetchChangeShortsViews(
+                              shortNews[Number(index)].id,
+                              Number(shortNews[Number(index)].attributes.views),
+                            );
+                          }}
                         >
                           {shortNews[Number(index)].attributes.heading}
                         </Link>

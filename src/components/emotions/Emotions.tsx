@@ -30,11 +30,11 @@ export const Emotions = React.memo(
     const emotions = useSelector((state: IRootState) => state.core.emotions);
     const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
-    const data = localStorage.getItem('newsReadtions');
+    const data = localStorage.getItem('newsReactions');
     const emotionsData = data ? JSON.parse(data) : undefined;
 
     async function handleEmotionClick(emotion: string) {
-      const funcData = localStorage.getItem('newsReadtions');
+      const funcData = localStorage.getItem('newsReactions');
       const emotionsfuncData = funcData ? JSON.parse(funcData) : undefined;
       const emotionInfo: any = emotionsfuncData;
 
@@ -85,27 +85,25 @@ export const Emotions = React.memo(
         }
         dispatch(coreSetEmotions(emotionInfo));
         dispatch(coreGetNews());
-        localStorage.setItem('newsReadtions', JSON.stringify(emotionInfo));
+        localStorage.setItem('newsReactions', JSON.stringify(emotionInfo));
       }
     }
 
     useEffect(() => {
-      const dataStorage = localStorage.getItem('newsReadtions');
-      const newsReadtions: IEmotions = {};
+      const dataStorage = localStorage.getItem('newsReactions');
+      const newsReactions: IEmotions = {};
       if (!dataStorage && news) {
-        Object.keys(news)
-          .reverse()
-          .map(index => {
-            return (newsReadtions[`${news[Number(index)].id}`] = {
-              dislike: false,
-              delight: false,
-              shock: false,
-              smile_face: false,
-              angry: false,
-              like: false,
-            });
+        Object.keys(news).map(index => {
+          return (newsReactions[`${news[Number(index)].id}`] = {
+            dislike: false,
+            delight: false,
+            shock: false,
+            smile_face: false,
+            angry: false,
+            like: false,
           });
-        localStorage.setItem('newsReadtions', JSON.stringify(newsReadtions));
+        });
+        localStorage.setItem('newsReactions', JSON.stringify(newsReactions));
       }
       dispatch(coreSetEmotions(emotionsData));
     }, [news]);
