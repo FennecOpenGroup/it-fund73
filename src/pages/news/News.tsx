@@ -1,10 +1,10 @@
-import { HStack, VStack, Text, Image, Stack, Spacer, useToast, useMediaQuery, Link } from '@chakra-ui/react';
+import { HStack, VStack, Text, Image, Stack, Spacer, useToast, useMediaQuery, Link, Button } from '@chakra-ui/react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import ReactMarkdown from 'react-markdown';
 import { LinkIcon } from '@chakra-ui/icons';
 import React, { Dispatch, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { BiShow } from 'react-icons/bi';
+import { BiPlus, BiShow } from 'react-icons/bi';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
@@ -33,7 +33,6 @@ export const News = React.memo(() => {
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   const toast = useToast();
-
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
   const [isLargerThan1030] = useMediaQuery('(min-width: 1030px)');
   const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
@@ -74,6 +73,11 @@ export const News = React.memo(() => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const loadShortCount = 2;
+  const [shortNewsCounter, setShortNewsCounter] = useState(loadShortCount);
+
+  let shortRowsCount = 0;
 
   return (
     <>
@@ -255,33 +259,53 @@ export const News = React.memo(() => {
                   borderBottom="2px"
                   align="center"
                 >
-                  Ещё новости
+                  Другие новости
                 </Text>
                 <VStack w="full" px={[1, 2, 3]}>
                   {shortNews ? (
                     Object.keys(shortNews).map(index => {
-                      return (
-                        <Link
-                          as={RouterLink}
-                          to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
-                          key={index}
-                          color={themeIsDark ? 'white' : 'brand.dark'}
-                          fontSize={['sm', 'md']}
-                          onClick={async () => {
-                            await fetchChangeShortsViews(
-                              shortNews[Number(index)].id,
-                              Number(shortNews[Number(index)].attributes.views),
-                            );
-                          }}
-                        >
-                          {shortNews[Number(index)].attributes.heading}
-                        </Link>
-                      );
+                      if (shortRowsCount < shortNewsCounter) {
+                        shortRowsCount += 1;
+
+                        return (
+                          <Link
+                            as={RouterLink}
+                            to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
+                            key={index}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            fontSize={['sm', 'md']}
+                            onClick={async () => {
+                              await fetchChangeShortsViews(
+                                shortNews[Number(index)].id,
+                                Number(shortNews[Number(index)].attributes.views),
+                              );
+                            }}
+                          >
+                            {shortNews[Number(index)].attributes.heading}
+                          </Link>
+                        );
+                      }
+                      return false;
                     })
                   ) : (
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
                       Нет подходящих новостей
                     </Text>
+                  )}
+                  {shortNews && shortNewsCounter < shortNews?.length && (
+                    <Button
+                      variant="brand-news"
+                      rightIcon={<BiPlus />}
+                      w="full"
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      onClick={() => {
+                        const newsUp = shortNewsCounter + loadShortCount;
+
+                        setShortNewsCounter(newsUp);
+                      }}
+                    >
+                      Ещё новости
+                    </Button>
                   )}
                 </VStack>
               </VStack>
@@ -296,7 +320,7 @@ export const News = React.memo(() => {
                 align="center"
                 color={themeIsDark ? 'white' : 'brand.dark'}
               >
-                Ещё новости
+                Другие новости
               </Text>
               {shortNews ? (
                 Object.keys(shortNews).map(index => {
