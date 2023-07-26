@@ -37,18 +37,20 @@ export const Main = React.memo(() => {
   const loadCount = 5;
   const [newsCounter, setNewsCounter] = useState(loadCount);
 
-  const loadShortCount = 2;
+  const loadShortCount = 10;
   const [shortNewsCounter, setShortNewsCounter] = useState(loadShortCount);
 
   const refNews = useRef<HTMLDivElement>(null);
   const contentHeight = refNews.current?.clientHeight;
 
+  const [isLargerThan1350] = useMediaQuery('(min-width: 1350px)');
   const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan620] = useMediaQuery('(min-width: 620px)');
 
   let shortRowsCount = 0;
   let rowsCount = 0;
+
   let rowEven = false;
   let newsCount = 0;
 
@@ -170,7 +172,7 @@ export const Main = React.memo(() => {
                       newsCount > 1
                     ) {
                       return (
-                        <GridItem key={index} colSpan={2}>
+                        <GridItem key={index} colSpan={isLargerThan1350 ? 2 : 3}>
                           <NewsContent
                             id={news[Number(index)].id}
                             name_content={data.heading}
@@ -189,7 +191,6 @@ export const Main = React.memo(() => {
                         </GridItem>
                       );
                     }
-
                     return false;
                   })}
                 </Grid>

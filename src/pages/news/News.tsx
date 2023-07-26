@@ -40,7 +40,11 @@ export const News = React.memo(() => {
   const [isLargerThan680] = useMediaQuery('(min-width: 680px)');
   const [isLargerThan395] = useMediaQuery('(min-width: 395px)');
 
+  const loadShortCount = 10;
+  let shortRowsCount = 0;
+
   const [newsСontent, setNewsContent] = useState<INews>();
+  const [shortNewsCounter, setShortNewsCounter] = useState(loadShortCount);
 
   const newsСontentMain = useMemo(
     () => news?.find(newsData => transliterating(newsData.attributes.heading) === url_name),
@@ -66,18 +70,15 @@ export const News = React.memo(() => {
   useEffect(() => {
     dispatch(coreGetNews());
     dispatch(coreGetShortNews());
-  }, []);
+  }, [url_name]);
   useEffect(() => {
     newsСontentMain !== undefined ? setNewsContent(newsСontentMain) : setNewsContent(newsСontentShorts);
-  }, [newsСontentMain, newsСontentShorts]);
+  }, [newsСontentMain, newsСontentShorts, url_name]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const loadShortCount = 2;
-  const [shortNewsCounter, setShortNewsCounter] = useState(loadShortCount);
-
-  let shortRowsCount = 0;
 
   return (
     <>
@@ -266,7 +267,6 @@ export const News = React.memo(() => {
                     Object.keys(shortNews).map(index => {
                       if (shortRowsCount < shortNewsCounter) {
                         shortRowsCount += 1;
-
                         return (
                           <Link
                             as={RouterLink}
