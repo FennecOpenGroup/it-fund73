@@ -1,6 +1,6 @@
 /* eslint no-return-assign: "error" */
 /* eslint no-unneeded-ternary: "error" */
-import { HStack, Text, Button } from '@chakra-ui/react';
+import { HStack, Text, Button, Grid, GridItem } from '@chakra-ui/react';
 import React, { Dispatch, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
@@ -17,6 +17,7 @@ import { RootActions } from '../../types/RootActions';
 import { coreGetNews, coreGetShortNews, coreSetEmotions } from '../../actions/coreActions';
 import { INews } from '../../interfaces/INews';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
+import { shortenNumber } from '../../textfunctions/shortenNumber/shortenNumber';
 
 interface IEmoutionsProps {
   newsId: number;
@@ -201,206 +202,218 @@ export const Emotions = React.memo(
     }, []);
 
     return (
-      <HStack spacing={2} p={0} m={0}>
-        {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && delight !== undefined && (
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => handleEmotionClick('delight')}
-            p={0}
-            m={0}
-            leftIcon={
-              emotions[newsId].delight ? (
-                <HStack spacing={0}>
-                  <Text fontSize="22px">😍</Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                      {currentNewsId && currentNewsId.attributes.delight}
+      <Grid maxH="40px" templateColumns="repeat(6, 1fr)" templateRows="repeat(1, 1fr)" p={0} m={0}>
+        <GridItem>
+          {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && delight !== undefined && (
+            <Button
+              variant="brand-reactions"
+              size="30px"
+              iconSpacing={0}
+              onClick={() => handleEmotionClick('delight')}
+              p={0}
+              m={0}
+              leftIcon={
+                emotions[newsId].delight ? (
+                  <HStack spacing={0}>
+                    <Text fontSize="22px">😍</Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.delight)}
+                      </Text>
+                    )}
+                  </HStack>
+                ) : (
+                  <HStack spacing={0}>
+                    <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                      😍
                     </Text>
-                  )}
-                </HStack>
-              ) : (
-                <HStack spacing={0}>
-                  <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
-                    😍
-                  </Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                      {currentNewsId && currentNewsId.attributes.delight}
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.delight)}
+                      </Text>
+                    )}
+                  </HStack>
+                )
+              }
+            />
+          )}
+        </GridItem>
+        <GridItem>
+          {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && shock !== undefined && (
+            <Button
+              variant="brand-reactions"
+              size="30px"
+              iconSpacing={0}
+              onClick={() => handleEmotionClick('shock')}
+              p={0}
+              m={0}
+              leftIcon={
+                emotions[newsId].shock ? (
+                  <HStack spacing={0}>
+                    <Text fontSize="22px">😯</Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.shock)}
+                      </Text>
+                    )}
+                  </HStack>
+                ) : (
+                  <HStack spacing={0}>
+                    <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                      😯
                     </Text>
-                  )}
-                </HStack>
-              )
-            }
-          />
-        )}
-        {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && shock !== undefined && (
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => handleEmotionClick('shock')}
-            p={0}
-            m={0}
-            leftIcon={
-              emotions[newsId].shock ? (
-                <HStack spacing={0}>
-                  <Text fontSize="22px">😯</Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                      {currentNewsId && currentNewsId.attributes.shock}
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.shock)}
+                      </Text>
+                    )}
+                  </HStack>
+                )
+              }
+            />
+          )}
+        </GridItem>
+        <GridItem>
+          {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && smile_face !== undefined && (
+            <Button
+              variant="brand-reactions"
+              size="30px"
+              iconSpacing={0}
+              onClick={() => handleEmotionClick('smile_face')}
+              p={0}
+              m={0}
+              leftIcon={
+                emotions[newsId].smile_face ? (
+                  <HStack spacing={0}>
+                    <Text fontSize="22px">🙂</Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.smile_face)}
+                      </Text>
+                    )}
+                  </HStack>
+                ) : (
+                  <HStack spacing={0}>
+                    <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                      🙂
                     </Text>
-                  )}
-                </HStack>
-              ) : (
-                <HStack spacing={0}>
-                  <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
-                    😯
-                  </Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                      {currentNewsId && currentNewsId.attributes.shock}
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.smile_face)}
+                      </Text>
+                    )}
+                  </HStack>
+                )
+              }
+            />
+          )}
+        </GridItem>
+        <GridItem>
+          {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && angry !== undefined && (
+            <Button
+              variant="brand-reactions"
+              size="30px"
+              iconSpacing={0}
+              onClick={() => handleEmotionClick('angry')}
+              p={0}
+              m={0}
+              leftIcon={
+                emotions[newsId].angry ? (
+                  <HStack spacing={0}>
+                    <Text fontSize="22px">😡</Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.angry)}
+                      </Text>
+                    )}
+                  </HStack>
+                ) : (
+                  <HStack spacing={0}>
+                    <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                      😠
                     </Text>
-                  )}
-                </HStack>
-              )
-            }
-          />
-        )}
-        {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && smile_face !== undefined && (
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => handleEmotionClick('smile_face')}
-            p={0}
-            m={0}
-            leftIcon={
-              emotions[newsId].smile_face ? (
-                <HStack spacing={0}>
-                  <Text fontSize="22px">🙂</Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                      {currentNewsId && currentNewsId.attributes.smile_face}
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.angry)}
+                      </Text>
+                    )}
+                  </HStack>
+                )
+              }
+            />
+          )}
+        </GridItem>
+        <GridItem>
+          {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && dislike !== undefined && (
+            <Button
+              variant="brand-reactions"
+              size="30px"
+              iconSpacing={0}
+              onClick={() => handleEmotionClick('dislike')}
+              p={0}
+              m={0}
+              leftIcon={
+                emotions[newsId].dislike ? (
+                  <HStack spacing={0}>
+                    <Text fontSize="22px">👎</Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.dislike)}
+                      </Text>
+                    )}
+                  </HStack>
+                ) : (
+                  <HStack spacing={0}>
+                    <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                      👎
                     </Text>
-                  )}
-                </HStack>
-              ) : (
-                <HStack spacing={0}>
-                  <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
-                    🙂
-                  </Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                      {currentNewsId && currentNewsId.attributes.smile_face}
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.dislike)}
+                      </Text>
+                    )}
+                  </HStack>
+                )
+              }
+            />
+          )}
+        </GridItem>
+        <GridItem>
+          {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && like !== undefined && (
+            <Button
+              variant="brand-reactions"
+              size="30px"
+              iconSpacing={0}
+              onClick={() => handleEmotionClick('like')}
+              p={0}
+              m={0}
+              leftIcon={
+                emotions[newsId].like ? (
+                  <HStack spacing={0}>
+                    <Text fontSize="22px">👍</Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.like)}
+                      </Text>
+                    )}
+                  </HStack>
+                ) : (
+                  <HStack spacing={0}>
+                    <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                      👍
                     </Text>
-                  )}
-                </HStack>
-              )
-            }
-          />
-        )}
-        {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && angry !== undefined && (
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => handleEmotionClick('angry')}
-            p={0}
-            m={0}
-            leftIcon={
-              emotions[newsId].angry ? (
-                <HStack spacing={0}>
-                  <Text fontSize="22px">😡</Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                      {currentNewsId && currentNewsId.attributes.angry}
-                    </Text>
-                  )}
-                </HStack>
-              ) : (
-                <HStack spacing={0}>
-                  <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
-                    😠
-                  </Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                      {currentNewsId && currentNewsId.attributes.angry}
-                    </Text>
-                  )}
-                </HStack>
-              )
-            }
-          />
-        )}
-        {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && dislike !== undefined && (
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => handleEmotionClick('dislike')}
-            p={0}
-            m={0}
-            leftIcon={
-              emotions[newsId].dislike ? (
-                <HStack spacing={0}>
-                  <Text fontSize="22px">👎</Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                      {currentNewsId && currentNewsId.attributes.dislike}
-                    </Text>
-                  )}
-                </HStack>
-              ) : (
-                <HStack spacing={0}>
-                  <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
-                    👎
-                  </Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                      {currentNewsId && currentNewsId.attributes.dislike}
-                    </Text>
-                  )}
-                </HStack>
-              )
-            }
-          />
-        )}
-        {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && like !== undefined && (
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => handleEmotionClick('like')}
-            p={0}
-            m={0}
-            leftIcon={
-              emotions[newsId].like ? (
-                <HStack spacing={0}>
-                  <Text fontSize="22px">👍</Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                      {currentNewsId && currentNewsId.attributes.like}
-                    </Text>
-                  )}
-                </HStack>
-              ) : (
-                <HStack spacing={0}>
-                  <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
-                    👍
-                  </Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                      {currentNewsId && currentNewsId.attributes.like}
-                    </Text>
-                  )}
-                </HStack>
-              )
-            }
-          />
-        )}
-      </HStack>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.like)}
+                      </Text>
+                    )}
+                  </HStack>
+                )
+              }
+            />
+          )}
+        </GridItem>
+      </Grid>
     );
   },
 );

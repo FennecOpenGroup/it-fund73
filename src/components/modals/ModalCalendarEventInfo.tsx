@@ -42,12 +42,12 @@ export const ModalCalendarEventInfo = React.memo(({ isOpen, id }: IModalCalendar
         <ModalContent bg={themeIsDark ? '#121212' : 'white'} border="2px">
           <ModalCloseButton color={themeIsDark ? 'white' : 'brand.dark'} />
           <ModalHeader fontSize={['lg', 'xl']} color={themeIsDark ? 'white' : 'brand.dark'}>
-            {events && events[Number(id)].attributes.name}
+            {events && events[Number(id)] && events[Number(id)].attributes.name}
           </ModalHeader>
           <ModalBody>
             <VStack w="full" align="start">
               <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
-                {events && <ReactMarkdown>{events[Number(id)].attributes.text}</ReactMarkdown>}
+                {events && events[Number(id)] && <ReactMarkdown>{events[Number(id)].attributes.text}</ReactMarkdown>}
               </Text>
             </VStack>
           </ModalBody>
@@ -57,6 +57,7 @@ export const ModalCalendarEventInfo = React.memo(({ isOpen, id }: IModalCalendar
                 <MdDateRange size="1.2em" color="gray" />
                 <Text color="gray" fontSize={['sm', 'md']}>
                   {events &&
+                    events[Number(id)] &&
                     new Date(`${events[Number(id)].attributes.date}`).toLocaleDateString('ru-RU', {
                       weekday: 'long',
                       year: 'numeric',
@@ -68,7 +69,7 @@ export const ModalCalendarEventInfo = React.memo(({ isOpen, id }: IModalCalendar
               <HStack>
                 <FaMapMarkerAlt size="1.2em" color="gray" />
                 <Text color="gray" fontSize={['sm', 'md']}>
-                  {events && events[Number(id)].attributes.address}
+                  {events && events[Number(id)] && events[Number(id)].attributes.address}
                 </Text>
               </HStack>
             </VStack>

@@ -22,6 +22,7 @@ import { API_URL } from '../../constants/env';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
 import { INews } from '../../interfaces/INews';
 import { fetchChangeShortsViews } from '../../api/newsApi';
+import { shortenNumber } from '../../textfunctions/shortenNumber/shortenNumber';
 
 export const News = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -78,7 +79,6 @@ export const News = React.memo(() => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
 
   return (
     <>
@@ -175,11 +175,11 @@ export const News = React.memo(() => {
                       <BiShow color="#BBBBBB" />
                       {newsСontent?.attributes.views !== undefined ? (
                         <Text color="#BBBBBB" p={0} m={0} fontSize={['sm', 'md']}>
-                          {newsСontent?.attributes.views}
+                          {shortenNumber(newsСontent?.attributes.views)}
                         </Text>
                       ) : (
                         <Text color="#BBBBBB" p={0} m={0} fontSize={['sm', 'md']}>
-                          Нет просмотров
+                          Нет
                         </Text>
                       )}
                     </HStack>

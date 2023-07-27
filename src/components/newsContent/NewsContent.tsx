@@ -9,6 +9,7 @@ import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { Emotions } from '../emotions/Emotions';
 import { IRootState } from '../../interfaces/IRootState';
 import { fetchChangeViews } from '../../api/newsApi';
+import { shortenNumber } from '../../textfunctions/shortenNumber/shortenNumber';
 
 interface INewsContentProps {
   id: number;
@@ -151,11 +152,11 @@ export const NewsContent = React.memo(
             <BiShow color="#BBBBBB" size="22px" />
             {views_content ? (
               <Text color="#BBBBBB" fontSize={['sm', 'md', 'lg']} p={0} m={0}>
-                {views_content}
+                {shortenNumber(views_content)}
               </Text>
             ) : (
               <Text color="#BBBBBB" fontSize={['xs', 'sm', 'md']} p={0} m={0} align="center">
-                Нет просмотров
+                Нет
               </Text>
             )}
           </HStack>
