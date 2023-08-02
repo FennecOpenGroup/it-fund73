@@ -1,5 +1,6 @@
 export function transliterating(text: string) {
   const answer = text
+    .replace('?', '')
     .split(' ')
     .slice(0, 8)
     .join(' ')

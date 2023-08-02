@@ -115,6 +115,7 @@ export const AboutUs = React.memo(() => {
         <VStack w="full" minH={`${height}px`} pb={[4, 6]} align="flex-start">
           <Image
             src={ulyanovsk}
+            bgColor="black"
             objectFit="cover"
             top={refHeader.current?.clientHeight}
             left={0}

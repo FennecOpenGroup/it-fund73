@@ -125,7 +125,7 @@ export const Calendar = React.memo(() => {
         <meta name="descripsion" content="" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
-        <meta property="og:url" content="https://www.it-fund73.ru/calendar"/>
+        <meta property="og:url" content="https://www.it-fund73.ru/calendar" />
         <meta property="og:title" content="Календарь мероприятий" />
         <meta property="og:descripsion" content="Календарь мероприятий" />
         <meta property="og:image" content="%PUBLIC_URL%/logo_ref.jpg" />
@@ -133,7 +133,7 @@ export const Calendar = React.memo(() => {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="vk:card" content="image/jpg" />
-        <meta property="vk:url" content="https://www.it-fund73.ru/calendar"/>
+        <meta property="vk:url" content="https://www.it-fund73.ru/calendar" />
         <meta name="vk:title" content="Календарь мероприятий" />
         <meta name="vk:descripsion" content="Календарь мероприятий" />
         <meta name="vk:image" content=".%PUBLIC_URL%/logo_ref.jpg" />
@@ -274,7 +274,7 @@ export const Calendar = React.memo(() => {
                             }}
                           >
                             <VStack align="center" spacing={0}>
-                              <p style={{ fontSize: '25px' }}>{Number(index) + 1}</p>
+                              <p style={{ fontSize: '20px' }}>{Number(index) + 1}</p>
                               <p style={{ fontSize: '12px', fontWeight: 'lighter' }}>
                                 {events && events[Number(eventTag)].attributes.name}
                               </p>

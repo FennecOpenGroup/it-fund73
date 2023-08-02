@@ -34,7 +34,7 @@ export const Main = React.memo(() => {
   const shortNews = useSelector((state: IRootState) => state.core.shortNews);
   const dispatch = useDispatch<Dispatch<RootActions>>();
 
-  const loadCount = 5;
+  const loadCount = 8;
   const [newsCounter, setNewsCounter] = useState(loadCount);
 
   const loadShortCount = 10;
@@ -96,118 +96,123 @@ export const Main = React.memo(() => {
         justify="center"
         align="center"
         px={isLargerThan770 ? '10%' : '5%'}
-        bg={themeIsDark ? '#121212' : 'white'}
+        bg={themeIsDark ? '#121212' : 'brand.beige'}
       >
         <VStack
           w="full"
-          bg={themeIsDark ? '#242323' : 'brand.beige'}
+          bg={themeIsDark ? '#242323' : 'white'}
           pl={[1, 2, 3, 4]}
           pr={isLargerThan620 ? 0 : [1, 2, 3, 4]}
           boxShadow="5px 0px rgb(3,0,15,15%)"
           ref={refNews}
-          pb={2}
+          pb={0}
         >
           <HStack w="full" align="flex-start">
             <VStack w="full" pt={[1, 2, 6]}>
               {news && (
                 <Grid
                   w="full"
-                  gap="2.5"
+                  gap="5"
                   templateRows={`repeat(${rowsCount}, 1fr)`}
                   templateColumns={isLargerThan1025 ? 'repeat(6, 3fr)' : 'repeat(1, 1fr)'}
                 >
                   {Object.keys(Array(newsCounter).fill('')).map(index => {
-                    const data = news[Number(index)].attributes;
+                    if (news[Number(index)]) {
+                      const data = news[Number(index)].attributes;
 
-                    const image = data.image.data['0'].attributes;
-                    const arr = [];
-                    it && arr.push(TagsEnum.IT);
-                    education && arr.push(TagsEnum.EDUCATION);
-                    business && arr.push(TagsEnum.BUSINESS);
-                    government && arr.push(TagsEnum.GOVERNMENT);
+                      const image = data.image.data['0'].attributes;
+                      const arr = [];
+                      it && arr.push(TagsEnum.IT);
+                      education && arr.push(TagsEnum.EDUCATION);
+                      business && arr.push(TagsEnum.BUSINESS);
+                      government && arr.push(TagsEnum.GOVERNMENT);
 
-                    if (rowEven === true) {
-                      if (rowsCount < 2) rowsCount += 1;
-                      else {
-                        rowsCount = 0;
-                        rowEven = false;
+                      if (rowEven === true) {
+                        if (rowsCount < 2) rowsCount += 1;
+                        else {
+                          rowsCount = 0;
+                          rowEven = false;
+                        }
                       }
-                    }
-                    if (rowEven === false) {
-                      if (rowsCount < 2) rowsCount += 1;
-                      else {
-                        rowsCount = 0;
-                        rowEven = true;
+                      if (rowEven === false) {
+                        if (rowsCount < 2) rowsCount += 1;
+                        else {
+                          rowsCount = 0;
+                          rowEven = true;
+                        }
                       }
-                    }
-                    if (
-                      arr.includes(data.tags as TagsEnum) &&
-                      (search === undefined || data.heading.includes(search)) &&
-                      newsCount <= 1
-                    ) {
-                      newsCount += 1;
-                      return (
-                        <GridItem key={index} colSpan={3}>
-                          <NewsContent
-                            id={news[Number(index)].id}
-                            name_content={data.heading}
-                            src_content={`${API_URL}${image.url}`}
-                            views_content={data.views}
-                            tag_content={data.tags}
-                            date_content={data.date}
-                            url_name={transliterating(data.heading)}
-                            like={data.like}
-                            dislike={data.dislike}
-                            delight={data.delight}
-                            shock={data.shock}
-                            smile_face={data.smile_face}
-                            angry={data.angry}
-                          />
-                        </GridItem>
-                      );
-                    }
-                    if (
-                      arr.includes(data.tags as TagsEnum) &&
-                      (search === undefined || data.heading.includes(search)) &&
-                      newsCount > 1
-                    ) {
-                      return (
-                        <GridItem key={index} colSpan={isLargerThan1350 ? 2 : 3}>
-                          <NewsContent
-                            id={news[Number(index)].id}
-                            name_content={data.heading}
-                            src_content={`${API_URL}${image.url}`}
-                            views_content={data.views}
-                            tag_content={data.tags}
-                            date_content={data.date}
-                            url_name={transliterating(data.heading)}
-                            like={data.like}
-                            dislike={data.dislike}
-                            delight={data.delight}
-                            shock={data.shock}
-                            smile_face={data.smile_face}
-                            angry={data.angry}
-                          />
-                        </GridItem>
-                      );
+                      if (
+                        arr.includes(data.tags as TagsEnum) &&
+                        (search === undefined || data.heading.includes(search)) &&
+                        newsCount <= 1
+                      ) {
+                        newsCount += 1;
+                        return (
+                          <GridItem key={index} colSpan={3}>
+                            <NewsContent
+                              id={news[Number(index)].id}
+                              name_content={data.heading}
+                              src_content={`${API_URL}${image.url}`}
+                              views_content={data.views}
+                              tag_content={data.tags}
+                              date_content={data.date}
+                              url_name={transliterating(data.heading)}
+                              like={data.like}
+                              dislike={data.dislike}
+                              delight={data.delight}
+                              shock={data.shock}
+                              smile_face={data.smile_face}
+                              angry={data.angry}
+                            />
+                          </GridItem>
+                        );
+                      }
+                      if (
+                        arr.includes(data.tags as TagsEnum) &&
+                        (search === undefined || data.heading.includes(search)) &&
+                        newsCount > 1
+                      ) {
+                        return (
+                          <GridItem key={index} colSpan={isLargerThan1350 ? 2 : 3}>
+                            <NewsContent
+                              id={news[Number(index)].id}
+                              name_content={data.heading}
+                              src_content={`${API_URL}${image.url}`}
+                              views_content={data.views}
+                              tag_content={data.tags}
+                              date_content={data.date}
+                              url_name={transliterating(data.heading)}
+                              like={data.like}
+                              dislike={data.dislike}
+                              delight={data.delight}
+                              shock={data.shock}
+                              smile_face={data.smile_face}
+                              angry={data.angry}
+                            />
+                          </GridItem>
+                        );
+                      }
+                      return false;
                     }
                     return false;
                   })}
                 </Grid>
               )}
               {news && newsCounter < news?.length && (
-                <Button
-                  variant="brand-news"
-                  rightIcon={<BiPlus />}
-                  w="full"
-                  color={themeIsDark ? 'white' : 'brand.dark'}
-                  onClick={() => {
-                    const newsUp = newsCounter + loadCount <= news?.length ? loadCount : news?.length - newsCounter;
-                    setNewsCounter(newsCounter + newsUp);
-                  }}
-                >
-                  Ещё новости
-                </Button>
+                <HStack w="full" pb={2} m={0}>
+                  <Button
+                    variant="brand-news"
+                    rightIcon={<BiPlus />}
+                    w="full"
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    onClick={() => {
+                      const newsUp = newsCounter + loadCount <= news?.length ? loadCount : news?.length - newsCounter;
+                      setNewsCounter(newsCounter + newsUp);
+                    }}
+                  >
+                    Ещё новости
+                  </Button>
+                </HStack>
               )}
             </VStack>
             {isLargerThan620 && (

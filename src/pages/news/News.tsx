@@ -32,7 +32,6 @@ export const News = React.memo(() => {
   const news = useSelector((state: IRootState) => state.core.news);
   const shortNews = useSelector((state: IRootState) => state.core.shortNews);
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
-
   const toast = useToast();
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
   const [isLargerThan1030] = useMediaQuery('(min-width: 1030px)');
@@ -108,11 +107,11 @@ export const News = React.memo(() => {
         minH={`${height}px`}
         justify="center"
         px={isLargerThan770 ? '10%' : '5%'}
-        bg={themeIsDark ? '#121212' : 'white'}
+        bg={themeIsDark ? '#121212' : 'brand.beige'}
       >
         <VStack
           w="full"
-          bg={themeIsDark ? '#242323' : 'brand.beige'}
+          bg={themeIsDark ? '#242323' : 'white'}
           pl={[2, 3, 4]}
           pb={[4, 6]}
           boxShadow="5px 0px rgb(3,0,15,15%)"

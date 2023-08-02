@@ -26,7 +26,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RiTeamFill } from 'react-icons/ri';
 
-import logo from '../../assets/logo.svg';
 import {
   ROUTE_ABOUTUS,
   ROUTE_CALENDAR,
@@ -45,6 +44,9 @@ import {
   coreSetSearchDraft,
   coreSetTheme,
 } from '../../actions/coreActions';
+import erofeev from '../../assets/team/Erofeev-transformed.png';
+import full_logo from '../../assets/full-logo.svg';
+import logo from '../../assets/logo.svg';
 
 export const Header = React.memo(() => {
   const dispatch = useDispatch<Dispatch<RootActions>>();
@@ -56,10 +58,14 @@ export const Header = React.memo(() => {
   const search = useSelector((state: IRootState) => state.core.search);
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
+  const [isLargerThan1500] = useMediaQuery('(min-width: 1500px)');
   const [isLargerThan1090] = useMediaQuery('(min-width: 1090px)');
+  const [isLargerThan1065] = useMediaQuery('(min-width: 1065px)');
   const [isLargerThan905] = useMediaQuery('(min-width: 905px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
-  const [isLargerThan425] = useMediaQuery('(min-width: 425px)');
+  const [isLargerThan670] = useMediaQuery('(min-width: 670px)');
+  const [isLargerThan570] = useMediaQuery('(min-width: 570px)');
+  // const [isLargerThan435] = useMediaQuery('(min-width: 435px)');
 
   useEffect(() => {
     dispatch(coreGetTheme());
@@ -120,36 +126,119 @@ export const Header = React.memo(() => {
           </HStack>
           <Spacer />
           <HStack cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE} align="center">
-            <Image src={logo} h="70px" loading="lazy" py={0} />
+            {isLargerThan670 ? (
+              <Image src={full_logo} minH="100px" minW="100px" maxH="120px" loading="lazy" py={0} />
+            ) : (
+              <Image src={logo} minH="100px" minW="120px" maxH="120px" loading="lazy" py={0} />
+            )}
           </HStack>
         </VStack>
-        {isLargerThan425 && (
-          <HStack w="full" align="end" justifyContent={!isLargerThan905 ? 'flex-end' : 'start'}>
-            {isLargerThan905 && <Spacer />}
-            <Stack align="center" spacing={[1, 2]} direction={isLargerThan905 ? 'row' : 'column'}>
-              <VStack spacing={0} justify="start">
-                <Text fontSize={['md', 'lg', '2xl']}>239</Text>
-                <Text fontSize={['xs', 'xs', 'md']} color="#BBBBBB">
-                  реализованных проектов
+        <HStack spacing={0} p={0} m={0} w="full" justify="end" align="end">
+          {isLargerThan1065 && (
+            <HStack spacing={[1, 3, 5]} p={0} m={0} justify={!isLargerThan1500 ? 'flex-end' : 'start'}>
+              <Stack align="center" direction={isLargerThan1500 ? 'row' : 'column'} spacing={0}>
+                <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                  <Text fontSize={isLargerThan1500 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
+                    88,2
+                  </Text>
+                  <Text
+                    fontSize={isLargerThan1500 ? ['xs', 'sm', 'md', 'lg'] : '15px'}
+                    color="#BBBBBB"
+                    as="i"
+                    align="center"
+                  >
+                    тыс. участников
+                  </Text>
+                </VStack>
+                <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                  <Text fontSize={isLargerThan1500 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
+                    107
+                  </Text>
+                  <Text
+                    fontSize={isLargerThan1500 ? ['xs', 'sm', 'md', 'lg'] : '15px'}
+                    color="#BBBBBB"
+                    as="i"
+                    align="center"
+                  >
+                    млн руб.
+                  </Text>
+                </VStack>
+                <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                  <Text fontSize={isLargerThan1500 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
+                    247
+                  </Text>
+                  <Text
+                    fontSize={isLargerThan1500 ? ['xs', 'sm', 'md', 'lg'] : '15px'}
+                    color="#BBBBBB"
+                    as="i"
+                    align="center"
+                  >
+                    проектов
+                  </Text>
+                </VStack>
+              </Stack>
+            </HStack>
+          )}
+          {isLargerThan570 ? (
+            <HStack spacing={0} align="flex-end">
+              <VStack spacing={0} position="relative" left="10px" pb={1}>
+                <Text
+                  fontSize={isLargerThan905 ? ['xs', 'sm', 'md', 'lg'] : '12px'}
+                  p={0}
+                  m={0}
+                  fontWeight="bold"
+                  align="center"
+                  justifyContent="center"
+                >
+                  Сергей Ерофеев, директор фонда:
+                </Text>
+                <Text
+                  fontSize={isLargerThan905 ? ['xs', 'sm'] : '10px'}
+                  color="#BBBBBB"
+                  p={0}
+                  m={0}
+                  as="i"
+                  align="center"
+                  maxW="300px"
+                >
+                  Расшиваем «узкие» места в системе подготовки ИТ-кадров Развиваем ИТ-сообщество Содействуем цифровой
+                  трансформации экономики и соцсферы
                 </Text>
               </VStack>
-              <VStack spacing={0} justify="start">
-                <Text fontSize={['md', 'lg', '2xl']} p={0} m={0}>
-                  83337
+              <Image
+                src={erofeev}
+                alt="erofeev"
+                loading="lazy"
+                htmlWidth="full"
+                maxW={isLargerThan905 ? '150px' : '120px'}
+                htmlHeight="full"
+              />
+            </HStack>
+          ) : (
+            <VStack spacing={0} align="start" justify="start" w="full">
+              <Stack p={0} m={0} spacing={1} align="center" direction="row">
+                <Text fontSize="23px" align="start">
+                  88,2
                 </Text>
-                <Text fontSize={['xs', 'xs', 'md']} color="#BBBBBB">
-                  участников
+                <Text as="i" fontSize="sm" color="#BBBBBB" align="start">
+                  тыс. участников
                 </Text>
-              </VStack>
-              <VStack spacing={0} justify="start">
-                <Text fontSize={['md', 'lg', '2xl']}>94,2 млн руб.</Text>
-                <Text fontSize={['xs', 'xs', 'md']} color="#BBBBBB">
-                  общая сумма поддержки
+              </Stack>
+              <Stack p={0} m={0} spacing={1} align="center" direction="row">
+                <Text fontSize="23px">107</Text>
+                <Text as="i" fontSize="sm" color="#BBBBBB">
+                  млн руб.
                 </Text>
-              </VStack>
-            </Stack>
-          </HStack>
-        )}
+              </Stack>
+              <Stack p={0} m={0} spacing={1} align="center" direction="row">
+                <Text fontSize="23px">247</Text>
+                <Text as="i" fontSize="sm" color="#BBBBBB">
+                  проектов
+                </Text>
+              </Stack>
+            </VStack>
+          )}
+        </HStack>
       </HStack>
       <HStack
         w="full"
@@ -231,7 +320,6 @@ export const Header = React.memo(() => {
             />
           </Tooltip>
         </HStack>
-        {isLargerThan425 && <Spacer />}
         {isLargerThan1090 && (
           <HStack spacing={0}>
             <>
@@ -247,7 +335,6 @@ export const Header = React.memo(() => {
             </>
           </HStack>
         )}
-        {isLargerThan425 && <Spacer />}
         {!isLargerThan1090 && (
           <Menu>
             <MenuButton

@@ -161,8 +161,11 @@ export const Emotions = React.memo(
         }
         dispatch(coreSetEmotions(emotionsData));
       } else {
+        let dataLength = 0;
+
         const dataStorage = localStorage.getItem('newsReactions');
         const newsReactions: IEmotions = {};
+
         if (!dataStorage && news) {
           Object.keys(news).map(index => {
             return (newsReactions[`${news[Number(index)].id}`] = {
@@ -174,8 +177,39 @@ export const Emotions = React.memo(
               like: false,
             });
           });
+
           localStorage.setItem('newsReactions', JSON.stringify(newsReactions));
         }
+        if (dataStorage && news) {
+          const dataJson = JSON.parse(dataStorage);
+
+          for (const k in dataJson) if (dataJson.hasOwnProperty(k)) dataLength += 1;
+
+          if (news.length > dataLength) {
+            Object.keys(news).map(index => {
+              if (dataJson[`${news[Number(index)].id}`]) {
+                return (newsReactions[`${news[Number(index)].id}`] = {
+                  dislike: dataJson[`${news[Number(index)].id}`].dislike,
+                  delight: dataJson[`${news[Number(index)].id}`].delight,
+                  shock: dataJson[`${news[Number(index)].id}`].shock,
+                  smile_face: dataJson[`${news[Number(index)].id}`].smile_face,
+                  angry: dataJson[`${news[Number(index)].id}`].angry,
+                  like: dataJson[`${news[Number(index)].id}`].like,
+                });
+              }
+              return (newsReactions[`${news[Number(index)].id}`] = {
+                dislike: false,
+                delight: false,
+                shock: false,
+                smile_face: false,
+                angry: false,
+                like: false,
+              });
+            });
+            localStorage.setItem('newsReactions', JSON.stringify(newsReactions));
+          }
+        }
+
         dispatch(coreSetEmotions(emotionsData));
       }
     }, [news]);
