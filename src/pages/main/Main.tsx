@@ -77,7 +77,7 @@ export const Main = React.memo(() => {
           content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года."
         />
         <meta property="og:descripsion" content="Фонд развития информационный технологий" />
-        <meta property="og:image" content="%PUBLIC_URL%/logo_ref.jpg" />
+        <meta property="og:image" content="/logo_ref.jpg" />
         <meta property="og:image:type" content="image/jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -85,7 +85,7 @@ export const Main = React.memo(() => {
         <meta property="vk:url" content="https://www.it-fund73.ru/" />
         <meta name="vk:title" content="Фонд развития информационный технологий" />
         <meta name="vk:descripsion" content="Фонд развития информационный технологий" />
-        <meta name="vk:image" content=".%PUBLIC_URL%/logo_ref.jpg" />
+        <meta name="vk:image" content="/logo_ref.jpg" />
         <meta
           name="keywords"
           content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, ИТ-отрасль, Где получить образование?, Что происходит в отрасли?"
@@ -215,75 +215,73 @@ export const Main = React.memo(() => {
                 </HStack>
               )}
             </VStack>
-            {isLargerThan620 && (
-              <VStack
+            <VStack
+              w="full"
+              maxW={isLargerThan1025 ? '20%' : '35%'}
+              spacing={2}
+              borderLeft="2px"
+              borderColor={themeIsDark ? 'white' : 'brand.dark'}
+              minH={`${height}px`}
+              h={contentHeight}
+              align="center"
+            >
+              <Text
                 w="full"
-                maxW={isLargerThan1025 ? '20%' : '35%'}
-                spacing={2}
-                borderLeft="2px"
-                borderColor={themeIsDark ? 'white' : 'brand.dark'}
-                minH={`${height}px`}
-                h={contentHeight}
+                color={themeIsDark ? 'white' : 'brand.dark'}
+                fontSize={['lg', 'xl', '2xl']}
+                borderBottom="2px"
                 align="center"
               >
-                <Text
-                  w="full"
-                  color={themeIsDark ? 'white' : 'brand.dark'}
-                  fontSize={['lg', 'xl', '2xl']}
-                  borderBottom="2px"
-                  align="center"
-                >
-                  Новости
-                </Text>
-                <VStack w="full" px={[1, 2, 3]}>
-                  {shortNews ? (
-                    Object.keys(shortNews).map(index => {
-                      if (shortRowsCount < shortNewsCounter) {
-                        shortRowsCount += 1;
+                Новости
+              </Text>
+              <VStack w="full" px={[1, 2, 3]}>
+                {shortNews ? (
+                  Object.keys(shortNews).map(index => {
+                    if (shortRowsCount < shortNewsCounter) {
+                      shortRowsCount += 1;
 
-                        return (
-                          <Link
-                            as={RouterLink}
-                            to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
-                            key={index}
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['sm', 'md']}
-                            onClick={async () => {
-                              await fetchChangeShortsViews(
-                                shortNews[Number(index)].id,
-                                Number(shortNews[Number(index)].attributes.views),
-                              );
-                            }}
-                          >
-                            {shortNews[Number(index)].attributes.heading}
-                          </Link>
-                        );
-                      }
-                      return false;
-                    })
-                  ) : (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
-                      Нет подходящих новостей
-                    </Text>
-                  )}
-                  {shortNews && shortNewsCounter < shortNews?.length && (
-                    <Button
-                      variant="brand-news"
-                      rightIcon={<BiPlus />}
-                      w="full"
-                      color={themeIsDark ? 'white' : 'brand.dark'}
-                      onClick={() => {
-                        const newsUp = shortNewsCounter + loadShortCount;
+                      return (
+                        <Link
+                          as={RouterLink}
+                          to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
+                          key={index}
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['xs', 'sm', 'md']}
+                          onClick={async () => {
+                            await fetchChangeShortsViews(
+                              shortNews[Number(index)].id,
+                              Number(shortNews[Number(index)].attributes.views),
+                            );
+                          }}
+                        >
+                          {shortNews[Number(index)].attributes.heading}
+                        </Link>
+                      );
+                    }
+                    return false;
+                  })
+                ) : (
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
+                    Нет подходящих новостей
+                  </Text>
+                )}
+                {shortNews && shortNewsCounter < shortNews?.length && (
+                  <Button
+                    variant="brand-news"
+                    rightIcon={<BiPlus />}
+                    w="full"
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    onClick={() => {
+                      const newsUp = shortNewsCounter + loadShortCount;
 
-                        setShortNewsCounter(newsUp);
-                      }}
-                    >
-                      Ещё новости
-                    </Button>
-                  )}
-                </VStack>
+                      setShortNewsCounter(newsUp);
+                    }}
+                  >
+                    Ещё новости
+                  </Button>
+                )}
               </VStack>
-            )}
+            </VStack>
           </HStack>
         </VStack>
       </VStack>

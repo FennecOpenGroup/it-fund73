@@ -50,8 +50,9 @@ export const NewsContent = React.memo(
     const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
     const [isLargerThan590] = useMediaQuery('(min-width: 590px)');
+    const [isLargerThan380] = useMediaQuery('(min-width: 380px)');
 
-    const highlightFontSize = isLargerThan590 ? '18px' : '14px';
+    const highlightFontSize = isLargerThan590 ? '18px' : isLargerThan380 ? '14px' : '12px';
     const highlightColor = themeIsDark ? 'white' : '#121212';
 
     const tag =
@@ -102,7 +103,7 @@ export const NewsContent = React.memo(
             <Image
               src={src_content}
               w={load ? 'full' : '0px'}
-              h={load ? `${height / 3.5}px` : '0px'}
+              h={isLargerThan380 ? (load ? `${height / 3.5}px` : '0px') : load ? `${height / 6}px` : '0px'}
               borderRadius="5px"
               objectFit="cover"
               transitionDuration="0.3s"

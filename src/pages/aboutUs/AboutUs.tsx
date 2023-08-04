@@ -28,10 +28,12 @@ import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Chart } from 'react-google-charts';
-import { AiOutlineApartment, AiOutlineFile } from 'react-icons/ai';
-import { GiVintageRobot } from 'react-icons/gi';
-import { MdEmojiPeople, MdBiotech, MdCellTower } from 'react-icons/md';
+import { AiOutlineFile, AiOutlineFundProjectionScreen } from 'react-icons/ai';
+import { GiProgression } from 'react-icons/gi';
 import { BsFillPersonFill, BsMailbox, BsTelephone } from 'react-icons/bs';
+import { GoPeople } from 'react-icons/go';
+import { LiaHandshake } from 'react-icons/lia';
+import { ImSphere } from 'react-icons/im';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
@@ -94,7 +96,7 @@ export const AboutUs = React.memo(() => {
         <meta property="og:url" content="https://www.it-fund73.ru/aboutUS" />
         <meta property="og:title" content="Фонд развития информационный технологий Ульяновской области." />
         <meta property="og:descripsion" content="Информация о фонде" />
-        <meta property="og:image" content="%PUBLIC_URL%/logo_ref.jpg" />
+        <meta property="og:image" content="/logo_ref.jpg" />
         <meta property="og:image:type" content="image/jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -102,7 +104,7 @@ export const AboutUs = React.memo(() => {
         <meta property="vk:url" content="https://www.it-fund73.ru/aboutUS" />
         <meta name="vk:title" content="Фонд развития информационный технологий Ульяновской области." />
         <meta name="vk:descripsion" content="Фонд развития информационный технологий Ульяновской области." />
-        <meta name="vk:image" content=".%PUBLIC_URL%/logo_ref.jpg" />
+        <meta name="vk:image" content="/logo_ref.jpg" />
         <meta
           name="keywords"
           content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT"
@@ -199,7 +201,7 @@ export const AboutUs = React.memo(() => {
                       align={isLargerThan530 ? 'start' : 'center'}
                     >
                       <VStack minW={['3em', '4em', '5em']}>
-                        <AiOutlineApartment size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
+                        <GiProgression size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
                       </VStack>
                       <Text
                         color={themeIsDark ? 'white' : 'brand.dark'}
@@ -216,7 +218,7 @@ export const AboutUs = React.memo(() => {
                       align={isLargerThan530 ? 'start' : 'center'}
                     >
                       <VStack minW={['3em', '4em', '5em']}>
-                        <MdEmojiPeople size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
+                        <GoPeople size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
                       </VStack>
                       <Text
                         color={themeIsDark ? 'white' : 'brand.dark'}
@@ -233,7 +235,7 @@ export const AboutUs = React.memo(() => {
                       align={isLargerThan530 ? 'start' : 'center'}
                     >
                       <VStack minW={['3em', '4em', '5em']}>
-                        <MdBiotech size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
+                        <LiaHandshake size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
                       </VStack>
                       <Text
                         color={themeIsDark ? 'white' : 'brand.dark'}
@@ -251,7 +253,7 @@ export const AboutUs = React.memo(() => {
                       align={isLargerThan530 ? 'start' : 'center'}
                     >
                       <VStack minW={['3em', '4em', '5em']}>
-                        <GiVintageRobot size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
+                        <AiOutlineFundProjectionScreen size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
                       </VStack>
                       <Text
                         color={themeIsDark ? 'white' : 'brand.dark'}
@@ -271,7 +273,7 @@ export const AboutUs = React.memo(() => {
                       align={isLargerThan530 ? 'start' : 'center'}
                     >
                       <VStack minW={['3em', '4em', '5em']}>
-                        <MdCellTower size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
+                        <ImSphere size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
                       </VStack>
                       <Text
                         color={themeIsDark ? 'white' : 'brand.dark'}
@@ -357,7 +359,7 @@ export const AboutUs = React.memo(() => {
               </TableContainer>
             </VStack>
             <Accordion allowMultiple w="full">
-              <AccordionItem color={themeIsDark ? 'white' : 'brand.dark'}>
+              <AccordionItem color={themeIsDark ? 'white' : 'brand.dark'} display="none">
                 <AccordionButton onClick={() => setCharts(!charts)}>
                   <Box flex="1" textAlign="left" ref={refCharts}>
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>

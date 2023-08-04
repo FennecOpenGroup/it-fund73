@@ -46,7 +46,6 @@ import {
 } from '../../actions/coreActions';
 import erofeev from '../../assets/team/Erofeev-transformed.png';
 import full_logo from '../../assets/full-logo.svg';
-import logo from '../../assets/logo.svg';
 
 export const Header = React.memo(() => {
   const dispatch = useDispatch<Dispatch<RootActions>>();
@@ -58,14 +57,12 @@ export const Header = React.memo(() => {
   const search = useSelector((state: IRootState) => state.core.search);
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
-  const [isLargerThan1500] = useMediaQuery('(min-width: 1500px)');
+  const [isLargerThan1580] = useMediaQuery('(min-width: 1580px)');
   const [isLargerThan1090] = useMediaQuery('(min-width: 1090px)');
   const [isLargerThan1065] = useMediaQuery('(min-width: 1065px)');
   const [isLargerThan905] = useMediaQuery('(min-width: 905px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
-  const [isLargerThan670] = useMediaQuery('(min-width: 670px)');
-  const [isLargerThan570] = useMediaQuery('(min-width: 570px)');
-  // const [isLargerThan435] = useMediaQuery('(min-width: 435px)');
+  const [isLargerThan665] = useMediaQuery('(min-width: 665px)');
 
   useEffect(() => {
     dispatch(coreGetTheme());
@@ -84,7 +81,7 @@ export const Header = React.memo(() => {
       spacing={0}
     >
       <HStack w="full">
-        <VStack align="end" justify="end">
+        <VStack align="end" justify="end" w={isLargerThan665 ? 'auto' : 'full'}>
           <HStack w="full">
             <Tooltip label="Сменить тему">
               <Button
@@ -125,120 +122,101 @@ export const Header = React.memo(() => {
             </Tooltip>
           </HStack>
           <Spacer />
-          <HStack cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE} align="center">
-            {isLargerThan670 ? (
-              <Image src={full_logo} minH="100px" minW="100px" maxH="120px" loading="lazy" py={0} />
-            ) : (
-              <Image src={logo} minH="100px" minW="120px" maxH="120px" loading="lazy" py={0} />
-            )}
+          <HStack
+            cursor="pointer"
+            as={RouterLink}
+            to={ROUTE_MAINPAGE}
+            align="center"
+            w={isLargerThan665 ? 'auto' : 'full'}
+          >
+            <Image src={full_logo} minH="100px" minW="120px" w="full" loading="lazy" py={0} />
           </HStack>
         </VStack>
-        <HStack spacing={0} p={0} m={0} w="full" justify="end" align="end">
-          {isLargerThan1065 && (
-            <HStack spacing={[1, 3, 5]} p={0} m={0} justify={!isLargerThan1500 ? 'flex-end' : 'start'}>
-              <Stack align="center" direction={isLargerThan1500 ? 'row' : 'column'} spacing={0}>
-                <VStack spacing={0} justify="center" align="center" px={2} m={0}>
-                  <Text fontSize={isLargerThan1500 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
-                    88,2
+        {isLargerThan665 && (
+          <HStack spacing={0} p={0} m={0} w="full" justify="end" align="end">
+            {isLargerThan1065 && (
+              <HStack spacing={[1, 3, 5]} p={0} m={0} justify={!isLargerThan1580 ? 'flex-end' : 'start'}>
+                <Stack align="center" direction={isLargerThan1580 ? 'row' : 'column'} spacing={0}>
+                  <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                    <Text fontSize={isLargerThan1580 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
+                      88,2
+                    </Text>
+                    <Text
+                      fontSize={isLargerThan1580 ? ['xs', 'sm', 'md', 'lg'] : '15px'}
+                      color="#BBBBBB"
+                      as="i"
+                      align="center"
+                    >
+                      тыс. участников
+                    </Text>
+                  </VStack>
+                  <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                    <Text fontSize={isLargerThan1580 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
+                      107
+                    </Text>
+                    <Text
+                      fontSize={isLargerThan1580 ? ['xs', 'sm', 'md', 'lg'] : '15px'}
+                      color="#BBBBBB"
+                      as="i"
+                      align="center"
+                    >
+                      млн руб.
+                    </Text>
+                  </VStack>
+                  <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                    <Text fontSize={isLargerThan1580 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
+                      247
+                    </Text>
+                    <Text
+                      fontSize={isLargerThan1580 ? ['xs', 'sm', 'md', 'lg'] : '15px'}
+                      color="#BBBBBB"
+                      as="i"
+                      align="center"
+                    >
+                      проектов
+                    </Text>
+                  </VStack>
+                </Stack>
+              </HStack>
+            )}
+            {isLargerThan665 && (
+              <HStack spacing={0} align="flex-end">
+                <VStack spacing={0} position="relative" left="10px" pb={1}>
+                  <Text
+                    fontSize={isLargerThan905 ? ['xs', 'sm', 'md', 'lg'] : '12px'}
+                    p={0}
+                    m={0}
+                    fontWeight="bold"
+                    align="center"
+                    justifyContent="center"
+                  >
+                    Сергей Ерофеев, директор фонда:
                   </Text>
                   <Text
-                    fontSize={isLargerThan1500 ? ['xs', 'sm', 'md', 'lg'] : '15px'}
+                    fontSize={isLargerThan905 ? ['xs', 'sm'] : '10px'}
                     color="#BBBBBB"
+                    p={0}
+                    m={0}
                     as="i"
                     align="center"
+                    maxW="250px"
                   >
-                    тыс. участников
+                    Расшиваем «узкие» места в системе подготовки ИТ-кадров Развиваем ИТ-сообщество Содействуем цифровой
+                    трансформации экономики и соцсферы
                   </Text>
                 </VStack>
-                <VStack spacing={0} justify="center" align="center" px={2} m={0}>
-                  <Text fontSize={isLargerThan1500 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
-                    107
-                  </Text>
-                  <Text
-                    fontSize={isLargerThan1500 ? ['xs', 'sm', 'md', 'lg'] : '15px'}
-                    color="#BBBBBB"
-                    as="i"
-                    align="center"
-                  >
-                    млн руб.
-                  </Text>
-                </VStack>
-                <VStack spacing={0} justify="center" align="center" px={2} m={0}>
-                  <Text fontSize={isLargerThan1500 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
-                    247
-                  </Text>
-                  <Text
-                    fontSize={isLargerThan1500 ? ['xs', 'sm', 'md', 'lg'] : '15px'}
-                    color="#BBBBBB"
-                    as="i"
-                    align="center"
-                  >
-                    проектов
-                  </Text>
-                </VStack>
-              </Stack>
-            </HStack>
-          )}
-          {isLargerThan570 ? (
-            <HStack spacing={0} align="flex-end">
-              <VStack spacing={0} position="relative" left="10px" pb={1}>
-                <Text
-                  fontSize={isLargerThan905 ? ['xs', 'sm', 'md', 'lg'] : '12px'}
-                  p={0}
-                  m={0}
-                  fontWeight="bold"
-                  align="center"
-                  justifyContent="center"
-                >
-                  Сергей Ерофеев, директор фонда:
-                </Text>
-                <Text
-                  fontSize={isLargerThan905 ? ['xs', 'sm'] : '10px'}
-                  color="#BBBBBB"
-                  p={0}
-                  m={0}
-                  as="i"
-                  align="center"
-                  maxW="300px"
-                >
-                  Расшиваем «узкие» места в системе подготовки ИТ-кадров Развиваем ИТ-сообщество Содействуем цифровой
-                  трансформации экономики и соцсферы
-                </Text>
-              </VStack>
-              <Image
-                src={erofeev}
-                alt="erofeev"
-                loading="lazy"
-                htmlWidth="full"
-                maxW={isLargerThan905 ? '150px' : '120px'}
-                htmlHeight="full"
-              />
-            </HStack>
-          ) : (
-            <VStack spacing={0} align="start" justify="start" w="full">
-              <Stack p={0} m={0} spacing={1} align="center" direction="row">
-                <Text fontSize="23px" align="start">
-                  88,2
-                </Text>
-                <Text as="i" fontSize="sm" color="#BBBBBB" align="start">
-                  тыс. участников
-                </Text>
-              </Stack>
-              <Stack p={0} m={0} spacing={1} align="center" direction="row">
-                <Text fontSize="23px">107</Text>
-                <Text as="i" fontSize="sm" color="#BBBBBB">
-                  млн руб.
-                </Text>
-              </Stack>
-              <Stack p={0} m={0} spacing={1} align="center" direction="row">
-                <Text fontSize="23px">247</Text>
-                <Text as="i" fontSize="sm" color="#BBBBBB">
-                  проектов
-                </Text>
-              </Stack>
-            </VStack>
-          )}
-        </HStack>
+                <Image
+                  src={erofeev}
+                  alt="erofeev"
+                  loading="lazy"
+                  htmlWidth="full"
+                  maxW={isLargerThan905 ? '140px' : '120px'}
+                  htmlHeight="full"
+                />
+              </HStack>
+            )}
+          </HStack>
+        )}
       </HStack>
       <HStack
         w="full"

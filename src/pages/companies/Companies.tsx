@@ -78,7 +78,6 @@ export const Companies = React.memo(() => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
 
   return (
     <>
@@ -88,18 +87,18 @@ export const Companies = React.memo(() => {
         <meta name="description" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
-        <meta property="og:url" content="https://www.it-fund73.ru/companies"/>
+        <meta property="og:url" content="https://www.it-fund73.ru/companies" />
         <meta property="og:title" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta property="og:descripsion" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
-        <meta property="og:image" content="%PUBLIC_URL%/logo_ref.jpg" />
+        <meta property="og:image" content="/logo_ref.jpg" />
         <meta property="og:image:type" content="image/jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="vk:card" content="image/jpg" />
-        <meta property="vk:url" content="https://www.it-fund73.ru/companies"/>
+        <meta property="vk:url" content="https://www.it-fund73.ru/companies" />
         <meta name="vk:title" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta name="vk:descripsion" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
-        <meta name="vk:image" content=".%PUBLIC_URL%/logo_ref.jpg" />
+        <meta name="vk:image" content="/logo_ref.jpg" />
         <meta
           name="keywords"
           content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, ИТ-отрасль"
@@ -178,79 +177,58 @@ export const Companies = React.memo(() => {
             templateColumns={isLargerThan770 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)'}
             mb={4}
           >
-            <HStack
-              p={2}
-              borderRadius="5px"
-              backgroundColor="brand.dark"
-              w="full"
-              minH={isLargerThan770 ? '170' : '110px'}
-            >
+            <HStack p={2} borderRadius="15px" backgroundColor="brand.dark" minH={isLargerThan770 ? '170' : '110px'}>
               <VStack minW={['3em', '4em', '5em']}>
                 <MdComputer size={isLargerThan770 ? '4em' : '3em'} color="white" />
               </VStack>
-              <Stack p={1} m={0} spacing={0} w="full">
-                <Text fontSize={['sm', 'md', 'xl']}>ИТ-организаций –</Text>
-                {isLargerThan770 && (
-                  <CountUp
-                    style={{ color: 'white', fontSize: '40px', fontWeight: 'bold' }}
-                    separator=""
-                    end={1451}
-                    duration={2}
-                  />
-                )}
-                {!isLargerThan770 && (
-                  <CountUp
-                    style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}
-                    separator=""
-                    end={1451}
-                    duration={2}
-                  />
-                )}
+              <Stack p={1} m={0} spacing={0} w="full" align="start">
+                <Text fontSize={['sm', 'md', 'xl', '2xl']}>ИТ-организаций</Text>
+                <CountUp
+                  style={{ color: '#7775ed', fontSize: `${isLargerThan770 ? '40px' : '20px'}`, fontWeight: 'bold' }}
+                  separator=""
+                  end={1451}
+                  duration={2}
+                />
               </Stack>
             </HStack>
-            <HStack
-              p={2}
-              borderRadius="5px"
-              backgroundColor="brand.dark"
-              w="full"
-              minH={isLargerThan770 ? '170' : '110px'}
-            >
+            <HStack p={2} borderRadius="15px" backgroundColor="brand.dark" minH={isLargerThan770 ? '170' : '110px'}>
               <VStack minW={['3em', '4em', '5em']}>
                 <FaFileContract size={isLargerThan770 ? '4em' : '3em'} color="white" />
               </VStack>
               <Stack p={1} m={0} spacing={0} w="full">
-                <Text fontSize={['sm', 'md', 'xl']}>Аккредитованных ИТ-компаний в Минцифры России – </Text>
+                <Text fontSize={['sm', 'md', 'xl', '2xl']}>Аккредитованных ИТ-компаний в Минцифры России </Text>
                 {isLargerThan770 && (
-                  <CountUp style={{ color: 'white', fontSize: '40px', fontWeight: 'bold' }} end={175} duration={2} />
+                  <CountUp style={{ color: '#7775ed', fontSize: '40px', fontWeight: 'bold' }} end={175} duration={2} />
                 )}
                 {!isLargerThan770 && (
-                  <CountUp style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }} end={175} duration={2} />
+                  <CountUp style={{ color: '#7775ed', fontSize: '20px', fontWeight: 'bold' }} end={175} duration={2} />
                 )}
                 <Text fontSize={['sm', 'md', 'xl']}>компаний </Text>
               </Stack>
             </HStack>
             <HStack
               p={2}
-              borderRadius="5px"
+              borderRadius="15px"
               backgroundColor="brand.dark"
               w="full"
               minH={isLargerThan770 ? '170' : '110px'}
+              justify="center"
             >
               <VStack minW={['3em', '4em', '5em']}>
                 <BsGraphUpArrow size={isLargerThan770 ? '4em' : '3em'} color="white" />
               </VStack>
               <Stack p={0} m={0} spacing={0} w="full">
-                <Text fontSize={['sm', 'md', 'xl']}>Налоговые поступления в региональный бюджет – </Text>
+                <Text fontSize={['sm', 'md', 'xl', '2xl']}>Налоговые поступления в региональный бюджет </Text>
                 {isLargerThan770 && (
                   <CountUp
-                    style={{ color: 'white', fontSize: '40px', fontWeight: 'bold' }}
+                    style={{ color: '#7775ed', fontSize: '40px', fontWeight: 'bold' }}
                     end={328.4}
                     duration={2.2}
                   />
                 )}
                 {!isLargerThan770 && (
                   <CountUp
-                    style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}
+                    style={{ color: '#7775ed', fontSize: '20px', fontWeight: 'bold' }}
                     end={328.4}
                     duration={2.2}
                   />
@@ -260,7 +238,7 @@ export const Companies = React.memo(() => {
             </HStack>
             <HStack
               p={2}
-              borderRadius="5px"
+              borderRadius="15px"
               backgroundColor="brand.dark"
               w="full"
               minH={isLargerThan770 ? '170' : '110px'}
@@ -269,10 +247,10 @@ export const Companies = React.memo(() => {
                 <MdPeopleAlt size={isLargerThan770 ? '4em' : '3em'} color="white" />
               </VStack>
               <Stack p={0} m={0} spacing={0} w="full">
-                <Text fontSize={['sm', 'md', 'xl']}>Среднесписочная численность работников – </Text>
+                <Text fontSize={['sm', 'md', 'xl', '2xl']}>Среднесписочная численность работников </Text>
                 {isLargerThan770 && (
                   <CountUp
-                    style={{ color: 'white', fontSize: '40px', fontWeight: 'bold' }}
+                    style={{ color: '#7775ed', fontSize: '40px', fontWeight: 'bold' }}
                     end={6210}
                     separator=""
                     duration={2}
@@ -280,7 +258,7 @@ export const Companies = React.memo(() => {
                 )}
                 {!isLargerThan770 && (
                   <CountUp
-                    style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}
+                    style={{ color: '#7775ed', fontSize: '20px', fontWeight: 'bold' }}
                     end={6210}
                     separator=""
                     duration={2}

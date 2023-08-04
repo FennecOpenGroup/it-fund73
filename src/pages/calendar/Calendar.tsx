@@ -128,7 +128,7 @@ export const Calendar = React.memo(() => {
         <meta property="og:url" content="https://www.it-fund73.ru/calendar" />
         <meta property="og:title" content="Календарь мероприятий" />
         <meta property="og:descripsion" content="Календарь мероприятий" />
-        <meta property="og:image" content="%PUBLIC_URL%/logo_ref.jpg" />
+        <meta property="og:image" content="/logo_ref.jpg" />
         <meta property="og:image:type" content="image/jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -136,7 +136,7 @@ export const Calendar = React.memo(() => {
         <meta property="vk:url" content="https://www.it-fund73.ru/calendar" />
         <meta name="vk:title" content="Календарь мероприятий" />
         <meta name="vk:descripsion" content="Календарь мероприятий" />
-        <meta name="vk:image" content=".%PUBLIC_URL%/logo_ref.jpg" />
+        <meta name="vk:image" content="/logo_ref.jpg" />
         <meta
           name="keywords"
           content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, мероприятия, календарь событий"
