@@ -1,5 +1,6 @@
 /* eslint no-return-assign: "error" */
 /* eslint no-unneeded-ternary: "error" */
+/* eslint no-restricted-syntax: "error" */
 import { HStack, Text, Button, Grid, GridItem } from '@chakra-ui/react';
 import React, { Dispatch, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

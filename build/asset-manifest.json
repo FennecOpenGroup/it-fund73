@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/static/css/main.81f66d4a.css",
+    "main.js": "/static/js/main.a3dcd245.js",
+    "static/media/Ulyanovsk.jpg": "/static/media/Ulyanovsk.de91603c3e10fbaee854.jpg",
+    "static/media/scheme_accreditation_dark.svg": "/static/media/scheme_accreditation_dark.4b8c06db2a11c6499825ed9df10b758b.svg",
+    "static/media/scheme_accreditation.svg": "/static/media/scheme_accreditation.7a06173f58427dc42b4cc9da3f00901e.svg",
+    "static/media/Erofeev-transformed.png": "/static/media/Erofeev-transformed.38a528cb08a051586dac.png",
+    "static/media/ul-logo.svg": "/static/media/ul-logo.c8cbfb04712c8833a5e4584f45b608a4.svg",
+    "static/media/mobirate.svg": "/static/media/mobirate.b9ceb7798cb735b043bb78d8ede3b4af.svg",
+    "static/media/IRLIX.svg": "/static/media/IRLIX.ac90f680795a199c626279ccc136c2b6.svg",
+    "static/media/MuseoSansCyrl500.ttf": "/static/media/MuseoSansCyrl500.948ec7de201f332c4e86.ttf",
+    "static/media/MadBrains.svg": "/static/media/MadBrains.d87967f186582a9db3d8a796005369a4.svg",
+    "static/media/ITECH.svg": "/static/media/ITECH.133550eaabb0f7ff0027eb5e04a1f707.svg",
+    "static/media/PROF-IT.svg": "/static/media/PROF-IT.d3425cb783df88769859ee762500db61.svg",
+    "static/media/ANY-RUN.svg": "/static/media/ANY-RUN.1ff4d44b61ff5956b31c5fc5b80c5701.svg",
+    "static/media/simbirsoft.svg": "/static/media/simbirsoft.e3c0a78ceff45cac74be1c792fd74673.svg",
+    "static/media/funbox.svg": "/static/media/funbox.623920d55e93da8e1a56ffc19577f26a.svg",
+    "static/media/DAO-TECH.svg": "/static/media/DAO-TECH.92b6b8478ff39a2eead5201f0e347f0f.svg",
+    "static/media/65apps.svg": "/static/media/65apps.c76bc844df8cd678628d8a0ef47a5e4e.svg",
+    "static/media/advanshop.svg": "/static/media/advanshop.2a79dafa34411012bd8ad5d40b710bfd.svg",
+    "static/media/IBS.svg": "/static/media/IBS.a1fb68440f619d90a6e5449210f049a6.svg",
+    "static/media/ASTRIO.svg": "/static/media/ASTRIO.a48fc62d4642ff4bdd2d54eaf2295a63.svg",
+    "static/media/full-logo.svg": "/static/media/full-logo.6f0de66337ef35be5a5b56deb4b753db.svg",
+    "static/media/simtech.svg": "/static/media/simtech.e0e46c77d8200d35ab395f867fed2d7d.svg",
+    "static/media/LilotaLabs.svg": "/static/media/LilotaLabs.09509fd3ffe34c1b9c6e6a532f6314ac.svg",
+    "static/media/mini-logo.svg": "/static/media/mini-logo.60842cf5d42c287f9cf22ad3e1ba1ffe.svg",
+    "index.html": "/index.html",
+    "static/media/logo-fog.svg": "/static/media/logo-fog.17a6a3d610b0c68941cf611c82ced211.svg",
+    "static/media/nord.svg": "/static/media/nord.990a7326bdd3c7f0b70de24a554272d8.svg",
+    "static/media/CSCART.svg": "/static/media/CSCART.de2b4d1162bebdc2f21a1cdb45a49a70.svg"
+  },
+  "entrypoints": [
+    "static/css/main.81f66d4a.css",
+    "static/js/main.a3dcd245.js"
+  ]
+}
