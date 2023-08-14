@@ -66,6 +66,11 @@ export const Education = React.memo(() => {
           name="keywords"
           content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, ИТ-отрасль, Где получить образование?"
         />
+        <meta name="twitter:card" content="image/jpg" />
+        <meta property="twitter:url" content="https://www.it-fund73.ru/education" />
+        <meta name="twitter:title" content="Где получить образование?" />
+        <meta name="twitter:descripsion" content="Где получить образование?" />
+        <meta name="twitter:image" content="/logo_ref.jpg" />
       </Helmet>
       <VStack ref={refHeader}>
         <Header />
@@ -115,7 +120,7 @@ export const Education = React.memo(() => {
                       isChecked={higherEducation}
                       onChange={() => {
                         setLink(
-                          'https://yandex.ru/map-widget/v1/?um=constructor%3Ac008c1b3e8ec241f3ae4e78f2f2afabd837bb0af10283adaf5b0d3a8cb5219b3&amp;source=constructor',
+                          'https://yandex.ru/map-widget/v1/?um=constructor%3A62fae091190988ce28fbc58300df85c969dbd49cab9b698bfdd1b3a6808d6fdd&amp;source=constructor',
                         );
                         setType('higherEducation');
                       }}
@@ -135,7 +140,7 @@ export const Education = React.memo(() => {
                       isChecked={paidAdditionalTraining}
                       onChange={() => {
                         setLink(
-                          'https://yandex.ru/map-widget/v1/?um=constructor%3A766063ea84f3db1b2657a3e8169a218bed59f109a87eb9412d52e6036da34ad4&amp;source=constructor',
+                          'https://yandex.ru/map-widget/v1/?um=constructor%3A7cd3a1bea72b6b2d51baf004b237ae795b1eff8b1cffb1a6a796c42b22777c5b&amp;source=constructor',
                         );
                         setType('paidAdditionalTraining');
                       }}
@@ -154,7 +159,7 @@ export const Education = React.memo(() => {
                       isChecked={freeAdditionalTraining}
                       onChange={() => {
                         setLink(
-                          'https://yandex.ru/map-widget/v1/?um=constructor%3A61ac612b9455141569482d0ac234f671432a0143994fc18375ff447ca2320e4d&amp;source=constructor',
+                          'https://yandex.ru/map-widget/v1/?um=constructor%3A582840efb5faa5fab3f882d2bb81d3ecc5ada46d94bb036a39b2ec61990f54be&amp;source=constructor',
                         );
                         setType('freeAdditionalTraining');
                       }}
@@ -174,7 +179,7 @@ export const Education = React.memo(() => {
                       isChecked={secondaryEducation}
                       onChange={() => {
                         setLink(
-                          'https://yandex.ru/map-widget/v1/?um=constructor%3Aa58df875e26477f7de49d724bd885d758bbce1947f7160817ab46fad450b3e1f&amp;source=constructor',
+                          'https://yandex.ru/map-widget/v1/?um=constructor%3Aefb6818b79e8e25b9f80f5bacaf38d1c92700998fd1d8c2e1c0dba02a248412f&amp;source=constructor',
                         );
                         setType('secondaryEducation');
                       }}

@@ -59,7 +59,7 @@ export const Header = React.memo(() => {
 
   const [isLargerThan1580] = useMediaQuery('(min-width: 1580px)');
   const [isLargerThan1090] = useMediaQuery('(min-width: 1090px)');
-  const [isLargerThan1065] = useMediaQuery('(min-width: 1065px)');
+  const [isLargerThan1181] = useMediaQuery('(min-width: 1181px)');
   const [isLargerThan905] = useMediaQuery('(min-width: 905px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan665] = useMediaQuery('(min-width: 665px)');
@@ -134,7 +134,7 @@ export const Header = React.memo(() => {
         </VStack>
         {isLargerThan665 && (
           <HStack spacing={0} p={0} m={0} w="full" justify="end" align="end">
-            {isLargerThan1065 && (
+            {isLargerThan1181 && (
               <HStack spacing={[1, 3, 5]} p={0} m={0} justify={!isLargerThan1580 ? 'flex-end' : 'start'}>
                 <Stack align="center" direction={isLargerThan1580 ? 'row' : 'column'} spacing={0}>
                   <VStack spacing={0} justify="center" align="center" px={2} m={0}>
@@ -202,8 +202,8 @@ export const Header = React.memo(() => {
                     maxW="250px"
                     maxH="180px"
                   >
-                    Расшиваем «узкие» места в системе подготовки ИТ-кадров Развиваем ИТ-сообщество Содействуем цифровой
-                    трансформации экономики и соцсферы
+                    Расшиваем «узкие» места в системе подготовки ИТ-кадров <br /> Развиваем ИТ-сообщество Содействуем
+                    цифровой трансформации экономики и соцсферы
                   </Text>
                 </VStack>
                 <Image

@@ -109,6 +109,11 @@ export const AboutUs = React.memo(() => {
           name="keywords"
           content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT"
         />
+        <meta name="twitter:card" content="image/jpg" />
+        <meta property="twitter:url" content="https://www.it-fund73.ru/aboutUS" />
+        <meta name="twitter:title" content="Фонд развития информационный технологий Ульяновской области." />
+        <meta name="twitter:descripsion" content="Фонд развития информационный технологий Ульяновской области." />
+        <meta name="twitter:image" content="/logo_ref.jpg" />
       </Helmet>
       <VStack w="full" p={0} m={0} ref={refHeader}>
         <Header />

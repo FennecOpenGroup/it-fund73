@@ -141,6 +141,11 @@ export const Calendar = React.memo(() => {
           name="keywords"
           content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, мероприятия, календарь событий"
         />
+        <meta name="twitter:card" content="image/jpg" />
+        <meta property="twitter:url" content="https://www.it-fund73.ru/calendar" />
+        <meta name="twitter:title" content="Календарь мероприятий" />
+        <meta name="twitter:descripsion" content="Календарь мероприятий" />
+        <meta name="twitter:image" content="/logo_ref.jpg" />
       </Helmet>
       <VStack ref={refHeader}>
         <Header />

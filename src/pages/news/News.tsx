@@ -101,6 +101,11 @@ export const News = React.memo(() => {
           name="keywords"
           content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, ИТ-отрасль, Где получить образование?, Что происходит в отрасли?"
         />
+        {image && <meta name="twitter:card" content={`${image.mime}`} />}
+        <meta property="twitter:url" content={`${API_URL + ROUTE_NEWS}/${url_name}`} />
+        {newsСontent && <meta name="twitter:title" content={newsСontent.attributes.text} />}
+        {newsСontent && <meta name="twitter:descripsion" content={newsСontent.attributes.text} />}
+        {image && <meta name="twitter:image" content={`${API_URL}${image.url}`} />}
       </Helmet>
       <Header />
       <VStack
