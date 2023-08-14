@@ -13,7 +13,7 @@ import { Header } from '../../components/header/Header';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { TagsEnum } from '../../enums/TagsEnum';
 import { IRootState } from '../../interfaces/IRootState';
-import { API_URL } from '../../constants/env';
+import { API_URL_ADMIN } from '../../constants/env';
 import { RootActions } from '../../types/RootActions';
 import { coreGetNews, coreGetShortNews } from '../../actions/coreActions';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
@@ -152,7 +152,7 @@ export const Main = React.memo(() => {
                             <NewsContent
                               id={news[Number(index)].id}
                               name_content={data.heading}
-                              src_content={`${API_URL}${image.url}`}
+                              src_content={`${API_URL_ADMIN}${image.url}`}
                               views_content={data.views}
                               tag_content={data.tags}
                               date_content={data.date}
@@ -177,7 +177,7 @@ export const Main = React.memo(() => {
                             <NewsContent
                               id={news[Number(index)].id}
                               name_content={data.heading}
-                              src_content={`${API_URL}${image.url}`}
+                              src_content={`${API_URL_ADMIN}${image.url}`}
                               views_content={data.views}
                               tag_content={data.tags}
                               date_content={data.date}

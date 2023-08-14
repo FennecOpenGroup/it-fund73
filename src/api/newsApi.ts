@@ -1,9 +1,9 @@
 import { handleResponse } from '../commons/handleResponse';
-import { API_URL } from '../constants/env';
+import { API_URL_ADMIN } from '../constants/env';
 import { INews } from '../interfaces/INews';
 
 export async function fetchNews(): Promise<INews[]> {
-  const url = new URL(`/api/news?sort=date:DESC&populate=deep`, API_URL || window.location.href);
+  const url = new URL(`/api/news?sort=date:DESC&populate=deep`, API_URL_ADMIN || window.location.href);
 
   return fetch(url.toString(), {
     method: 'GET',
@@ -13,7 +13,7 @@ export async function fetchNews(): Promise<INews[]> {
 }
 
 export async function fetchShorts(): Promise<INews[]> {
-  const url = new URL(`/api/shorts?populate=deep`, API_URL || window.location.href);
+  const url = new URL(`/api/shorts?populate=deep`, API_URL_ADMIN || window.location.href);
 
   return fetch(url.toString(), {
     method: 'GET',
@@ -23,7 +23,7 @@ export async function fetchShorts(): Promise<INews[]> {
 }
 
 export async function fetchChangeViews(newsId: number, newsViews: number): Promise<void> {
-  const url = new URL(`/api/news/${newsId}`, API_URL || window.location.href);
+  const url = new URL(`/api/news/${newsId}`, API_URL_ADMIN || window.location.href);
   return fetch(url.toString(), {
     method: 'PUT',
     credentials: 'include',
@@ -37,7 +37,7 @@ export async function fetchChangeViews(newsId: number, newsViews: number): Promi
 }
 
 export async function fetchChangeShortsViews(newsId: number, newsViews: number): Promise<void> {
-  const url = new URL(`/api/shorts/${newsId}`, API_URL || window.location.href);
+  const url = new URL(`/api/shorts/${newsId}`, API_URL_ADMIN || window.location.href);
   return fetch(url.toString(), {
     method: 'PUT',
     credentials: 'include',

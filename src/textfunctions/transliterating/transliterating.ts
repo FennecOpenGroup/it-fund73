@@ -2,7 +2,6 @@ export function transliterating(text: string) {
   const answer = text
     .replace('?', '')
     .split(' ')
-    .slice(0, 8)
     .join(' ')
     .replace(/\u0401/g, 'YO')
     .replace(/\u0419/g, 'I')

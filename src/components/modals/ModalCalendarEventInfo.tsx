@@ -10,6 +10,7 @@ import {
   Text,
   HStack,
   ModalFooter,
+  Link,
 } from '@chakra-ui/react';
 import React, { Dispatch, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -94,7 +95,13 @@ export const ModalCalendarEventInfo = React.memo(({ isOpen, id }: IModalCalendar
               </HStack>
               <HStack>
                 <AiOutlineGlobal size="1.2em" color="gray" />
-                <Text color="gray" fontSize={['sm', 'md']}>
+                <Text
+                  color="gray"
+                  fontSize={['sm', 'md']}
+                  as={Link}
+                  href={`${events && events[Number(id)] && events[Number(id)].attributes.address}`}
+                  isExternal
+                >
                   {events && events[Number(id)] && events[Number(id)].attributes.address}
                 </Text>
               </HStack>

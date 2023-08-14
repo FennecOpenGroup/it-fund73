@@ -42,7 +42,7 @@ import ulyanovsk from '../../assets/Ulyanovsk.jpg';
 import { IRootState } from '../../interfaces/IRootState';
 import { coreGetDocs, coreGetTeam } from '../../actions/coreActions';
 import { RootActions } from '../../types/RootActions';
-import { API_URL } from '../../constants/env';
+import { API_URL_ADMIN } from '../../constants/env';
 
 export const AboutUs = React.memo(() => {
   const { height, width } = useWindowDimensions();
@@ -144,7 +144,13 @@ export const AboutUs = React.memo(() => {
               </Text>
             </HStack>
             <Stack direction={isLargerThan480 ? 'row' : 'column'} w="full" align="center" justify="center">
-              <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refCharts)}>
+              <Button
+                color="white"
+                variant="brand-link"
+                fontSize={['lg', 'xl']}
+                onClick={() => scrollToRef(refCharts)}
+                display="none"
+              >
                 Цифры и Факты
               </Button>
               <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refTeam)}>
@@ -991,7 +997,7 @@ export const AboutUs = React.memo(() => {
                                   </Box>
                                 ) : (
                                   <Image
-                                    src={`${API_URL}${image.data.attributes.url}`}
+                                    src={`${API_URL_ADMIN}${image.data.attributes.url}`}
                                     w={['160px', '200px']}
                                     h={['160px', '200px']}
                                     borderRadius={5}
@@ -1052,7 +1058,7 @@ export const AboutUs = React.memo(() => {
                                   </Box>
                                 ) : (
                                   <Image
-                                    src={`${API_URL}${image.data.attributes.url}`}
+                                    src={`${API_URL_ADMIN}${image.data.attributes.url}`}
                                     w={['160px', '200px']}
                                     h={['160px', '200px']}
                                     borderRadius={5}
@@ -1113,7 +1119,7 @@ export const AboutUs = React.memo(() => {
                             <Link
                               color={themeIsDark ? 'white' : 'brand.dark'}
                               fontSize={['sm', 'md', 'lg']}
-                              href={`${API_URL}${file.url}`}
+                              href={`${API_URL_ADMIN}${file.url}`}
                               isExternal
                               w="full"
                               alignItems="flex-start"
