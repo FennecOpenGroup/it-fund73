@@ -18,7 +18,7 @@ import { ROUTE_NEWS } from '../../constants/routes';
 import { IRootState } from '../../interfaces/IRootState';
 import { coreGetNews, coreGetShortNews } from '../../actions/coreActions';
 import { RootActions } from '../../types/RootActions';
-import { API_URL } from '../../constants/env';
+import { API_URL, API_URL_ADMIN } from '../../constants/env';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
 import { INews } from '../../interfaces/INews';
 import { fetchChangeShortsViews } from '../../api/newsApi';
@@ -141,7 +141,7 @@ export const News = React.memo(() => {
               </Text>
               {image && (
                 <Image
-                  src={`${API_URL}${image.url}`}
+                  src={`${API_URL_ADMIN}${image.url}`}
                   w="full"
                   borderRadius="5px"
                   objectFit="cover"

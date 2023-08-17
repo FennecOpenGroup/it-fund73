@@ -58,8 +58,8 @@ export const Header = React.memo(() => {
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   const [isLargerThan1580] = useMediaQuery('(min-width: 1580px)');
-  const [isLargerThan1090] = useMediaQuery('(min-width: 1090px)');
   const [isLargerThan1181] = useMediaQuery('(min-width: 1181px)');
+  const [isLargerThan1090] = useMediaQuery('(min-width: 1090px)');
   const [isLargerThan905] = useMediaQuery('(min-width: 905px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan665] = useMediaQuery('(min-width: 665px)');
@@ -181,13 +181,13 @@ export const Header = React.memo(() => {
             )}
             {isLargerThan665 && (
               <HStack spacing={0} align="flex-end">
-                <VStack spacing={0} position="relative" left="10px" pb={1}>
+                <VStack spacing={0} position="relative" left="10px" pb={1} align="start">
                   <Text
                     fontSize={isLargerThan905 ? ['xs', 'sm', 'md', 'lg'] : '12px'}
                     p={0}
                     m={0}
                     fontWeight="bold"
-                    align="center"
+                    align="start"
                     justifyContent="center"
                   >
                     Сергей Ерофеев, директор фонда:
@@ -198,12 +198,12 @@ export const Header = React.memo(() => {
                     p={0}
                     m={0}
                     as="i"
-                    align="center"
+                    align="start"
                     maxW="250px"
                     maxH="180px"
                   >
-                    Расшиваем «узкие» места в системе подготовки ИТ-кадров <br /> Развиваем ИТ-сообщество Содействуем
-                    цифровой трансформации экономики и соцсферы
+                    Расшиваем «узкие» места в системе подготовки ИТ-кадров. <br /> Развиваем ИТ-сообщество. <br />
+                    Содействуем цифровой трансформации экономики и соцсферы.
                   </Text>
                 </VStack>
                 <Image

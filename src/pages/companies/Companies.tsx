@@ -1259,7 +1259,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #104DF3, #202566)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['md', 'md', 'xl']}
                           fontWeight="900"
@@ -1280,7 +1279,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #FF81DA, #1AC14C)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1301,7 +1299,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #0F46B3, #2B95FF)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1339,7 +1336,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #093080, #0066C0)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1358,7 +1354,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #568900, #82FF39)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1400,7 +1395,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #38E160, #049E60)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1455,7 +1449,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #2C5277, #60778E)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1474,7 +1467,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #EF616F, #F67842)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1509,7 +1501,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #7D8A8A, #465066)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1550,7 +1541,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #DA2424, #666C77)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1586,7 +1576,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #1A61B3, #5EBAEF)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1605,7 +1594,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #1A3EB3, #0054E5)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1625,7 +1613,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #CA0000, #C06464)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1645,7 +1632,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #5E18B9, #DF062A)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1734,7 +1720,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #2F8686, #00D0D0)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1754,7 +1739,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #0053D0, #074094)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1774,7 +1758,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #8132AF, #4B0B70)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1830,7 +1813,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #2564F7, #1B84FC)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1869,7 +1851,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #48A6F9, #1990BC)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"
@@ -1925,7 +1906,6 @@ export const Companies = React.memo(() => {
                     </GridItem>
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #19C725, #C7B019)" p={[2, 4]}>
                       <HStack align="center">
-                        <Image src={CSCART} h={['20px', '30px', '30px']} w={['20px', '30px', '30px']} />
                         <Link
                           fontSize={['xl', '2xl', '3xl']}
                           fontWeight="900"

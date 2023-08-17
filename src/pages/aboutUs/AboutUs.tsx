@@ -1,3 +1,4 @@
+/* eslint no-unsafe-optional-chaining: "error" */
 import {
   VStack,
   Text,

@@ -124,10 +124,9 @@ export const Education = React.memo(() => {
                         );
                         setType('higherEducation');
                       }}
-                    />
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                    >
                       Высшее образование
-                    </Text>
+                    </Checkbox>
                   </HStack>
                 </GridItem>
                 <GridItem>
@@ -183,10 +182,9 @@ export const Education = React.memo(() => {
                         );
                         setType('secondaryEducation');
                       }}
-                    />
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                    >
                       Среднее образование
-                    </Text>
+                    </Checkbox>
                   </HStack>
                 </GridItem>
                 <GridItem>
@@ -203,10 +201,9 @@ export const Education = React.memo(() => {
                         );
                         setType('preparationForStateExams');
                       }}
-                    />
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                    >
                       Подготовка к гос. экзаменам
-                    </Text>
+                    </Checkbox>
                   </HStack>
                 </GridItem>
               </Grid>
