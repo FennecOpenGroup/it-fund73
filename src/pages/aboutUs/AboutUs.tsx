@@ -212,7 +212,7 @@ export const AboutUs = React.memo(() => {
               bgGradient={themeIsDark ? 'none' : 'linear(to-t, #e3f2fb 5%, transparent 95%)'}
               pb={5}
             >
-              <HStack align="center" justify="center" pb={5}>
+              <HStack align="start" justify="start" pb={5}>
                 <Text
                   color={themeIsDark ? 'white' : 'brand.dark'}
                   fontWeight="800"
@@ -223,238 +223,102 @@ export const AboutUs = React.memo(() => {
                 </Text>
               </HStack>
               <HStack align="start" justify="start">
-                <VStack>
-                  <Accordion allowToggle w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
-                    <AccordionItem>
-                      <AccordionButton>
-                        <Box flex="1" textAlign="left" ref={refAuthority}>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['md', 'lg', 'xl']}
-                            fontWeight="bold"
-                          >
-                            Повышение эффективности региональной системы подготовки кадров для ИТ-сферы
-                          </Text>
-                        </Box>
-                        <AccordionIcon />
-                      </AccordionButton>
-                      <AccordionPanel>
-                        <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                          - Поддержка и развитие молодых ИТ-специалистов. <br /> - Развитие потенциала ИТ-образования в
-                          ВУЗах и ССУЗах Ульяновской области. В соответствии с Программой по популяризации
-                          ИТ-специальностей в Ульяновской области № б/н от 30.03.2023:
-                          <br /> - информирование целевой аудитории о востребованности ИТ-профессий, получении
-                          ИТ-образования в ВУЗах и ССУЗах Ульяновской области;
-                          <br /> - профориентация потенциальных абитуриентов с целью оказания помощи в выборе вариантов
-                          профессиональной деятельности в ИТ-сфере;
-                          <br /> - оказание содействия в организации и проведении социально-значимых мероприятий в сфере
-                          ИКТ на международном, всероссийской и межрегиональных уровнях;
-                          <br /> - информирование целевой аудитории о грантовой поддержке и проектной деятельности в
-                          ИТ-сфере;
-                          <br /> - организационно-техническое обеспечение деятельности Комиссии по отбору кандидатов на
-                          получение стипендии Губернатора Ульяновской области «Имени Ефима Евграфовича Горина»;
-                          <br /> - поощрение лучших представителей ИТ-отрасли Ульяновской области.
-                        </Text>
-                      </AccordionPanel>
-                    </AccordionItem>
-                  </Accordion>
-                </VStack>
-                <VStack>
-                  <Accordion allowToggle w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
-                    <AccordionItem>
-                      <AccordionButton>
-                        <Box flex="1" textAlign="left" ref={refAuthority}>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['md', 'lg', 'xl']}
-                            fontWeight="bold"
-                          >
-                            Ускорение процессов цифровой трансформации отраслей экономики и социальной сферы
-                          </Text>
-                        </Box>
-                        <AccordionIcon />
-                      </AccordionButton>
-                      <AccordionPanel>
-                        <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                          В соответствии со Стратегией развития отрасли информационных и цифровых технологий Ульяновской
-                          области до 2030 года от 18.10.2019 № 1293-р:
-                          <br /> - формирование предложений по созданию механизмов государственной поддержки,
-                          направленных на увеличение ежегодных темпов роста ИТ-отрасли Ульяновской области;
-                          <br /> - осуществление систематического наблюдения и анализа показателей развития ИТ-отрасли
-                          Ульяновской области;
-                          <br /> - создание условий для развития производственной кооперации между ИТ-компаниями и
-                          промышленными предприятиями Ульяновской области.
-                        </Text>
-                      </AccordionPanel>
-                    </AccordionItem>
-                  </Accordion>
-                </VStack>
-                <VStack>
-                  <Accordion allowToggle w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
-                    <AccordionItem>
-                      <AccordionButton>
-                        <Box flex="1" textAlign="left" ref={refAuthority}>
-                          <Text
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['md', 'lg', 'xl']}
-                            fontWeight="bold"
-                          >
-                            Увеличение налоговых поступлений
-                          </Text>
-                        </Box>
-                        <AccordionIcon />
-                      </AccordionButton>
-                      <AccordionPanel>
-                        <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
-                          В соответствии с поручением Правительства Ульяновской области № 89-ПЧ от 22.02.2017 года:
-                          <br /> - координация рабочей подгруппы по увеличению налоговых поступлений в консолидированный
-                          бюджет Ульяновской области, а также мониторинг задолженности по видам экономической
-                          деятельности ОКВЭД 62 и 63;
-                          <br /> - мониторинг налоговых поступлений от ИТ-организаций, использующих региональные
-                          налоговые льготы по налогу на прибыль и по налогу, взимаемому в связи с применением упрощённой
-                          системы налогообложения.
-                        </Text>
-                      </AccordionPanel>
-                    </AccordionItem>
-                  </Accordion>
+                <VStack
+                  px={isLargerThan530 ? 6 : 2}
+                  w="full"
+                  align="start"
+                  color={themeIsDark ? 'white' : 'brand.dark'}
+                >
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontSize={['md', 'lg', 'xl']}
+                    fontWeight="900"
+                    textTransform="uppercase"
+                  >
+                    1. Повышение эффективности региональной системы подготовки кадров для ИТ-сферы
+                  </Text>
+                  <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+                  <UnorderedList>
+                    <ListItem>Поддержка и развитие молодых ИТ-специалистов.</ListItem>
+                    <ListItem>
+                      Развитие потенциала ИТ-образования в ВУЗах и ССУЗах Ульяновской области. В соответствии с
+                      Программой по популяризации ИТ-специальностей в Ульяновской области № б/н от 30.03.2023:
+                    </ListItem>
+                    <ListItem>
+                      информирование целевой аудитории о востребованности ИТ-профессий, получении ИТ-образования в ВУЗах
+                      и ССУЗах Ульяновской области;
+                    </ListItem>
+                    <ListItem>
+                      профориентация потенциальных абитуриентов с целью оказания помощи в выборе вариантов
+                      профессиональной деятельности в ИТ-сфере;
+                    </ListItem>
+                    <ListItem>
+                      оказание содействия в организации и проведении социально-значимых мероприятий в сфере ИКТ на
+                      международном, всероссийской и межрегиональных уровнях;
+                    </ListItem>
+                    <ListItem>
+                      информирование целевой аудитории о грантовой поддержке и проектной деятельности в ИТ-сфере;
+                    </ListItem>
+                    <ListItem>
+                      организационно-техническое обеспечение деятельности Комиссии по отбору кандидатов на получение
+                      стипендии Губернатора Ульяновской области «Имени Ефима Евграфовича Горина»;
+                    </ListItem>
+                    <ListItem>поощрение лучших представителей ИТ-отрасли Ульяновской области.</ListItem>
+                  </UnorderedList>
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontSize={['md', 'lg', 'xl']}
+                    fontWeight="900"
+                    textTransform="uppercase"
+                  >
+                    2. Ускорение процессов цифровой трансформации отраслей экономики и социальной сферы
+                  </Text>
+                  <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+                  <UnorderedList>
+                    <ListItem>
+                      В соответствии со Стратегией развития отрасли информационных и цифровых технологий Ульяновской
+                      области до 2030 года от 18.10.2019 № 1293-р:
+                    </ListItem>
+                    <ListItem>
+                      формирование предложений по созданию механизмов государственной поддержки, направленных на
+                      увеличение ежегодных темпов роста ИТ-отрасли Ульяновской области;
+                    </ListItem>
+                    <ListItem>
+                      осуществление систематического наблюдения и анализа показателей развития ИТ-отрасли Ульяновской
+                      области;
+                    </ListItem>
+                    <ListItem>
+                      создание условий для развития производственной кооперации между ИТ-компаниями и промышленными
+                      предприятиями Ульяновской области.
+                    </ListItem>
+                  </UnorderedList>
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontSize={['md', 'lg', 'xl']}
+                    fontWeight="900"
+                    textTransform="uppercase"
+                  >
+                    3. Увеличение налоговых поступлений
+                  </Text>
+                  <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+                  <UnorderedList>
+                    <ListItem>
+                      В соответствии с поручением Правительства Ульяновской области № 89-ПЧ от 22.02.2017 года:
+                    </ListItem>
+                    <ListItem>
+                      координация рабочей подгруппы по увеличению налоговых поступлений в консолидированный бюджет
+                      Ульяновской области, а также мониторинг задолженности по видам экономической деятельности ОКВЭД 62
+                      и 63;
+                    </ListItem>
+                    <ListItem>
+                      мониторинг налоговых поступлений от ИТ-организаций, использующих региональные налоговые льготы по
+                      налогу на прибыль и по налогу, взимаемому в связи с применением упрощённой системы
+                      налогообложения.
+                    </ListItem>
+                  </UnorderedList>
                 </VStack>
               </HStack>
             </VStack>
-            <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
-              <AccordionItem>
-                <AccordionButton>
-                  <Box flex="1" textAlign="left" ref={refProject}>
-                    <Text
-                      color={themeIsDark ? 'white' : 'brand.dark'}
-                      fontSize={['xl', '2xl', '3xl']}
-                      fontWeight="bold"
-                    >
-                      ПРОЕКТНЫЙ ОФИС
-                    </Text>
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-                <AccordionPanel>
-                  <VStack
-                    px={isLargerThan530 ? 6 : 2}
-                    w="full"
-                    align="start"
-                    color={themeIsDark ? 'white' : 'brand.dark'}
-                  >
-                    <Text
-                      color={themeIsDark ? 'white' : 'brand.dark'}
-                      fontSize={['sm', 'lg', '2xl']}
-                      fontWeight="900"
-                      textTransform="uppercase"
-                    >
-                      Проекты реализуемые Айти Фондом
-                    </Text>
-                    <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
-                    <VStack w="full" align="start" py={3}>
-                      <UnorderedList>
-                        <ListItem>Грантовая поддержка ИТ-компаний для разработки отечественных ИТ-решений.</ListItem>
-                        <ListItem>
-                          Поддержка проектов, направленных на повышение уровня доступности ИКТ в Ульяновской области.
-                        </ListItem>
-                        <ListItem>
-                          Внедрение сервиса по цифровизации земель сельхозназначения для Минсельхоза Ульяновской
-                          области.
-                        </ListItem>
-                        <ListItem>
-                          Программа по популяризации ИТ-специальностей в Ульяновской области до 2025 года.
-                        </ListItem>
-                        <ListItem>Конгрессно-выставочные мероприятия для ИТ-компаний.</ListItem>
-                        <ListItem>
-                          Заседания рабочей подгруппы по увеличению налоговых поступлений ИТ-компаний в
-                          консолидированный бюджет Ульяновской области.
-                        </ListItem>
-                        <ListItem>
-                          Проект «Именная стипендия Александра Щербины» для учащихся 3-7 классов в области математики и
-                          программирования.
-                        </ListItem>
-                        <ListItem>Стипендии Губернатора Ульяновской области «Имени Ефима Евграфовича Горина».</ListItem>
-                        <ListItem>Форум «Цифровые решения для государства и бизнеса».</ListItem>
-                        <ListItem>
-                          Проведение мероприятий, приуроченных к профессиональному празднику «День программиста».
-                        </ListItem>
-                      </UnorderedList>
-                    </VStack>
-                    <Text
-                      color={themeIsDark ? 'white' : 'brand.dark'}
-                      fontSize={['sm', 'lg', '2xl']}
-                      fontWeight="900"
-                      textTransform="uppercase"
-                    >
-                      Проекты реализуемые Айти Фондом
-                    </Text>
-                    <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
-                  </VStack>
-                  <TableContainer w="full">
-                    <Table
-                      w="full"
-                      variant="striped"
-                      colorScheme="blue"
-                      size={isLargerThan1300 ? 'lg' : 'md'}
-                      color={themeIsDark ? 'white' : 'brand.dark'}
-                      backgroundColor={themeIsDark ? '#242323' : 'white'}
-                      overflow="hidden"
-                      whiteSpace="normal"
-                    >
-                      <Thead>
-                        <Tr>
-                          <Th
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['sm', 'md', 'lg']}
-                            fontFamily="Museo Cyrl"
-                            fontWeight="800"
-                          >
-                            Наименование проектов
-                          </Th>
-                          <Th
-                            isNumeric
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            fontSize={['sm', 'md', 'lg']}
-                            fontFamily="Museo Cyrl"
-                            fontWeight="800"
-                          >
-                            Колличество участников
-                          </Th>
-                        </Tr>
-                      </Thead>
-                      <Tbody>
-                        <Tr textColor="brand.dark">
-                          <Td>Международная цифровая олимпиада «Волга-IT»</Td>
-                          <Td isNumeric>2000</Td>
-                        </Tr>
-                        <Tr>
-                          <Td>Развитие сообщества Код-классов (клубов по программированию) в Ульяновской области</Td>
-                          <Td isNumeric>800</Td>
-                        </Tr>
-                        <Tr textColor="brand.dark">
-                          <Td>ТТурнир «ИТ-Марафон» среди студентов и преподавателей СПО</Td>
-                          <Td isNumeric>710</Td>
-                        </Tr>
-                        <Tr>
-                          <Td>Чемпионат ИТ-сферы Ульяновской области среди школьников</Td>
-                          <Td isNumeric>400</Td>
-                        </Tr>
-                        <Tr textColor="brand.dark">
-                          <Td>Командный студенческий чемпионат Ульяновской области по программированию</Td>
-                          <Td isNumeric>45</Td>
-                        </Tr>
-                        <Tr>
-                          <Td>
-                            «Инженерно-техническая подготовка в школьном образовании» – программа повышения квалификации
-                            для педагогических работников школ, педагогов дополнительного образования
-                          </Td>
-                          <Td isNumeric>25</Td>
-                        </Tr>
-                      </Tbody>
-                    </Table>
-                  </TableContainer>
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
 
             <Accordion allowMultiple w="full">
               <AccordionItem color={themeIsDark ? 'white' : 'brand.dark'} display="none">
@@ -1044,6 +908,141 @@ export const AboutUs = React.memo(() => {
                     )}
                   </AccordionPanel>
                 )}
+              </AccordionItem>
+            </Accordion>
+            <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
+              <AccordionItem>
+                <AccordionButton>
+                  <Box flex="1" textAlign="left" ref={refProject}>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['xl', '2xl', '3xl']}
+                      fontWeight="bold"
+                    >
+                      ПРОЕКТНЫЙ ОФИС
+                    </Text>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <VStack
+                    px={isLargerThan530 ? 6 : 2}
+                    w="full"
+                    align="start"
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                  >
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['sm', 'lg', '2xl']}
+                      fontWeight="900"
+                      textTransform="uppercase"
+                    >
+                      Проекты реализуемые Айти Фондом
+                    </Text>
+                    <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+                    <VStack w="full" align="start" py={3}>
+                      <UnorderedList>
+                        <ListItem>Грантовая поддержка ИТ-компаний для разработки отечественных ИТ-решений.</ListItem>
+                        <ListItem>
+                          Поддержка проектов, направленных на повышение уровня доступности ИКТ в Ульяновской области.
+                        </ListItem>
+                        <ListItem>
+                          Внедрение сервиса по цифровизации земель сельхозназначения для Минсельхоза Ульяновской
+                          области.
+                        </ListItem>
+                        <ListItem>
+                          Программа по популяризации ИТ-специальностей в Ульяновской области до 2025 года.
+                        </ListItem>
+                        <ListItem>Конгрессно-выставочные мероприятия для ИТ-компаний.</ListItem>
+                        <ListItem>
+                          Заседания рабочей подгруппы по увеличению налоговых поступлений ИТ-компаний в
+                          консолидированный бюджет Ульяновской области.
+                        </ListItem>
+                        <ListItem>
+                          Проект «Именная стипендия Александра Щербины» для учащихся 3-7 классов в области математики и
+                          программирования.
+                        </ListItem>
+                        <ListItem>Стипендии Губернатора Ульяновской области «Имени Ефима Евграфовича Горина».</ListItem>
+                        <ListItem>Форум «Цифровые решения для государства и бизнеса».</ListItem>
+                        <ListItem>
+                          Проведение мероприятий, приуроченных к профессиональному празднику «День программиста».
+                        </ListItem>
+                      </UnorderedList>
+                    </VStack>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['sm', 'lg', '2xl']}
+                      fontWeight="900"
+                      textTransform="uppercase"
+                    >
+                      Проекты реализуемые Айти Фондом
+                    </Text>
+                    <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+                  </VStack>
+                  <TableContainer w="full">
+                    <Table
+                      w="full"
+                      variant="striped"
+                      colorScheme="blue"
+                      size={isLargerThan1300 ? 'lg' : 'md'}
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      backgroundColor={themeIsDark ? '#242323' : 'white'}
+                      overflow="hidden"
+                      whiteSpace="normal"
+                    >
+                      <Thead>
+                        <Tr>
+                          <Th
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            fontSize={['sm', 'md', 'lg']}
+                            fontFamily="Museo Cyrl"
+                            fontWeight="800"
+                          >
+                            Наименование проектов
+                          </Th>
+                          <Th
+                            isNumeric
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            fontSize={['sm', 'md', 'lg']}
+                            fontFamily="Museo Cyrl"
+                            fontWeight="800"
+                          >
+                            Колличество участников
+                          </Th>
+                        </Tr>
+                      </Thead>
+                      <Tbody>
+                        <Tr textColor="brand.dark">
+                          <Td>Международная цифровая олимпиада «Волга-IT»</Td>
+                          <Td isNumeric>2000</Td>
+                        </Tr>
+                        <Tr>
+                          <Td>Развитие сообщества Код-классов (клубов по программированию) в Ульяновской области</Td>
+                          <Td isNumeric>800</Td>
+                        </Tr>
+                        <Tr textColor="brand.dark">
+                          <Td>ТТурнир «ИТ-Марафон» среди студентов и преподавателей СПО</Td>
+                          <Td isNumeric>710</Td>
+                        </Tr>
+                        <Tr>
+                          <Td>Чемпионат ИТ-сферы Ульяновской области среди школьников</Td>
+                          <Td isNumeric>400</Td>
+                        </Tr>
+                        <Tr textColor="brand.dark">
+                          <Td>Командный студенческий чемпионат Ульяновской области по программированию</Td>
+                          <Td isNumeric>45</Td>
+                        </Tr>
+                        <Tr>
+                          <Td>
+                            «Инженерно-техническая подготовка в школьном образовании» – программа повышения квалификации
+                            для педагогических работников школ, педагогов дополнительного образования
+                          </Td>
+                          <Td isNumeric>25</Td>
+                        </Tr>
+                      </Tbody>
+                    </Table>
+                  </TableContainer>
+                </AccordionPanel>
               </AccordionItem>
             </Accordion>
             <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
