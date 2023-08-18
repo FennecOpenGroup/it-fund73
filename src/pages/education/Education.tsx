@@ -197,7 +197,7 @@ export const Education = React.memo(() => {
                       isChecked={preparationForStateExams}
                       onChange={() => {
                         setLink(
-                          'https://yandex.ru/map-widget/v1/?um=constructor%3A858b0927a0167061b6963314df3bfc89ff129cfed0f87804eacb12fbb897af46&amp;source=constructor',
+                          'https://yandex.ru/map-widget/v1/?um=constructor%3Afdcef2c661a635d1782590c0b9f586112a0d25c3795e927bdce0c5c61934b815&amp;source=constructor',
                         );
                         setType('preparationForStateExams');
                       }}
