@@ -61,7 +61,6 @@ export const AboutUs = React.memo(() => {
   const refRecs = useRef<HTMLDivElement>(null);
   const refContacts = useRef<HTMLDivElement>(null);
   const refCharts = useRef<HTMLDivElement>(null);
-  const refAuthority = useRef<HTMLDivElement>(null);
   const refProject = useRef<HTMLDivElement>(null);
 
   const [charts, setCharts] = useState(false);
@@ -161,14 +160,6 @@ export const AboutUs = React.memo(() => {
                 color="white"
                 variant="brand-link"
                 fontSize={['lg', 'xl']}
-                onClick={() => scrollToRef(refAuthority)}
-              >
-                Полномочия
-              </Button>
-              <Button
-                color="white"
-                variant="brand-link"
-                fontSize={['lg', 'xl']}
                 onClick={() => scrollToRef(refProject)}
               >
                 Проектный офис
@@ -238,12 +229,16 @@ export const AboutUs = React.memo(() => {
                     1. Повышение эффективности региональной системы подготовки кадров для ИТ-сферы
                   </Text>
                   <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
-                  <UnorderedList>
+                  <UnorderedList mb={2}>
                     <ListItem>Поддержка и развитие молодых ИТ-специалистов.</ListItem>
-                    <ListItem>
-                      Развитие потенциала ИТ-образования в ВУЗах и ССУЗах Ульяновской области. В соответствии с
-                      Программой по популяризации ИТ-специальностей в Ульяновской области № б/н от 30.03.2023:
-                    </ListItem>
+                    <ListItem>Развитие потенциала ИТ-образования в ВУЗах и ССУЗах. Ульяновской области.</ListItem>
+                    <ListItem>Создание условий для появления передовых методов и технологий ИТ-обучения</ListItem>
+                  </UnorderedList>
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                    В соответствии с Программой по популяризации ИТ-специальностей в Ульяновской области № б/н от
+                    30.03.2023:
+                  </Text>
+                  <UnorderedList>
                     <ListItem>
                       информирование целевой аудитории о востребованности ИТ-профессий, получении ИТ-образования в ВУЗах
                       и ССУЗах Ульяновской области;
@@ -274,11 +269,11 @@ export const AboutUs = React.memo(() => {
                     2. Ускорение процессов цифровой трансформации отраслей экономики и социальной сферы
                   </Text>
                   <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                    В соответствии со Стратегией развития отрасли информационных и цифровых технологий Ульяновской
+                    области до 2030 года от 18.10.2019 № 1293-р:
+                  </Text>
                   <UnorderedList>
-                    <ListItem>
-                      В соответствии со Стратегией развития отрасли информационных и цифровых технологий Ульяновской
-                      области до 2030 года от 18.10.2019 № 1293-р:
-                    </ListItem>
                     <ListItem>
                       формирование предложений по созданию механизмов государственной поддержки, направленных на
                       увеличение ежегодных темпов роста ИТ-отрасли Ульяновской области;
@@ -301,10 +296,10 @@ export const AboutUs = React.memo(() => {
                     3. Увеличение налоговых поступлений
                   </Text>
                   <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                    В соответствии с поручением Правительства Ульяновской области № 89-ПЧ от 22.02.2017 года:
+                  </Text>
                   <UnorderedList>
-                    <ListItem>
-                      В соответствии с поручением Правительства Ульяновской области № 89-ПЧ от 22.02.2017 года:
-                    </ListItem>
                     <ListItem>
                       координация рабочей подгруппы по увеличению налоговых поступлений в консолидированный бюджет
                       Ульяновской области, а также мониторинг задолженности по видам экономической деятельности ОКВЭД 62
@@ -975,7 +970,7 @@ export const AboutUs = React.memo(() => {
                       fontWeight="900"
                       textTransform="uppercase"
                     >
-                      Проекты реализуемые Айти Фондом
+                      Проекты поддержанные Айти Фондом в 2023 году
                     </Text>
                     <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
                   </VStack>
