@@ -350,7 +350,7 @@ export const AboutUs = React.memo(() => {
                       Проекты реализуемые Айти Фондом
                     </Text>
                     <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
-                    <VStack w="full" align="center" py={3}>
+                    <VStack w="full" align="start" py={3}>
                       <UnorderedList>
                         <ListItem>Грантовая поддержка ИТ-компаний для разработки отечественных ИТ-решений.</ListItem>
                         <ListItem>

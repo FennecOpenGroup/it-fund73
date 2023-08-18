@@ -278,7 +278,6 @@ export const Main = React.memo(() => {
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     onClick={() => {
                       const newsUp = shortNewsCounter + loadShortCount;
-
                       setShortNewsCounter(newsUp);
                     }}
                   >

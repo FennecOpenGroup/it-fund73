@@ -18,6 +18,7 @@ import {
   ListItem,
   GridItem,
   useMediaQuery,
+  Input,
 } from '@chakra-ui/react';
 import React, { useEffect, useState, useRef } from 'react';
 import { Helmet } from 'react-helmet';
@@ -65,6 +66,8 @@ export const Companies = React.memo(() => {
   const [support, setSupport] = useState(false);
   const [accreditation, setAccreditation] = useState(false);
   const [company, setCompany] = useState(false);
+  const [search, setSearch] = useState('');
+  const handleChange = (event: { target: { value: React.SetStateAction<string> } }) => setSearch(event.target.value);
 
   const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current !== null) {
@@ -485,6 +488,15 @@ export const Companies = React.memo(() => {
               </AccordionButton>
               <AccordionPanel px={0}>
                 <VStack w="full" px={0}>
+                  <Input
+                    variant="brand-search"
+                    border="2px solid #5F5F5F"
+                    w="full"
+                    placeholder="Поиск..."
+                    value={search}
+                    onChange={handleChange}
+                    h="45px"
+                  />
                   <Grid
                     w="full"
                     templateRows="auto"
@@ -495,197 +507,238 @@ export const Companies = React.memo(() => {
                     px={0}
                     py={2}
                   >
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, brand.blue, blue.900)" p={[2, 4]}>
-                      <HStack align="center">
-                        <Image src={simbirsoft} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
-                        <Link
-                          fontSize={['xl', '2xl', '3xl']}
-                          fontWeight="900"
-                          color="white"
-                          href="https://www.simbirsoft.com/"
-                          isExternal
+                    {search === undefined ||
+                      ('simbirsoft'.includes(search.toLocaleLowerCase()) && (
+                        <GridItem
+                          borderRadius="10px"
+                          w="full"
+                          bgGradient="linear(to-r, brand.blue, blue.900)"
+                          p={[2, 4]}
                         >
-                          SIMBIRSOFT
-                        </Link>
-                      </HStack>
-                      <Text fontSize={['sm', 'sm', 'md']}>
-                        SimbirSoft — глобальная ИТ-компания с опытом в разработке и тестировании ПО с 2001 года, которая
-                        объединяет более 1400 сотрудников из 50 городов России. Мы разрабатываем системы для
-                        автоматизации работы бизнеса, высоконагруженные системы, мобильные приложения, встроенное ПО и
-                        блокчейн-проекты, Machine Learning и Data Science для заказчиков из России, Европы и США.
-                      </Text>
-                    </GridItem>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #dd6c1b, orange.900)" p={[2, 4]}>
-                      <HStack align="center">
-                        <Image src={mobirate} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
-                        <Link
-                          fontSize={['xl', '2xl', '3xl']}
-                          fontWeight="900"
-                          color="white"
-                          href="https://www.mobirate.com/"
-                          isExternal
+                          <HStack align="center">
+                            <Image src={simbirsoft} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
+                            <Link
+                              fontSize={['xl', '2xl', '3xl']}
+                              fontWeight="900"
+                              color="white"
+                              href="https://www.simbirsoft.com/"
+                              isExternal
+                            >
+                              SIMBIRSOFT
+                            </Link>
+                          </HStack>
+                          <Text fontSize={['sm', 'sm', 'md']}>
+                            SimbirSoft — глобальная ИТ-компания с опытом в разработке и тестировании ПО с 2001 года,
+                            которая объединяет более 1400 сотрудников из 50 городов России. Мы разрабатываем системы для
+                            автоматизации работы бизнеса, высоконагруженные системы, мобильные приложения, встроенное ПО
+                            и блокчейн-проекты, Machine Learning и Data Science для заказчиков из России, Европы и США.
+                          </Text>
+                        </GridItem>
+                      ))}
+                    {search === undefined ||
+                      ('mobirate'.includes(search.toLocaleLowerCase()) && (
+                        <GridItem
+                          borderRadius="10px"
+                          w="full"
+                          bgGradient="linear(to-r, #dd6c1b, orange.900)"
+                          p={[2, 4]}
                         >
-                          MOBIRATE
-                        </Link>
-                      </HStack>
-                      <Text fontSize={['sm', 'sm', 'md']}>
-                        Mobirate — занимаемся разработкой мобильных игр с 2003 года. За это время было создано более 30
-                        игр, самые известные: серия Parking Mania, Dead Ahead, Rovercraft и Big Rig Racing, и привлечено
-                        250+ миллионов игроков. Вся экспертиза: от идеи до релиза, находится в мощных руках наших
-                        профессионалов.
-                      </Text>
-                    </GridItem>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #0bcf6b, green.900)" p={[2, 4]}>
-                      <HStack align="center">
-                        <Link
-                          fontSize={['xl', '2xl', '3xl']}
-                          fontWeight="900"
-                          color="white"
-                          href="https://mediasoft.team/"
-                          isExternal
-                        >
-                          MEDIASOFT
-                        </Link>
-                      </HStack>
-                      <Text fontSize={['sm', 'sm', 'md']}>
-                        MEDIASOFT — разрабатывает сложные веб-системы, бэкенды, мобильные приложения и highload-проекты
-                        для бизнеса с 2014 года. У нас в команде 250+ разработчиков по направлениям backend, frontend,
-                        mobile, qa и аналитика.
-                      </Text>
-                    </GridItem>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #07a0c3, blue.300)" p={[2, 4]}>
-                      <HStack align="center">
-                        <Image src={nord} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
-                        <Link
-                          fontSize={['xl', '2xl', '3xl']}
-                          fontWeight="900"
-                          color="white"
-                          href="https://nordclan.com/"
-                          isExternal
-                        >
-                          NORDCLAN
-                        </Link>
-                      </HStack>
-                      <Text fontSize={['sm', 'sm', 'md']}>
-                        NORDCLAN — разрабатывает программное обеспечение под ключ: от аналитики и описания идеи до
-                        тестирования готового продукта. Работает со сложными интеграциями и высоконагруженными
-                        сервисами. Является партнером крупных интеграторов, реализует выделенные модули собственной
-                        командой разработки.
-                      </Text>
-                    </GridItem>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #436cb0, #262351)" p={[2, 4]}>
-                      <HStack align="center">
-                        <Image src={IBS} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
-                        <Link
-                          fontSize={['xl', '2xl', '3xl']}
-                          fontWeight="900"
-                          color="white"
-                          href="https://ibs.ru/"
-                          isExternal
-                        >
-                          IBS
-                        </Link>
-                      </HStack>
-                      <Text fontSize={['sm', 'sm', 'md']}>
-                        IBS — бизнес - и технологический партнер лидеров российского бизнеса. Компания решает сложные
-                        задачи в сфере стратегического развития и повышения операционной эффективности, оказывая услуги
-                        в области оптимизации бизнес-процессов, создания систем управления, управления данными, анализа
-                        и моделирования, разработки, тестирования и сопровождения программного обеспечения.
-                      </Text>
-                    </GridItem>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #0b88f2, blue.900)" p={[2, 4]}>
-                      <HStack align="center">
-                        <Image src={advanshop} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
-                        <Link
-                          fontSize={['xl', '2xl', '3xl']}
-                          fontWeight="900"
-                          color="white"
-                          href="https://www.advantshop.net/"
-                          isExternal
-                        >
-                          ADVANTSHOP
-                        </Link>
-                      </HStack>
-                      <Text fontSize={['sm', 'sm', 'md']}>
-                        ADVANTSHOP – это единая система для создания интернет-магазина, благодаря которой вы
-                        оптимизируете работу для удобства клиентов и поднимете управление бизнес-процессами на новый
-                        уровень.
-                      </Text>
-                    </GridItem>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #c92727, #f94d4d)" p={[2, 4]}>
-                      <HStack align="center">
-                        <Image src={ITECH} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
-                        <Link
-                          fontSize={['xl', '2xl', '3xl']}
-                          fontWeight="900"
-                          color="white"
-                          href="https://itech-group.ru/"
-                          isExternal
-                        >
-                          ITECH
-                        </Link>
-                      </HStack>
-                      <Text fontSize={['sm', 'sm', 'md']}>
-                        ITECH — IT-компания полного цикла, мы специализируемся в области веб-разработки,
-                        интернет-маркетинга, сопровождения и развития интернет-проектов.
-                      </Text>
-                    </GridItem>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #4bd587, #1f3695)" p={[2, 4]}>
-                      <HStack align="center">
-                        <Link
-                          fontSize={['xl', '2xl', '3xl']}
-                          fontWeight="900"
-                          color="white"
-                          href="https://zebrains.ru/"
-                          isExternal
-                        >
-                          ZEBRAINS
-                        </Link>
-                      </HStack>
-                      <Text fontSize={['sm', 'sm', 'md']}>
-                        ZeBrains – разработка программного обеспечения Разработка программного обеспечения на заказ,
-                        ИТ-аутсорсинг. Внедряем технические решения для интернет-магазинов, финансовых, страховых,
-                        медицинских, ритейл организаций.
-                      </Text>
-                    </GridItem>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #112ebd, #2f52ff)" p={[2, 4]}>
-                      <HStack align="center">
-                        <Image src={PROF_IT} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
-                        <Link
-                          fontSize={['xl', '2xl', '3xl']}
-                          fontWeight="900"
-                          color="white"
-                          href="https://prof-itgroup.ru/"
-                          isExternal
-                        >
-                          PROF-IT GROUP
-                        </Link>
-                      </HStack>
-                      <Text fontSize={['sm', 'sm', 'md']}>
-                        PROF-IT GROUP – это группа ИТ-компаний, занимающихся комплексной автоматизацией управления
-                        крупными предприятиями, проектированием и внедрением инжиниринговых и ИТ-проектов, консалтингом,
-                        разработкой прикладного и инновационного программного обеспечения, проектами в сфере цифрового
-                        производства и технологий для Умного города.
-                      </Text>
-                    </GridItem>
-                    <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #c46511, #ff9436)" p={[2, 4]}>
-                      <HStack align="center">
-                        <Image src={ASTRIO} h={['20px', '30px', '40px']} w={['30px', '60px', '80px']} />
-                        <Link
-                          fontSize={['xl', '2xl', '3xl']}
-                          fontWeight="900"
-                          color="white"
-                          href="https://astrio.ru/"
-                          isExternal
-                        >
-                          ASTRIO
-                        </Link>
-                      </HStack>
-                      <Text fontSize={['sm', 'sm', 'md']}>
-                        ASTRIO – Профессиональная разработка интернет-магазинов на платформе Magento. Собственная
-                        команда сертифицированных Magento разработчиков.
-                      </Text>
-                    </GridItem>
+                          <HStack align="center">
+                            <Image src={mobirate} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
+                            <Link
+                              fontSize={['xl', '2xl', '3xl']}
+                              fontWeight="900"
+                              color="white"
+                              href="https://www.mobirate.com/"
+                              isExternal
+                            >
+                              MOBIRATE
+                            </Link>
+                          </HStack>
+                          <Text fontSize={['sm', 'sm', 'md']}>
+                            Mobirate — занимаемся разработкой мобильных игр с 2003 года. За это время было создано более
+                            30 игр, самые известные: серия Parking Mania, Dead Ahead, Rovercraft и Big Rig Racing, и
+                            привлечено 250+ миллионов игроков. Вся экспертиза: от идеи до релиза, находится в мощных
+                            руках наших профессионалов.
+                          </Text>
+                        </GridItem>
+                      ))}
+                    {search === undefined ||
+                      ('mediasoft'.includes(search.toLocaleLowerCase()) && (
+                        <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #0bcf6b, green.900)" p={[2, 4]}>
+                          <HStack align="center">
+                            <Link
+                              fontSize={['xl', '2xl', '3xl']}
+                              fontWeight="900"
+                              color="white"
+                              href="https://mediasoft.team/"
+                              isExternal
+                            >
+                              MEDIASOFT
+                            </Link>
+                          </HStack>
+                          <Text fontSize={['sm', 'sm', 'md']}>
+                            MEDIASOFT — разрабатывает сложные веб-системы, бэкенды, мобильные приложения и
+                            highload-проекты для бизнеса с 2014 года. У нас в команде 250+ разработчиков по направлениям
+                            backend, frontend, mobile, qa и аналитика.
+                          </Text>
+                        </GridItem>
+                      ))}
+                    {search === undefined ||
+                      ('nordclan'.includes(search.toLocaleLowerCase()) && (
+                        <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #07a0c3, blue.300)" p={[2, 4]}>
+                          <HStack align="center">
+                            <Image src={nord} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
+                            <Link
+                              fontSize={['xl', '2xl', '3xl']}
+                              fontWeight="900"
+                              color="white"
+                              href="https://nordclan.com/"
+                              isExternal
+                            >
+                              NORDCLAN
+                            </Link>
+                          </HStack>
+                          <Text fontSize={['sm', 'sm', 'md']}>
+                            NORDCLAN — разрабатывает программное обеспечение под ключ: от аналитики и описания идеи до
+                            тестирования готового продукта. Работает со сложными интеграциями и высоконагруженными
+                            сервисами. Является партнером крупных интеграторов, реализует выделенные модули собственной
+                            командой разработки.
+                          </Text>
+                        </GridItem>
+                      ))}
+                    {search === undefined ||
+                      ('ibs'.includes(search.toLocaleLowerCase()) && (
+                        <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #436cb0, #262351)" p={[2, 4]}>
+                          <HStack align="center">
+                            <Image src={IBS} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
+                            <Link
+                              fontSize={['xl', '2xl', '3xl']}
+                              fontWeight="900"
+                              color="white"
+                              href="https://ibs.ru/"
+                              isExternal
+                            >
+                              IBS
+                            </Link>
+                          </HStack>
+                          <Text fontSize={['sm', 'sm', 'md']}>
+                            IBS — бизнес - и технологический партнер лидеров российского бизнеса. Компания решает
+                            сложные задачи в сфере стратегического развития и повышения операционной эффективности,
+                            оказывая услуги в области оптимизации бизнес-процессов, создания систем управления,
+                            управления данными, анализа и моделирования, разработки, тестирования и сопровождения
+                            программного обеспечения.
+                          </Text>
+                        </GridItem>
+                      ))}
+                    {search === undefined ||
+                      ('advantshop'.includes(search.toLocaleLowerCase()) && (
+                        <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #0b88f2, blue.900)" p={[2, 4]}>
+                          <HStack align="center">
+                            <Image src={advanshop} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
+                            <Link
+                              fontSize={['xl', '2xl', '3xl']}
+                              fontWeight="900"
+                              color="white"
+                              href="https://www.advantshop.net/"
+                              isExternal
+                            >
+                              ADVANTSHOP
+                            </Link>
+                          </HStack>
+                          <Text fontSize={['sm', 'sm', 'md']}>
+                            ADVANTSHOP – это единая система для создания интернет-магазина, благодаря которой вы
+                            оптимизируете работу для удобства клиентов и поднимете управление бизнес-процессами на новый
+                            уровень.
+                          </Text>
+                        </GridItem>
+                      ))}
+                    {search === undefined ||
+                      ('itech'.includes(search.toLocaleLowerCase()) && (
+                        <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #c92727, #f94d4d)" p={[2, 4]}>
+                          <HStack align="center">
+                            <Image src={ITECH} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
+                            <Link
+                              fontSize={['xl', '2xl', '3xl']}
+                              fontWeight="900"
+                              color="white"
+                              href="https://itech-group.ru/"
+                              isExternal
+                            >
+                              ITECH
+                            </Link>
+                          </HStack>
+                          <Text fontSize={['sm', 'sm', 'md']}>
+                            ITECH — IT-компания полного цикла, мы специализируемся в области веб-разработки,
+                            интернет-маркетинга, сопровождения и развития интернет-проектов.
+                          </Text>
+                        </GridItem>
+                      ))}
+                    {search === undefined ||
+                      ('zebrains'.includes(search.toLocaleLowerCase()) && (
+                        <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #4bd587, #1f3695)" p={[2, 4]}>
+                          <HStack align="center">
+                            <Link
+                              fontSize={['xl', '2xl', '3xl']}
+                              fontWeight="900"
+                              color="white"
+                              href="https://zebrains.ru/"
+                              isExternal
+                            >
+                              ZEBRAINS
+                            </Link>
+                          </HStack>
+                          <Text fontSize={['sm', 'sm', 'md']}>
+                            ZeBrains – разработка программного обеспечения Разработка программного обеспечения на заказ,
+                            ИТ-аутсорсинг. Внедряем технические решения для интернет-магазинов, финансовых, страховых,
+                            медицинских, ритейл организаций.
+                          </Text>
+                        </GridItem>
+                      ))}
+                    {search === undefined ||
+                      ('profi-it group'.includes(search.toLocaleLowerCase()) && (
+                        <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #112ebd, #2f52ff)" p={[2, 4]}>
+                          <HStack align="center">
+                            <Image src={PROF_IT} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
+                            <Link
+                              fontSize={['xl', '2xl', '3xl']}
+                              fontWeight="900"
+                              color="white"
+                              href="https://prof-itgroup.ru/"
+                              isExternal
+                            >
+                              PROF-IT GROUP
+                            </Link>
+                          </HStack>
+                          <Text fontSize={['sm', 'sm', 'md']}>
+                            PROF-IT GROUP – это группа ИТ-компаний, занимающихся комплексной автоматизацией управления
+                            крупными предприятиями, проектированием и внедрением инжиниринговых и ИТ-проектов,
+                            консалтингом, разработкой прикладного и инновационного программного обеспечения, проектами в
+                            сфере цифрового производства и технологий для Умного города.
+                          </Text>
+                        </GridItem>
+                      ))}
+                    {search === undefined ||
+                      ('astrio'.includes(search.toLocaleLowerCase()) && (
+                        <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #c46511, #ff9436)" p={[2, 4]}>
+                          <HStack align="center">
+                            <Image src={ASTRIO} h={['20px', '30px', '40px']} w={['30px', '60px', '80px']} />
+                            <Link
+                              fontSize={['xl', '2xl', '3xl']}
+                              fontWeight="900"
+                              color="white"
+                              href="https://astrio.ru/"
+                              isExternal
+                            >
+                              ASTRIO
+                            </Link>
+                          </HStack>
+                          <Text fontSize={['sm', 'sm', 'md']}>
+                            ASTRIO – Профессиональная разработка интернет-магазинов на платформе Magento. Собственная
+                            команда сертифицированных Magento разработчиков.
+                          </Text>
+                        </GridItem>
+                      ))}
                     <GridItem borderRadius="10px" w="full" bgGradient="linear(to-r, #182670, #4961d8)" p={[2, 4]}>
                       <HStack align="center">
                         <Image src={Apps} h={['20px', '30px', '40px']} w={['20px', '30px', '40px']} />
