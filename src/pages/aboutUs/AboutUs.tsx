@@ -22,8 +22,10 @@ import {
   Th,
   Tbody,
   Td,
-  UnorderedList,
   ListItem,
+  ListIcon,
+  List,
+  OrderedList,
 } from '@chakra-ui/react';
 import React, { Dispatch, useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -31,7 +33,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Chart } from 'react-google-charts';
 import { AiOutlineFile } from 'react-icons/ai';
-import { BsFillPersonFill, BsMailbox, BsTelephone } from 'react-icons/bs';
+import { BsFillPersonFill, BsMailbox, BsTelephone, BsBarChartLineFill } from 'react-icons/bs';
+import { PiStudentFill, PiMedalFill, PiHandshakeFill } from 'react-icons/pi';
+import { MdArchitecture } from 'react-icons/md';
+import { GiPlanetConquest, GiPayMoney } from 'react-icons/gi';
+import { TbDeviceAnalytics } from 'react-icons/tb';
+import { FaHandsHelping } from 'react-icons/fa';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
@@ -234,46 +241,55 @@ export const AboutUs = React.memo(() => {
                     fontWeight="900"
                     textTransform="uppercase"
                   >
-                    Повышение эффективности региональной системы подготовки кадров для ИТ-отрасли Ульяновской области
+                    Развитие системы подготовки кадров для ИТ-отрасли Ульяновской области
                   </Text>
                   <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
-                  <UnorderedList mb={2}>
+                  <List mb={2}>
                     <ListItem>
+                      <ListIcon as={PiStudentFill} color="brand.blue" fontSize="1.5em" />
                       Выстраивание системы профессиональной ориентации обучающихся 6-11 классов, которая направлена на
                       осознанный выбор карьеры в ИТ-сфере
                     </ListItem>
                     <ListItem>
+                      <ListIcon as={MdArchitecture} color="brand.blue" fontSize="1.5em" />
                       Создание условий для появления передовых методов и технологий обучения ИТ-специальностям в высших
                       и средних учебных заведениях
                     </ListItem>
                     <ListItem>
+                      <ListIcon as={GiPlanetConquest} color="brand.blue" fontSize="1.5em" />
                       Содействие в организации и проведении социально-значимых мероприятий в ИТ-сфере на международном,
                       всероссийской и межрегиональных уровнях;
                     </ListItem>
-                    <ListItem>Поощрение лучших представителей ИТ-отрасли </ListItem>
-                  </UnorderedList>
+                    <ListItem>
+                      <ListIcon as={PiMedalFill} color="brand.blue" fontSize="1.5em" />
+                      Поощрение лучших представителей ИТ-отрасли{' '}
+                    </ListItem>
+                  </List>
                   <Text
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     fontSize={['md', 'lg', 'xl']}
                     fontWeight="900"
                     textTransform="uppercase"
                   >
-                    Создания условий для экономического роста ИТ-компаний
+                    Создания условий для экономического роста ИТ-компаний Ульяновской области
                   </Text>
                   <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
-                  <UnorderedList>
+                  <List>
                     <ListItem>
+                      <ListIcon as={BsBarChartLineFill} color="brand.blue" fontSize="1.5em" />
                       Формирование предложений по созданию механизмов государственной поддержки, направленных на
                       увеличение ежегодных темпов роста ИТ-отрасли;
                     </ListItem>
                     <ListItem>
+                      <ListIcon as={TbDeviceAnalytics} color="brand.blue" fontSize="1.5em" />
                       Осуществление систематического наблюдения и анализа показателей развития ИТ-отрасли;
                     </ListItem>
                     <ListItem>
+                      <ListIcon as={PiHandshakeFill} color="brand.blue" fontSize="1.5em" />
                       Создание условий для развития производственной кооперации между ИТ-компаниями и промышленными
                       предприятиями.
                     </ListItem>
-                  </UnorderedList>
+                  </List>
                   <Text
                     color={themeIsDark ? 'white' : 'brand.dark'}
                     fontSize={['md', 'lg', 'xl']}
@@ -283,18 +299,20 @@ export const AboutUs = React.memo(() => {
                     Увеличение налоговых поступлений от ИТ-отрасли Ульяновской области
                   </Text>
                   <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
-                  <UnorderedList>
+                  <List>
                     <ListItem>
+                      <ListIcon as={FaHandsHelping} color="brand.blue" fontSize="1.5em" />
                       Координация рабочей подгруппы по увеличению налоговых поступлений в консолидированный бюджет
                       Ульяновской области, а также мониторинг задолженности по видам экономической деятельности ОКВЭД 62
                       и 63;
                     </ListItem>
                     <ListItem>
+                      <ListIcon as={GiPayMoney} color="brand.blue" fontSize="1.5em" />
                       Мониторинг налоговых поступлений от ИТ-организаций, использующих региональные налоговые льготы по
                       налогу на прибыль и по налогу, взимаемому в связи с применением упрощённой системы
                       налогообложения.
                     </ListItem>
-                  </UnorderedList>
+                  </List>
                 </VStack>
               </HStack>
             </VStack>
@@ -920,7 +938,7 @@ export const AboutUs = React.memo(() => {
                     </Text>
                     <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
                     <VStack w="full" align="start" py={3}>
-                      <UnorderedList>
+                      <OrderedList spacing={2}>
                         <ListItem>Грантовая поддержка ИТ-компаний для разработки цифровых решений.</ListItem>
                         <ListItem>
                           Конкурсный отбор проектов, направленных на развитие информационных технологий в Ульяновской
@@ -937,7 +955,7 @@ export const AboutUs = React.memo(() => {
                           области, а также мониторинг задолженности по видам экономической деятельности ОКВЭД 62 и 63.
                         </ListItem>
                         <ListItem>Поощрение лучших представителей ИТ-отрасли Ульяновской области.</ListItem>
-                      </UnorderedList>
+                      </OrderedList>
                     </VStack>
                     <Text
                       color={themeIsDark ? 'white' : 'brand.dark'}

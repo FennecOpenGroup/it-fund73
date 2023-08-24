@@ -142,7 +142,7 @@ export const Header = React.memo(() => {
                       88,2
                     </Text>
                     <Text
-                      fontSize={isLargerThan1580 ? ['xs', 'sm', 'md', 'lg'] : '15px'}
+                      fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'}
                       color="#BBBBBB"
                       as="i"
                       align="center"
@@ -155,7 +155,7 @@ export const Header = React.memo(() => {
                       107
                     </Text>
                     <Text
-                      fontSize={isLargerThan1580 ? ['xs', 'sm', 'md', 'lg'] : '15px'}
+                      fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'}
                       color="#BBBBBB"
                       as="i"
                       align="center"
@@ -168,7 +168,7 @@ export const Header = React.memo(() => {
                       247
                     </Text>
                     <Text
-                      fontSize={isLargerThan1580 ? ['xs', 'sm', 'md', 'lg'] : '15px'}
+                      fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'}
                       color="#BBBBBB"
                       as="i"
                       align="center"
@@ -181,29 +181,29 @@ export const Header = React.memo(() => {
             )}
             {isLargerThan665 && (
               <HStack spacing={0} align="flex-end">
-                <VStack spacing={0} position="relative" left="10px" pb={1} align="start">
+                <VStack spacing={0} position="relative" right="-30px" pb={1} align="center">
                   <Text
-                    fontSize={isLargerThan905 ? ['xs', 'sm', 'md', 'lg'] : '12px'}
+                    fontSize={isLargerThan905 ? ['xs', 'sm', 'md'] : '12px'}
                     p={0}
                     m={0}
                     fontWeight="bold"
-                    align="start"
+                    align="center"
                     justifyContent="center"
                   >
                     Сергей Ерофеев, директор фонда:
                   </Text>
                   <Text
-                    fontSize={isLargerThan905 ? ['xs', 'sm'] : '10px'}
+                    fontSize={isLargerThan905 ? ['xs', 'sm'] : '8px'}
                     color="#BBBBBB"
                     p={0}
                     m={0}
                     as="i"
-                    align="start"
+                    align="center"
                     maxW="250px"
                     maxH="180px"
                   >
-                    Расшиваем «узкие» места в системе подготовки ИТ-кадров. <br /> Развиваем ИТ-сообщество. <br />
-                    Содействуем цифровой трансформации экономики и соцсферы.
+                    Расшиваем «узкие» места в системе подготовки ИТ-кадров. Развиваем ИТ-сообщество. Содействуем
+                    цифровой трансформации экономики и соцсферы.
                   </Text>
                 </VStack>
                 <Image
