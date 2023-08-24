@@ -45,12 +45,12 @@ export const Education = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund73 | Где получить образование?</title>
+        <title>айтифонд | Где получить образование?</title>
         <meta charSet="UTF-8" />
         <meta name="description" content="Где получить образование?" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
-        <meta property="og:url" content="https://www.it-fund73.ru/education" />
+        <meta property="og:url" content="https://www.айтифонд.рф/education" />
         <meta property="og:title" content="Где получить образование?" />
         <meta property="og:descripsion" content="Где получить образование??" />
         <meta property="og:image" content="/logo_ref.jpg" />
@@ -58,7 +58,7 @@ export const Education = React.memo(() => {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="vk:card" content="image/jpg" />
-        <meta property="vk:url" content="https://www.it-fund73.ru/education" />
+        <meta property="vk:url" content="https://www.айтифонд.рф/education" />
         <meta name="vk:title" content="Где получить образование?" />
         <meta name="vk:descripsion" content="Где получить образование?" />
         <meta name="vk:image" content="/logo_ref.jpg" />
@@ -67,7 +67,7 @@ export const Education = React.memo(() => {
           content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, ИТ-отрасль, Где получить образование?"
         />
         <meta name="twitter:card" content="image/jpg" />
-        <meta property="twitter:url" content="https://www.it-fund73.ru/education" />
+        <meta property="twitter:url" content="https://www.айтифонд.рф/education" />
         <meta name="twitter:title" content="Где получить образование?" />
         <meta name="twitter:descripsion" content="Где получить образование?" />
         <meta name="twitter:image" content="/logo_ref.jpg" />

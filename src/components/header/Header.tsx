@@ -70,7 +70,7 @@ export const Header = React.memo(() => {
 
   return (
     <VStack
-      position="sticky"
+      position="static"
       top="0px"
       pt={[1, 2, 4, 6]}
       px={isLargerThan770 ? '10%' : '5%'}

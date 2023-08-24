@@ -66,12 +66,12 @@ export const Main = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund73 | Главная</title>
+        <title>айтифонд | Главная</title>
         <meta charSet="UTF-8" />
         <meta name="descripsion" content="Главная страница" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
-        <meta property="og:url" content="https://www.it-fund73.ru/" />
+        <meta property="og:url" content="https://www.айтифонд.рф/" />
         <meta
           property="og:title"
           content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года."
@@ -82,7 +82,7 @@ export const Main = React.memo(() => {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="vk:card" content="image/jpg" />
-        <meta property="vk:url" content="https://www.it-fund73.ru/" />
+        <meta property="vk:url" content="https://www.айтифонд.рф/" />
         <meta name="vk:title" content="Фонд развития информационный технологий" />
         <meta name="vk:descripsion" content="Фонд развития информационный технологий" />
         <meta name="vk:image" content="/logo_ref.jpg" />
@@ -91,7 +91,7 @@ export const Main = React.memo(() => {
           content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, ИТ-отрасль, Где получить образование?, Что происходит в отрасли?"
         />
         <meta name="twitter:card" content="image/jpg" />
-        <meta property="twitter:url" content="https://www.it-fund73.ru/" />
+        <meta property="twitter:url" content="https://www.айтифонд.рф/" />
         <meta name="twitter:title" content="Фонд развития информационный технологий Ульяновской области." />
         <meta name="twitter:descripsion" content="Фонд развития информационный технологий Ульяновской области." />
         <meta name="twitter:image" content="/logo_ref.jpg" />

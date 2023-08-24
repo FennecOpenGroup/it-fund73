@@ -29,7 +29,7 @@ export const notFound = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund73 | Главная</title>
+        <title>айтифонд | Главная</title>
         <meta charSet="UTF-8" />
         <meta name="Главная страница" content="Фонд развития информационный технологий" />
         <meta property="og:type" content="website" />

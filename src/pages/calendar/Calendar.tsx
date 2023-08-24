@@ -120,12 +120,12 @@ export const Calendar = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund73 | Когда будут мероприятия?</title>
+        <title>айтифонд | Когда будут мероприятия?</title>
         <meta charSet="UTF-8" />
         <meta name="descripsion" content="" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
-        <meta property="og:url" content="https://www.it-fund73.ru/calendar" />
+        <meta property="og:url" content="https://айтифонд.рф/calendar" />
         <meta property="og:title" content="Календарь мероприятий" />
         <meta property="og:descripsion" content="Календарь мероприятий" />
         <meta property="og:image" content="/logo_ref.jpg" />
@@ -133,7 +133,7 @@ export const Calendar = React.memo(() => {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="vk:card" content="image/jpg" />
-        <meta property="vk:url" content="https://www.it-fund73.ru/calendar" />
+        <meta property="vk:url" content="https://айтифонд.рф/calendar" />
         <meta name="vk:title" content="Календарь мероприятий" />
         <meta name="vk:descripsion" content="Календарь мероприятий" />
         <meta name="vk:image" content="/logo_ref.jpg" />
@@ -142,7 +142,7 @@ export const Calendar = React.memo(() => {
           content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, мероприятия, календарь событий"
         />
         <meta name="twitter:card" content="image/jpg" />
-        <meta property="twitter:url" content="https://www.it-fund73.ru/calendar" />
+        <meta property="twitter:url" content="https://айтифонд.рф/calendar" />
         <meta name="twitter:title" content="Календарь мероприятий" />
         <meta name="twitter:descripsion" content="Календарь мероприятий" />
         <meta name="twitter:image" content="/logo_ref.jpg" />
