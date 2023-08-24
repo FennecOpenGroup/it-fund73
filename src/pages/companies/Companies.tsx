@@ -4,6 +4,7 @@ import {
   HStack,
   Text,
   Link,
+  List,
   Image,
   Grid,
   Stack,
@@ -13,9 +14,9 @@ import {
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
-  UnorderedList,
   OrderedList,
   ListItem,
+  ListIcon,
   GridItem,
   useMediaQuery,
   Input,
@@ -24,9 +25,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import CountUp from 'react-countup';
 import { useSelector } from 'react-redux';
-import { BsGraphUpArrow } from 'react-icons/bs';
+import { BsGraphUpArrow, BsFillHouseDoorFill, BsBank2 } from 'react-icons/bs';
 import { MdPeopleAlt, MdComputer } from 'react-icons/md';
-import { FaFileContract } from 'react-icons/fa';
+import { FaFileContract, FaFlagCheckered } from 'react-icons/fa';
+import { GiTrophyCup, GiMeepleArmy } from 'react-icons/gi';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
@@ -340,7 +342,7 @@ export const Companies = React.memo(() => {
                   </Text>
                   <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
                   <VStack w="full" align="center" py={3}>
-                    <UnorderedList>
+                    <List>
                       <ListItem>
                         Пониженные региональные налоговые ставки по УСН в размере 1 %, если объектом налогообложения
                         являются доходы, 5 % и 10 %, если объектом налогообложения являются доходы, уменьшенные на
@@ -354,16 +356,20 @@ export const Companies = React.memo(() => {
                         «ФФПП»).
                       </ListItem>
                       <ListItem>
-                        Единовременная социальная выплата на приобретение жилья для ИТ-специалистов в размере 250 тыс.
-                        рублей.
-                        <Link
-                          fontWeight="900"
-                          fontSize="xm"
-                          color={themeIsDark ? 'white' : 'brand.dark'}
-                          href="http://energy.ulregion.ru/wp-content/uploads/2023/04/12-04-2023_09-08-58.zip"
-                        >
-                          Документация
-                        </Link>
+                        <HStack>
+                          <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                            Единовременная социальная выплата на приобретение жилья для ИТ-специалистов в размере 250
+                            тыс. рублей.
+                          </Text>
+                          <Link
+                            fontWeight="900"
+                            fontSize="xm"
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            href="http://energy.ulregion.ru/wp-content/uploads/2023/04/12-04-2023_09-08-58.zip"
+                          >
+                            Скачать документация
+                          </Link>
+                        </HStack>
                       </ListItem>
                       <ListItem>
                         Стипендии Губернатора Ульяновской области «имени Е.Е.Горина» и «имени И.Я.Яковлева» от 3 до 5
@@ -372,7 +378,7 @@ export const Companies = React.memo(() => {
                       <ListItem>
                         Гранты на разработку отечественного ПО и реализацию образовательных проектов в сфере ИТ
                       </ListItem>
-                    </UnorderedList>
+                    </List>
                   </VStack>
                   <Text
                     color={themeIsDark ? 'white' : 'brand.dark'}
@@ -397,26 +403,39 @@ export const Companies = React.memo(() => {
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']} fontWeight="900">
                       Другие меры поддержки:
                     </Text>
-                    <UnorderedList>
-                      <ListItem>Освобождение от налоговых проверок до конца 2024 года; </ListItem>
+                    <List>
                       <ListItem>
-                        Льготная ипотека для ИТ-специалистов до 5% годовых на покупку недвижимости;
-                        <Link
-                          fontWeight="900"
-                          fontSize="xm"
-                          color={themeIsDark ? 'white' : 'brand.dark'}
-                          isExternal
-                          href="https://спроси.дом.рф/tag/mortgage/"
-                        >
-                          Условие программы
-                        </Link>
+                        <ListIcon as={GiTrophyCup} color="brand.blue" fontSize="1.25em" />
+                        Освобождение от налоговых проверок до конца 2024 года;{' '}
                       </ListItem>
                       <ListItem>
+                        <HStack>
+                          <ListIcon as={BsFillHouseDoorFill} color="brand.blue" fontSize="1.25em" />
+                          <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                            Льготная ипотека для ИТ-специалистов до 5% годовых на покупку недвижимости.
+                          </Text>
+                          <Link
+                            fontWeight="900"
+                            fontSize="xm"
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            isExternal
+                            href="https://digital.gov.ru/ru/events/42424/"
+                          >
+                            Условие программы
+                          </Link>
+                        </HStack>
+                      </ListItem>
+                      <ListItem>
+                        <ListIcon as={FaFlagCheckered} color="brand.blue" fontSize="1.25em" />
                         Упрощение процесса трудоустройства иностранных ИТ-специалистов и получения ими вида на
                         жительство;
                       </ListItem>
-                      <ListItem>Отсрочка от призыва службы в армии от 18 до 27 лет;</ListItem>
                       <ListItem>
+                        <ListIcon as={GiMeepleArmy} color="brand.blue" fontSize="1.25em" />
+                        Отсрочка от призыва службы в армии от 18 до 27 лет;
+                      </ListItem>
+                      <ListItem>
+                        <ListIcon as={BsBank2} color="brand.blue" fontSize="1.25em" />
                         Льготные кредиты через уполномоченные банки до 5% годовых на разработку и внедрение российских
                         ИТ-решений;
                         <Link
@@ -429,30 +448,30 @@ export const Companies = React.memo(() => {
                           Условие программы
                         </Link>
                       </ListItem>
-                      <ListItem>ИТ-гранты на развитие цифровых решений:</ListItem>
-                      <UnorderedList>
-                        <ListItem>
+                      <List>
+                        <ListItem>ИТ-гранты на развитие цифровых решений:</ListItem>
+                        <ListItem pl="10px">
                           <Link href="https://рфрит.рф/" isExternal>
                             Российский фонд развития информационных технологий (РФРИТ);
                           </Link>
                         </ListItem>
-                        <ListItem>
+                        <ListItem pl="10px">
                           <Link href="https://www.iidf.ru/startups/" isExternal>
                             Фонд развития интернет-инициатив (ФРИИ);
                           </Link>
                         </ListItem>
-                        <ListItem>
+                        <ListItem pl="10px">
                           <Link href="https://fasie.ru/" isExternal>
                             Фонд содействия инновациям;
                           </Link>
                         </ListItem>
-                        <ListItem>
+                        <ListItem pl="10px">
                           <Link href="https://dtech.sk.ru/" isExternal>
                             Фонд «Сколково»;
                           </Link>
                         </ListItem>
-                      </UnorderedList>
-                    </UnorderedList>
+                      </List>
+                    </List>
                   </VStack>
                 </VStack>
               </AccordionPanel>
