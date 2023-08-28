@@ -251,7 +251,7 @@ export const Main = React.memo(() => {
                           to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
                           key={index}
                           color={themeIsDark ? 'white' : 'brand.dark'}
-                          fontSize={['xs', 'sm', 'md']}
+                          fontSize={['8px', '10px', 'xs', 'sm', 'md']}
                           onClick={async () => {
                             await fetchChangeShortsViews(
                               shortNews[Number(index)].id,
@@ -276,6 +276,7 @@ export const Main = React.memo(() => {
                     rightIcon={<BiPlus />}
                     w="full"
                     color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontSize={['10px', 'xs', 'sm', 'md']}
                     onClick={() => {
                       const newsUp = shortNewsCounter + loadShortCount;
                       setShortNewsCounter(newsUp);
