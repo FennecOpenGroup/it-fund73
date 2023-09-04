@@ -963,7 +963,7 @@ export const AboutUs = React.memo(() => {
                       fontWeight="900"
                       textTransform="uppercase"
                     >
-                      Проекты поддержанные Айти Фондом в 2023 году
+                      ПРОЕКТЫ, ПОДДЕРЖАННЫЕ ФОНДОМ В 2023 ГОДУ
                     </Text>
                     <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
                   </VStack>

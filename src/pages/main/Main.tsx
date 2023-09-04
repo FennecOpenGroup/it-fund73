@@ -10,7 +10,6 @@ import { BiPlus } from 'react-icons/bi';
 import { NewsContent } from '../../components/newsContent/NewsContent';
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
-import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { TagsEnum } from '../../enums/TagsEnum';
 import { IRootState } from '../../interfaces/IRootState';
 import { API_URL_ADMIN } from '../../constants/env';
@@ -21,8 +20,6 @@ import { ROUTE_NEWS } from '../../constants/routes';
 import { fetchChangeShortsViews } from '../../api/newsApi';
 
 export const Main = React.memo(() => {
-  const { height } = useWindowDimensions();
-
   const it = useSelector((state: IRootState) => state.core.it);
   const education = useSelector((state: IRootState) => state.core.education);
   const business = useSelector((state: IRootState) => state.core.business);
@@ -226,8 +223,7 @@ export const Main = React.memo(() => {
               spacing={2}
               borderLeft="2px"
               borderColor={themeIsDark ? 'white' : 'brand.dark'}
-              minH={`${height}px`}
-              h={contentHeight}
+              minH={contentHeight}
               align="center"
             >
               <Text

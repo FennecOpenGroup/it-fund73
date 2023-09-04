@@ -59,10 +59,11 @@ export const Header = React.memo(() => {
 
   const [isLargerThan1580] = useMediaQuery('(min-width: 1580px)');
   const [isLargerThan1181] = useMediaQuery('(min-width: 1181px)');
-  const [isLargerThan1090] = useMediaQuery('(min-width: 1090px)');
+  const [isLargerThan1231] = useMediaQuery('(min-width: 1231px)');
   const [isLargerThan905] = useMediaQuery('(min-width: 905px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan665] = useMediaQuery('(min-width: 665px)');
+  const [isLargerThan445] = useMediaQuery('(min-width: 445px)');
 
   useEffect(() => {
     dispatch(coreGetTheme());
@@ -86,7 +87,13 @@ export const Header = React.memo(() => {
             <Tooltip label="Сменить тему">
               <Button
                 variant="brand-icon"
-                leftIcon={themeIsDark ? <HiOutlineSun size="16px" /> : <HiOutlineMoon size="16px" />}
+                leftIcon={
+                  themeIsDark ? (
+                    <HiOutlineSun size="16px" />
+                  ) : (
+                    <HiOutlineMoon size={isLargerThan445 ? '16px' : '10px'} />
+                  )
+                }
                 onClick={() => {
                   dispatch(coreSetTheme(!themeIsDark));
                   localStorage.setItem('theme', themeIsDark ? 'light' : 'dark');
@@ -102,7 +109,7 @@ export const Header = React.memo(() => {
                 href="https://vk.com/itfund73"
                 isExternal
                 variant="brand-icon"
-                leftIcon={<SlSocialVkontakte size="16px" />}
+                leftIcon={<SlSocialVkontakte size={isLargerThan445 ? '16px' : '10px'} />}
                 iconSpacing={0}
                 size="xs"
                 p={0}
@@ -114,7 +121,7 @@ export const Header = React.memo(() => {
                 href="https://youtube.com/@user-or8ou2iv4e"
                 isExternal
                 variant="brand-icon"
-                leftIcon={<SlSocialYoutube size="16px" />}
+                leftIcon={<SlSocialYoutube size={isLargerThan445 ? '16px' : '10px'} />}
                 iconSpacing={0}
                 size="xs"
                 p={0}
@@ -126,17 +133,25 @@ export const Header = React.memo(() => {
             cursor="pointer"
             as={RouterLink}
             to={ROUTE_MAINPAGE}
-            align="center"
+            align="start"
             w={isLargerThan665 ? 'auto' : 'full'}
           >
-            <Image src={full_logo} minH="100px" minW="120px" w="full" loading="lazy" py={0} />
+            <Image
+              src={full_logo}
+              minH={isLargerThan665 ? '100px' : 'auto'}
+              minW="120px"
+              w="full"
+              loading="lazy"
+              py={0}
+              pb={isLargerThan445 ? '1px' : '5px'}
+            />
           </HStack>
         </VStack>
-        {isLargerThan665 && (
-          <HStack spacing={0} p={0} m={0} w="full" justify="end" align="end">
+        {isLargerThan770 && (
+          <HStack spacing={0} p={0} m={0} w={isLargerThan1181 ? 'full' : '0px'} justify="end" align="end">
             {isLargerThan1181 && (
-              <HStack spacing={[1, 3, 5]} p={0} m={0} justify={!isLargerThan1580 ? 'flex-end' : 'start'}>
-                <Stack align="center" direction={isLargerThan1580 ? 'row' : 'column'} spacing={0}>
+              <HStack spacing={[0, 2, 4]} p={0} m={0} justify={!isLargerThan1580 ? 'flex-end' : 'start'}>
+                <Stack align="center" direction={isLargerThan1580 ? 'row' : 'column'} spacing={0} minH="220px">
                   <VStack spacing={0} justify="center" align="center" px={2} m={0}>
                     <Text fontSize={isLargerThan1580 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
                       88,2
@@ -179,45 +194,60 @@ export const Header = React.memo(() => {
                 </Stack>
               </HStack>
             )}
-            {isLargerThan665 && (
-              <HStack spacing={0} align="flex-end">
-                <VStack spacing={0} position="relative" right="-30px" pb={1} align="center">
-                  <Text
-                    fontSize={isLargerThan905 ? ['xs', 'sm', 'md'] : '12px'}
-                    p={0}
-                    m={0}
-                    fontWeight="bold"
-                    align="center"
-                    justifyContent="center"
-                  >
-                    Сергей Ерофеев, директор фонда:
-                  </Text>
-                  <Text
-                    fontSize={isLargerThan905 ? ['xs', 'sm'] : '8px'}
-                    color="#BBBBBB"
-                    p={0}
-                    m={0}
-                    as="i"
-                    align="center"
-                    maxW="250px"
-                    maxH="180px"
-                  >
-                    Расшиваем «узкие» места в системе подготовки ИТ-кадров. Развиваем ИТ-сообщество. Содействуем
-                    цифровой трансформации экономики и соцсферы.
-                  </Text>
-                </VStack>
-                <Image
-                  src={erofeev}
-                  alt="erofeev"
-                  loading="lazy"
-                  htmlWidth="full"
-                  maxW={isLargerThan905 ? '140px' : '120px'}
-                  htmlHeight="full"
-                />
-              </HStack>
-            )}
           </HStack>
         )}
+        <HStack spacing={0} align="flex-end" w="full" flexDirection={isLargerThan1181 ? 'row' : 'row-reverse'}>
+          <VStack
+            spacing={0}
+            position="relative"
+            right={isLargerThan1181 ? '-20px' : ['6px', '20px']}
+            pb={1}
+            align="center"
+            minH={isLargerThan1181 ? '220px' : isLargerThan905 ? '80px' : '40px'}
+          >
+            <Text
+              fontSize={isLargerThan905 ? ['xs', 'sm', 'md'] : ['6px', '8px', '10px']}
+              p={0}
+              m={0}
+              fontWeight="bold"
+              align="center"
+              justifyContent="center"
+            >
+              Сергей Ерофеев, директор фонда:
+            </Text>
+            <Text
+              fontSize={isLargerThan905 ? ['xs', 'sm'] : ['4px', '6px']}
+              color="#BBBBBB"
+              p={0}
+              m={0}
+              as="i"
+              align="center"
+              maxW={['310px', '280px', '250px']}
+              maxH="190px"
+            >
+              Расшиваем «узкие» места в системе подготовки ИТ-кадров. Развиваем ИТ-сообщество. Содействуем цифровой
+              трансформации экономики и соцсферы.
+            </Text>
+          </VStack>
+          <Image
+            src={erofeev}
+            alt="erofeev"
+            loading="lazy"
+            htmlWidth="full"
+            maxW={
+              isLargerThan905
+                ? '140px'
+                : isLargerThan770
+                ? '100px'
+                : isLargerThan665
+                ? '80px'
+                : isLargerThan445
+                ? '60px'
+                : '45px'
+            }
+            htmlHeight="full"
+          />
+        </HStack>
       </HStack>
       <HStack
         w="full"
@@ -229,7 +259,7 @@ export const Header = React.memo(() => {
         borderTopStartRadius="5px"
         borderTopEndRadius="5px"
       >
-        <HStack w="full" minW={!isLargerThan1090 ? '50%' : '30%'} maxW={!isLargerThan1090 ? 'full' : '30%'} spacing={1}>
+        <HStack w="full" minW={!isLargerThan1231 ? '50%' : '30%'} maxW={!isLargerThan1231 ? 'full' : '30%'} spacing={1}>
           <ButtonGroup w="full" p={0} spacing={0}>
             <Input
               variant="brand-search"
@@ -299,22 +329,22 @@ export const Header = React.memo(() => {
             />
           </Tooltip>
         </HStack>
-        {isLargerThan1090 && (
+        {isLargerThan1231 && (
           <HStack spacing={0}>
             <>
               <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_COMPANIES}>
-                Что происходит в отрасли?
+                Что происходит в ИТ-отрасли?
               </Button>
               <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_EDUCATION}>
-                Где получить образование?
+                Где получить ИТ-образование?
               </Button>
               <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_CALENDAR}>
-                Когда будут мероприятия?
+                Когда будут ИТ-мероприятия?
               </Button>
             </>
           </HStack>
         )}
-        {!isLargerThan1090 && (
+        {!isLargerThan1231 && (
           <Menu>
             <MenuButton
               as={Button}
@@ -337,7 +367,7 @@ export const Header = React.memo(() => {
             </MenuList>
           </Menu>
         )}
-        {isLargerThan1090 && <Spacer />}
+        {isLargerThan1231 && <Spacer />}
       </HStack>
     </VStack>
   );

@@ -120,7 +120,7 @@ export const Calendar = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>айтифонд | Когда будут мероприятия?</title>
+        <title>айтифонд | Когда будут ИТ-мероприятия?</title>
         <meta charSet="UTF-8" />
         <meta name="descripsion" content="" />
         <meta property="og:type" content="website" />

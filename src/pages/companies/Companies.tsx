@@ -95,7 +95,7 @@ export const Companies = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>айтифонд | Что происходит в отрасли?</title>
+        <title>айтифонд | Что происходит в ИТ-отрасли?</title>
         <meta charSet="UTF-8" />
         <meta name="description" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta property="og:type" content="website" />
@@ -357,18 +357,18 @@ export const Companies = React.memo(() => {
                       </ListItem>
                       <ListItem>
                         <HStack>
-                          <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                          <Text fontSize="md" color={themeIsDark ? 'white' : 'brand.dark'}>
                             Единовременная социальная выплата на приобретение жилья для ИТ-специалистов в размере 250
                             тыс. рублей.
+                            <Link
+                              fontWeight="900"
+                              fontSize="xm"
+                              color={themeIsDark ? 'white' : 'brand.dark'}
+                              href="http://energy.ulregion.ru/wp-content/uploads/2023/04/12-04-2023_09-08-58.zip"
+                            >
+                              Скачать документацию
+                            </Link>
                           </Text>
-                          <Link
-                            fontWeight="900"
-                            fontSize="xm"
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            href="http://energy.ulregion.ru/wp-content/uploads/2023/04/12-04-2023_09-08-58.zip"
-                          >
-                            Скачать документация
-                          </Link>
                         </HStack>
                       </ListItem>
                       <ListItem>

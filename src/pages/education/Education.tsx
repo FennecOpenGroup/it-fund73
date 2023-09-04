@@ -94,7 +94,7 @@ export const Education = React.memo(() => {
             pt={4}
             fontWeight="800"
           >
-            Где получить образование?
+            Где получить ИТ-образование?
           </Text>
           <Stack
             direction={isLargerThan960 ? 'row' : 'column'}
