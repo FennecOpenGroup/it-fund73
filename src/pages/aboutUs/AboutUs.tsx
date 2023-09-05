@@ -72,10 +72,11 @@ export const AboutUs = React.memo(() => {
 
   const [charts, setCharts] = useState(false);
 
+  const [isLargerThan1580] = useMediaQuery('(min-width: 1580px)');
   const [isLargerThan1300] = useMediaQuery('(min-width: 1300px)');
   const [isLargerThan1155] = useMediaQuery('(min-width: 1155px)');
+  const [isLargerThan840] = useMediaQuery('(min-width: 840px)');
   const [isLargerThan530] = useMediaQuery('(min-width: 530px)');
-  const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
 
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
   const docs = useSelector((state: IRootState) => state.core.docs);
@@ -153,7 +154,33 @@ export const AboutUs = React.memo(() => {
                 Фонд развития информациионных технологий Ульяновской области
               </Text>
             </HStack>
-            <Stack direction={isLargerThan480 ? 'row' : 'column'} w="full" align="center" justify="center">
+            <Stack align="center" justify="center" direction={isLargerThan840 ? 'row' : 'column'} spacing={0} w="full">
+              <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                <Text fontSize={isLargerThan840 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] : '20px'} maxH="60px">
+                  88,2
+                </Text>
+                <Text fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
+                  тыс. участников
+                </Text>
+              </VStack>
+              <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                <Text fontSize={isLargerThan840 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] : '20px'} maxH="60px">
+                  107
+                </Text>
+                <Text fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
+                  млн руб.
+                </Text>
+              </VStack>
+              <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                <Text fontSize={isLargerThan840 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] : '20px'} maxH="60px">
+                  247
+                </Text>
+                <Text fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
+                  проектов
+                </Text>
+              </VStack>
+            </Stack>
+            <Stack direction={isLargerThan840 ? 'row' : 'column'} w="full" align="center" justify="center">
               <Button
                 color="white"
                 variant="brand-link"
