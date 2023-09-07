@@ -63,11 +63,7 @@ export const Header = React.memo(() => {
   const [isLargerThan905] = useMediaQuery('(min-width: 905px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan665] = useMediaQuery('(min-width: 665px)');
-<<<<<<< HEAD
   const [isLargerThan445] = useMediaQuery('(min-width: 445px)');
-=======
-  const [isLargerThan370] = useMediaQuery('(min-width: 370px)');
->>>>>>> f33fb1f9022e337bb6ca2700bfd2fd0d64a26238
 
   useEffect(() => {
     dispatch(coreGetTheme());
@@ -140,7 +136,6 @@ export const Header = React.memo(() => {
             align="start"
             w={isLargerThan665 ? 'auto' : 'full'}
           >
-<<<<<<< HEAD
             <Image
               src={full_logo}
               minH={isLargerThan665 ? '100px' : 'auto'}
@@ -252,77 +247,6 @@ export const Header = React.memo(() => {
             }
             htmlHeight="full"
           />
-=======
-            <Image src={full_logo} minH="80px" minW="120px" w="full" loading="lazy" py={0} />
-          </HStack>
-        </VStack>
-        <HStack spacing={0} p={0} m={0} w="full" justify="end" align="end">
-          {isLargerThan1181 && (
-            <HStack spacing={[1, 3, 5]} p={0} m={0} justify={!isLargerThan1580 ? 'flex-end' : 'start'}>
-              <Stack align="center" direction={isLargerThan1580 ? 'row' : 'column'} spacing={0}>
-                <VStack spacing={0} justify="center" align="center" px={2} m={0}>
-                  <Text fontSize={isLargerThan1580 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
-                    88,2
-                  </Text>
-                  <Text fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
-                    тыс. участников
-                  </Text>
-                </VStack>
-                <VStack spacing={0} justify="center" align="center" px={2} m={0}>
-                  <Text fontSize={isLargerThan1580 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
-                    107
-                  </Text>
-                  <Text fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
-                    млн руб.
-                  </Text>
-                </VStack>
-                <VStack spacing={0} justify="center" align="center" px={2} m={0}>
-                  <Text fontSize={isLargerThan1580 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
-                    247
-                  </Text>
-                  <Text fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
-                    проектов
-                  </Text>
-                </VStack>
-              </Stack>
-            </HStack>
-          )}
-          <HStack spacing={0} align="flex-end">
-            <VStack spacing={0} position="relative" right={['-5px', '-10px', '-20px', '-30px']} pb={1} align="center">
-              <Text
-                fontSize={isLargerThan905 ? ['xs', 'sm', 'md'] : ['7px', '10px', '12px']}
-                p={0}
-                m={0}
-                fontWeight="bold"
-                align="center"
-                justifyContent="center"
-              >
-                Сергей Ерофеев, директор фонда:
-              </Text>
-              <Text
-                fontSize={isLargerThan905 ? ['xs', 'sm'] : isLargerThan370 ? ['7px', '8px', '10px'] : '6px'}
-                color="#BBBBBB"
-                p={0}
-                m={0}
-                as="i"
-                align="center"
-                maxW="250px"
-                maxH="180px"
-              >
-                Расшиваем «узкие» места в системе подготовки ИТ-кадров. Развиваем ИТ-сообщество. Содействуем цифровой
-                трансформации экономики и соцсферы.
-              </Text>
-            </VStack>
-            <Image
-              src={erofeev}
-              alt="erofeev"
-              loading="lazy"
-              htmlWidth="full"
-              maxW={isLargerThan905 ? '140px' : ['70px', '85px', '100px', '120px']}
-              htmlHeight="full"
-            />
-          </HStack>
->>>>>>> f33fb1f9022e337bb6ca2700bfd2fd0d64a26238
         </HStack>
       </HStack>
       <HStack
