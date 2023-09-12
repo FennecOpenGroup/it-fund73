@@ -45,7 +45,7 @@ export const Education = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>айтифонд | Где получить образование?</title>
+        <title>айтифонд | Где получить образование</title>
         <meta charSet="UTF-8" />
         <meta name="description" content="Где получить образование?" />
         <meta property="og:type" content="website" />
@@ -94,7 +94,7 @@ export const Education = React.memo(() => {
             pt={4}
             fontWeight="800"
           >
-            Где получить ИТ-образование?
+            Где получить ИТ-образование
           </Text>
           <Stack
             direction={isLargerThan960 ? 'row' : 'column'}

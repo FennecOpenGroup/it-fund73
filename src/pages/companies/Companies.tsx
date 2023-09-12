@@ -95,7 +95,7 @@ export const Companies = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>айтифонд | Что происходит в ИТ-отрасли?</title>
+        <title>айтифонд | Что происходит в ИТ-отрасли</title>
         <meta charSet="UTF-8" />
         <meta name="description" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta property="og:type" content="website" />

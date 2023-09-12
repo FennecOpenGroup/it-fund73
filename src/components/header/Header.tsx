@@ -151,7 +151,7 @@ export const Header = React.memo(() => {
           <HStack spacing={0} p={0} m={0} w={isLargerThan1181 ? 'full' : '0px'} justify="end" align="end">
             {isLargerThan1181 && (
               <HStack spacing={[0, 2, 4]} p={0} m={0} justify={!isLargerThan1580 ? 'flex-end' : 'start'}>
-                <Stack align="center" direction={isLargerThan1580 ? 'row' : 'column'} spacing={0} minH="220px">
+                <Stack align="center" direction={isLargerThan1580 ? 'row' : 'column'} spacing={0} minH="180px">
                   <VStack spacing={0} justify="center" align="center" px={2} m={0}>
                     <Text fontSize={isLargerThan1580 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
                       88,2
@@ -203,7 +203,19 @@ export const Header = React.memo(() => {
             right={isLargerThan1181 ? '-20px' : ['6px', '20px']}
             pb={1}
             align="center"
-            minH={isLargerThan1181 ? '220px' : isLargerThan905 ? '80px' : '40px'}
+            minH={
+              isLargerThan1580
+                ? '100px'
+                : isLargerThan1181
+                ? '180px'
+                : isLargerThan905
+                ? '80px'
+                : isLargerThan770
+                ? '80px'
+                : isLargerThan445
+                ? '60px'
+                : '40px'
+            }
           >
             <Text
               fontSize={isLargerThan905 ? ['xs', 'sm', 'md'] : ['6px', '8px', '10px']}
@@ -333,13 +345,13 @@ export const Header = React.memo(() => {
           <HStack spacing={0}>
             <>
               <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_COMPANIES}>
-                Что происходит в ИТ-отрасли?
+                Что происходит в ИТ-отрасли
               </Button>
               <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_EDUCATION}>
-                Где получить ИТ-образование?
+                Где получить ИТ-образование
               </Button>
               <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_CALENDAR}>
-                Когда будут ИТ-мероприятия?
+                Когда будут ИТ-мероприятия
               </Button>
             </>
           </HStack>
@@ -356,13 +368,13 @@ export const Header = React.memo(() => {
             />
             <MenuList>
               <MenuItem as={RouterLink} to={ROUTE_COMPANIES}>
-                Что происходит в отрасли?
+                Что происходит в отрасли
               </MenuItem>
               <MenuItem as={RouterLink} to={ROUTE_EDUCATION}>
-                Где получить образование?
+                Где получить образование
               </MenuItem>
               <MenuItem as={RouterLink} to={ROUTE_CALENDAR}>
-                Когда будут мероприятия?
+                Когда будут мероприятия
               </MenuItem>
             </MenuList>
           </Menu>

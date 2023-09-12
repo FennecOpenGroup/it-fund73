@@ -13,7 +13,7 @@ export async function fetchNews(): Promise<INews[]> {
 }
 
 export async function fetchShorts(): Promise<INews[]> {
-  const url = new URL(`/api/shorts?populate=deep`, API_URL_ADMIN || window.location.href);
+  const url = new URL(`/api/shorts?sort=date:DESC&populate=deep`, API_URL_ADMIN || window.location.href);
 
   return fetch(url.toString(), {
     method: 'GET',
