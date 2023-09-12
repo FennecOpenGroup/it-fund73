@@ -61,7 +61,6 @@ export const Footer = React.memo(() => {
           <Link href="mailto:it_ulsk@mail.ru">it_ulsk@mail.ru</Link>
         </Text>
         <Text>
-          Адрес:
           <Link
             href="https://yandex.ru/maps/195/ulyanovsk/house/ulitsa_minayeva_11/YEEYdQ9nSkMAQFtufX9xeX9mYg==/?ll=48.387366%2C54.308356&z=16.48"
             isExternal

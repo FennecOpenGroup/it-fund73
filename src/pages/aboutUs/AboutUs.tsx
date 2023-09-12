@@ -966,7 +966,7 @@ export const AboutUs = React.memo(() => {
                     <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
                     <VStack w="full" align="start" py={3}>
                       <OrderedList spacing={2}>
-                        <ListItem>Грантовая поддержка ИТ-компаний для разработки цифровых решений.</ListItem>
+                        <ListItem>Грантовая поддержка ИТ-компаний для разработки отечественных решений.</ListItem>
                         <ListItem>
                           Конкурсный отбор проектов, направленных на развитие информационных технологий в Ульяновской
                           области;

@@ -138,7 +138,7 @@ export const Companies = React.memo(() => {
           pt={4}
           fontWeight="800"
         >
-          Показатели развития ИТ-отрасли. 1 квартал 2023 года
+          Текущие показатели развития ИТ-отрасли
         </Text>
         <Stack
           w={['40%', '60%', '100%']}
@@ -201,7 +201,7 @@ export const Companies = React.memo(() => {
                 <CountUp
                   style={{ color: '#7775ed', fontSize: `${isLargerThan960 ? '60px' : '30px'}`, fontWeight: 'bold' }}
                   separator=""
-                  end={1451}
+                  end={1453}
                   duration={2}
                 />
               </Stack>
@@ -218,7 +218,7 @@ export const Companies = React.memo(() => {
                   {isLargerThan960 && (
                     <CountUp
                       style={{ color: '#7775ed', fontSize: '60px', fontWeight: 'bold' }}
-                      end={175}
+                      end={138}
                       duration={2}
                     />
                   )}
