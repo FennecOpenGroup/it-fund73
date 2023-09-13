@@ -409,21 +409,17 @@ export const Companies = React.memo(() => {
                         Освобождение от налоговых проверок до конца 2024 года;{' '}
                       </ListItem>
                       <ListItem>
-                        <HStack>
-                          <ListIcon as={BsFillHouseDoorFill} color="brand.blue" fontSize="1.25em" />
-                          <Text color={themeIsDark ? 'white' : 'brand.dark'}>
-                            Льготная ипотека для ИТ-специалистов до 5% годовых на покупку недвижимости.
-                          </Text>
-                          <Link
-                            fontWeight="900"
-                            fontSize="xm"
-                            color={themeIsDark ? 'white' : 'brand.dark'}
-                            isExternal
-                            href="https://digital.gov.ru/ru/events/42424/"
-                          >
-                            Условие программы
-                          </Link>
-                        </HStack>
+                        <ListIcon as={BsFillHouseDoorFill} color="brand.blue" fontSize="1.25em" />
+                        Льготная ипотека для ИТ-специалистов до 5% годовых на покупку недвижимости.
+                        <Link
+                          fontWeight="900"
+                          fontSize="xm"
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          isExternal
+                          href="https://digital.gov.ru/ru/events/42424/"
+                        >
+                          Условие программы
+                        </Link>
                       </ListItem>
                       <ListItem>
                         <ListIcon as={FaFlagCheckered} color="brand.blue" fontSize="1.25em" />
