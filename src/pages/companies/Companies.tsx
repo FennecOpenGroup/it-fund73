@@ -55,6 +55,7 @@ import ps from '../../assets/companies/ps.svg';
 import sonakay from '../../assets/companies/sonakay.svg';
 import ecwid from '../../assets/companies/ecwid.svg';
 import Supportix from '../../assets/companies/Supportix.svg';
+import AISMK from '../../assets/companies/AISMK.svg';
 import Oplanet from '../../assets/companies/o-planet.svg';
 import Ecomlabs from '../../assets/companies/Ecomlabs.svg';
 import scheme_accreditation from '../../assets/schemes/scheme_accreditation.svg';
@@ -2253,6 +2254,36 @@ export const Companies = React.memo(() => {
                             Компания «АйПиТелеком» создана в 2002 г. Цель создания компании изначально заключалась в
                             оказании услуг местной традиционной телефонии связи, широкополосный доступ в Интернет,
                             предоставление в аренду цифровых каналов связи для юридических лиц.
+                          </Text>
+                        </GridItem>
+                      ))}
+                    {search === undefined ||
+                      ('АИСМК'.includes(search.toLocaleLowerCase()) && (
+                        <GridItem
+                          borderRadius="10px"
+                          w="full"
+                          bgGradient="linear(to-r, #1624E9, #E11600, #EBB400)"
+                          p={[2, 4]}
+                        >
+                          <HStack align="center">
+                            <Image src={AISMK} h={['20px', '30px', '35px']} w={['20px', '30px', '35px']} />
+                            <Link
+                              fontSize={['xl', '2xl', '3xl']}
+                              fontWeight="900"
+                              color="white"
+                              href="https://aismk.ru/"
+                              isExternal
+                            >
+                              АИСМК
+                            </Link>
+                          </HStack>
+                          <Text fontSize={['sm', 'sm', 'md']}>
+                            Команда Алинги – это идейный коллектив профессионалов в области автоматизации процессов
+                            менеджмента качества на предприятиях. С 2010 года мы занимаемся внедрением информационных
+                            систем, которые обеспечивают контроль качества от момента планирования производства и до
+                            постгарантийного обслуживания. Мы гордимся тем, что все инженеры нашей компании растут
+                            вместе с нами и реализуют идеи по оптимизации процессов внедрения программного обеспечения и
+                            его функциональных возможностей.
                           </Text>
                         </GridItem>
                       ))}
