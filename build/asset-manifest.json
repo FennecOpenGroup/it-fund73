@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.81f66d4a.css",
-    "main.js": "/static/js/main.b1e05a43.js",
+    "main.js": "/static/js/main.6dd9c825.js",
     "static/media/Ulyanovsk.jpg": "/static/media/Ulyanovsk.de91603c3e10fbaee854.jpg",
     "static/media/scheme_accreditation_dark.svg": "/static/media/scheme_accreditation_dark.4b8c06db2a11c6499825ed9df10b758b.svg",
     "static/media/scheme_accreditation.svg": "/static/media/scheme_accreditation.7a06173f58427dc42b4cc9da3f00901e.svg",
@@ -33,12 +33,13 @@
     "static/media/asdevel.svg": "/static/media/asdevel.aaf61d3d3dccd156fd1dd8e87d742128.svg",
     "static/media/o-planet.svg": "/static/media/o-planet.35cdb75a1478be56b7864424db715a49.svg",
     "index.html": "/index.html",
+    "static/media/AISMK.svg": "/static/media/AISMK.8e51d99480c68e83301d85666882c695.svg",
     "static/media/logo-fog.svg": "/static/media/logo-fog.17a6a3d610b0c68941cf611c82ced211.svg",
     "static/media/nord.svg": "/static/media/nord.990a7326bdd3c7f0b70de24a554272d8.svg",
     "static/media/CSCART.svg": "/static/media/CSCART.de2b4d1162bebdc2f21a1cdb45a49a70.svg"
   },
   "entrypoints": [
     "static/css/main.81f66d4a.css",
-    "static/js/main.b1e05a43.js"
+    "static/js/main.6dd9c825.js"
   ]
 }
