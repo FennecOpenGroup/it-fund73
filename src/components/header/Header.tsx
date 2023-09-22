@@ -115,10 +115,10 @@ export const Header = React.memo(() => {
                 p={0}
               />
             </Tooltip>
-            <Tooltip label="Ютуб">
+            <Tooltip label="Рутуб">
               <Button
                 as={Link}
-                href="https://youtube.com/@user-or8ou2iv4e"
+                href="https://rutube.ru/channel/32500034/"
                 isExternal
                 variant="brand-icon"
                 leftIcon={<SlSocialYoutube size={isLargerThan445 ? '16px' : '10px'} />}

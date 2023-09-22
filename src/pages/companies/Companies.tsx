@@ -365,7 +365,8 @@ export const Companies = React.memo(() => {
                               fontWeight="900"
                               fontSize="xm"
                               color={themeIsDark ? 'white' : 'brand.dark'}
-                              href="http://energy.ulregion.ru/wp-content/uploads/2023/04/12-04-2023_09-08-58.zip"
+                              isExternal
+                              href="https://disk.yandex.ru/d/5WJrecQ0OuzCYQ"
                             >
                               Скачать документацию
                             </Link>
@@ -429,7 +430,7 @@ export const Companies = React.memo(() => {
                       </ListItem>
                       <ListItem>
                         <ListIcon as={GiMeepleArmy} color="brand.blue" fontSize="1.25em" />
-                        Отсрочка от призыва службы в армии от 18 до 27 лет;
+                        Отсрочка от призыва службы в армии от 18 до 30 лет;
                       </ListItem>
                       <ListItem>
                         <ListIcon as={BsBank2} color="brand.blue" fontSize="1.25em" />
