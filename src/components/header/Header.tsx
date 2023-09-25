@@ -271,7 +271,7 @@ export const Header = React.memo(() => {
         borderTopStartRadius="5px"
         borderTopEndRadius="5px"
       >
-        <HStack w="full" minW={!isLargerThan1231 ? '50%' : '30%'} maxW={!isLargerThan1231 ? 'full' : '30%'} spacing={1}>
+        <HStack w="full" minW={!isLargerThan1231 ? '40%' : '30%'} maxW={!isLargerThan1231 ? 'full' : '30%'} spacing={1}>
           <ButtonGroup w="full" p={0} spacing={0}>
             <Input
               variant="brand-search"
@@ -344,14 +344,24 @@ export const Header = React.memo(() => {
         {isLargerThan1231 && (
           <HStack spacing={0}>
             <>
-              <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_COMPANIES}>
+              <Button variant="brand-header" h="52px" fontSize="xs" as={RouterLink} to={ROUTE_COMPANIES}>
                 Что происходит в ИТ-отрасли
               </Button>
-              <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_EDUCATION}>
+              <Button variant="brand-header" h="52px" fontSize="xs" as={RouterLink} to={ROUTE_EDUCATION}>
                 Где получить ИТ-образование
               </Button>
-              <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_CALENDAR}>
+              <Button variant="brand-header" h="52px" fontSize="xs" as={RouterLink} to={ROUTE_CALENDAR}>
                 Когда будут ИТ-мероприятия
+              </Button>
+              <Button
+                variant="brand-header"
+                h="52px"
+                fontSize="xs"
+                as={Link}
+                href="https://forms.yandex.ru/u/650bfb24068ff068407a0a2e/"
+                isExternal
+              >
+                Заявка на ИТ-грант
               </Button>
             </>
           </HStack>
@@ -375,6 +385,9 @@ export const Header = React.memo(() => {
               </MenuItem>
               <MenuItem as={RouterLink} to={ROUTE_CALENDAR}>
                 Когда будут мероприятия
+              </MenuItem>
+              <MenuItem as={Link} href="https://forms.yandex.ru/u/650bfb24068ff068407a0a2e/" isExternal>
+                Заявка на ИТ-грант
               </MenuItem>
             </MenuList>
           </Menu>
