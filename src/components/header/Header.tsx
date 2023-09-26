@@ -358,6 +358,7 @@ export const Header = React.memo(() => {
                 h="52px"
                 fontSize="xs"
                 as={Link}
+                backgroundColor="#D02626"
                 href="https://forms.yandex.ru/u/650bfb24068ff068407a0a2e/"
                 isExternal
               >
