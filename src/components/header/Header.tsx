@@ -44,7 +44,6 @@ import {
   coreSetSearchDraft,
   coreSetTheme,
 } from '../../actions/coreActions';
-import erofeev from '../../assets/team/Erofeev-transformed.png';
 import full_logo from '../../assets/full-logo.svg';
 
 export const Header = React.memo(() => {
@@ -60,7 +59,6 @@ export const Header = React.memo(() => {
   const [isLargerThan1580] = useMediaQuery('(min-width: 1580px)');
   const [isLargerThan1181] = useMediaQuery('(min-width: 1181px)');
   const [isLargerThan1231] = useMediaQuery('(min-width: 1231px)');
-  const [isLargerThan905] = useMediaQuery('(min-width: 905px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan665] = useMediaQuery('(min-width: 665px)');
   const [isLargerThan445] = useMediaQuery('(min-width: 445px)');
@@ -148,46 +146,31 @@ export const Header = React.memo(() => {
           </HStack>
         </VStack>
         {isLargerThan770 && (
-          <HStack spacing={0} p={0} m={0} w={isLargerThan1181 ? 'full' : '0px'} justify="end" align="end">
+          <HStack spacing={0} p={0} m={0} w={isLargerThan1181 ? 'full' : '0px'} justify="center" align="center">
             {isLargerThan1181 && (
               <HStack spacing={[0, 2, 4]} p={0} m={0} justify={!isLargerThan1580 ? 'flex-end' : 'start'}>
-                <Stack align="center" direction={isLargerThan1580 ? 'row' : 'column'} spacing={0} minH="180px">
+                <Stack align="center" direction="row" spacing={0} minH="180px">
                   <VStack spacing={0} justify="center" align="center" px={2} m={0}>
-                    <Text fontSize={isLargerThan1580 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
+                    <Text fontSize={isLargerThan1580 ? ['2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
                       88,2
                     </Text>
-                    <Text
-                      fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'}
-                      color="#BBBBBB"
-                      as="i"
-                      align="center"
-                    >
+                    <Text fontSize={isLargerThan1580 ? ['sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
                       тыс. участников
                     </Text>
                   </VStack>
                   <VStack spacing={0} justify="center" align="center" px={2} m={0}>
-                    <Text fontSize={isLargerThan1580 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
+                    <Text fontSize={isLargerThan1580 ? ['2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
                       107
                     </Text>
-                    <Text
-                      fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'}
-                      color="#BBBBBB"
-                      as="i"
-                      align="center"
-                    >
+                    <Text fontSize={isLargerThan1580 ? ['sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
                       млн руб.
                     </Text>
                   </VStack>
                   <VStack spacing={0} justify="center" align="center" px={2} m={0}>
-                    <Text fontSize={isLargerThan1580 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
+                    <Text fontSize={isLargerThan1580 ? ['2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
                       247
                     </Text>
-                    <Text
-                      fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'}
-                      color="#BBBBBB"
-                      as="i"
-                      align="center"
-                    >
+                    <Text fontSize={isLargerThan1580 ? ['sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
                       проектов
                     </Text>
                   </VStack>
@@ -196,70 +179,6 @@ export const Header = React.memo(() => {
             )}
           </HStack>
         )}
-        <HStack spacing={0} align="flex-end" w="full" flexDirection={isLargerThan1181 ? 'row' : 'row-reverse'}>
-          <VStack
-            spacing={0}
-            position="relative"
-            right={isLargerThan1181 ? '-20px' : ['6px', '20px']}
-            pb={1}
-            align="center"
-            minH={
-              isLargerThan1580
-                ? '100px'
-                : isLargerThan1181
-                ? '180px'
-                : isLargerThan905
-                ? '80px'
-                : isLargerThan770
-                ? '80px'
-                : isLargerThan445
-                ? '60px'
-                : '40px'
-            }
-          >
-            <Text
-              fontSize={isLargerThan905 ? ['xs', 'sm', 'md'] : ['6px', '8px', '10px']}
-              p={0}
-              m={0}
-              fontWeight="bold"
-              align="center"
-              justifyContent="center"
-            >
-              Сергей Ерофеев, директор фонда:
-            </Text>
-            <Text
-              fontSize={isLargerThan905 ? ['xs', 'sm'] : ['4px', '6px']}
-              color="#BBBBBB"
-              p={0}
-              m={0}
-              as="i"
-              align="center"
-              maxW={['310px', '280px', '250px']}
-              maxH="190px"
-            >
-              Расшиваем «узкие» места в системе подготовки ИТ-кадров. Развиваем ИТ-сообщество. Содействуем цифровой
-              трансформации экономики и соцсферы.
-            </Text>
-          </VStack>
-          <Image
-            src={erofeev}
-            alt="erofeev"
-            loading="lazy"
-            htmlWidth="full"
-            maxW={
-              isLargerThan905
-                ? '140px'
-                : isLargerThan770
-                ? '100px'
-                : isLargerThan665
-                ? '80px'
-                : isLargerThan445
-                ? '60px'
-                : '45px'
-            }
-            htmlHeight="full"
-          />
-        </HStack>
       </HStack>
       <HStack
         w="full"
