@@ -261,7 +261,7 @@ export const Header = React.memo(() => {
           </Tooltip>
         </HStack>
         {isLargerThan1231 && (
-          <HStack spacing={0}>
+          <HStack spacing={0} w="full">
             <>
               <Button variant="brand-header" h="52px" fontSize="xs" as={RouterLink} to={ROUTE_COMPANIES}>
                 Что происходит в ИТ-отрасли
@@ -271,17 +271,6 @@ export const Header = React.memo(() => {
               </Button>
               <Button variant="brand-header" h="52px" fontSize="xs" as={RouterLink} to={ROUTE_CALENDAR}>
                 Когда будут ИТ-мероприятия
-              </Button>
-              <Button
-                variant="brand-header"
-                h="52px"
-                fontSize="xs"
-                as={Link}
-                backgroundColor="#D02626"
-                href="https://forms.yandex.ru/u/650bfb24068ff068407a0a2e/"
-                isExternal
-              >
-                Заявка на ИТ-грант
               </Button>
             </>
           </HStack>
@@ -305,9 +294,6 @@ export const Header = React.memo(() => {
               </MenuItem>
               <MenuItem as={RouterLink} to={ROUTE_CALENDAR}>
                 Когда будут мероприятия
-              </MenuItem>
-              <MenuItem as={Link} href="https://forms.yandex.ru/u/650bfb24068ff068407a0a2e/" isExternal>
-                Заявка на ИТ-грант
               </MenuItem>
             </MenuList>
           </Menu>

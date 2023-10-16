@@ -1652,7 +1652,7 @@ export const AboutUs = React.memo(() => {
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
-                            Ерофеев Сергей Александрович действует на основании Устава
+                            Горлов Сергей Петрович действует на основании Устава
                           </Text>
                         </CopyToClipboard>
                       </Stack>
