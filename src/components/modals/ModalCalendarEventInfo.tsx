@@ -101,6 +101,8 @@ export const ModalCalendarEventInfo = React.memo(({ isOpen, id }: IModalCalendar
                   as={Link}
                   href={`${events && events[Number(id)] && events[Number(id)].attributes.address}`}
                   isExternal
+                  noOfLines={1}
+                  maxW="310px"
                 >
                   {events && events[Number(id)] && events[Number(id)].attributes.address}
                 </Text>

@@ -99,6 +99,7 @@ export const Main = React.memo(() => {
         align="center"
         px={isLargerThan770 ? '10%' : '5%'}
         bg={themeIsDark ? '#121212' : 'brand.beige'}
+        style={{ minHeight: '100vh' }}
       >
         <VStack
           w="full"

@@ -149,7 +149,7 @@ export const Header = React.memo(() => {
           <HStack spacing={0} p={0} m={0} w={isLargerThan1181 ? 'full' : '0px'} justify="center" align="center">
             {isLargerThan1181 && (
               <HStack spacing={[0, 2, 4]} p={0} m={0} justify={!isLargerThan1580 ? 'flex-end' : 'start'}>
-                <Stack align="center" direction="row" spacing={0} minH="180px">
+                <Stack align="end" direction="row" spacing={0} minH="180px">
                   <VStack spacing={0} justify="center" align="center" px={2} m={0}>
                     <Text fontSize={isLargerThan1580 ? ['2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
                       88,2
@@ -263,13 +263,13 @@ export const Header = React.memo(() => {
         {isLargerThan1231 && (
           <HStack spacing={0} w="full">
             <>
-              <Button variant="brand-header" h="52px" fontSize="xs" as={RouterLink} to={ROUTE_COMPANIES}>
+              <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_COMPANIES}>
                 Что происходит в ИТ-отрасли
               </Button>
-              <Button variant="brand-header" h="52px" fontSize="xs" as={RouterLink} to={ROUTE_EDUCATION}>
+              <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_EDUCATION}>
                 Где получить ИТ-образование
               </Button>
-              <Button variant="brand-header" h="52px" fontSize="xs" as={RouterLink} to={ROUTE_CALENDAR}>
+              <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_CALENDAR}>
                 Когда будут ИТ-мероприятия
               </Button>
             </>
