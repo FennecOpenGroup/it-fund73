@@ -97,12 +97,13 @@ export const Main = React.memo(() => {
       <VStack
         justify="center"
         align="center"
+        minH="100vh"
         px={isLargerThan770 ? '10%' : '5%'}
         bg={themeIsDark ? '#121212' : 'brand.beige'}
-        style={{ minHeight: '100vh' }}
       >
         <VStack
           w="full"
+          minH="100vh"
           bg={themeIsDark ? '#242323' : 'white'}
           pl={[1, 2, 3, 4]}
           pr={isLargerThan620 ? 0 : [1, 2, 3, 4]}

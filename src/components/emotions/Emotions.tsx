@@ -185,7 +185,6 @@ export const Emotions = React.memo(
           const dataJson = JSON.parse(dataStorage);
 
           for (const k in dataJson) if (dataJson.hasOwnProperty(k)) dataLength += 1;
-
           if (news.length > dataLength) {
             Object.keys(news).map(index => {
               if (dataJson[`${news[Number(index)].id}`]) {

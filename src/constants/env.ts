@@ -1,2 +1,2 @@
-export const API_URL_ADMIN = 'https://pop.айтифонд.рф/';
-export const API_URL = 'https://айтифонд.рф';
+export const API_URL_ADMIN = 'https://pop.айтифонд.рус/';
+export const API_URL = 'https://айтифонд.рус';
