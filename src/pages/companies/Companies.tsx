@@ -101,7 +101,7 @@ export const Companies = React.memo(() => {
         <meta name="description" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
-        <meta property="og:url" content="https://www.айтифонд.рф/companies" />
+        <meta property="og:url" content="https://www.айтифонд.рус/companies" />
         <meta property="og:title" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta property="og:descripsion" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta property="og:image" content="/logo_ref.jpg" />
@@ -109,7 +109,7 @@ export const Companies = React.memo(() => {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="vk:card" content="image/jpg" />
-        <meta property="vk:url" content="https://www.айтифонд.рф/companies" />
+        <meta property="vk:url" content="https://www.айтифонд.рус/companies" />
         <meta name="vk:title" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta name="vk:descripsion" content="Показатели развития ИТ-отрасли. 1 квартал 2023 года" />
         <meta name="vk:image" content="/logo_ref.jpg" />
@@ -449,8 +449,8 @@ export const Companies = React.memo(() => {
                       <List>
                         <ListItem>ИТ-гранты на развитие цифровых решений:</ListItem>
                         <ListItem pl="10px">
-                          <Link href="https://рфрит.рф/" isExternal>
-                            Российский фонд развития информационных технологий (РФРИТ);
+                          <Link href="https://русрит.рус/" isExternal>
+                            Российский фонд развития информационных технологий (русРИТ);
                           </Link>
                         </ListItem>
                         <ListItem pl="10px">
@@ -1182,7 +1182,7 @@ export const Companies = React.memo(() => {
                               fontSize={['xl', '2xl', '3xl']}
                               fontWeight="900"
                               color="white"
-                              href="https://сонакай.рф/"
+                              href="https://сонакай.рус/"
                               isExternal
                             >
                               СОНОКАЙ
@@ -1424,7 +1424,7 @@ export const Companies = React.memo(() => {
                             АИС Город – разработчик программного обеспечения для автоматизации и мониторинга
                             жилищно-коммунального хозяйства и смежных сфер. Благодаря сотрудничеству с управляющими и
                             ресурсоснабжающими организациями, органами государственной власти и местного самоуправления
-                            программные продукты полностью отвечают требованиям законодательства РФ и созданы в
+                            программные продукты полностью отвечают требованиям законодательства рус и созданы в
                             соответствии с реальными потребностями всех задействованных сторон.
                           </Text>
                         </GridItem>
@@ -1470,7 +1470,7 @@ export const Companies = React.memo(() => {
                             Июнь-Софт – разработчик программного обеспечения для автоматизации и мониторинга ЖКХ и
                             смежных сфер. Благодаря сотрудничеству с управляющими и ресурсоснабжающими организациями,
                             органами государственной власти и местного самоуправления программные продукты полностью
-                            отвечают требованиям законодательства РФ и созданы в соответствии с реальными потребностями
+                            отвечают требованиям законодательства рус и созданы в соответствии с реальными потребностями
                             всех задействованных сторон.
                           </Text>
                         </GridItem>
@@ -2097,7 +2097,7 @@ export const Companies = React.memo(() => {
                           </HStack>
                           <Text fontSize={['sm', 'sm', 'md']}>
                             ПРОМВИАР – российский инновационный разработчик универсальных VR-тренажеров, входит в реестр
-                            Минцифры РФ. Ключевой вид деятельности: разработка и интеграция заказных и универсальных
+                            Минцифры рус. Ключевой вид деятельности: разработка и интеграция заказных и универсальных
                             VR-тренажеров. Мы создаем универсальные и заказные VR-тренажеры для производственных,
                             строительных и промышленных предприятий, которые развивают культуру безопасности, стремятся
                             снизить уровень травматизма и заботятся о преемственности критически важных знаний.
@@ -2133,7 +2133,7 @@ export const Companies = React.memo(() => {
                               fontSize={['xl', '2xl', '3xl']}
                               fontWeight="900"
                               color="white"
-                              href="https://айти-город.рф/"
+                              href="https://айти-город.рус/"
                               isExternal
                             >
                               АЙТИ ГОРОД
