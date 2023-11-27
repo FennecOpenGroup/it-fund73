@@ -219,7 +219,7 @@ export const Companies = React.memo(() => {
                   {isLargerThan960 && (
                     <CountUp
                       style={{ color: '#7775ed', fontSize: '60px', fontWeight: 'bold' }}
-                      end={138}
+                      end={147}
                       duration={2}
                     />
                   )}
