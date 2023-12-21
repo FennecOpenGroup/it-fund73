@@ -211,6 +211,10 @@ export const Education = React.memo(() => {
           </Stack>
         </VStack>
       </VStack>
+      <iframe
+        src="https://kitchat.kitbot.cloud/navigator/"
+        style={{ width: '100%', height: '100%' }}
+      ></iframe>
       <VStack ref={refFooter}>
         <Footer />
       </VStack>
