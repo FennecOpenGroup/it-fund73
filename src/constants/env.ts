@@ -1,1 +1,2 @@
-export const API_URL = 'http://89.108.102.229:1337';
+export const API_URL_ADMIN = 'https://admin.айтифонд.рус/';
+export const API_URL = 'https://айтифонд.рус';
