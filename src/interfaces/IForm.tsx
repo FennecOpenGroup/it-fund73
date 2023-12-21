@@ -1,8 +1,8 @@
 export interface IForm {
   name: string;
-  date: Date;
+  date?: Date;
   address: string;
   email: string;
   tel: string;
-  file?: any;
+  file?: File;
 }

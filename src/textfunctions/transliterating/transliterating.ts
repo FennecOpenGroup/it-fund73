@@ -1,7 +1,7 @@
 export function transliterating(text: string) {
   const answer = text
+    .replace('?', '')
     .split(' ')
-    .slice(0, 8)
     .join(' ')
     .replace(/\u0401/g, 'YO')
     .replace(/\u0419/g, 'I')
@@ -28,7 +28,7 @@ export function transliterating(text: string) {
     .replace(/\u0449/g, 'sch')
     .replace(/\u0437/g, 'z')
     .replace(/\u0445/g, 'h')
-    .replace(/\u044A/g, "'")
+    .replace(/\u044A/g, "")
     .replace(/\u0424/g, 'F')
     .replace(/\u042B/g, 'I')
     .replace(/\u0412/g, 'V')
@@ -66,7 +66,7 @@ export function transliterating(text: string) {
     .replace(/\u043C/g, 'm')
     .replace(/\u0438/g, 'i')
     .replace(/\u0442/g, 't')
-    .replace(/\u044C/g, "'")
+    .replace(/\u044C/g, "")
     .replace(/\u0431/g, 'b')
     .replace(/\u044E/g, 'yu')
     .replace(/ /g, '_');

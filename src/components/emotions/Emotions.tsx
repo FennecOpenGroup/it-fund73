@@ -1,15 +1,24 @@
 /* eslint no-return-assign: "error" */
 /* eslint no-unneeded-ternary: "error" */
-/* eslint no-console: "error" */
-import { HStack, Text, Button } from '@chakra-ui/react';
-import React, { Dispatch, useEffect } from 'react';
+/* eslint no-restricted-syntax: "error" */
+import { HStack, Text, Button, Grid, GridItem } from '@chakra-ui/react';
+import React, { Dispatch, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 
-import { fetchChangeEmojiMinus, fetchChangeEmojiPlus } from '../../api/emojiApi';
+import {
+  fetchChangeEmojiMinus,
+  fetchChangeEmojiPlus,
+  fetchChangeEmojiShortsMinus,
+  fetchChangeEmojiShortsPlus,
+} from '../../api/emojiApi';
 import { IEmotions } from '../../interfaces/IEmotions';
 import { IRootState } from '../../interfaces/IRootState';
 import { RootActions } from '../../types/RootActions';
-import { coreGetNews, coreSetEmotions } from '../../actions/coreActions';
+import { coreGetNews, coreGetShortNews, coreSetEmotions } from '../../actions/coreActions';
+import { INews } from '../../interfaces/INews';
+import { transliterating } from '../../textfunctions/transliterating/transliterating';
+import { shortenNumber } from '../../textfunctions/shortenNumber/shortenNumber';
 
 interface IEmoutionsProps {
   newsId: number;
@@ -25,78 +34,122 @@ interface IEmoutionsProps {
 export const Emotions = React.memo(
   ({ newsId, like, dislike, delight, smile_face, angry, shock, info }: IEmoutionsProps) => {
     const dispatch = useDispatch<Dispatch<RootActions>>();
-
+    const { url_name } = useParams<{ url_name: string }>();
     const news = useSelector((state: IRootState) => state.core.news);
+    const shortNews = useSelector((state: IRootState) => state.core.shortNews);
     const emotions = useSelector((state: IRootState) => state.core.emotions);
     const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
-    const data = localStorage.getItem('newsReadtions');
+    const [currentNewsId, setNewsContent] = useState<INews>();
+
+    const newsСontentMain = useMemo(
+      () => news?.find(newsData => transliterating(newsData.attributes.heading) === url_name),
+      [news],
+    );
+    const newsСontentShorts = useMemo(
+      () => shortNews?.find(newsData => transliterating(newsData.attributes.heading) === url_name),
+      [shortNews],
+    );
+
+    const data = newsСontentShorts ? localStorage.getItem('shortsReactions') : localStorage.getItem('newsReactions');
     const emotionsData = data ? JSON.parse(data) : undefined;
 
     async function handleEmotionClick(emotion: string) {
-      const funcData = localStorage.getItem('newsReadtions');
+      const funcData = newsСontentShorts
+        ? localStorage.getItem('shortsReactions')
+        : localStorage.getItem('newsReactions');
       const emotionsfuncData = funcData ? JSON.parse(funcData) : undefined;
       const emotionInfo: any = emotionsfuncData;
 
-      const lastEmotion = localStorage.getItem(`lastEmotion:${newsId}`);
-      let lastEmotionCount = localStorage.getItem(`lastEmotionCount:${newsId}`);
+      const lastEmotion = newsСontentShorts
+        ? localStorage.getItem(`lastEmotionShorts:${newsId}`)
+        : localStorage.getItem(`lastEmotion:${newsId}`);
+      let lastEmotionCount = newsСontentShorts
+        ? localStorage.getItem(`lastEmotionShortsCount:${newsId}`)
+        : localStorage.getItem(`lastEmotionCount:${newsId}`);
 
       dispatch(coreSetEmotions(emotionInfo));
-      if (news) {
+      if (currentNewsId && news) {
         let emotionStatus =
           emotion === 'like'
-            ? news[newsId - 1].attributes.like
+            ? currentNewsId.attributes.like
             : emotion === 'dislike'
-            ? news[newsId - 1].attributes.dislike
+            ? currentNewsId.attributes.dislike
             : emotion === 'shock'
-            ? news[newsId - 1].attributes.shock
+            ? currentNewsId.attributes.shock
             : emotion === 'smile_face'
-            ? news[newsId - 1].attributes.smile_face
+            ? currentNewsId.attributes.smile_face
             : emotion === 'delight'
-            ? news[newsId - 1].attributes.delight
-            : news[newsId - 1].attributes.angry;
+            ? currentNewsId.attributes.delight
+            : currentNewsId.attributes.angry;
 
         Object.keys(emotionInfo[newsId]).forEach(async function (element) {
-          if (element !== emotion && news) {
+          if (element !== emotion) {
             emotionInfo[newsId][element] = false;
           }
         });
-
-        if (emotionInfo[newsId][emotion] === false && news && emotionStatus !== undefined) {
+        if (emotionInfo[newsId][emotion] === false && emotionStatus !== undefined) {
           emotionInfo[newsId][emotion] = true;
-          await fetchChangeEmojiPlus(newsId, `${emotion}`, emotionStatus);
+          newsСontentShorts
+            ? await fetchChangeEmojiShortsPlus(newsId, `${emotion}`, emotionStatus)
+            : await fetchChangeEmojiPlus(newsId, `${emotion}`, emotionStatus);
           emotionStatus += 1;
           if (lastEmotion === '' || lastEmotion === emotion) {
-            localStorage.setItem(`lastEmotion:${newsId}`, emotion);
-            localStorage.setItem(`lastEmotionCount:${newsId}`, String(emotionStatus));
+            newsСontentShorts
+              ? localStorage.setItem(`lastEmotionShorts:${newsId}`, emotion)
+              : localStorage.setItem(`lastEmotion:${newsId}`, emotion);
+            newsСontentShorts
+              ? localStorage.setItem(`lastEmotionShortsCount:${newsId}`, String(emotionStatus))
+              : localStorage.setItem(`lastEmotionCount:${newsId}`, String(emotionStatus));
           } else {
-            lastEmotionCount = localStorage.getItem(`lastEmotionCount:${newsId}`);
+            lastEmotionCount = newsСontentShorts
+              ? localStorage.getItem(`lastEmotionShortsCount:${newsId}`)
+              : localStorage.getItem(`lastEmotionCount:${newsId}`);
             emotionStatus !== undefined &&
               emotionStatus > 0 &&
-              (await fetchChangeEmojiMinus(newsId, `${lastEmotion}`, Number(lastEmotionCount)));
-            localStorage.setItem(`lastEmotion:${newsId}`, emotion);
-            localStorage.setItem(`lastEmotionCount:${newsId}`, String(emotionStatus));
+              (newsСontentShorts
+                ? await fetchChangeEmojiShortsMinus(newsId, `${lastEmotion}`, Number(lastEmotionCount))
+                : await fetchChangeEmojiMinus(newsId, `${lastEmotion}`, Number(lastEmotionCount)));
+            newsСontentShorts
+              ? localStorage.setItem(`lastEmotionShorts:${newsId}`, emotion)
+              : localStorage.setItem(`lastEmotion:${newsId}`, emotion);
+            newsСontentShorts
+              ? localStorage.setItem(`lastEmotionShortsCount:${newsId}`, String(emotionStatus))
+              : localStorage.setItem(`lastEmotionCount:${newsId}`, String(emotionStatus));
           }
         } else {
           emotionInfo[newsId][emotion] = false;
           emotionStatus !== undefined &&
             emotionStatus > 0 &&
-            (await fetchChangeEmojiMinus(newsId, `${emotion}`, emotionStatus));
+            (newsСontentShorts
+              ? await fetchChangeEmojiShortsMinus(newsId, `${emotion}`, emotionStatus)
+              : await fetchChangeEmojiMinus(newsId, `${emotion}`, emotionStatus));
         }
         dispatch(coreSetEmotions(emotionInfo));
         dispatch(coreGetNews());
-        localStorage.setItem('newsReadtions', JSON.stringify(emotionInfo));
+        dispatch(coreGetShortNews());
+        newsСontentShorts
+          ? localStorage.setItem('shortsReactions', JSON.stringify(emotionInfo))
+          : localStorage.setItem('newsReactions', JSON.stringify(emotionInfo));
       }
     }
 
     useEffect(() => {
-      const dataStorage = localStorage.getItem('newsReadtions');
-      const newsReadtions: IEmotions = {};
-      if (!dataStorage && news) {
-        Object.keys(news)
-          .reverse()
-          .map(index => {
-            return (newsReadtions[`${news[Number(index)].id}`] = {
+      if (url_name) {
+        newsСontentMain !== undefined ? setNewsContent(newsСontentMain) : setNewsContent(newsСontentShorts);
+      } else {
+        const mainNews = news?.find(name => name.id === newsId);
+        setNewsContent(mainNews);
+      }
+    }, [newsСontentMain, newsСontentShorts, url_name, news]);
+
+    useEffect(() => {
+      if (newsСontentShorts) {
+        const dataStorage = localStorage.getItem('shortsReactions');
+        const newsReactions: IEmotions = {};
+        if (!dataStorage && shortNews) {
+          Object.keys(shortNews).map(index => {
+            return (newsReactions[`${shortNews[Number(index)].id}`] = {
               dislike: false,
               delight: false,
               shock: false,
@@ -105,199 +158,296 @@ export const Emotions = React.memo(
               like: false,
             });
           });
-        localStorage.setItem('newsReadtions', JSON.stringify(newsReadtions));
-      }
-      dispatch(coreSetEmotions(emotionsData));
-    }, [news]);
+          localStorage.setItem('shortsReactions', JSON.stringify(newsReactions));
+        }
+        dispatch(coreSetEmotions(emotionsData));
+      } else {
+        let dataLength = 0;
 
-    useEffect(() => {
-      const lastEmotion = localStorage.getItem(`lastEmotion:${newsId}`);
-      const lastEmotionCount = localStorage.getItem(`lastEmotionCount:${newsId}`);
-      if (!lastEmotion) {
-        localStorage.setItem(`lastEmotion:${newsId}`, '');
+        const dataStorage = localStorage.getItem('newsReactions');
+        const newsReactions: IEmotions = {};
+
+        if (!dataStorage && news) {
+          Object.keys(news).map(index => {
+            return (newsReactions[`${news[Number(index)].id}`] = {
+              dislike: false,
+              delight: false,
+              shock: false,
+              smile_face: false,
+              angry: false,
+              like: false,
+            });
+          });
+
+          localStorage.setItem('newsReactions', JSON.stringify(newsReactions));
+        }
+        if (dataStorage && news) {
+          const dataJson = JSON.parse(dataStorage);
+
+          for (const k in dataJson) if (dataJson.hasOwnProperty(k)) dataLength += 1;
+          if (news.length > dataLength) {
+            Object.keys(news).map(index => {
+              if (dataJson[`${news[Number(index)].id}`]) {
+                return (newsReactions[`${news[Number(index)].id}`] = {
+                  dislike: dataJson[`${news[Number(index)].id}`].dislike,
+                  delight: dataJson[`${news[Number(index)].id}`].delight,
+                  shock: dataJson[`${news[Number(index)].id}`].shock,
+                  smile_face: dataJson[`${news[Number(index)].id}`].smile_face,
+                  angry: dataJson[`${news[Number(index)].id}`].angry,
+                  like: dataJson[`${news[Number(index)].id}`].like,
+                });
+              }
+              return (newsReactions[`${news[Number(index)].id}`] = {
+                dislike: false,
+                delight: false,
+                shock: false,
+                smile_face: false,
+                angry: false,
+                like: false,
+              });
+            });
+            localStorage.setItem('newsReactions', JSON.stringify(newsReactions));
+          }
+        }
+
+        dispatch(coreSetEmotions(emotionsData));
       }
-      if (!lastEmotionCount) {
-        localStorage.setItem(`lastEmotionCount:${newsId}`, '0');
+    }, [news]);
+    useEffect(() => {
+      if (newsСontentShorts) {
+        const lastEmotion = localStorage.getItem(`lastEmotionShorts:${newsId}`);
+        const lastEmotionCount = localStorage.getItem(`lastEmotionShortsCount:${newsId}`);
+        if (!lastEmotion) {
+          localStorage.setItem(`lastEmotionShorts:${newsId}`, '');
+        }
+        if (!lastEmotionCount) {
+          localStorage.setItem(`lastEmotionShortsCount:${newsId}`, '0');
+        }
+      } else {
+        const lastEmotion = localStorage.getItem(`lastEmotion:${newsId}`);
+        const lastEmotionCount = localStorage.getItem(`lastEmotionCount:${newsId}`);
+        if (!lastEmotion) {
+          localStorage.setItem(`lastEmotion:${newsId}`, '');
+        }
+        if (!lastEmotionCount) {
+          localStorage.setItem(`lastEmotionCount:${newsId}`, '0');
+        }
       }
     }, []);
 
     return (
-      <HStack spacing={2} p={0} m={0}>
-        {emotionsData !== undefined && emotions !== undefined && delight !== undefined && (
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => handleEmotionClick('delight')}
-            p={0}
-            m={0}
-            leftIcon={
-              emotions[newsId].delight ? (
-                <HStack spacing={0}>
-                  <Text fontSize="22px">😍</Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.delight}</Text>
-                  )}
-                </HStack>
-              ) : (
-                <HStack spacing={0}>
-                  <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
-                    😍
-                  </Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.delight}</Text>
-                  )}
-                </HStack>
-              )
-            }
-          />
-        )}
-        {emotionsData !== undefined && emotions !== undefined && shock !== undefined && (
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => handleEmotionClick('shock')}
-            p={0}
-            m={0}
-            leftIcon={
-              emotions[newsId].shock ? (
-                <HStack spacing={0}>
-                  <Text fontSize="22px">😯</Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.shock}</Text>
-                  )}
-                </HStack>
-              ) : (
-                <HStack spacing={0}>
-                  <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
-                    😯
-                  </Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.shock}</Text>
-                  )}
-                </HStack>
-              )
-            }
-          />
-        )}
-        {emotionsData !== undefined && emotions !== undefined && smile_face !== undefined && (
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => handleEmotionClick('smile_face')}
-            p={0}
-            m={0}
-            leftIcon={
-              emotions[newsId].smile_face ? (
-                <HStack spacing={0}>
-                  <Text fontSize="22px">🙂</Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.smile_face}</Text>
-                  )}
-                </HStack>
-              ) : (
-                <HStack spacing={0}>
-                  <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
-                    🙂
-                  </Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.smile_face}</Text>
-                  )}
-                </HStack>
-              )
-            }
-          />
-        )}
-        {emotionsData !== undefined && emotions !== undefined && angry !== undefined && (
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => handleEmotionClick('angry')}
-            p={0}
-            m={0}
-            leftIcon={
-              emotions[newsId].angry ? (
-                <HStack spacing={0}>
-                  <Text fontSize="22px">😡</Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.angry}</Text>
-                  )}
-                </HStack>
-              ) : (
-                <HStack spacing={0}>
-                  <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
-                    😠
-                  </Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.angry}</Text>
-                  )}
-                </HStack>
-              )
-            }
-          />
-        )}
-        {emotionsData !== undefined && emotions !== undefined && dislike !== undefined && (
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => handleEmotionClick('dislike')}
-            p={0}
-            m={0}
-            leftIcon={
-              emotions[newsId].dislike ? (
-                <HStack spacing={0}>
-                  <Text fontSize="22px">👎</Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.dislike}</Text>
-                  )}
-                </HStack>
-              ) : (
-                <HStack spacing={0}>
-                  <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
-                    👎
-                  </Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.dislike}</Text>
-                  )}
-                </HStack>
-              )
-            }
-          />
-        )}
-        {emotionsData !== undefined && emotions !== undefined && like !== undefined && (
-          <Button
-            variant="brand-reactions"
-            size="30px"
-            iconSpacing={0}
-            onClick={() => handleEmotionClick('like')}
-            p={0}
-            m={0}
-            leftIcon={
-              emotions[newsId].like ? (
-                <HStack spacing={0}>
-                  <Text fontSize="22px">👍</Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.like}</Text>
-                  )}
-                </HStack>
-              ) : (
-                <HStack spacing={0}>
-                  <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
-                    👍
-                  </Text>
-                  {news && info && (
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'}>{news[newsId - 1].attributes.like}</Text>
-                  )}
-                </HStack>
-              )
-            }
-          />
-        )}
-      </HStack>
+      <Grid maxH="40px" templateColumns="repeat(6, 1fr)" templateRows="repeat(1, 1fr)" p={0} m={0}>
+        <GridItem>
+          {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && delight !== undefined && (
+            <Button
+              variant="brand-reactions"
+              size="30px"
+              iconSpacing={0}
+              onClick={() => handleEmotionClick('delight')}
+              p={0}
+              m={0}
+              leftIcon={
+                emotions[newsId].delight ? (
+                  <HStack spacing={0}>
+                    <Text fontSize="22px">😍</Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.delight)}
+                      </Text>
+                    )}
+                  </HStack>
+                ) : (
+                  <HStack spacing={0}>
+                    <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                      😍
+                    </Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.delight)}
+                      </Text>
+                    )}
+                  </HStack>
+                )
+              }
+            />
+          )}
+        </GridItem>
+        <GridItem>
+          {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && shock !== undefined && (
+            <Button
+              variant="brand-reactions"
+              size="30px"
+              iconSpacing={0}
+              onClick={() => handleEmotionClick('shock')}
+              p={0}
+              m={0}
+              leftIcon={
+                emotions[newsId].shock ? (
+                  <HStack spacing={0}>
+                    <Text fontSize="22px">😯</Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.shock)}
+                      </Text>
+                    )}
+                  </HStack>
+                ) : (
+                  <HStack spacing={0}>
+                    <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                      😯
+                    </Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.shock)}
+                      </Text>
+                    )}
+                  </HStack>
+                )
+              }
+            />
+          )}
+        </GridItem>
+        <GridItem>
+          {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && smile_face !== undefined && (
+            <Button
+              variant="brand-reactions"
+              size="30px"
+              iconSpacing={0}
+              onClick={() => handleEmotionClick('smile_face')}
+              p={0}
+              m={0}
+              leftIcon={
+                emotions[newsId].smile_face ? (
+                  <HStack spacing={0}>
+                    <Text fontSize="22px">🙂</Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.smile_face)}
+                      </Text>
+                    )}
+                  </HStack>
+                ) : (
+                  <HStack spacing={0}>
+                    <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                      🙂
+                    </Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.smile_face)}
+                      </Text>
+                    )}
+                  </HStack>
+                )
+              }
+            />
+          )}
+        </GridItem>
+        <GridItem>
+          {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && angry !== undefined && (
+            <Button
+              variant="brand-reactions"
+              size="30px"
+              iconSpacing={0}
+              onClick={() => handleEmotionClick('angry')}
+              p={0}
+              m={0}
+              leftIcon={
+                emotions[newsId].angry ? (
+                  <HStack spacing={0}>
+                    <Text fontSize="22px">😡</Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.angry)}
+                      </Text>
+                    )}
+                  </HStack>
+                ) : (
+                  <HStack spacing={0}>
+                    <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                      😠
+                    </Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.angry)}
+                      </Text>
+                    )}
+                  </HStack>
+                )
+              }
+            />
+          )}
+        </GridItem>
+        <GridItem>
+          {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && dislike !== undefined && (
+            <Button
+              variant="brand-reactions"
+              size="30px"
+              iconSpacing={0}
+              onClick={() => handleEmotionClick('dislike')}
+              p={0}
+              m={0}
+              leftIcon={
+                emotions[newsId].dislike ? (
+                  <HStack spacing={0}>
+                    <Text fontSize="22px">👎</Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.dislike)}
+                      </Text>
+                    )}
+                  </HStack>
+                ) : (
+                  <HStack spacing={0}>
+                    <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                      👎
+                    </Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.dislike)}
+                      </Text>
+                    )}
+                  </HStack>
+                )
+              }
+            />
+          )}
+        </GridItem>
+        <GridItem>
+          {emotionsData !== undefined && emotions !== undefined && emotions[newsId] && like !== undefined && (
+            <Button
+              variant="brand-reactions"
+              size="30px"
+              iconSpacing={0}
+              onClick={() => handleEmotionClick('like')}
+              p={0}
+              m={0}
+              leftIcon={
+                emotions[newsId].like ? (
+                  <HStack spacing={0}>
+                    <Text fontSize="22px">👍</Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.like)}
+                      </Text>
+                    )}
+                  </HStack>
+                ) : (
+                  <HStack spacing={0}>
+                    <Text fontSize="xl" filter="grayscale(100%) hue-rotate(90deg)">
+                      👍
+                    </Text>
+                    {news && info && (
+                      <Text color={themeIsDark ? 'white' : 'brand.dark'}>
+                        {currentNewsId && shortenNumber(currentNewsId.attributes.like)}
+                      </Text>
+                    )}
+                  </HStack>
+                )
+              }
+            />
+          )}
+        </GridItem>
+      </Grid>
     );
   },
 );

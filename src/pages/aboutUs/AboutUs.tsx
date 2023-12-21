@@ -1,3 +1,4 @@
+/* eslint no-unsafe-optional-chaining: "error" */
 import {
   VStack,
   Text,
@@ -21,16 +22,23 @@ import {
   Th,
   Tbody,
   Td,
+  ListItem,
+  ListIcon,
+  List,
+  OrderedList,
 } from '@chakra-ui/react';
 import React, { Dispatch, useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Chart } from 'react-google-charts';
-import { AiOutlineApartment, AiOutlineFile } from 'react-icons/ai';
-import { GiVintageRobot } from 'react-icons/gi';
-import { MdEmojiPeople, MdBiotech, MdCellTower } from 'react-icons/md';
-import { BsFillPersonFill, BsMailbox, BsTelephone } from 'react-icons/bs';
+import { AiOutlineFile } from 'react-icons/ai';
+import { BsFillPersonFill, BsMailbox, BsTelephone, BsBarChartLineFill } from 'react-icons/bs';
+import { PiStudentFill, PiMedalFill, PiHandshakeFill } from 'react-icons/pi';
+import { MdArchitecture } from 'react-icons/md';
+import { GiPlanetConquest, GiPayMoney } from 'react-icons/gi';
+import { TbDeviceAnalytics } from 'react-icons/tb';
+import { FaHandsHelping } from 'react-icons/fa';
 
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
@@ -39,7 +47,7 @@ import ulyanovsk from '../../assets/Ulyanovsk.jpg';
 import { IRootState } from '../../interfaces/IRootState';
 import { coreGetDocs, coreGetTeam } from '../../actions/coreActions';
 import { RootActions } from '../../types/RootActions';
-import { API_URL } from '../../constants/env';
+import { API_URL_ADMIN } from '../../constants/env';
 
 export const AboutUs = React.memo(() => {
   const { height, width } = useWindowDimensions();
@@ -60,14 +68,15 @@ export const AboutUs = React.memo(() => {
   const refRecs = useRef<HTMLDivElement>(null);
   const refContacts = useRef<HTMLDivElement>(null);
   const refCharts = useRef<HTMLDivElement>(null);
+  const refProject = useRef<HTMLDivElement>(null);
 
   const [charts, setCharts] = useState(false);
 
+  const [isLargerThan1580] = useMediaQuery('(min-width: 1580px)');
   const [isLargerThan1300] = useMediaQuery('(min-width: 1300px)');
   const [isLargerThan1155] = useMediaQuery('(min-width: 1155px)');
-  const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
+  const [isLargerThan840] = useMediaQuery('(min-width: 840px)');
   const [isLargerThan530] = useMediaQuery('(min-width: 530px)');
-  const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
 
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
   const docs = useSelector((state: IRootState) => state.core.docs);
@@ -85,30 +94,32 @@ export const AboutUs = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund | О фонде</title>
+        <title>айтифонд | О фонде</title>
         <meta charSet="UTF-8" />
-        <meta
-          name="Информация о фонде"
-          content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года."
-        />
+        <meta name="description" content="Информация о фонде" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
+        <meta property="og:url" content="https://www.айтифонд.рус/aboutUS" />
         <meta property="og:title" content="Фонд развития информационный технологий Ульяновской области." />
-        <meta
-          property="og:descripsion"
-          content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года"
-        />
-        <meta property="og:image" content="../../assets/logo.svg" />
-        <meta property="og:image:type" content="image/svg" />
-        <meta property="og:image:width" content="200" />
-        <meta property="og:image:height" content="60" />
-        <meta name="vk:card" content="image/svg" />
+        <meta property="og:descripsion" content="Информация о фонде" />
+        <meta property="og:image" content="/logo_ref.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="vk:card" content="image/jpg" />
+        <meta property="vk:url" content="https://www.айтифонд.рус/aboutUS" />
         <meta name="vk:title" content="Фонд развития информационный технологий Ульяновской области." />
+        <meta name="vk:descripsion" content="Фонд развития информационный технологий Ульяновской области." />
+        <meta name="vk:image" content="/logo_ref.jpg" />
         <meta
-          name="vk:descripsion"
-          content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года"
+          name="keywords"
+          content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT"
         />
-        <meta name="vk:image" content="../../assets/logo.svg" />
+        <meta name="twitter:card" content="image/jpg" />
+        <meta property="twitter:url" content="https://www.айтифонд.рус/aboutUS" />
+        <meta name="twitter:title" content="Фонд развития информационный технологий Ульяновской области." />
+        <meta name="twitter:descripsion" content="Фонд развития информационный технологий Ульяновской области." />
+        <meta name="twitter:image" content="/logo_ref.jpg" />
       </Helmet>
       <VStack w="full" p={0} m={0} ref={refHeader}>
         <Header />
@@ -117,6 +128,7 @@ export const AboutUs = React.memo(() => {
         <VStack w="full" minH={`${height}px`} pb={[4, 6]} align="flex-start">
           <Image
             src={ulyanovsk}
+            bgColor="black"
             objectFit="cover"
             top={refHeader.current?.clientHeight}
             left={0}
@@ -142,9 +154,49 @@ export const AboutUs = React.memo(() => {
                 Фонд развития информациионных технологий Ульяновской области
               </Text>
             </HStack>
-            <Stack direction={isLargerThan480 ? 'row' : 'column'} w="full" align="center" justify="center">
-              <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refCharts)}>
+            <Stack align="center" justify="center" direction={isLargerThan840 ? 'row' : 'column'} spacing={0} w="full">
+              <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                <Text fontSize={isLargerThan840 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] : '20px'} maxH="60px">
+                  88,2
+                </Text>
+                <Text fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
+                  тыс. участников
+                </Text>
+              </VStack>
+              <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                <Text fontSize={isLargerThan840 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] : '20px'} maxH="60px">
+                  107
+                </Text>
+                <Text fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
+                  млн руб.
+                </Text>
+              </VStack>
+              <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                <Text fontSize={isLargerThan840 ? ['lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] : '20px'} maxH="60px">
+                  247
+                </Text>
+                <Text fontSize={isLargerThan1580 ? ['xs', 'sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
+                  проектов
+                </Text>
+              </VStack>
+            </Stack>
+            <Stack direction={isLargerThan840 ? 'row' : 'column'} w="full" align="center" justify="center">
+              <Button
+                color="white"
+                variant="brand-link"
+                fontSize={['lg', 'xl']}
+                onClick={() => scrollToRef(refCharts)}
+                display="none"
+              >
                 Цифры и Факты
+              </Button>
+              <Button
+                color="white"
+                variant="brand-link"
+                fontSize={['lg', 'xl']}
+                onClick={() => scrollToRef(refProject)}
+              >
+                Проектный офис
               </Button>
               <Button color="white" variant="brand-link" fontSize={['lg', 'xl']} onClick={() => scrollToRef(refTeam)}>
                 Команда
@@ -166,15 +218,15 @@ export const AboutUs = React.memo(() => {
             </Stack>
             <VStack align="center" justify="center">
               <Text fontSize={['sm', 'md', 'lg']} align="center">
-                Фонд развития информационный технологий в Ульяновской области является оператором государственный
-                поддержки IT-проектов и компаний в регионе с 2016 года.
+                Фонд начиная с 2016 года является оператором предоставления государственной поддержки проектам и
+                компаниям в сфере информационных технологий Ульяновской области
               </Text>
             </VStack>
             <VStack align="center" justify="center">
               <Text fontSize={['sm', 'md', 'lg']} align="center">
-                Миссия Фонда – всемерно стимулировать развитие ИТ-экосистемы Ульяновской области, обеспечивать системную
-                поддержку образовательных и профориентационных проектов в сфере информационных технологий и создавать
-                условия для устойчивого роста IT-отрасли региона.
+                Цель Фонда - стимулировать развитие ИТ-экосистемы Ульяновской области за счёт системной поддержки
+                образовательных и профориентационных проектов в сфере информационных технологий, развития
+                профессионального сообщества, а также создания условий для экономического роста ИТ-компаний.
               </Text>
             </VStack>
           </VStack>
@@ -185,180 +237,115 @@ export const AboutUs = React.memo(() => {
               bgGradient={themeIsDark ? 'none' : 'linear(to-t, #e3f2fb 5%, transparent 95%)'}
               pb={5}
             >
-              <Text color={themeIsDark ? 'white' : 'brand.dark'} fontWeight="800" fontSize={['xl', '2xl', '3xl']}>
-                НАШИ ЦЕЛИ
-              </Text>
-              <VStack align="center" justify="center" px={[0, 4]}>
-                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']} align="start">
-                  Основной целью деятельности Фонда является формирование имущества (в том числе финансовых средств) на
-                  основе добровольных имущественных взносов (в том числе денежных) и иных законных поступлений, и
-                  направление их на:
-                  <VStack w="full" px={isLargerThan770 ? '25%' : '5%'} align="center">
-                    <Stack
-                      w="full"
-                      direction={isLargerThan530 ? 'row' : 'column'}
-                      align={isLargerThan530 ? 'start' : 'center'}
-                    >
-                      <VStack minW={['3em', '4em', '5em']}>
-                        <AiOutlineApartment size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
-                      </VStack>
-                      <Text
-                        color={themeIsDark ? 'white' : 'brand.dark'}
-                        fontSize={['sm', 'md', 'lg']}
-                        w="full"
-                        align="start"
-                      >
-                        Содействие развитию информационных технологий на территории Ульяновской области.
-                      </Text>
-                    </Stack>
-                    <Stack
-                      w="full"
-                      direction={isLargerThan530 ? 'row' : 'column'}
-                      align={isLargerThan530 ? 'start' : 'center'}
-                    >
-                      <VStack minW={['3em', '4em', '5em']}>
-                        <MdEmojiPeople size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
-                      </VStack>
-                      <Text
-                        color={themeIsDark ? 'white' : 'brand.dark'}
-                        fontSize={['sm', 'md', 'lg']}
-                        w="full"
-                        align="start"
-                      >
-                        Развитие человеческого потенциала отрасли информационных технологий.
-                      </Text>
-                    </Stack>
-                    <Stack
-                      w="full"
-                      direction={isLargerThan530 ? 'row' : 'column'}
-                      align={isLargerThan530 ? 'start' : 'center'}
-                    >
-                      <VStack minW={['3em', '4em', '5em']}>
-                        <MdBiotech size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
-                      </VStack>
-                      <Text
-                        color={themeIsDark ? 'white' : 'brand.dark'}
-                        fontSize={['sm', 'md', 'lg']}
-                        w="full"
-                        align="start"
-                      >
-                        Создание условий для появления передовых технологий, организаций, методов обучения федерального
-                        и мирового уровня в сфере информационных технологий.
-                      </Text>
-                    </Stack>
-                    <Stack
-                      w="full"
-                      direction={isLargerThan530 ? 'row' : 'column'}
-                      align={isLargerThan530 ? 'start' : 'center'}
-                    >
-                      <VStack minW={['3em', '4em', '5em']}>
-                        <GiVintageRobot size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
-                      </VStack>
-                      <Text
-                        color={themeIsDark ? 'white' : 'brand.dark'}
-                        fontSize={['sm', 'md', 'lg']}
-                        w="full"
-                        align="start"
-                      >
-                        Развитие проектов, осуществляемых в форме или посредством информационных технологий,
-                        телекоммуникационных технологий, в том числе информационно-телекоммуникационной сети Интернет,
-                        робототехники, облачных вычислений, больших данных, человеко-машинных интерфейсов, систем
-                        управления и так далее.
-                      </Text>
-                    </Stack>
-                    <Stack
-                      w="full"
-                      direction={isLargerThan530 ? 'row' : 'column'}
-                      align={isLargerThan530 ? 'start' : 'center'}
-                    >
-                      <VStack minW={['3em', '4em', '5em']}>
-                        <MdCellTower size={isLargerThan770 ? '4em' : '3em'} color="#7775ed" />
-                      </VStack>
-                      <Text
-                        color={themeIsDark ? 'white' : 'brand.dark'}
-                        fontSize={['sm', 'md', 'lg']}
-                        w="full"
-                        align="start"
-                      >
-                        Развитие Интернет-предпринимательства и экосистемы Интернет-предпринимательства.
-                      </Text>
-                    </Stack>
-                  </VStack>
-                </Text>
-              </VStack>
-            </VStack>
-            <VStack w="full" align="center" justify="center" pb={5}>
-              <Text
-                color={themeIsDark ? 'white' : 'brand.dark'}
-                fontWeight="800"
-                fontSize={['xl', '2xl', '3xl']}
-                align="center"
-              >
-                ПРОЕКТЫ ПОДДЕРЖАННЫЕ ФОНДОМ В 2023 ГОДУ
-              </Text>
-              <TableContainer w="full">
-                <Table
-                  w="full"
-                  variant="striped"
-                  colorScheme="blue"
-                  size={isLargerThan1300 ? 'lg' : 'md'}
+              <HStack align="start" justify="start" pb={5}>
+                <Text
                   color={themeIsDark ? 'white' : 'brand.dark'}
-                  backgroundColor={themeIsDark ? '#242323' : 'white'}
-                  overflow="hidden"
-                  whiteSpace="normal"
+                  fontWeight="800"
+                  fontSize={['xl', '2xl', '3xl']}
+                  align="center"
                 >
-                  <Thead>
-                    <Tr>
-                      <Th
-                        color={themeIsDark ? 'white' : 'brand.dark'}
-                        fontSize={['sm', 'md', 'lg']}
-                        fontFamily="Jost"
-                        fontWeight="800"
-                      >
-                        Наименование проектов
-                      </Th>
-                      <Th
-                        isNumeric
-                        color={themeIsDark ? 'white' : 'brand.dark'}
-                        fontSize={['sm', 'md', 'lg']}
-                        fontFamily="Jost"
-                        fontWeight="800"
-                      >
-                        Колличество участников
-                      </Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    <Tr textColor="brand.dark">
-                      <Td>Международная цифровая олимпиада «Волга-IT»</Td>
-                      <Td isNumeric>2000</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>Развитие сообщества Код-классов (клубов по программированию) в Ульяновской области</Td>
-                      <Td isNumeric>800</Td>
-                    </Tr>
-                    <Tr textColor="brand.dark">
-                      <Td>Турнир «ИТ-Марафон» среди студентов и преподавателей СПО</Td>
-                      <Td isNumeric>710</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>Чемпионат ИТ-сферы Ульяновской области среди школьников</Td>
-                      <Td isNumeric>400</Td>
-                    </Tr>
-                    <Tr textColor="brand.dark">
-                      <Td>Командный студенческий чемпионат Ульяновской области по программированию</Td>
-                      <Td isNumeric>45</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>«Инженерно-техническая подготовка в школьном образовании»</Td>
-                      <Td isNumeric>25</Td>
-                    </Tr>
-                  </Tbody>
-                </Table>
-              </TableContainer>
+                  ПОЛНОМОЧИЯ
+                </Text>
+              </HStack>
+              <HStack align="start" justify="start">
+                <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md', 'lg']}>
+                  {' '}
+                  В соответствии со Стратегией развития отрасли информационных и цифровых технологий Ульяновской области
+                  до 2030 года, Программой по популяризации ИТ-специальностей в Ульяновской области, а также поручениями
+                  Правительства Ульяновской области:
+                </Text>
+              </HStack>
+              <HStack align="start" justify="start">
+                <VStack
+                  px={isLargerThan530 ? 6 : 2}
+                  w="full"
+                  align="start"
+                  color={themeIsDark ? 'white' : 'brand.dark'}
+                >
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontSize={['md', 'lg', 'xl']}
+                    fontWeight="900"
+                    textTransform="uppercase"
+                  >
+                    Развитие системы подготовки кадров для ИТ-отрасли Ульяновской области
+                  </Text>
+                  <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+                  <List mb={2}>
+                    <ListItem>
+                      <ListIcon as={PiStudentFill} color="brand.blue" fontSize="1.5em" />
+                      Выстраивание системы профессиональной ориентации обучающихся 6-11 классов, которая направлена на
+                      осознанный выбор карьеры в ИТ-сфере
+                    </ListItem>
+                    <ListItem>
+                      <ListIcon as={MdArchitecture} color="brand.blue" fontSize="1.5em" />
+                      Создание условий для появления передовых методов и технологий обучения ИТ-специальностям в высших
+                      и средних учебных заведениях
+                    </ListItem>
+                    <ListItem>
+                      <ListIcon as={GiPlanetConquest} color="brand.blue" fontSize="1.5em" />
+                      Содействие в организации и проведении социально-значимых мероприятий в ИТ-сфере на международном,
+                      всероссийской и межрегиональных уровнях;
+                    </ListItem>
+                    <ListItem>
+                      <ListIcon as={PiMedalFill} color="brand.blue" fontSize="1.5em" />
+                      Поощрение лучших представителей ИТ-отрасли{' '}
+                    </ListItem>
+                  </List>
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontSize={['md', 'lg', 'xl']}
+                    fontWeight="900"
+                    textTransform="uppercase"
+                  >
+                    Создания условий для экономического роста ИТ-компаний Ульяновской области
+                  </Text>
+                  <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+                  <List>
+                    <ListItem>
+                      <ListIcon as={BsBarChartLineFill} color="brand.blue" fontSize="1.5em" />
+                      Формирование предложений по созданию механизмов государственной поддержки, направленных на
+                      увеличение ежегодных темпов роста ИТ-отрасли;
+                    </ListItem>
+                    <ListItem>
+                      <ListIcon as={TbDeviceAnalytics} color="brand.blue" fontSize="1.5em" />
+                      Осуществление систематического наблюдения и анализа показателей развития ИТ-отрасли;
+                    </ListItem>
+                    <ListItem>
+                      <ListIcon as={PiHandshakeFill} color="brand.blue" fontSize="1.5em" />
+                      Создание условий для развития производственной кооперации между ИТ-компаниями и промышленными
+                      предприятиями.
+                    </ListItem>
+                  </List>
+                  <Text
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontSize={['md', 'lg', 'xl']}
+                    fontWeight="900"
+                    textTransform="uppercase"
+                  >
+                    Увеличение налоговых поступлений от ИТ-отрасли Ульяновской области
+                  </Text>
+                  <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+                  <List>
+                    <ListItem>
+                      <ListIcon as={FaHandsHelping} color="brand.blue" fontSize="1.5em" />
+                      Координация рабочей подгруппы по увеличению налоговых поступлений в консолидированный бюджет
+                      Ульяновской области, а также мониторинг задолженности по видам экономической деятельности ОКВЭД 62
+                      и 63;
+                    </ListItem>
+                    <ListItem>
+                      <ListIcon as={GiPayMoney} color="brand.blue" fontSize="1.5em" />
+                      Мониторинг налоговых поступлений от ИТ-организаций, использующих региональные налоговые льготы по
+                      налогу на прибыль и по налогу, взимаемому в связи с применением упрощённой системы
+                      налогообложения.
+                    </ListItem>
+                  </List>
+                </VStack>
+              </HStack>
             </VStack>
+
             <Accordion allowMultiple w="full">
-              <AccordionItem color={themeIsDark ? 'white' : 'brand.dark'}>
+              <AccordionItem color={themeIsDark ? 'white' : 'brand.dark'} display="none">
                 <AccordionButton onClick={() => setCharts(!charts)}>
                   <Box flex="1" textAlign="left" ref={refCharts}>
                     <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xl', '2xl', '3xl']}>
@@ -950,6 +937,132 @@ export const AboutUs = React.memo(() => {
             <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
               <AccordionItem>
                 <AccordionButton>
+                  <Box flex="1" textAlign="left" ref={refProject}>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['xl', '2xl', '3xl']}
+                      fontWeight="bold"
+                    >
+                      ПРОЕКТНЫЙ ОФИС
+                    </Text>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <VStack
+                    px={isLargerThan530 ? 6 : 2}
+                    w="full"
+                    align="start"
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                  >
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['sm', 'lg', '2xl']}
+                      fontWeight="900"
+                      textTransform="uppercase"
+                    >
+                      ИНИЦИАТИВЫ, РЕАЛИЗУЕМЫЕ ФОНДОМ
+                    </Text>
+                    <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+                    <VStack w="full" align="start" py={3}>
+                      <OrderedList spacing={2}>
+                        <ListItem>Грантовая поддержка ИТ-компаний для разработки отечественных решений.</ListItem>
+                        <ListItem>
+                          Конкурсный отбор проектов, направленных на развитие информационных технологий в Ульяновской
+                          области;
+                        </ListItem>
+                        <ListItem>Программа по популяризации ИТ-специальностей до 2025 года.</ListItem>
+                        <ListItem>Областной конкурс для учителей математики, информатики и физики </ListItem>
+                        <ListItem>Стипендия Губернатора Ульяновской области «Имени Е.Е. Горина»; .</ListItem>
+                        <ListItem>«День программиста» - профессиональный праздник ИТ- отрасли.</ListItem>
+                        <ListItem>Годовой календарь конгрессно-выставочные мероприятия для ИТ-компаний.</ListItem>
+                        <ListItem>Проектный офис «Цифровые сервисы и решения для государства».</ListItem>
+                        <ListItem>
+                          Рабочая подгруппа по увеличению налоговых поступлений в консолидированный бюджет Ульяновской
+                          области, а также мониторинг задолженности по видам экономической деятельности ОКВЭД 62 и 63.
+                        </ListItem>
+                        <ListItem>Поощрение лучших представителей ИТ-отрасли Ульяновской области.</ListItem>
+                      </OrderedList>
+                    </VStack>
+                    <Text
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['sm', 'lg', '2xl']}
+                      fontWeight="900"
+                      textTransform="uppercase"
+                    >
+                      ПРОЕКТЫ, ПОДДЕРЖАННЫЕ ФОНДОМ В 2023 ГОДУ
+                    </Text>
+                    <Stack borderTop="1px" color={themeIsDark ? 'white' : 'brand.dark'} w="full" m={0} p={0} />
+                  </VStack>
+                  <TableContainer w="full">
+                    <Table
+                      w="full"
+                      variant="striped"
+                      colorScheme="blue"
+                      size={isLargerThan1300 ? 'lg' : 'md'}
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      backgroundColor={themeIsDark ? '#242323' : 'white'}
+                      overflow="hidden"
+                      whiteSpace="normal"
+                    >
+                      <Thead>
+                        <Tr>
+                          <Th
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            fontSize={['sm', 'md', 'lg']}
+                            fontFamily="Museo Cyrl"
+                            fontWeight="800"
+                          >
+                            Наименование проектов
+                          </Th>
+                          <Th
+                            isNumeric
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            fontSize={['sm', 'md', 'lg']}
+                            fontFamily="Museo Cyrl"
+                            fontWeight="800"
+                          >
+                            Колличество участников
+                          </Th>
+                        </Tr>
+                      </Thead>
+                      <Tbody>
+                        <Tr textColor="brand.dark">
+                          <Td>Международная цифровая олимпиада «Волга-IT»</Td>
+                          <Td isNumeric>2000</Td>
+                        </Tr>
+                        <Tr>
+                          <Td>Развитие сообщества Код-классов (клубов по программированию) в Ульяновской области</Td>
+                          <Td isNumeric>800</Td>
+                        </Tr>
+                        <Tr textColor="brand.dark">
+                          <Td>ТТурнир «ИТ-Марафон» среди студентов и преподавателей СПО</Td>
+                          <Td isNumeric>710</Td>
+                        </Tr>
+                        <Tr>
+                          <Td>Чемпионат ИТ-сферы Ульяновской области среди школьников</Td>
+                          <Td isNumeric>400</Td>
+                        </Tr>
+                        <Tr textColor="brand.dark">
+                          <Td>Командный студенческий чемпионат Ульяновской области по программированию</Td>
+                          <Td isNumeric>45</Td>
+                        </Tr>
+                        <Tr>
+                          <Td>
+                            «Инженерно-техническая подготовка в школьном образовании» – программа повышения квалификации
+                            для педагогических работников школ, педагогов дополнительного образования
+                          </Td>
+                          <Td isNumeric>25</Td>
+                        </Tr>
+                      </Tbody>
+                    </Table>
+                  </TableContainer>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+            <Accordion allowMultiple w="full" color={themeIsDark ? 'white' : 'brand.dark'}>
+              <AccordionItem>
+                <AccordionButton>
                   <Box flex="1" textAlign="left" ref={refTeam}>
                     <Text
                       color={themeIsDark ? 'white' : 'brand.dark'}
@@ -990,7 +1103,7 @@ export const AboutUs = React.memo(() => {
                                   </Box>
                                 ) : (
                                   <Image
-                                    src={`${API_URL}${image.data.attributes.url}`}
+                                    src={`${API_URL_ADMIN}${image.data.attributes.url}`}
                                     w={['160px', '200px']}
                                     h={['160px', '200px']}
                                     borderRadius={5}
@@ -1051,7 +1164,7 @@ export const AboutUs = React.memo(() => {
                                   </Box>
                                 ) : (
                                   <Image
-                                    src={`${API_URL}${image.data.attributes.url}`}
+                                    src={`${API_URL_ADMIN}${image.data.attributes.url}`}
                                     w={['160px', '200px']}
                                     h={['160px', '200px']}
                                     borderRadius={5}
@@ -1112,7 +1225,7 @@ export const AboutUs = React.memo(() => {
                             <Link
                               color={themeIsDark ? 'white' : 'brand.dark'}
                               fontSize={['sm', 'md', 'lg']}
-                              href={`${API_URL}${file.url}`}
+                              href={`${API_URL_ADMIN}${file.url}`}
                               isExternal
                               w="full"
                               alignItems="flex-start"
@@ -1127,7 +1240,7 @@ export const AboutUs = React.memo(() => {
                                   fontSize={['sm', 'md', 'lg']}
                                   align="end"
                                 >
-                                  {`${file.size}КБ`}
+                                  {file?.size > 1024 ? `${Math.floor(file?.size / 1024)}MB` : `${file?.size}KB`}
                                 </Text>
                               </HStack>
                             </Link>
@@ -1539,7 +1652,7 @@ export const AboutUs = React.memo(() => {
                             cursor="pointer"
                             _hover={{ textDecoration: 'underline' }}
                           >
-                            Ерофеев Сергей Александрович действует на основании Устава
+                            Горлов Сергей Петрович действует на основании Устава
                           </Text>
                         </CopyToClipboard>
                       </Stack>

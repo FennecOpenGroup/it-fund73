@@ -6,7 +6,7 @@ import { coreGetDocs } from '../../actions/coreActions';
 import fog_logo from '../../assets/logo-fog.svg';
 import mini_logo from '../../assets/mini-logo.svg';
 import ul_logo from '../../assets/ul-logo.svg';
-import { API_URL } from '../../constants/env';
+import { API_URL_ADMIN } from '../../constants/env';
 import { IRootState } from '../../interfaces/IRootState';
 import { RootActions } from '../../types/RootActions';
 
@@ -61,7 +61,6 @@ export const Footer = React.memo(() => {
           <Link href="mailto:it_ulsk@mail.ru">it_ulsk@mail.ru</Link>
         </Text>
         <Text>
-          Адрес:
           <Link
             href="https://yandex.ru/maps/195/ulyanovsk/house/ulitsa_minayeva_11/YEEYdQ9nSkMAQFtufX9xeX9mYg==/?ll=48.387366%2C54.308356&z=16.48"
             isExternal
@@ -74,12 +73,12 @@ export const Footer = React.memo(() => {
       <VStack align="left" spacing={1}>
         <VStack align="left" spacing={0}>
           {personalDatafile && (
-            <Link href={`${API_URL}${personalDatafile.url}`} variant="brand-Link" isExternal>
+            <Link href={`${API_URL_ADMIN}${personalDatafile.url}`} variant="brand-Link" isExternal>
               Политика в отношении обработки персональных данных
             </Link>
           )}
           {userAgreementfile && (
-            <Link href={`${API_URL}${userAgreementfile.url}`} variant="brand-Link" isExternal>
+            <Link href={`${API_URL_ADMIN}${userAgreementfile.url}`} variant="brand-Link" isExternal>
               Пользовательское соглашение
             </Link>
           )}

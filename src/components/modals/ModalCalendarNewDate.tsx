@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unsafe-optional-chaining */
 import {
   Modal,
   ModalBody,
@@ -16,6 +17,8 @@ import {
   InputRightElement,
   Fade,
   useMediaQuery,
+  Text,
+  HStack,
 } from '@chakra-ui/react';
 import { AddIcon, NotAllowedIcon, CheckIcon } from '@chakra-ui/icons';
 import React, { Dispatch, useCallback, useState } from 'react';
@@ -23,6 +26,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import 'react-phone-input-2/lib/style.css';
 import PhoneInput from 'react-phone-input-2';
+import { BiTrash } from 'react-icons/bi';
 import * as Yup from 'yup';
 
 import { coreRemoveVisibleModal } from '../../actions/coreActions';
@@ -32,6 +36,7 @@ import { IRootState } from '../../interfaces/IRootState';
 import { IForm } from '../../interfaces/IForm';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { fetchPropose } from '../../api/eventsApi';
+import { fetchMedia } from '../../api/mediaApi';
 
 interface IModalCalendarNewDateProps {
   isOpen: boolean;
@@ -45,6 +50,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
 
   const [formSended, setFormSended] = useState(false);
   const [number, setNumber] = useState('');
+  const [currentFile, setFile] = useState<File>();
 
   const { width } = useWindowDimensions();
 
@@ -61,21 +67,18 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
       .required('Обязательно к заполению'),
     email: Yup.string().email('Недопустимый формат электронной почты').required('Обязательно к заполению'),
     date: Yup.date().min(new Date(), 'Неактуальная дата').required('Обязательно к заполению'),
-    file: Yup.string().required('Обязательно к заполению'),
   });
 
   const handleFormSubmit = async (values: IForm) => {
-    // eslint-disable-next-line
-    values.tel = number;
-
+    const fileID = currentFile ? await fetchMedia(currentFile) : undefined;
     await fetchPropose({
       data: {
         name: values.name,
         place: values.address,
         date: values.date,
         email: values.email,
-        phone: values.tel,
-        tag: 'Не проверено',
+        phone: number,
+        file: fileID,
       },
     });
     setFormSended(true);
@@ -86,7 +89,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={handleClose} size="md">
+      <Modal isOpen={isOpen} onClose={handleClose}>
         <ModalOverlay />
         <ModalContent
           bg={themeIsDark ? '#121212' : 'white'}
@@ -101,9 +104,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
             <VStack w="full">
               <Formik
                 key="suggest-an-event"
-                initialValues={
-                  { name: '', date: new Date(), address: '', email: '', tel: '', file: undefined } as IForm
-                }
+                initialValues={{ name: '', date: undefined, address: '', email: '', tel: '', file: undefined } as IForm}
                 validationSchema={FormSchema}
                 onSubmit={handleFormSubmit}
               >
@@ -258,7 +259,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                     </Field>
                     <Field name="tel">
                       {({ field, form }: FieldProps<string, IForm>) => (
-                        <FormControl isRequired isInvalid={!!form.values.tel && !!form.errors.tel}>
+                        <FormControl isInvalid={!!form.values.tel && !!form.errors.tel}>
                           <FormLabel
                             htmlFor="form-tel"
                             color={themeIsDark ? 'white' : 'brand.dark'}
@@ -314,7 +315,7 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                     </Field>
                     <Field name="file">
                       {({ field, form }: FieldProps<string, IForm>) => (
-                        <FormControl isRequired isInvalid={!!form.values.file && !!form.errors.file}>
+                        <FormControl isInvalid={!!form.values.file && !!form.errors.file}>
                           <InputGroup size="md">
                             <label
                               htmlFor="file"
@@ -351,15 +352,19 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                                 type="file"
                                 multiple
                                 display="none"
-                                required={false}
+                                onChange={(event: any) => {
+                                  if (event.currentTarget.files) {
+                                    setFile(event.currentTarget?.files?.['0']);
+                                  }
+                                }}
                               />
                               Приложите файл
                               <AddIcon w="30px" color={themeIsDark ? 'white' : 'brand.dark'} />
                             </label>
                             <InputRightElement>
-                              <Fade in={!!form.errors.file || !!form.values.file}>
-                                {form.errors.file ? (
-                                  <Tooltip label={form.errors.file} placement="bottom">
+                              <Fade in={!!currentFile}>
+                                {!currentFile ? (
+                                  <Tooltip placement="bottom">
                                     <NotAllowedIcon color="red" />
                                   </Tooltip>
                                 ) : (
@@ -368,6 +373,35 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                               </Fade>
                             </InputRightElement>
                           </InputGroup>
+                          {currentFile && (
+                            <HStack w="full" justify="space-between" align="end">
+                              <Text
+                                color={themeIsDark ? 'white' : 'brand.dark'}
+                                pb={2}
+                                maxW={isLargerThan1000 ? width / 6 : width / 3}
+                              >
+                                {currentFile?.name}
+                              </Text>
+                              <HStack spacing={0} align="end" justify="end">
+                                <Text color={themeIsDark ? 'white' : 'brand.dark'} pb={2}>
+                                  {`${Math.floor(currentFile?.size / 1024)}KB`}
+                                </Text>
+                                <Button
+                                  rightIcon={<BiTrash />}
+                                  iconSpacing={0}
+                                  onClick={() => setFile(undefined)}
+                                  fontSize={['sm', 'md', 'lg']}
+                                  p={0}
+                                  m={0}
+                                  bg="transparent"
+                                  color={themeIsDark ? 'white' : 'brand.dark'}
+                                  _hover={{
+                                    color: 'brand.blue',
+                                  }}
+                                />
+                              </HStack>
+                            </HStack>
+                          )}
                         </FormControl>
                       )}
                     </Field>
@@ -383,12 +417,10 @@ export const ModalCalendarNewDate = React.memo(({ isOpen }: IModalCalendarNewDat
                           !formik.values.date ||
                           !formik.values.address ||
                           !formik.values.email ||
-                          !formik.values.file ||
                           !!formik.errors.name ||
                           !!formik.errors.date ||
                           !!formik.errors.address ||
                           !!formik.errors.email ||
-                          !!formik.errors.file ||
                           formSended
                         }
                         rightIcon={formSended ? <CheckIcon boxSize="15px" /> : <></>}

@@ -25,8 +25,8 @@ export const theme = extendTheme({
   initialColorMode: 'light',
   useSystemColorMode: false,
   fonts: {
-    heading: 'Jost',
-    body: 'Jost',
+    heading: 'Museo Cyrl',
+    body: 'Museo Cyrl',
   },
   colors: {
     brand: {

@@ -26,7 +26,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RiTeamFill } from 'react-icons/ri';
 
-import logo from '../../assets/logo.svg';
 import {
   ROUTE_ABOUTUS,
   ROUTE_CALENDAR,
@@ -45,6 +44,7 @@ import {
   coreSetSearchDraft,
   coreSetTheme,
 } from '../../actions/coreActions';
+import full_logo from '../../assets/full-logo.svg';
 
 export const Header = React.memo(() => {
   const dispatch = useDispatch<Dispatch<RootActions>>();
@@ -56,10 +56,12 @@ export const Header = React.memo(() => {
   const search = useSelector((state: IRootState) => state.core.search);
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
-  const [isLargerThan1090] = useMediaQuery('(min-width: 1090px)');
-  const [isLargerThan905] = useMediaQuery('(min-width: 905px)');
+  const [isLargerThan1580] = useMediaQuery('(min-width: 1580px)');
+  const [isLargerThan1181] = useMediaQuery('(min-width: 1181px)');
+  const [isLargerThan1231] = useMediaQuery('(min-width: 1231px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
-  const [isLargerThan425] = useMediaQuery('(min-width: 425px)');
+  const [isLargerThan665] = useMediaQuery('(min-width: 665px)');
+  const [isLargerThan445] = useMediaQuery('(min-width: 445px)');
 
   useEffect(() => {
     dispatch(coreGetTheme());
@@ -67,7 +69,7 @@ export const Header = React.memo(() => {
 
   return (
     <VStack
-      position="sticky"
+      position="static"
       top="0px"
       pt={[1, 2, 4, 6]}
       px={isLargerThan770 ? '10%' : '5%'}
@@ -77,13 +79,19 @@ export const Header = React.memo(() => {
       backgroundColor="brand.dark"
       spacing={0}
     >
-      <HStack w="full">
-        <VStack align="end" justify="end">
+      <HStack w="full" align="end">
+        <VStack align="end" justify="end" w={isLargerThan665 ? 'auto' : 'full'}>
           <HStack w="full">
             <Tooltip label="Сменить тему">
               <Button
                 variant="brand-icon"
-                leftIcon={themeIsDark ? <HiOutlineSun size="16px" /> : <HiOutlineMoon size="16px" />}
+                leftIcon={
+                  themeIsDark ? (
+                    <HiOutlineSun size="16px" />
+                  ) : (
+                    <HiOutlineMoon size={isLargerThan445 ? '16px' : '10px'} />
+                  )
+                }
                 onClick={() => {
                   dispatch(coreSetTheme(!themeIsDark));
                   localStorage.setItem('theme', themeIsDark ? 'light' : 'dark');
@@ -99,19 +107,19 @@ export const Header = React.memo(() => {
                 href="https://vk.com/itfund73"
                 isExternal
                 variant="brand-icon"
-                leftIcon={<SlSocialVkontakte size="16px" />}
+                leftIcon={<SlSocialVkontakte size={isLargerThan445 ? '16px' : '10px'} />}
                 iconSpacing={0}
                 size="xs"
                 p={0}
               />
             </Tooltip>
-            <Tooltip label="Ютуб">
+            <Tooltip label="Рутуб">
               <Button
                 as={Link}
-                href="https://youtube.com/@user-or8ou2iv4e"
+                href="https://rutube.ru/channel/32500034/"
                 isExternal
                 variant="brand-icon"
-                leftIcon={<SlSocialYoutube size="16px" />}
+                leftIcon={<SlSocialYoutube size={isLargerThan445 ? '16px' : '10px'} />}
                 iconSpacing={0}
                 size="xs"
                 p={0}
@@ -119,35 +127,56 @@ export const Header = React.memo(() => {
             </Tooltip>
           </HStack>
           <Spacer />
-          <HStack cursor="pointer" as={RouterLink} to={ROUTE_MAINPAGE} align="center">
-            <Image src={logo} h="70px" loading="lazy" py={0} />
+          <HStack
+            cursor="pointer"
+            as={RouterLink}
+            to={ROUTE_MAINPAGE}
+            align="start"
+            w={isLargerThan665 ? 'auto' : 'full'}
+          >
+            <Image
+              src={full_logo}
+              minH={isLargerThan665 ? '100px' : 'auto'}
+              minW="120px"
+              w="full"
+              loading="lazy"
+              py={0}
+              pb={isLargerThan445 ? '1px' : '5px'}
+            />
           </HStack>
         </VStack>
-        {isLargerThan425 && (
-          <HStack w="full" align="end" justifyContent={!isLargerThan905 ? 'flex-end' : 'start'}>
-            {isLargerThan905 && <Spacer />}
-            <Stack align="center" spacing={[1, 2]} direction={isLargerThan905 ? 'row' : 'column'}>
-              <VStack spacing={0} justify="start">
-                <Text fontSize={['md', 'lg', '2xl']}>239</Text>
-                <Text fontSize={['xs', 'xs', 'md']} color="#BBBBBB">
-                  реализованных проектов
-                </Text>
-              </VStack>
-              <VStack spacing={0} justify="start">
-                <Text fontSize={['md', 'lg', '2xl']} p={0} m={0}>
-                  83337
-                </Text>
-                <Text fontSize={['xs', 'xs', 'md']} color="#BBBBBB">
-                  участников
-                </Text>
-              </VStack>
-              <VStack spacing={0} justify="start">
-                <Text fontSize={['md', 'lg', '2xl']}>94,2 млн руб.</Text>
-                <Text fontSize={['xs', 'xs', 'md']} color="#BBBBBB">
-                  общая сумма поддержки
-                </Text>
-              </VStack>
-            </Stack>
+        {isLargerThan770 && (
+          <HStack spacing={0} p={0} m={0} w={isLargerThan1181 ? 'full' : '0px'} justify="center" align="center">
+            {isLargerThan1181 && (
+              <HStack spacing={[0, 2, 4]} p={0} m={0} justify={!isLargerThan1580 ? 'flex-end' : 'start'}>
+                <Stack align="end" direction="row" spacing={0} minH="180px">
+                  <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                    <Text fontSize={isLargerThan1580 ? ['2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
+                      88,2
+                    </Text>
+                    <Text fontSize={isLargerThan1580 ? ['sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
+                      тыс. участников
+                    </Text>
+                  </VStack>
+                  <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                    <Text fontSize={isLargerThan1580 ? ['2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
+                      107
+                    </Text>
+                    <Text fontSize={isLargerThan1580 ? ['sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
+                      млн руб.
+                    </Text>
+                  </VStack>
+                  <VStack spacing={0} justify="center" align="center" px={2} m={0}>
+                    <Text fontSize={isLargerThan1580 ? ['2xl', '3xl', '4xl', '5xl'] : '20px'} maxH="60px">
+                      247
+                    </Text>
+                    <Text fontSize={isLargerThan1580 ? ['sm', 'md'] : '15px'} color="#BBBBBB" as="i" align="center">
+                      проектов
+                    </Text>
+                  </VStack>
+                </Stack>
+              </HStack>
+            )}
           </HStack>
         )}
       </HStack>
@@ -161,7 +190,7 @@ export const Header = React.memo(() => {
         borderTopStartRadius="5px"
         borderTopEndRadius="5px"
       >
-        <HStack w="full" minW={!isLargerThan1090 ? '50%' : '30%'} maxW={!isLargerThan1090 ? 'full' : '30%'} spacing={1}>
+        <HStack w="full" minW={!isLargerThan1231 ? '40%' : '30%'} maxW={!isLargerThan1231 ? 'full' : '30%'} spacing={1}>
           <ButtonGroup w="full" p={0} spacing={0}>
             <Input
               variant="brand-search"
@@ -231,24 +260,22 @@ export const Header = React.memo(() => {
             />
           </Tooltip>
         </HStack>
-        {isLargerThan425 && <Spacer />}
-        {isLargerThan1090 && (
-          <HStack spacing={0}>
+        {isLargerThan1231 && (
+          <HStack spacing={0} w="full">
             <>
               <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_COMPANIES}>
-                Что происходит в отрасли?
+                Что происходит в ИТ-отрасли
               </Button>
               <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_EDUCATION}>
-                Где получить образование?
+                Где получить ИТ-образование
               </Button>
               <Button variant="brand-header" h="52px" fontSize="sm" as={RouterLink} to={ROUTE_CALENDAR}>
-                Когда будут мероприятия?
+                Когда будут ИТ-мероприятия
               </Button>
             </>
           </HStack>
         )}
-        {isLargerThan425 && <Spacer />}
-        {!isLargerThan1090 && (
+        {!isLargerThan1231 && (
           <Menu>
             <MenuButton
               as={Button}
@@ -260,18 +287,18 @@ export const Header = React.memo(() => {
             />
             <MenuList>
               <MenuItem as={RouterLink} to={ROUTE_COMPANIES}>
-                Что происходит в отрасли?
+                Что происходит в отрасли
               </MenuItem>
               <MenuItem as={RouterLink} to={ROUTE_EDUCATION}>
-                Где получить образование?
+                Где получить образование
               </MenuItem>
               <MenuItem as={RouterLink} to={ROUTE_CALENDAR}>
-                Когда будут мероприятия?
+                Когда будут мероприятия
               </MenuItem>
             </MenuList>
           </Menu>
         )}
-        {isLargerThan1090 && <Spacer />}
+        {isLargerThan1231 && <Spacer />}
       </HStack>
     </VStack>
   );

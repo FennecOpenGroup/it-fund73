@@ -30,6 +30,9 @@ export const coreGetTheme = () => action(ThemeEnum.CORE_GET_THEME_IS_DARK);
 export const coreGetNews = () => action(CoreActionsEnum.CORE_GET_NEWS);
 export const coreSetNews = (value: INews[]) => action(CoreActionsEnum.CORE_SET_NEWS, { value });
 
+export const coreGetShortNews = () => action(CoreActionsEnum.CORE_GET_SHORT_NEWS);
+export const coreSetShortNews = (value: INews[]) => action(CoreActionsEnum.CORE_SET_SHORT_NEWS, { value });
+
 export const coreGetDocs = () => action(CoreActionsEnum.CORE_GET_DOCS);
 export const coreSetDocs = (value: IDocs[]) => action(CoreActionsEnum.CORE_SET_DOCS, { value });
 

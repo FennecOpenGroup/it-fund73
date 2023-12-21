@@ -9,13 +9,15 @@ import {
   VStack,
   Text,
   HStack,
+  ModalFooter,
+  Link,
 } from '@chakra-ui/react';
 import React, { Dispatch, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import 'react-phone-input-2/lib/style.css';
 import { MdDateRange } from 'react-icons/md';
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import { AiOutlineGlobal } from 'react-icons/ai';
 
 import { coreRemoveVisibleModal } from '../../actions/coreActions';
 import { RootActions } from '../../types/RootActions';
@@ -40,36 +42,73 @@ export const ModalCalendarEventInfo = React.memo(({ isOpen, id }: IModalCalendar
         <ModalOverlay />
         <ModalContent bg={themeIsDark ? '#121212' : 'white'} border="2px">
           <ModalCloseButton color={themeIsDark ? 'white' : 'brand.dark'} />
-          <ModalHeader fontSize={['lg', 'xl']} color={themeIsDark ? 'white' : 'brand.dark'}>
-            {events && events[Number(id)].attributes.name}
+          <ModalHeader fontSize={['lg', 'xl', 'md']} color={themeIsDark ? 'white' : 'brand.dark'}>
+            {events && events[Number(id)] && events[Number(id)].attributes.name}
           </ModalHeader>
           <ModalBody>
             <VStack w="full" align="start">
               <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
-                {events && <ReactMarkdown>{events[Number(id)].attributes.text}</ReactMarkdown>}
+                {events && events[Number(id)] && <ReactMarkdown>{events[Number(id)].attributes.text}</ReactMarkdown>}
               </Text>
             </VStack>
-            <VStack w="full" align="start" spacing={0} pt={4}>
+          </ModalBody>
+          <ModalFooter>
+            <VStack w="full" align="start" spacing={0}>
               <HStack>
                 <MdDateRange size="1.2em" color="gray" />
-                <Text color="gray" fontSize={['sm', 'md']}>
-                  {events &&
-                    new Date(`${events[Number(id)].attributes.date}`).toLocaleDateString('ru-RU', {
-                      weekday: 'long',
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                </Text>
+                <VStack spacing={0} align="start" justify="start">
+                  <HStack spacing={1}>
+                    {events && events[Number(id)].attributes.end_date && (
+                      <Text color="gray" fontSize={['sm', 'md']}>
+                        Начало:
+                      </Text>
+                    )}
+                    <Text color="gray" fontSize={['sm', 'md']}>
+                      {events &&
+                        events[Number(id)] &&
+                        new Date(`${events[Number(id)].attributes.date}`).toLocaleDateString('ru-RU', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                    </Text>
+                  </HStack>
+                  <HStack spacing={1}>
+                    {events && events[Number(id)].attributes.end_date && (
+                      <Text color="gray" fontSize={['sm', 'md']}>
+                        Конец:
+                      </Text>
+                    )}
+                    <Text color="gray" fontSize={['sm', 'md']}>
+                      {events &&
+                        events[Number(id)].attributes.end_date &&
+                        new Date(`${events[Number(id)].attributes.end_date}`).toLocaleDateString('ru-RU', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                    </Text>
+                  </HStack>
+                </VStack>
               </HStack>
               <HStack>
-                <FaMapMarkerAlt size="1.2em" color="gray" />
-                <Text color="gray" fontSize={['sm', 'md']}>
-                  {events && events[Number(id)].attributes.address}
+                <AiOutlineGlobal size="1.2em" color="gray" />
+                <Text
+                  color="gray"
+                  fontSize={['sm', 'md']}
+                  as={Link}
+                  href={`${events && events[Number(id)] && events[Number(id)].attributes.address}`}
+                  isExternal
+                  noOfLines={1}
+                  maxW="310px"
+                >
+                  {events && events[Number(id)] && events[Number(id)].attributes.address}
                 </Text>
               </HStack>
             </VStack>
-          </ModalBody>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

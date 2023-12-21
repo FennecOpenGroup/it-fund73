@@ -1,12 +1,13 @@
-import { HStack, VStack, Text, Image, Stack, Spacer, useToast, useMediaQuery, Link } from '@chakra-ui/react';
+import { HStack, VStack, Text, Image, Stack, Spacer, useToast, useMediaQuery, Link, Button } from '@chakra-ui/react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import ReactMarkdown from 'react-markdown';
 import { LinkIcon } from '@chakra-ui/icons';
-import React, { Dispatch, useEffect, useMemo, useRef } from 'react';
+import React, { Dispatch, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { BiShow } from 'react-icons/bi';
+import { BiPlus, BiShow } from 'react-icons/bi';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { Emotions } from '../../components/emotions/Emotions';
 import { Footer } from '../../components/footer/Footer';
@@ -15,10 +16,13 @@ import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { calculateReadingTime } from '../../textfunctions/reattime/readtime';
 import { ROUTE_NEWS } from '../../constants/routes';
 import { IRootState } from '../../interfaces/IRootState';
-import { coreGetNews } from '../../actions/coreActions';
+import { coreGetNews, coreGetShortNews } from '../../actions/coreActions';
 import { RootActions } from '../../types/RootActions';
-import { API_URL } from '../../constants/env';
+import { API_URL, API_URL_ADMIN } from '../../constants/env';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
+import { INews } from '../../interfaces/INews';
+import { fetchChangeShortsViews } from '../../api/newsApi';
+import { shortenNumber } from '../../textfunctions/shortenNumber/shortenNumber';
 
 export const News = React.memo(() => {
   const { height } = useWindowDimensions();
@@ -26,10 +30,9 @@ export const News = React.memo(() => {
   const dispatch = useDispatch<Dispatch<RootActions>>();
 
   const news = useSelector((state: IRootState) => state.core.news);
+  const shortNews = useSelector((state: IRootState) => state.core.shortNews);
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
-
   const toast = useToast();
-
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
   const [isLargerThan1030] = useMediaQuery('(min-width: 1030px)');
   const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
@@ -37,11 +40,20 @@ export const News = React.memo(() => {
   const [isLargerThan680] = useMediaQuery('(min-width: 680px)');
   const [isLargerThan395] = useMediaQuery('(min-width: 395px)');
 
-  const newsСontent = useMemo(
+  const loadShortCount = 10;
+  let shortRowsCount = 0;
+
+  const [newsСontent, setNewsContent] = useState<INews>();
+  const [shortNewsCounter, setShortNewsCounter] = useState(loadShortCount);
+
+  const newsСontentMain = useMemo(
     () => news?.find(newsData => transliterating(newsData.attributes.heading) === url_name),
     [news],
   );
-
+  const newsСontentShorts = useMemo(
+    () => shortNews?.find(newsData => transliterating(newsData.attributes.heading) === url_name),
+    [shortNews],
+  );
   const image = newsСontent ? newsСontent.attributes.image.data['0'].attributes : undefined;
 
   const refNews = useRef<HTMLDivElement>(null);
@@ -57,7 +69,12 @@ export const News = React.memo(() => {
 
   useEffect(() => {
     dispatch(coreGetNews());
-  }, []);
+    dispatch(coreGetShortNews());
+  }, [url_name]);
+  useEffect(() => {
+    newsСontentMain !== undefined ? setNewsContent(newsСontentMain) : setNewsContent(newsСontentShorts);
+  }, [newsСontentMain, newsСontentShorts, url_name]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -65,32 +82,41 @@ export const News = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund | Новости</title>
+        <title>айтифонд | {`${newsСontent?.attributes.heading}`}</title>
         <meta charSet="UTF-8" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
+        <meta property="og:url" content={`${API_URL + ROUTE_NEWS}/${url_name}`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="600" />
-        {newsСontent && <meta name="Новости" content={newsСontent.attributes.text} />}
+        {newsСontent && <meta name="descripsion" content={newsСontent.attributes.text} />}
         {newsСontent && <meta property="og:title" content={newsСontent.attributes.text} />}
         {newsСontent && <meta property="og:descripsion" content={newsСontent.attributes.text} />}
         {newsСontent && <meta name="vk:title" content={newsСontent.attributes.text} />}
         {newsСontent && <meta name="vk:descripsion" content={newsСontent.attributes.text} />}
         {image && <meta property="og:image:type" content={`${image.mime}`} />}
         {image && <meta name="vk:image" content={`${API_URL}${image.url}`} />}
-        {image && <meta name="vk:image" content={`${API_URL}${image.url}`} />}
         {image && <meta name="vk:card" content={`${image.mime}`} />}
+        <meta
+          name="keywords"
+          content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, ИТ-отрасль, Где получить образование?, Что происходит в отрасли?"
+        />
+        {image && <meta name="twitter:card" content={`${image.mime}`} />}
+        <meta property="twitter:url" content={`${API_URL + ROUTE_NEWS}/${url_name}`} />
+        {newsСontent && <meta name="twitter:title" content={newsСontent.attributes.text} />}
+        {newsСontent && <meta name="twitter:descripsion" content={newsСontent.attributes.text} />}
+        {image && <meta name="twitter:image" content={`${API_URL}${image.url}`} />}
       </Helmet>
       <Header />
       <VStack
         minH={`${height}px`}
         justify="center"
         px={isLargerThan770 ? '10%' : '5%'}
-        bg={themeIsDark ? '#121212' : 'white'}
+        bg={themeIsDark ? '#121212' : 'brand.beige'}
       >
         <VStack
           w="full"
-          bg={themeIsDark ? '#242323' : 'brand.beige'}
+          bg={themeIsDark ? '#242323' : 'white'}
           pl={[2, 3, 4]}
           pb={[4, 6]}
           boxShadow="5px 0px rgb(3,0,15,15%)"
@@ -115,7 +141,7 @@ export const News = React.memo(() => {
               </Text>
               {image && (
                 <Image
-                  src={`${API_URL}${image.url}`}
+                  src={`${API_URL_ADMIN}${image.url}`}
                   w="full"
                   borderRadius="5px"
                   objectFit="cover"
@@ -153,11 +179,11 @@ export const News = React.memo(() => {
                       <BiShow color="#BBBBBB" />
                       {newsСontent?.attributes.views !== undefined ? (
                         <Text color="#BBBBBB" p={0} m={0} fontSize={['sm', 'md']}>
-                          {newsСontent?.attributes.views}
+                          {shortenNumber(newsСontent?.attributes.views)}
                         </Text>
                       ) : (
                         <Text color="#BBBBBB" p={0} m={0} fontSize={['sm', 'md']}>
-                          Нет просмотров
+                          Нет
                         </Text>
                       )}
                     </HStack>
@@ -230,7 +256,6 @@ export const News = React.memo(() => {
                 minH={`${height}px`}
                 h={`${refNews.current?.clientHeight}px`}
                 borderColor={themeIsDark ? 'white' : 'brand.dark'}
-                px={[1, 2]}
               >
                 <Text
                   w="full"
@@ -239,26 +264,54 @@ export const News = React.memo(() => {
                   borderBottom="2px"
                   align="center"
                 >
-                  Ещё новости
+                  Другие новости
                 </Text>
-                {news ? (
-                  Object.keys(news).map(index => {
-                    return (
-                      <Link
-                        href={`${ROUTE_NEWS}/${transliterating(news[Number(index)].attributes.heading)}`}
-                        key={index}
-                        color={themeIsDark ? 'white' : 'brand.dark'}
-                        fontSize={['sm', 'md']}
-                      >
-                        {news[Number(index)].attributes.heading}
-                      </Link>
-                    );
-                  })
-                ) : (
-                  <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
-                    Нет подходящих новостей
-                  </Text>
-                )}
+                <VStack w="full" px={[1, 2, 3]}>
+                  {shortNews ? (
+                    Object.keys(shortNews).map(index => {
+                      if (shortRowsCount < shortNewsCounter) {
+                        shortRowsCount += 1;
+                        return (
+                          <Link
+                            as={RouterLink}
+                            to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
+                            key={index}
+                            color={themeIsDark ? 'white' : 'brand.dark'}
+                            fontSize={['sm', 'md']}
+                            onClick={async () => {
+                              await fetchChangeShortsViews(
+                                shortNews[Number(index)].id,
+                                Number(shortNews[Number(index)].attributes.views),
+                              );
+                            }}
+                          >
+                            {shortNews[Number(index)].attributes.heading}
+                          </Link>
+                        );
+                      }
+                      return false;
+                    })
+                  ) : (
+                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
+                      Нет подходящих новостей
+                    </Text>
+                  )}
+                  {shortNews && shortNewsCounter < shortNews?.length && (
+                    <Button
+                      variant="brand-news"
+                      rightIcon={<BiPlus />}
+                      w="full"
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      onClick={() => {
+                        const newsUp = shortNewsCounter + loadShortCount;
+
+                        setShortNewsCounter(newsUp);
+                      }}
+                    >
+                      Ещё новости
+                    </Button>
+                  )}
+                </VStack>
               </VStack>
             )}
           </HStack>
@@ -271,18 +324,25 @@ export const News = React.memo(() => {
                 align="center"
                 color={themeIsDark ? 'white' : 'brand.dark'}
               >
-                Ещё новости
+                Другие новости
               </Text>
-              {news ? (
-                Object.keys(news).map(index => {
+              {shortNews ? (
+                Object.keys(shortNews).map(index => {
                   return (
                     <Link
-                      href={`${ROUTE_NEWS}/${transliterating(news[Number(index)].attributes.heading)}`}
-                      key={index}
+                      as={RouterLink}
+                      to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
                       color={themeIsDark ? 'white' : 'brand.dark'}
                       fontSize={['sm', 'md']}
+                      key={index}
+                      onClick={async () => {
+                        await fetchChangeShortsViews(
+                          shortNews[Number(index)].id,
+                          Number(shortNews[Number(index)].attributes.views),
+                        );
+                      }}
                     >
-                      {news[Number(index)].attributes.heading}
+                      {shortNews[Number(index)].attributes.heading}
                     </Link>
                   );
                 })

@@ -1,24 +1,25 @@
 /* eslint no-return-assign: "error" */
-import { HStack, VStack, Text, Grid, GridItem, useMediaQuery, Link } from '@chakra-ui/react';
-import React, { Dispatch, useEffect, useRef } from 'react';
+/* eslint no-unsafe-optional-chaining: "error" */
+import { VStack, useMediaQuery, Text, Grid, GridItem, HStack, Link, Button } from '@chakra-ui/react';
+import React, { Dispatch, useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
+import { BiPlus } from 'react-icons/bi';
 
 import { NewsContent } from '../../components/newsContent/NewsContent';
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
-import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { TagsEnum } from '../../enums/TagsEnum';
 import { IRootState } from '../../interfaces/IRootState';
-import { API_URL } from '../../constants/env';
+import { API_URL_ADMIN } from '../../constants/env';
 import { RootActions } from '../../types/RootActions';
-import { coreGetNews } from '../../actions/coreActions';
+import { coreGetNews, coreGetShortNews } from '../../actions/coreActions';
 import { transliterating } from '../../textfunctions/transliterating/transliterating';
 import { ROUTE_NEWS } from '../../constants/routes';
+import { fetchChangeShortsViews } from '../../api/newsApi';
 
 export const Main = React.memo(() => {
-  const { height } = useWindowDimensions();
-
   const it = useSelector((state: IRootState) => state.core.it);
   const education = useSelector((state: IRootState) => state.core.education);
   const business = useSelector((state: IRootState) => state.core.business);
@@ -27,19 +28,32 @@ export const Main = React.memo(() => {
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
 
   const news = useSelector((state: IRootState) => state.core.news);
+  const shortNews = useSelector((state: IRootState) => state.core.shortNews);
   const dispatch = useDispatch<Dispatch<RootActions>>();
 
-  const refNews = useRef<HTMLDivElement>(null);
+  const loadCount = 8;
+  const [newsCounter, setNewsCounter] = useState(loadCount);
 
+  const loadShortCount = 10;
+  const [shortNewsCounter, setShortNewsCounter] = useState(loadShortCount);
+
+  const refNews = useRef<HTMLDivElement>(null);
+  const contentHeight = refNews.current?.clientHeight;
+
+  const [isLargerThan1350] = useMediaQuery('(min-width: 1350px)');
   const [isLargerThan1025] = useMediaQuery('(min-width: 1025px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan620] = useMediaQuery('(min-width: 620px)');
 
+  let shortRowsCount = 0;
   let rowsCount = 0;
+
   let rowEven = false;
+  let newsCount = 0;
 
   useEffect(() => {
     dispatch(coreGetNews());
+    dispatch(coreGetShortNews());
   }, []);
 
   useEffect(() => {
@@ -49,52 +63,67 @@ export const Main = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund | Главная</title>
+        <title>айтифонд | Главная</title>
         <meta charSet="UTF-8" />
-        <meta name="Главная страница" content="Фонд развития информационный технологий" />
+        <meta name="descripsion" content="Главная страница" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
-        <meta property="og:title" content="Фонд развития информационный технологий" />
+        <meta property="og:url" content="https://www.айтифонд.рус/" />
+        <meta
+          property="og:title"
+          content="Фонд развития информационный технологий в Ульяновской области является оператором государственный поддержки IT-проектов и компаний в регионе с 2016 года."
+        />
         <meta property="og:descripsion" content="Фонд развития информационный технологий" />
-        <meta property="og:image" content="../../assets/logo.svg" />
-        <meta property="og:image:type" content="image/svg" />
-        <meta property="og:image:width" content="200" />
-        <meta property="og:image:height" content="60" />
-        <meta name="vk:card" content="image/svg" />
+        <meta property="og:image" content="/logo_ref.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="vk:card" content="image/jpg" />
+        <meta property="vk:url" content="https://www.айтифонд.рус/" />
         <meta name="vk:title" content="Фонд развития информационный технологий" />
         <meta name="vk:descripsion" content="Фонд развития информационный технологий" />
-        <meta name="vk:image" content="../../assets/logo.svg" />
+        <meta name="vk:image" content="/logo_ref.jpg" />
+        <meta
+          name="keywords"
+          content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, ИТ-отрасль, Где получить образование?, Что происходит в отрасли?"
+        />
+        <meta name="twitter:card" content="image/jpg" />
+        <meta property="twitter:url" content="https://www.айтифонд.рус/" />
+        <meta name="twitter:title" content="Фонд развития информационный технологий Ульяновской области." />
+        <meta name="twitter:descripsion" content="Фонд развития информационный технологий Ульяновской области." />
+        <meta name="twitter:image" content="/logo_ref.jpg" />
       </Helmet>
       <Header />
       <VStack
-        minH={`${height}px`}
-        align="start"
-        justify="start"
+        justify="center"
+        align="center"
+        minH="100vh"
         px={isLargerThan770 ? '10%' : '5%'}
-        bg={themeIsDark ? '#121212' : 'white'}
+        bg={themeIsDark ? '#121212' : 'brand.beige'}
       >
         <VStack
           w="full"
-          minH={`${height}px`}
-          bg={themeIsDark ? '#242323' : 'brand.beige'}
+          minH="100vh"
+          bg={themeIsDark ? '#242323' : 'white'}
           pl={[1, 2, 3, 4]}
           pr={isLargerThan620 ? 0 : [1, 2, 3, 4]}
-          pb={2}
           boxShadow="5px 0px rgb(3,0,15,15%)"
+          ref={refNews}
+          pb={0}
         >
           <HStack w="full" align="flex-start">
-            <VStack w="full" pt={[1, 2, 6]} ref={refNews}>
+            <VStack w="full" pt={[1, 2, 6]}>
               {news && (
                 <Grid
                   w="full"
-                  gap="2.5"
+                  gap="5"
                   templateRows={`repeat(${rowsCount}, 1fr)`}
                   templateColumns={isLargerThan1025 ? 'repeat(6, 3fr)' : 'repeat(1, 1fr)'}
                 >
-                  {Object.keys(news)
-                    .reverse()
-                    .map(index => {
+                  {Object.keys(Array(newsCounter).fill('')).map(index => {
+                    if (news[Number(index)]) {
                       const data = news[Number(index)].attributes;
+
                       const image = data.image.data['0'].attributes;
                       const arr = [];
                       it && arr.push(TagsEnum.IT);
@@ -118,14 +147,41 @@ export const Main = React.memo(() => {
                       }
                       if (
                         arr.includes(data.tags as TagsEnum) &&
-                        (search === undefined || data.heading.includes(search))
+                        (search === undefined || data.heading.includes(search)) &&
+                        newsCount <= 1
                       ) {
+                        newsCount += 1;
                         return (
                           <GridItem key={index} colSpan={3}>
                             <NewsContent
                               id={news[Number(index)].id}
                               name_content={data.heading}
-                              src_content={`${API_URL}${image.url}`}
+                              src_content={`${API_URL_ADMIN}${image.url}`}
+                              views_content={data.views}
+                              tag_content={data.tags}
+                              date_content={data.date}
+                              url_name={transliterating(data.heading)}
+                              like={data.like}
+                              dislike={data.dislike}
+                              delight={data.delight}
+                              shock={data.shock}
+                              smile_face={data.smile_face}
+                              angry={data.angry}
+                            />
+                          </GridItem>
+                        );
+                      }
+                      if (
+                        arr.includes(data.tags as TagsEnum) &&
+                        (search === undefined || data.heading.includes(search)) &&
+                        newsCount > 1
+                      ) {
+                        return (
+                          <GridItem key={index} colSpan={isLargerThan1350 ? 2 : 3}>
+                            <NewsContent
+                              id={news[Number(index)].id}
+                              name_content={data.heading}
+                              src_content={`${API_URL_ADMIN}${image.url}`}
                               views_content={data.views}
                               tag_content={data.tags}
                               date_content={data.date}
@@ -141,51 +197,94 @@ export const Main = React.memo(() => {
                         );
                       }
                       return false;
-                    })}
+                    }
+                    return false;
+                  })}
                 </Grid>
               )}
+              {news && newsCounter < news?.length && (
+                <HStack w="full" pb={2} m={0}>
+                  <Button
+                    variant="brand-news"
+                    rightIcon={<BiPlus />}
+                    w="full"
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    onClick={() => {
+                      const newsUp = newsCounter + loadCount <= news?.length ? loadCount : news?.length - newsCounter;
+                      setNewsCounter(newsCounter + newsUp);
+                    }}
+                  >
+                    Ещё новости
+                  </Button>
+                </HStack>
+              )}
             </VStack>
-            {isLargerThan620 && (
-              <VStack
+            <VStack
+              w="full"
+              maxW={isLargerThan1025 ? '20%' : '35%'}
+              spacing={2}
+              borderLeft="2px"
+              borderColor={themeIsDark ? 'white' : 'brand.dark'}
+              minH={contentHeight}
+              align="center"
+            >
+              <Text
                 w="full"
-                maxW={isLargerThan1025 ? '20%' : '35%'}
-                spacing={2}
-                borderLeft="2px"
-                borderColor={themeIsDark ? 'white' : 'brand.dark'}
-                minH={`${height}px`}
-                h={`${refNews.current?.clientHeight}px`}
+                color={themeIsDark ? 'white' : 'brand.dark'}
+                fontSize={['lg', 'xl', '2xl']}
+                borderBottom="2px"
                 align="center"
-                px={[1, 2]}
               >
-                <Text
-                  w="full"
-                  color={themeIsDark ? 'white' : 'brand.dark'}
-                  fontSize={['lg', 'xl', '2xl']}
-                  borderBottom="2px"
-                  align="center"
-                >
-                  Ещё новости
-                </Text>
-                {news ? (
-                  Object.keys(news).map(index => {
-                    return (
-                      <Link
-                        href={`${ROUTE_NEWS}/${transliterating(news[Number(index)].attributes.heading)}`}
-                        key={index}
-                        color={themeIsDark ? 'white' : 'brand.dark'}
-                        fontSize={['sm', 'md']}
-                      >
-                        {news[Number(index)].attributes.heading}
-                      </Link>
-                    );
+                Новости
+              </Text>
+              <VStack w="full" px={[1, 2, 3]}>
+                {shortNews ? (
+                  Object.keys(shortNews).map(index => {
+                    if (shortRowsCount < shortNewsCounter) {
+                      shortRowsCount += 1;
+
+                      return (
+                        <Link
+                          as={RouterLink}
+                          to={`${ROUTE_NEWS}/${transliterating(shortNews[Number(index)].attributes.heading)}`}
+                          key={index}
+                          color={themeIsDark ? 'white' : 'brand.dark'}
+                          fontSize={['8px', '10px', 'xs', 'sm', 'md']}
+                          onClick={async () => {
+                            await fetchChangeShortsViews(
+                              shortNews[Number(index)].id,
+                              Number(shortNews[Number(index)].attributes.views),
+                            );
+                          }}
+                        >
+                          {shortNews[Number(index)].attributes.heading}
+                        </Link>
+                      );
+                    }
+                    return false;
                   })
                 ) : (
                   <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['xs', 'sm', 'md']} align="center">
                     Нет подходящих новостей
                   </Text>
                 )}
+                {shortNews && shortNewsCounter < shortNews?.length && (
+                  <Button
+                    variant="brand-news"
+                    rightIcon={<BiPlus />}
+                    w="full"
+                    color={themeIsDark ? 'white' : 'brand.dark'}
+                    fontSize={['10px', 'xs', 'sm', 'md']}
+                    onClick={() => {
+                      const newsUp = shortNewsCounter + loadShortCount;
+                      setShortNewsCounter(newsUp);
+                    }}
+                  >
+                    Ещё новости
+                  </Button>
+                )}
               </VStack>
-            )}
+            </VStack>
           </HStack>
         </VStack>
       </VStack>

@@ -1,8 +1,22 @@
 import { handleResponse } from '../commons/handleResponse';
-import { API_URL } from '../constants/env';
+import { API_URL_ADMIN } from '../constants/env';
 
 export async function fetchChangeEmojiPlus(newsId: number, emojiName: string, emojiCount: number): Promise<void> {
-  const url = new URL(`/api/news/${newsId}`, API_URL || window.location.href);
+  const url = new URL(`/api/news/${newsId}`, API_URL_ADMIN || window.location.href);
+  return fetch(url.toString(), {
+    method: 'PUT',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      data: {
+        [`${emojiName}`]: emojiCount + 1,
+      },
+    }),
+  }).then(handleResponse);
+}
+
+export async function fetchChangeEmojiShortsPlus(newsId: number, emojiName: string, emojiCount: number): Promise<void> {
+  const url = new URL(`/api/shorts/${newsId}`, API_URL_ADMIN || window.location.href);
   return fetch(url.toString(), {
     method: 'PUT',
     credentials: 'include',
@@ -16,7 +30,26 @@ export async function fetchChangeEmojiPlus(newsId: number, emojiName: string, em
 }
 
 export async function fetchChangeEmojiMinus(newsId: number, emojiName: string, emojiCount: number): Promise<void> {
-  const url = new URL(`/api/news/${newsId}`, API_URL || window.location.href);
+  const url = new URL(`/api/news/${newsId}`, API_URL_ADMIN || window.location.href);
+
+  return fetch(url.toString(), {
+    method: 'PUT',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      data: {
+        [`${emojiName}`]: emojiCount - 1,
+      },
+    }),
+  }).then(handleResponse);
+}
+
+export async function fetchChangeEmojiShortsMinus(
+  newsId: number,
+  emojiName: string,
+  emojiCount: number,
+): Promise<void> {
+  const url = new URL(`/api/shorts/${newsId}`, API_URL_ADMIN || window.location.href);
 
   return fetch(url.toString(), {
     method: 'PUT',

@@ -1,3 +1,4 @@
+/* eslint no-unsafe-optional-chaining: "error" */
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import {
   HStack,
@@ -33,6 +34,9 @@ export const Calendar = React.memo(() => {
   const { height } = useWindowDimensions();
 
   const refCalendar = useRef<HTMLDivElement>(null);
+  const refHeader = useRef<HTMLDivElement>(null);
+  const refFooter = useRef<HTMLDivElement>(null);
+
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
   const events = useSelector((state: IRootState) => state.core.events);
 
@@ -56,7 +60,8 @@ export const Calendar = React.memo(() => {
   const [isLargerThan620] = useMediaQuery('(min-width: 620px)');
   const [isLargerThan600] = useMediaQuery('(min-width: 600px)');
 
-  const [year, setYear] = useState(2023);
+  const currentYear = new Date().getFullYear();
+  const [year, setYear] = useState(currentYear);
   const [id, setId] = useState('');
 
   const isLeapYear = (yearLeap: number) => {
@@ -115,26 +120,43 @@ export const Calendar = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund | Когда будут мероприятия?</title>
+        <title>айтифонд | Когда будут ИТ-мероприятия</title>
         <meta charSet="UTF-8" />
-        <meta name="Календарь мероприятий" content="" />
+        <meta name="descripsion" content="" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
+        <meta property="og:url" content="https://айтифонд.рус/calendar" />
         <meta property="og:title" content="Календарь мероприятий" />
         <meta property="og:descripsion" content="Календарь мероприятий" />
-        <meta property="og:image" content="../../assets/logo.svg" />
-        <meta property="og:image:type" content="image/svg" />
-        <meta property="og:image:width" content="200" />
-        <meta property="og:image:height" content="60" />
-        <meta name="vk:card" content="image/svg" />
+        <meta property="og:image" content="/logo_ref.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="vk:card" content="image/jpg" />
+        <meta property="vk:url" content="https://айтифонд.рус/calendar" />
         <meta name="vk:title" content="Календарь мероприятий" />
         <meta name="vk:descripsion" content="Календарь мероприятий" />
-        <meta name="vk:image" content="../../assets/logo.svg" />
+        <meta name="vk:image" content="/logo_ref.jpg" />
+        <meta
+          name="keywords"
+          content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, мероприятия, календарь событий"
+        />
+        <meta name="twitter:card" content="image/jpg" />
+        <meta property="twitter:url" content="https://айтифонд.рус/calendar" />
+        <meta name="twitter:title" content="Календарь мероприятий" />
+        <meta name="twitter:descripsion" content="Календарь мероприятий" />
+        <meta name="twitter:image" content="/logo_ref.jpg" />
       </Helmet>
-      <Header />
+      <VStack ref={refHeader}>
+        <Header />
+      </VStack>
       <VStack
         justify="start"
-        minH={`${height / 1.3}px`}
+        minH={`${
+          refHeader.current &&
+          refFooter.current &&
+          height - refHeader.current?.clientHeight - refFooter.current?.clientHeight
+        }px`}
         px={isLargerThan770 ? '10%' : '5%'}
         bg={themeIsDark ? '#242323' : 'white'}
       >
@@ -174,23 +196,13 @@ export const Calendar = React.memo(() => {
                   {year}
                 </MenuButton>
                 <MenuList maxH="250px" overflow="auto">
-                  <MenuItem onClick={() => setYear(2023)}>2023</MenuItem>
-                  <MenuItem onClick={() => setYear(2024)}>2024</MenuItem>
-                  <MenuItem onClick={() => setYear(2025)}>2025</MenuItem>
-                  <MenuItem onClick={() => setYear(2026)}>2026</MenuItem>
-                  <MenuItem onClick={() => setYear(2027)}>2027</MenuItem>
-                  <MenuItem onClick={() => setYear(2028)}>2028</MenuItem>
-                  <MenuItem onClick={() => setYear(2029)}>2029</MenuItem>
-                  <MenuItem onClick={() => setYear(2030)}>2030</MenuItem>
-                  <MenuItem onClick={() => setYear(2031)}>2031</MenuItem>
-                  <MenuItem onClick={() => setYear(2032)}>2032</MenuItem>
-                  <MenuItem onClick={() => setYear(2033)}>2033</MenuItem>
-                  <MenuItem onClick={() => setYear(2034)}>2034</MenuItem>
-                  <MenuItem onClick={() => setYear(2035)}>2035</MenuItem>
-                  <MenuItem onClick={() => setYear(2036)}>2036</MenuItem>
-                  <MenuItem onClick={() => setYear(2037)}>2037</MenuItem>
-                  <MenuItem onClick={() => setYear(2038)}>2038</MenuItem>
-                  <MenuItem onClick={() => setYear(2039)}>2039</MenuItem>
+                  {Object.keys(Array(20).fill('')).map(index => {
+                    return (
+                      <MenuItem key={index} onClick={() => setYear(currentYear + Number(index))}>
+                        {currentYear + Number(index)}
+                      </MenuItem>
+                    );
+                  })}
                 </MenuList>
               </Menu>
             </HStack>
@@ -267,7 +279,7 @@ export const Calendar = React.memo(() => {
                             }}
                           >
                             <VStack align="center" spacing={0}>
-                              <p style={{ fontSize: '25px' }}>{Number(index) + 1}</p>
+                              <p style={{ fontSize: '20px' }}>{Number(index) + 1}</p>
                               <p style={{ fontSize: '12px', fontWeight: 'lighter' }}>
                                 {events && events[Number(eventTag)].attributes.name}
                               </p>
@@ -767,7 +779,9 @@ export const Calendar = React.memo(() => {
           </HStack>
         </VStack>
       </VStack>
-      <Footer />
+      <VStack ref={refFooter}>
+        <Footer />
+      </VStack>
       <ModalCalendarNewDate isOpen={!!isCalenderNewDateSelect} />
       <ModalCalendarEventInfo isOpen={!!isCalenderEventSelect} id={id} />
     </>

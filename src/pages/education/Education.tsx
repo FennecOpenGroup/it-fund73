@@ -1,7 +1,7 @@
+/* eslint no-unsafe-optional-chaining: "error" */
 import { InfoIcon } from '@chakra-ui/icons';
 import { VStack, Text, HStack, Stack, Checkbox, useMediaQuery, Grid, GridItem } from '@chakra-ui/react';
-import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
 
@@ -15,13 +15,28 @@ export const Education = React.memo(() => {
 
   const [isLargerThan960] = useMediaQuery('(min-width: 960px)');
 
-  const [freeAdditionalTraining, setFreeAdditionalTraining] = useState(true);
-  const [paidAdditionalTraining, setPaidAdditionalTraining] = useState(true);
   const [higherEducation, setHigherEducation] = useState(true);
-  const [secondaryEducation, setSecondaryEducation] = useState(true);
-  const [preparationForStateExams, setPreparationForStateExams] = useState(true);
+  const [freeAdditionalTraining, setFreeAdditionalTraining] = useState(false);
+  const [paidAdditionalTraining, setPaidAdditionalTraining] = useState(false);
+  const [secondaryEducation, setSecondaryEducation] = useState(false);
+  const [preparationForStateExams, setPreparationForStateExams] = useState(false);
+
+  const setType = (type: string) => {
+    setHigherEducation(type === 'higherEducation');
+    setFreeAdditionalTraining(type === 'freeAdditionalTraining');
+    setPaidAdditionalTraining(type === 'paidAdditionalTraining');
+    setSecondaryEducation(type === 'secondaryEducation');
+    setPreparationForStateExams(type === 'preparationForStateExams');
+  };
+
+  const [link, setLink] = useState(
+    'https://yandex.ru/map-widget/v1/?um=constructor%3Ac008c1b3e8ec241f3ae4e78f2f2afabd837bb0af10283adaf5b0d3a8cb5219b3&amp;source=constructor',
+  );
 
   const themeIsDark = useSelector((state: IRootState) => state.core.themeIsDark);
+
+  const refHeader = useRef<HTMLDivElement>(null);
+  const refFooter = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,24 +45,46 @@ export const Education = React.memo(() => {
   return (
     <>
       <Helmet>
-        <title>it-fund | Где получить образование?</title>
+        <title>айтифонд | Где получить образование</title>
         <meta charSet="UTF-8" />
-        <meta name="Где получить образование?" content="Где получить образование?" />
+        <meta name="description" content="Где получить образование?" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="it-fund" />
+        <meta property="og:url" content="https://www.айтифонд.рус/education" />
         <meta property="og:title" content="Где получить образование?" />
         <meta property="og:descripsion" content="Где получить образование??" />
-        <meta property="og:image" content="../../assets/logo.svg" />
-        <meta property="og:image:type" content="image/svg" />
-        <meta property="og:image:width" content="200" />
-        <meta property="og:image:height" content="60" />
-        <meta name="vk:card" content="image/svg" />
+        <meta property="og:image" content="/logo_ref.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="vk:card" content="image/jpg" />
+        <meta property="vk:url" content="https://www.айтифонд.рус/education" />
         <meta name="vk:title" content="Где получить образование?" />
         <meta name="vk:descripsion" content="Где получить образование?" />
-        <meta name="vk:image" content="../../assets/logo.svg" />
+        <meta name="vk:image" content="/logo_ref.jpg" />
+        <meta
+          name="keywords"
+          content="Фонд развития, информационный-технологий, Ульяновской области, Ульяновск, IT-фонд, IT, ИТ-отрасль, Где получить образование?"
+        />
+        <meta name="twitter:card" content="image/jpg" />
+        <meta property="twitter:url" content="https://www.айтифонд.рус/education" />
+        <meta name="twitter:title" content="Где получить образование?" />
+        <meta name="twitter:descripsion" content="Где получить образование?" />
+        <meta name="twitter:image" content="/logo_ref.jpg" />
       </Helmet>
-      <Header />
-      <VStack justify="start" minH={`${height / 1.3}px`} px="10%" bg={themeIsDark ? '#242323' : 'white'}>
+      <VStack ref={refHeader}>
+        <Header />
+      </VStack>
+      <VStack
+        justify="start"
+        minH={`${
+          refHeader.current &&
+          refFooter.current &&
+          height - refHeader.current?.clientHeight - refFooter.current?.clientHeight
+        }px`}
+        px="10%"
+        bg={themeIsDark ? '#242323' : 'white'}
+      >
         <VStack w="full" pl={[2, 3, 4]} pb={[4, 5, 6]} bg={themeIsDark ? '#242323' : 'transparent'}>
           <Text
             color="brand.blue"
@@ -57,7 +94,7 @@ export const Education = React.memo(() => {
             pt={4}
             fontWeight="800"
           >
-            Где получить образование?
+            Где получить ИТ-образование
           </Text>
           <Stack
             direction={isLargerThan960 ? 'row' : 'column'}
@@ -67,531 +104,7 @@ export const Education = React.memo(() => {
             justify="start"
             spacing={2}
           >
-            <YMaps>
-              <Map width="100%" height={`${height / 2}px`} defaultState={{ center: [54.314195, 48.403122], zoom: 10 }}>
-                {higherEducation && (
-                  <>
-                    <Placemark defaultGeometry={[54.30348, 48.367426]} />
-                    <Placemark defaultGeometry={[54.240584, 49.59949]} />
-                    <Placemark defaultGeometry={[54.349556, 48.386271]} />
-                  </>
-                )}
-                {secondaryEducation && (
-                  <>
-                    <Placemark
-                      defaultGeometry={[52.724448, 47.630509]}
-                      options={{
-                        iconColor: '#62c375',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.209897, 49.592295]}
-                      options={{
-                        iconColor: '#62c375',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.291285, 48.30942]}
-                      options={{
-                        iconColor: '#62c375',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.855765, 46.33698]}
-                      options={{
-                        iconColor: '#62c375',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.334434, 48.473982]}
-                      options={{
-                        iconColor: '#62c375',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.323902, 48.393637]}
-                      options={{
-                        iconColor: '#62c375',
-                      }}
-                    />
-                  </>
-                )}
-                {freeAdditionalTraining && (
-                  <>
-                    <Placemark
-                      defaultGeometry={[54.352498, 48.387667]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.287791, 48.309258]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.25433, 48.323766]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.36731, 48.576228]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.385418, 48.576183]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.258217, 48.339154]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.209897, 49.592295]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.239768, 49.577958]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.378539, 48.598911]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.267283, 48.29961]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.606079, 48.9105]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.281294, 48.262114]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.287791, 48.309258]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.311172, 48.392783]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.290408, 47.257394]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.326155, 48.386783]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.727198, 49.164795]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.299414, 48.320442]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.852053, 46.342451]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.386058, 48.590538]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.303933, 48.377036]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.243193, 48.257255]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.598908, 48.15915]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.38243, 48.582517]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.380112, 48.585508]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.564102, 46.98029]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.348595, 48.540026]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.133881, 47.203064]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.615903, 47.370968]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.111882, 47.619073]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.378004, 48.599216]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.355569, 48.53619]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.305173, 48.341921]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.605521, 48.933803]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.550092, 49.342294]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.383532, 47.063888]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.312642, 48.023971]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.331027, 48.488903]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.256534, 48.329434]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.273977, 46.968486]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.149135, 47.741891]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.577363, 46.943262]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.630744, 47.136768]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.258217, 48.339154]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.229664, 49.559713]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.38212, 48.611236]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.339526, 48.539963]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.650475, 47.106468]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.84213, 46.359402]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.991316, 48.328707]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.535917, 48.95052]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.645842, 47.139768]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.292011, 48.305755]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.374732, 48.587817]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.390394, 48.582112]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.371029, 48.581744]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.664541, 47.103548]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[53.015944, 47.92548]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.312627, 48.39476]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.311965, 48.392945]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                  </>
-                )}
-                {paidAdditionalTraining && (
-                  <>
-                    <Placemark
-                      defaultGeometry={[54.279796, 48.292037]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.347939, 48.350419]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.375513, 48.571521]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.320399, 48.397284]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.349556, 48.386271]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.311933, 48.392963]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.368537, 48.594051]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.321728, 48.398838]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.340214, 48.39387]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.320121, 48.390609]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.317458, 48.39988]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.281037, 48.300985]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.382687, 48.61305]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.310263, 48.395712]}
-                      options={{
-                        iconColor: '#f0ad4e',
-                      }}
-                    />
-                  </>
-                )}
-                {preparationForStateExams && (
-                  <>
-                    <Placemark
-                      defaultGeometry={[54.30346, 48.366283]}
-                      options={{
-                        iconColor: '#dc3545',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.349556, 48.386271]}
-                      options={{
-                        iconColor: '#dc3545',
-                      }}
-                    />
-                    <Placemark
-                      defaultGeometry={[54.319742, 48.3959]}
-                      options={{
-                        iconColor: '#dc3545',
-                      }}
-                    />
-                  </>
-                )}
-              </Map>
-            </YMaps>
+            <iframe src={`${link}`} width="100%" height="400" frameBorder="0" />
             <VStack>
               <Text w="full" align="center" color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['md', 'lg', 'xl']}>
                 Опции
@@ -599,64 +112,79 @@ export const Education = React.memo(() => {
               <Grid w="full">
                 <GridItem>
                   <HStack spacing={[1, 2]}>
-                    <InfoIcon color="yellow.500" />
-                    <VStack spacing={0}>
-                      <HStack>
-                        <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
-                        <Checkbox
-                          color={themeIsDark ? 'white' : 'brand.dark'}
-                          fontSize="md"
-                          size="md"
-                          isChecked={paidAdditionalTraining}
-                          onChange={() => setPaidAdditionalTraining(!paidAdditionalTraining)}
-                        >
-                          Платное
-                        </Checkbox>
-                        <Checkbox
-                          color={themeIsDark ? 'white' : 'brand.dark'}
-                          fontSize="md"
-                          size="md"
-                          isChecked={freeAdditionalTraining}
-                          onChange={() => setFreeAdditionalTraining(!freeAdditionalTraining)}
-                        >
-                          Бесплатное
-                        </Checkbox>
-                        <Text color={themeIsDark ? 'white' : 'brand.dark'}>|</Text>
-                      </HStack>
-                      <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
-                        Дополнительное образование
-                      </Text>
-                    </VStack>
-                  </HStack>
-                </GridItem>
-                <GridItem>
-                  <HStack spacing={[1, 2]}>
                     <InfoIcon color="blue.500" />
                     <Checkbox
                       color={themeIsDark ? 'white' : 'brand.dark'}
                       fontSize="md"
-                      size="lg"
+                      size="md"
                       isChecked={higherEducation}
-                      onChange={() => setHigherEducation(!higherEducation)}
-                    />
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                      onChange={() => {
+                        setLink(
+                          'https://yandex.ru/map-widget/v1/?um=constructor%3A62fae091190988ce28fbc58300df85c969dbd49cab9b698bfdd1b3a6808d6fdd&amp;source=constructor',
+                        );
+                        setType('higherEducation');
+                      }}
+                    >
                       Высшее образование
-                    </Text>
+                    </Checkbox>
                   </HStack>
                 </GridItem>
+                <GridItem>
+                  <HStack spacing={[1, 2]}>
+                    <InfoIcon color="yellow.500" />
+                    <Checkbox
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['sm', 'md']}
+                      size="md"
+                      isChecked={paidAdditionalTraining}
+                      onChange={() => {
+                        setLink(
+                          'https://yandex.ru/map-widget/v1/?um=constructor%3A7cd3a1bea72b6b2d51baf004b237ae795b1eff8b1cffb1a6a796c42b22777c5b&amp;source=constructor',
+                        );
+                        setType('paidAdditionalTraining');
+                      }}
+                    >
+                      Платное доп. образование
+                    </Checkbox>
+                  </HStack>
+                </GridItem>
+                <GridItem>
+                  <HStack spacing={[1, 2]}>
+                    <InfoIcon color="yellow.500" />
+                    <Checkbox
+                      color={themeIsDark ? 'white' : 'brand.dark'}
+                      fontSize={['sm', 'md']}
+                      size="md"
+                      isChecked={freeAdditionalTraining}
+                      onChange={() => {
+                        setLink(
+                          'https://yandex.ru/map-widget/v1/?um=constructor%3A582840efb5faa5fab3f882d2bb81d3ecc5ada46d94bb036a39b2ec61990f54be&amp;source=constructor',
+                        );
+                        setType('freeAdditionalTraining');
+                      }}
+                    >
+                      Бесплатное доп. образование
+                    </Checkbox>
+                  </HStack>
+                </GridItem>
+
                 <GridItem>
                   <HStack spacing={[1, 2]}>
                     <InfoIcon color="green.500" />
                     <Checkbox
                       color={themeIsDark ? 'white' : 'brand.dark'}
-                      fontSize="xl"
-                      size="lg"
+                      fontSize={['sm', 'md']}
+                      size="md"
                       isChecked={secondaryEducation}
-                      onChange={() => setSecondaryEducation(!secondaryEducation)}
-                    />
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                      onChange={() => {
+                        setLink(
+                          'https://yandex.ru/map-widget/v1/?um=constructor%3Aefb6818b79e8e25b9f80f5bacaf38d1c92700998fd1d8c2e1c0dba02a248412f&amp;source=constructor',
+                        );
+                        setType('secondaryEducation');
+                      }}
+                    >
                       Среднее образование
-                    </Text>
+                    </Checkbox>
                   </HStack>
                 </GridItem>
                 <GridItem>
@@ -664,14 +192,18 @@ export const Education = React.memo(() => {
                     <InfoIcon color="red.500" />
                     <Checkbox
                       color={themeIsDark ? 'white' : 'brand.dark'}
-                      fontSize="xl"
-                      size="lg"
+                      fontSize={['sm', 'md']}
+                      size="md"
                       isChecked={preparationForStateExams}
-                      onChange={() => setPreparationForStateExams(!preparationForStateExams)}
-                    />
-                    <Text color={themeIsDark ? 'white' : 'brand.dark'} fontSize={['sm', 'md']}>
+                      onChange={() => {
+                        setLink(
+                          'https://yandex.ru/map-widget/v1/?um=constructor%3Afdcef2c661a635d1782590c0b9f586112a0d25c3795e927bdce0c5c61934b815&amp;source=constructor',
+                        );
+                        setType('preparationForStateExams');
+                      }}
+                    >
                       Подготовка к гос. экзаменам
-                    </Text>
+                    </Checkbox>
                   </HStack>
                 </GridItem>
               </Grid>
@@ -679,7 +211,13 @@ export const Education = React.memo(() => {
           </Stack>
         </VStack>
       </VStack>
-      <Footer />
+      <iframe
+        src="https://kitchat.kitbot.cloud/navigator/"
+        style={{ width: '100%', height: '100%', minHeight: '100vh' }}
+      ></iframe>
+      <VStack ref={refFooter}>
+        <Footer />
+      </VStack>
     </>
   );
 });
