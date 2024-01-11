@@ -11,3 +11,4 @@ export async function fetchTeam(): Promise<IImage[]> {
     headers: { 'Content-Type': 'application/json' },
   }).then(handleResponse);
 }
+  
