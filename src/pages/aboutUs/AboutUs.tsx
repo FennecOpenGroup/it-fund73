@@ -1219,7 +1219,7 @@ export const AboutUs = React.memo(() => {
                     <VStack w="full" align="start">
                       {Object.keys(docs).map(index => {
                         const data = docs[Number(index)].attributes;
-                        const file = data.file.data['0'].attributes;
+                        const file = data.file.data.attributes;
                         return (
                           <HStack w="full" align="start" key={index}>
                             <Link
